@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="Semiproject test">
+    <wb-module deploy-name="Semiproject">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="context-root" value="Semiproject_test"/>
-        <property name="java-output-path" value="/Semiproject test/build/classes"/>
+        <property name="java-output-path" value="/Semiproject/build/classes"/>
     </wb-module>
 </project-modules>
