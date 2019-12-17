@@ -1,10 +1,11 @@
-package Semiproject.beans;
+package semi.beans;
 
 public class BoardDto {
 	private int no;
-	private String writer, title, content, wdate, udate;
+	private String writer, title, content, wdate, udate;	
 	
-	public BoardDto(int no, String id, String title, String content, String wdate, String udate) {
+	
+	public BoardDto(int no, String writer, String title, String content, String wdate, String udate) {
 		super();
 		this.no = no;
 		this.writer = writer;
@@ -66,4 +67,5 @@ public class BoardDto {
 		this.udate = udate;
 	}
 
+	
 }
