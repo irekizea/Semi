@@ -29,7 +29,7 @@ public class MemberRegistServlet extends HttpServlet{
 			dao.regist(dto);
 			
 //			[3] 이동			
-//			resp.sendRedirect("location");
+			resp.sendRedirect("../index.jsp");
 			
 		}
 		catch(Exception e){

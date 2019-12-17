@@ -38,6 +38,7 @@ public class MemberDao {
 			Connection con = getConnection();
 			
 			String sql = "insert into member values(?,?,?,'일반',0)";
+			
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, dto.getId());
 			ps.setString(2,dto.getPw());

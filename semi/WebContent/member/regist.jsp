@@ -8,10 +8,10 @@
 </head>
 
 <body>
-<form action="regist.do" method="post">
 	<div align="center">
-		<br>
 		<h1>회원가입</h1>
+		<br>
+<form action="regist.do" method="post">
 		<table border="0">
 			<tr>
 				<th>아이디</th>
@@ -27,13 +27,13 @@
 				<td><input type="password" name="pw"  required>
 				<td>
 			</tr>
-			<tr>
-				<th>비밀번호재확인</th>
-			</tr>
-			<tr>
-				<td><input type="password" name="pw"  required>
-				<td>
-			</tr>
+<!-- 			<tr> -->
+<!-- 				<th>비밀번호재확인</th> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td><input type="password" name="pw"  required> -->
+<!-- 				<td> -->
+<!-- 			</tr> -->
 
 			<tr>
 				<th>이메일</th>
@@ -48,8 +48,8 @@
 			</tr>
 		</table>
 		
-	</div>
 </form>
+	</div>
 </body>
 
 </html>
