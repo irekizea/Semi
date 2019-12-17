@@ -8,7 +8,7 @@
 </head>
 
 <body>
-
+<form action="regist.do" method="post">
 	<div align="center">
 		<br>
 		<h1>회원가입</h1>
@@ -47,8 +47,9 @@
 				<th><input type="submit" value="가입하기"></th>
 			</tr>
 		</table>
+		
 	</div>
-
+</form>
 </body>
 
 </html>
