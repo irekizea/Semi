@@ -7,9 +7,5 @@
 <title>Insert title here</title>
 </head>
 <body>
-asfdsadffsda
-
-as
-
 </body>
 </html>
