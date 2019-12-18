@@ -1,7 +1,10 @@
 package beans;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -49,6 +52,50 @@ public class MemberDao {
 			con.close();
 			
 		}
+		
+// 	기능 : 로그인
+// 이름 : login
+// 매개변수 : id, pw
+// 반환형 : boolean
+		
+		public boolean login(String id, String pw) throws Exception {
+			Connection con = getConnection();
+			
+			String sql = "select * from member where id=? and pw=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			ps.setString(2, pw);
+			ResultSet rs = ps.executeQuery();
+			
+			boolean result = rs.next();
+			
+			con.close();
+			return result;
+			
+
+		}
+		public boolean login(MemberDto dto) throws Exception {
+		boolean result = this.login(dto.getId(), dto.getPw());
+		return result;
+	}
+		
+	// 	기능 :  최종 로그인 시간 변경
+	// 이름 : updateLastLogin
+	// 매개변수 : id
+	// 반환형 : 없음
+		
+		public void updateLastLogin(String id) throws Exception{
+			Connection con = getConnection();
+			
+			String sql = "update member set last_login = sysdate where id =?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			ps.execute();
+			
+			con.close();
+	
+		}
+			
 }
 
 
