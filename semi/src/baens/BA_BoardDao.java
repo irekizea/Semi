@@ -37,11 +37,18 @@ public class BA_BoardDao {
 //	이름:getList
 //	매개변수:없음
 //	반환형 :데이터 목록(List<BA_BoardDto>)
-	public List<BA_BoardDto> getList() throws Exception{
+	public List<BA_BoardDto> getList(int start, int finish) throws Exception{
 		Connection con = getConnection();
-		String sql="select * from ba_board order by board_no desc";
+		String sql="select * from ( "
+				+ "select rownum rn, A.* from ( "
+				+ "select * from ba_board "
+				+ "order by board_no desc "
+				+ ")A "
+				+ ") where rn between ? and ?";
 		PreparedStatement ps=con.prepareStatement(sql);
-				
+		ps.setInt(1, start);
+		ps.setInt(2, finish);
+		
 		ResultSet rs = ps.executeQuery();
 		List<BA_BoardDto> list = new ArrayList<>();	
 		while(rs.next()) {		
@@ -138,7 +145,7 @@ public class BA_BoardDao {
 //	반환형:BA_BoardDto
 	public BA_BoardDto get(int no)throws Exception{
 		Connection con=getConnection();
-		String sql="select * from ba_board where no=?";
+		String sql="select * from ba_board where board_no=?";
 		PreparedStatement ps=con.prepareStatement(sql);
 		ps.setInt(1, no);
 		ResultSet rs=ps.executeQuery();
@@ -154,4 +161,24 @@ public class BA_BoardDao {
 		con.close();
 		return dto;
 	}
+	
+//	기능:글 개수 구하기
+//	이름:getCount
+//	매개변수:없음
+//	반환형:int(게시판글 총 개수)
+	public int getCount() throws Exception{
+		Connection con = getConnection();
+		
+		String sql="select count(*) from ba_board";
+		PreparedStatement ps=con.prepareStatement(sql);
+		
+		ResultSet rs= ps.executeQuery();
+		rs.next();
+		
+		int count = rs.getInt(1);
+		con.close();
+		
+		return count;
+	}	
+	
 }
