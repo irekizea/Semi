@@ -21,6 +21,9 @@
 <link rel="stylesheet" type="text/css" href="../css/common.css">
 </head>
 <body>
+	<form action=boardedit.do method="post">
+	<input type="hidden" name="no" value="<%=boardDto.getNo() %>">
+	<input type="hidden" name="keyword" value=<%=request.getParameter("keyword") %>>
 	<section class="w-100">
 	<table class="w-100, table">
 		<tr>
@@ -33,16 +36,15 @@
 		<tr>
 			<td colspan="2">
 				내용<br><br>
-				<textarea style="resize: none; width: 100%; height:200px"><%=boardtextdto.getContent() %></textarea>
+				<textarea name="content" style="resize: none; width: 100%; height:200px"><%=boardtextdto.getContent() %></textarea>
 			</td>
 		</tr>
 	</table>
 	<br>
-	<form action=boardedit.do method="post">
 		<div align="center">
 		<input type="submit" value="편집완료">
 		</div>
-	</form>
 	</section>
+	</form>
 </body>
 </html>

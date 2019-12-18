@@ -68,7 +68,7 @@ form>* {
 	</div>
 	
 	<div align="center">
-		<img src="<%=request.getContextPath()%>/image/capture.png" class="mainlogo">
+		<img src="<%=request.getContextPath()%>/image/logo2.png" class="mainlogo">
 	</div>
 	
 	<h1 align="center">Welcome to Alcohol Wiki</h1>
