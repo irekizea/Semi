@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
     
 <!DOCTYPE html>
 <html lang="en">
@@ -73,8 +74,9 @@ form>* {
 	<h1 align="center">Welcome to Alcohol Wiki</h1>
 	
 	<div class="input">
-		<form action="search.do" method="get">
-		
+
+		<form action="<%=request.getContextPath()%>/board/searchResult.jsp" method="get">
+
 			<input type="search" class="search" name="keyword"
 				placeholder="검색어를 입력하세요" required> <br>
 			<input type="submit" class="button" value="검색">
