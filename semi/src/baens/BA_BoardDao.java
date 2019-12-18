@@ -1,8 +1,10 @@
 package baens;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,9 @@ public class BA_BoardDao {
 	
 	public Connection getConnection()throws Exception{
 		return source.getConnection();
+//		Class.forName("oracle.jdbc.OracleDriver");
+//		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@www.sysout.co.kr:1521:xe", "kh21", "kh21");
+//		return con;
 	}
 
 	
