@@ -23,18 +23,19 @@
 				<tr>
 					<td align="right"><input type="submit" value="Login">
 					</td>
-				</tr>
-				<table>
+			 	</tr>
+      </table>
 
+				<table>
 					<tbody>
 						<tr>
 							<td>아이디 찾기 | 비밀번호 찾기 | 회원가입</td>
 						</tr>
 					</tbody>
 				</table>
-			</table>
 		</div>
 	</article>
 </form>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>
+
