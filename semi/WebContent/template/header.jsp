@@ -22,7 +22,9 @@
     <main>
         <header>
            <div>
-                <img src="http://www.placehold.it/150x50"> 대략 로고 ..
+           		<a href="<%=request.getContextPath()%>">
+                <img src="<%=request.getContextPath()%>/image/logo2.png" width=50px. height=auto>
+                </a>
            </div>
            <div>
               검색창...?
