@@ -62,7 +62,7 @@ form>* {
 
 <body>
 	<div align="right">
-	<a href="<%=request.getContextPath()%>/login.jsp">
+	<a href="<%=request.getContextPath()%>/member/login.jsp">
 		<img src="<%=request.getContextPath()%>/image/login.png" class="loginlogo">
 	</a>
 	</div>
