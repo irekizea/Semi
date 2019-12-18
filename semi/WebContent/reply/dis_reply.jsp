@@ -1,17 +1,48 @@
+<%@page import="servlet.BABoard.BABoardDao"%>
+<%@page import="servlet.BABoard.BABoardDto"%>
 <%@page import="java.util.List"%>
 <%@page import="servlet.reply.ReplyDao"%>
 <%@page import="servlet.reply.ReplyDto"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.HashSet"%>
+<%@page import="java.util.Set"%>
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%
+	//int board_no = Integer.parseInt(request.getParameter("board_no"));
+	BABoardDao bdao = new BABoardDao();
+	BABoardDao bdao = new BABoardD();
+	BABoardDto bdto = bdao.getList(Board_no, id);//게시글 불러오기	
+
+	String userId = (String)session.getAttribute("id");
+	String grade = (String)session.getAttribute("grade");
+	
+	//boolean isMine = userId.euqals(bdto.getId());//사용ID==작성자ID
+	//boolean isAdmin = grade.equals("관리자"); //사용자권한==관리자		
+
 	ReplyDao rdao = new ReplyDao();
-	List<ReplyDto> List = rdao.getList();
+	List<ReplyDto> list = rdao.getList(board_no);
 
 %>	
 
 <jsp:include page="/template/header.jsp"></jsp:include>
 
+<div align="center">
+
+	<h2>게시글 보기</h2>
+	
+	<table border="1" width="70%">
+		<tr>
+			<td><%=bdto.getTitle %></td>
+		</tr>
+		<tr>
+			<td>
+				<%=bdto.getWrite() %>
+			</td>	
+		</tr>
 <tr>
 	<td>
 		<table border"1" width="100%">
@@ -37,7 +68,7 @@
 				<%} %>
 				
 				<br><br>
-				<%=rdto.getReplytitle() %>
+				<%=rdto.getReply_title() %>
 			</td>
 		</tr>
 			<%} %>	

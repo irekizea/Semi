@@ -60,7 +60,7 @@ public class ReplyDao {
 	public List<ReplyDto> getList(int board_no) throws Exception{
 			Connection con = getConnection();
 			
-			String sql = "select * from ba_reply where board_no = ? order by no asc";
+			String sql = "select * from ba_reply where reply_no = ? order by no asc";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, board_no);
 			ResultSet rs = ps.executeQuery();
