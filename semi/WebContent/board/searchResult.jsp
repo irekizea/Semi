@@ -9,6 +9,7 @@
 <%@ page import = "semi.beans.BoardTextDto" %>
     
 <%
+
 	String keyword = request.getParameter("keyword"); 
 	
 	BoardDao boardDao = new BoardDao();
@@ -16,7 +17,7 @@
 	
 	BoardTextDao boardTextDao = new BoardTextDao();
 	List<BoardTextDto> getList =boardTextDao.getList(keyword);
-
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -27,9 +28,9 @@
 <body>
 	<div align="left">
 <!-- 검색된 메인글 주제 -->
-	<table class="title"  border="1`">
-		<tr>
 	<% if(boardDto.getTitle()!=null){ %>
+	<table class="title"  border="1">
+		<tr>
 			<td colspan="2"><h3><%=boardDto.getTitle() %></h3></td>
 		</tr>
 		<tr>
@@ -44,8 +45,8 @@
 	<% }%>
 	
 <!-- 검색된 메인글 상세내용 -->
-		<form action="<%=request.getContextPath()%>/board/boardtext.do">
-			<table class="text" border="1`">
+
+			<table class="text" border="1">
 				<%for(BoardTextDto boardTextDto:getList){ %>
 				<tr align="left" >
 					<td>
@@ -59,7 +60,11 @@
 				</tr>
 				<%} %>
 			</table>
-		</form>
+			<%if(boardDto.getTitle() !=null) {%>
+			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+			<input type="button" value="편집">
+			</a>
+			<%}%>
 	</div>
 </body>
 </html>

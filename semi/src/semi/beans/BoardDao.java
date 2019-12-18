@@ -41,7 +41,7 @@ public class BoardDao {
 			boardDto.setWriter(rs.getString("writer"));
 			boardDto.setUdate(rs.getString("udate"));
 			boardDto.setTitle(rs.getString("title"));
-
+			boardDto.setNo(rs.getInt("no"));
 		}
 		con.close();
 		return boardDto;
