@@ -16,13 +16,13 @@ import baens.BA_BoardDao;
 import baens.BA_BoardDto;
 import baens.BA_FileDao;
 import baens.BA_FileDto;
-@WebServlet(urlPatterns = "ba_board/write.do")
+@WebServlet(urlPatterns = "/ba_board/write.do")
 public class BA_BoardWriteServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-		MultipartRequest mRequest = new MultipartRequest(req, "D:/upload/home", 10*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
+		MultipartRequest mRequest = new MultipartRequest(req, "D:/upload/kh21/ba_board", 10*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
 
 		BA_BoardDto dto = new BA_BoardDto();
 		BA_BoardDao dao = new BA_BoardDao();
@@ -32,6 +32,10 @@ public class BA_BoardWriteServlet extends HttpServlet {
 				
 		dto.setTitle(title);
 		dto.setContent(content);
+		
+//		String id=(String)req.getSession().getAttribute("id");
+		String id=mRequest.getParameter("id");
+		dto.setWriter(id);
 		
 		int no=dao.getSequense();
 		dto.setBoard_no(no);
@@ -52,7 +56,8 @@ public class BA_BoardWriteServlet extends HttpServlet {
 			fdao.fileInsert(fdto);
 		}
 		
-		resp.sendRedirect("content.jsp?no="+no);
+//		resp.sendRedirect("content.jsp?no="+no);
+		resp.sendRedirect("list.jsp");
 		}catch(Exception e){
 			e.printStackTrace();
 			resp.sendError(500);

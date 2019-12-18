@@ -18,7 +18,7 @@ List<BA_BoardDto> list = dao.getList();
 				<th>글번호</th>
 				<th>제목</th>
 				<th>작성자</th>
-				<th>작성일시(임시수정)</th>
+				<th>작성일시</th>
 			</tr>
 		</thead>
 		

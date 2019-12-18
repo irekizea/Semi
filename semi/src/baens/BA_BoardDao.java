@@ -71,12 +71,13 @@ public class BA_BoardDao {
 		Connection con=getConnection();
 		
 		String sql="insert into ba_board "
-					+ "values(ba_board_seq.nextval,'?','?','?',sysdate,null)";
+					+ "values(?,?,?,?,sysdate,null)";
 			PreparedStatement ps=con.prepareStatement(sql);
 			
-			ps.setString(1, dto.getWriter());
-			ps.setString(2, dto.getTitle());
-			ps.setString(3, dto.getContent());
+			ps.setInt(1, dto.getBoard_no());
+			ps.setString(2, dto.getWriter());
+			ps.setString(3, dto.getTitle());
+			ps.setString(4, dto.getContent());
 			
 			ps.execute();		
 		con.close();

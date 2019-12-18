@@ -2,12 +2,13 @@
     pageEncoding="UTF-8"%>
 <h1>헤더</h1>
 
-	<form action="write.do" method="post">
+	<form action="write.do" method="post"  enctype="multipart/form-data">
 	<table border="1">
 
 				<tr>
 					<th>첨부파일</th>
 						<td>
+							<input type="text" name="id" placeholder="임시 아이디 입력공간">
 							<input type="file" name="file" accept="jpg,png,gif">
 						</td>
 				</tr>

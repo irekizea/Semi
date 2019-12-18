@@ -35,6 +35,7 @@ public class BA_FileDao {
 				+ "values(ba_file_seq.nextval,?,?,?,?,?)";
 		
 		PreparedStatement ps=con.prepareStatement(sql);
+		System.out.println(fdto.getOrigin());
 		ps.setInt(1, fdto.getOrigin());
 		ps.setString(2, fdto.getUploadname());
 		ps.setString(3, fdto.getSavename());
