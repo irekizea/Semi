@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Alcohol Wiki</title>
-<link rel="stylesheet" type="text/css" href="../css/common.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/common.css">
 
 
 <style>
@@ -57,7 +57,7 @@ form>* {
 
 <body>
 	<div align="right">
-	<a href="<%=request.getContextPath()%>/login.jsp">
+	<a href="<%=request.getContextPath()%>/member/login.jsp">
 		<img src="<%=request.getContextPath()%>/image/login.png" class="loginlogo">
 	</a>
 	</div>
