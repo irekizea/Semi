@@ -13,8 +13,8 @@
 					username="kh21"
 					password="kh21"
 					
-					maxTotal="20" 
-					maxIdie="10" 
-					maxWait="3000" />
+					maxTatal="20"
+					maxIdle="10"
+					maxWait="3000"></Resource>
 
 </Context>

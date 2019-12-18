@@ -2,15 +2,12 @@ package semi.beans;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class BoardDao {
+public class BoardReplyDao {
 	private static DataSource source;
 	static {
 		try {
@@ -25,27 +22,20 @@ public class BoardDao {
 	public Connection getConnection() throws Exception {
 		return source.getConnection();
 	}
-
-//	메인검색글 상세페이지
-	public BoardDto getSearch(String keyword) throws Exception {
+	
+	public void replyInsert(BoardReplyDto boardReplyDto) throws Exception{
 		Connection con = getConnection();
-		
-		String sql = "SELECT *FROM BOARD where title= ? ";
-		
+				
+		String sql="insert into board_reply (reply_no, board_title, writer, content) "
+				+ "values(board_reply_seq.nextval, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, keyword);
-		ResultSet rs = ps.executeQuery();
+		ps.setString(1, boardReplyDto.getBoard_title());
+		ps.setString(2, boardReplyDto.getWriter());
+		ps.setString(3, boardReplyDto.getContent());
 		
-		BoardDto boardDto = new BoardDto();
-		if(rs.next()) {
-			boardDto.setNo(rs.getInt("no"));
-			boardDto.setWriter(rs.getString("writer"));
-			boardDto.setUdate(rs.getString("udate"));
-			boardDto.setTitle(rs.getString("title"));
-			boardDto.setNo(rs.getInt("no"));
-		}
+		ps.execute();
+		
 		con.close();
-		return boardDto;
 	}
 	
 }

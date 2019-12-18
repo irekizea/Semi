@@ -18,7 +18,7 @@
 <head>
 <meta charset="UTF-8">
 <title>편집페이지</title>
-<link rel="stylesheet" type="text/css" href="../css/common.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
 </head>
 <body>
 	<form action=boardedit.do method="post">
