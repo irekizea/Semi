@@ -18,48 +18,32 @@
 	List<BoardTextDto> getList =boardTextDao.getList(keyword);
 
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<div align="left">
-<!-- 검색된 메인글 주제 -->
-	<table class="title"  border="1`">
-		<tr>
-	<% if(boardDto.getTitle()!=null){ %>
-			<td colspan="2"><h3><%=boardDto.getTitle() %></h3></td>
-		</tr>
-		<tr>
-			<td>작성자: <%=boardDto.getWriter() %></td>
-			<td>최종 수정시간: <%=boardDto.getUdate() %></td>
-		</tr>
-	</table>
-	<% }
-	else {%>
-		<h2>"<%=keyword %>"에 대한 검색결과가 없습니다.</h2>
-		<h3>로그인 후 <%=keyword %>에 대한 <a href="#">새 글 제안하기</a></h3>
-	<% }%>
-	
-<!-- 검색된 메인글 상세내용 -->
-		<form action="<%=request.getContextPath()%>/board/boardtext.do">
-			<table class="text" border="1`">
-				<%for(BoardTextDto boardTextDto:getList){ %>
-				<tr align="left" >
-					<td>
-						<%= boardTextDto.getSub_title()%>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<%= boardTextDto.getContent()%>
-					</td>
-				</tr>
-				<%} %>
-			</table>
-		</form>
-	</div>
-</body>
-</html>
+
+<jsp:include page="/template/header.jsp"></jsp:include>
+
+            <article class="board">
+			<!-- 검색된 메인글 주제 -->
+			     <div class="title">
+                   	<% if(boardDto.getTitle()!=null){ %>
+                   		<%=boardDto.getTitle() %>
+                </div>
+					<% }
+					else {%>
+						<h2>"<%=keyword %>"에 대한 검색결과가 없습니다.</h2>
+						<h3>로그인 후 <%=keyword %>에 대한 <a href="#">새 글 제안하기</a></h3>
+					<% }%>
+				<p class="board-udate">최근 수정 시간: <%=boardDto.getUdate() %></p>
+				
+			<!-- 메인 주제에 대한 상세글-->
+                <%for(BoardTextDto boardTextDto:getList){ %>
+                <div class="sub-title">
+                  	<%= boardTextDto.getSub_title()%>
+                    <hr>
+                </div>
+                <div class="text">
+                    <%= boardTextDto.getContent()%>
+                </div>
+                <%} %>
+            </article>
+
+<jsp:include page="/template/footer.jsp"></jsp:include>
