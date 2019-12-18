@@ -63,15 +63,16 @@ form>* {
 	</div>
 	
 	<div align="center">
-		<img src="<%=request.getContextPath()%>/image/capture.png" class="mainlogo">
+		<img src="<%=request.getContextPath()%>/image/logo2.png" class="mainlogo">
 	</div>
 	
 	<h1 align="center">Welcome to Alcohol Wiki</h1>
 	
 	<div class="input">
-		<form action="board/searchResult.jsp" method="get">
-		
-			<input type="search" class="search" name="keyword"
+
+		<form action="<%=request.getContextPath()%>/board/searchResult.jsp" method="get">
+
+			<input type="text" class="search" name="keyword"
 				placeholder="검색어를 입력하세요" required> <br>
 			<input type="submit" class="button" value="검색">
 		</form>

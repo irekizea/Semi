@@ -15,8 +15,7 @@
 	BoardDto boardDto = boardDao.getSearch(keyword);   
 	
 	BoardTextDao boardTextDao = new BoardTextDao();
-	List<BoardTextDto> getList =boardTextDao.getList(keyword);
-
+	List<BoardTextDto> getList =boardTextDao.getList(keyword);	
 %>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -45,6 +44,12 @@
 						<h6>"<%=keyword %>"에 대한 검색결과가 없습니다.</h6>
 						<h6>로그인 후 "<%=keyword %>"에 대한 <a href="#">새 글 제안하기</a></h6>
 					<% }%>
+					
+					<%if(boardDto.getTitle() !=null) {%>
+						<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+						<input type="button" value="편집">
+						</a>
+					<%}%>
             </article>
             
            <!-- 메인 주제에 대한 댓글(토론) -->

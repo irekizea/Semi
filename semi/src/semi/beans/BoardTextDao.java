@@ -57,4 +57,26 @@ public class BoardTextDao {
 		con.close();
 		return list;
 	}
+	//단일조회
+	public BoardTextDto get(int boardno) throws Exception{
+		Connection con = getConnection();
+		
+		String sql = "select*from board_text where board_no=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, boardno);
+		ResultSet rs = ps.executeQuery();
+		
+		BoardTextDto boardtextdto = new BoardTextDto();
+		if(rs.next()) {
+			boardtextdto.setNo(rs.getInt("no"));
+			boardtextdto.setBoard_no(rs.getInt("board_no"));
+			boardtextdto.setWriter(rs.getString("writer"));
+			boardtextdto.setSub_title(rs.getString("sub_title"));
+			boardtextdto.setContent(rs.getString("content"));
+			boardtextdto.setUdate(rs.getString("udate"));
+		}
+		con.close();
+		return boardtextdto;	
+	}
 }
