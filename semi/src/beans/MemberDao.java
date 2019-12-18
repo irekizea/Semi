@@ -95,9 +95,28 @@ public class MemberDao {
 			con.close();
 	
 		}
+		
+		//기능 :  이메일로 아이디 찾기 
+		// 이름 : find
+		// 매개변수 : email
+		// 반환형 : id
+				
+		// 전체 공개 / 반환String (입력 받을게 email인데 형식이 String이라서 )
+		public String find(String id) throws Exception { 
+			// 연결하기/ con은 별칭 / get.onnection / 연결하기 가져오겠다를 
+		Connection con = getConnection();
+		
+		String sql = "select id from member where email=?"; // sql 명령어, 이런 email이 있냐/
+		PreparedStatement ps = con.prepareStatement(sql); /*준비된 명령*/
+		
+;		
+		
+		return id; //아이디를 내놓겠다
+		
+			
 			
 }
 
-
+}
 
 
