@@ -16,7 +16,6 @@ List<BA_FileDto> flist=fdao.getList(no);
 String userId = (String)session.getAttribute("id");
 // String grade = (String)session.getAttribute("grade");
 
-boolean isMine = userId.equals(bdto.getWriter());
 // boolean isAdmin = grade.equals("관리자");
 %>
 <h1>헤더</h1>
@@ -61,11 +60,11 @@ boolean isMine = userId.equals(bdto.getWriter());
 		      
 		      
 	<!--(주제 생성 후)작성된 댓글 내용-->		 
-	<%if(isMine) {%>
+<%-- 	<%if(bdto.getWriter().equals(rdto.getWriter())) {%> --%>
 		<div class="content-item right">                  
-    <%} else {%>
+<%--     <%} else {%> --%>
         <div class="content-item left" align="right">    
-    <%} %>    
+<%--     <%} %>     --%>
            <div class="date">
                 <h5>댓글 작성 시각</h5>
             </div>
