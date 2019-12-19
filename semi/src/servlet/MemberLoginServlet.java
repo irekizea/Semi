@@ -29,7 +29,6 @@ public class MemberLoginServlet extends HttpServlet{
 			if(result) {//로그인 성공 시
 				
 //				session에 아이디와 권한을 저장
-//				session.setAttribute("id", id);
 				req.getSession().setAttribute("id", id);
 				MemberDto dto = dao.get(id);//id를 이용하여 전체 회원정보를 불러온다.
 				req.getSession().setAttribute("grade", dto.getGrade());
@@ -37,16 +36,12 @@ public class MemberLoginServlet extends HttpServlet{
 //				추가 : 사용자의 최종 로그인 시각을 수정
 				dao.updateLastLogin(id);
 				
-//				resp.sendRedirect("../index.jsp");
-//				resp.sendRedirect("/home/index.jsp");
-//				resp.sendRedirect("/home");
 				resp.sendRedirect(req.getContextPath());
 			}
 			else {//로그인 실패 시
 //				error 메시지가 표시되는 로그인 화면으로 이동해라
 				resp.sendRedirect("login.jsp?error");
-//				resp.sendRedirect("login_fail.jsp");
-//				resp.sendRedirect(req.getContextPath()+"/member/login_fail.jsp");
+
 			}
 		}
 		catch(Exception e) {
