@@ -24,6 +24,7 @@
 	
 	BoardReplyDao boardReplyDao = new BoardReplyDao();
 	List<BoardReplyDto> replyList = boardReplyDao.replyList(keyword);
+
 %>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -39,8 +40,9 @@
 				
 						<!-- 메인 주제에 대한 상세글-->
 			                <%for(BoardTextDto boardTextDto:getList){ %>
+							<p class="board-udate">최근 수정자: <%=boardTextDto.getWriter() %></p>
 			                <div class="sub-title">
-			                  	<%= boardTextDto.getSub_title()%>
+			                  	상세
 			                    <hr>
 			                </div>
 			                <div class="text">

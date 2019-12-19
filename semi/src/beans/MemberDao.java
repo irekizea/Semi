@@ -8,8 +8,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import baens.MemberDto;
-
 public class MemberDao {
 
 	// 자원을 참조하는 변수 생성(리모컨)

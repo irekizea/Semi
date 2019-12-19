@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import baens.MemberDao;
+import beans.MemberDao;
 
 @WebServlet(urlPatterns="/member/find.do")
 public class MemberFindServlet extends HttpServlet{

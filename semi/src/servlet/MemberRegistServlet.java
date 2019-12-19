@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import baens.MemberDao;
-import baens.MemberDto;
+import beans.MemberDao;
+import beans.MemberDto;
 
 @WebServlet(urlPatterns="/member/regist.do")
 public class MemberRegistServlet extends HttpServlet{
