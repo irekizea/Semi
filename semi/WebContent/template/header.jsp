@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import = "semi.beans.BoardDao" %>
-<%@ page import = "semi.beans.BoardDto" %>
+<%@ page import = "semi.beans.board.BoardDao" %>
+<%@ page import = "semi.beans.board.BoardDto" %>
     
 <%
 	String keyword = request.getParameter("keyword"); 
@@ -19,16 +19,13 @@
     	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/common.css">
 </head>
 <body test>
-    <main>
         <header>
            <div>
            		<a href="<%=request.getContextPath()%>">
                 <img src="<%=request.getContextPath()%>/image/logo2.png" width=50px. height=auto>
                 </a>
            </div>
-           <div>
-              검색창...?
-           </div>
+
         </header>
         
 			<!-- 메뉴 불러오기 -->

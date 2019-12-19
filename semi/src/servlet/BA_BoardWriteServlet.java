@@ -33,8 +33,8 @@ public class BA_BoardWriteServlet extends HttpServlet {
 		dto.setTitle(title);
 		dto.setContent(content);
 		
-//		String id=(String)req.getSession().getAttribute("id");
-		String id=mRequest.getParameter("id");
+		String id=(String)req.getSession().getAttribute("id");
+//		String id=mRequest.getParameter("id");
 		dto.setWriter(id);
 		
 		int no=dao.getSequense();
@@ -56,8 +56,7 @@ public class BA_BoardWriteServlet extends HttpServlet {
 			fdao.fileInsert(fdto);
 		}
 		
-//		resp.sendRedirect("content.jsp?no="+no);
-		resp.sendRedirect("list.jsp");
+		resp.sendRedirect("content.jsp?no="+no);
 		}catch(Exception e){
 			e.printStackTrace();
 			resp.sendError(500);
