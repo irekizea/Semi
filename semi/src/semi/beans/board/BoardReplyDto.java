@@ -2,7 +2,7 @@ package semi.beans.board;
 
 public class BoardReplyDto {
 	int reply_no;
-	String board_title, writer, content, wdate;
+	String board_title, writer, ip, content, wdate;
 	
 	
 	public BoardReplyDto(int reply_no, String board_title, String writer, String content, String wdate) {
@@ -42,6 +42,14 @@ public class BoardReplyDto {
 
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 
 	public String getContent() {

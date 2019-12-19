@@ -1,6 +1,8 @@
 package semi.BoardServlet;
 
 import java.io.IOException;
+import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
@@ -17,27 +19,30 @@ import semi.beans.board.BoardReplyDto;
 public class BoardReplyInsertServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try {			
+		try {
 			req.setCharacterEncoding("UTF-8");
 			
 			String board_title = req.getParameter("board_title");
-			System.out.println(board_title);
+
 			String writer = (String)req.getSession().getAttribute("id");
+			String ip = InetAddress.getLocalHost().getHostAddress();
 			String content = req.getParameter("content");
 			
 			BoardReplyDto boardReplyDto = new BoardReplyDto();
 			boardReplyDto.setBoard_title(board_title);
 			boardReplyDto.setWriter(writer);
+			boardReplyDto.setIp(ip);
 			boardReplyDto.setContent(content);
 			
 			BoardReplyDao boardReplyDao = new BoardReplyDao();
 			boardReplyDao.replyInsert(boardReplyDto);
-							
+			
 			resp.sendRedirect(req.getContextPath()+"/board/searchResult.jsp?keyword="+URLEncoder.encode(board_title, "UTF-8"));
 		}
 		catch(Exception e){
 			e.printStackTrace();
 			resp.sendError(500);
 		}
+
 	}
 }
