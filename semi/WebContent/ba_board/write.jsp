@@ -8,7 +8,7 @@
 				<tr>
 					<th>첨부파일</th>
 						<td>
-							<input type="text" name="id" placeholder="임시 아이디 입력공간">
+<!-- 						<input type="text" name="id" placeholder="임시 아이디 입력공간"> -->
 							<input type="file" name="file" accept="jpg,png,gif">
 						</td>
 				</tr>

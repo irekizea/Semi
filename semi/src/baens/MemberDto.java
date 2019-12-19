@@ -1,4 +1,4 @@
-package beans;
+package baens;
 
 public class MemberDto {
 	
