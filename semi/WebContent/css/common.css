@@ -23,7 +23,7 @@
         margin: auto;
         width: 1900;
     }
-
+	
     section,
     article {
         padding: 0.5rem;
@@ -65,6 +65,7 @@
 		        .title {
 		            padding: 0.5rem;
 		            font-size: 40px;
+		            float: left;
 		        }
 		        .sub-title {
 		            font-size: 20px;
@@ -74,21 +75,34 @@
 		            font-size: 15px;
 		        }
 		        .board-udate {
-		        	font-size: 13px;
-		        	text-align: right;
+		        	font-size: 13px;		        	
+		        	float: right;
+		        	padding-top: 5%;
 		        }
 		        
-		        .board-reply > textarea {
+		        .clear {
+		        	padding: 1px;
+		        	clear: both;
+		        }
+		        
+		        .reply-list > * {
+					padding:0.5rem;
+		        }
+		        .reply-list {
+		        	border: 0.5px solid gray;
+		        }
+		        .reply-list > .writer {
+		        	float: left;
+		        }
+		        .reply-list > .wdate{
+		        	float: right;
+		        }
+	
+		        .reply-insert > textarea {
 					resize: none;
 		        	padding: 0.5rem;
 		        	width: 98%;
 		        	height: 70px;
 		        }
 		        
-		        .reply-list > #writer {
-		        	
-		        }
-		        .reply-list > #wdate {
-		        	align: right;
-		        }
 		     

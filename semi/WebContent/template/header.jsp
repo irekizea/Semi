@@ -13,12 +13,12 @@
 
 <!DOCTYPE html>
 <html>
-<head>
+<head test>
     <meta charset="UTF-8">
     <title>ALcohol wiki - <%=keyword %></title>
     	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/common.css">
 </head>
-<body test>
+<body>
         <header>
            <div>
            		<a href="<%=request.getContextPath()%>">
