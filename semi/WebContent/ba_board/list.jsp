@@ -32,6 +32,9 @@ int count=dao.getCount();
 				<th>제목</th>
 				<th>작성자</th>
 				<th>작성일시</th>
+<%-- 				<%if(관리자라면) {%> --%>
+				<th>등록 여부</th>
+<%-- 				<%} %> --%>
 			</tr>
 		</thead>
 		
@@ -50,9 +53,15 @@ int count=dao.getCount();
 					<td><%=dto.getUdate()%></td>
 				<%} else{%>
 					<td><%=dto.getWdate()%></td>
-				<%} %>		
+				<%} %>
+						
+				<td>
+					<input type="button" value="등록">
+					<input type="button" value="미등록">
+				</td>
 			</tr>
-		<%} %>		
+		<%} %>	
+		
 		</tbody>
 	</table>
 	

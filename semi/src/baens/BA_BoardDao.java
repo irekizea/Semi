@@ -40,10 +40,10 @@ public class BA_BoardDao {
 	public List<BA_BoardDto> getList(int start, int finish) throws Exception{
 		Connection con = getConnection();
 		String sql="select * from ( "
-				+ "select rownum rn, A.* from ( "
-				+ "select * from ba_board "
-				+ "order by board_no desc "
-				+ ")A "
+					+ "select rownum rn, A.* from ( "
+						+ "select * from ba_board "
+						+ "order by board_no desc "
+					+ ")A "
 				+ ") where rn between ? and ?";
 		PreparedStatement ps=con.prepareStatement(sql);
 		ps.setInt(1, start);
@@ -61,6 +61,8 @@ public class BA_BoardDao {
 			dto.setContent(rs.getString("content"));
 			dto.setWdate(rs.getString("wdate"));
 			dto.setUdate(rs.getString("udate"));
+			dto.setUp(rs.getInt("up"));
+			dto.setDown(rs.getInt("down"));
 	
 			list.add(dto);
 		}
@@ -158,6 +160,9 @@ public class BA_BoardDao {
 			dto.setContent(rs.getString("content"));
 			dto.setWdate(rs.getString("wdate"));
 			dto.setUdate(rs.getString("udate"));
+			dto.setUp(rs.getInt("up"));
+			dto.setDown(rs.getInt("down"));
+			
 		con.close();
 		return dto;
 	}
@@ -181,4 +186,33 @@ public class BA_BoardDao {
 		return count;
 	}	
 	
+//	기능:좋아요 수 증가
+//	이름:up
+//	매개변수:게시글번호(board_no)
+//	반환형:없음
+	
+	public void up(int no)throws Exception {
+		Connection con=getConnection();
+//		if(좋아요면) {
+		String sql="update ba_board set up=up+1 where board_no=?";
+//		}else {
+//		String sql="update ba_board set down=down+1 where board_no=?";
+//		}
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setInt(1, no);
+		ps.execute();
+		
+		con.close();
+	}	
+	
+	public void down(int no)throws Exception {
+		Connection con=getConnection();
+		String sql="update ba_board set down=down+1 where board_no=?";
+
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setInt(1, no);
+		ps.execute();
+		
+		con.close();
+	}	
 }

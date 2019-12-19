@@ -85,9 +85,8 @@ String userId = (String)session.getAttribute("id");
         </div>
         
         
-        
-        
-        
+        <!--좋아요 싫어요 표시-->
+        <h5>좋아요 <%=bdto.getUp()%> 싫어요<%=bdto.getDown()%></h5>
 <!--토론 작성 부분-->
 <form action="#" method="post">
 	<input type="hidden" name="writer" value="<%=userId%>">
