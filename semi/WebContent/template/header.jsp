@@ -26,9 +26,7 @@
                 <img src="<%=request.getContextPath()%>/image/logo2.png" width=50px. height=auto>
                 </a>
            </div>
-           <div>
-              검색창...?
-           </div>
+
         </header>
         
 			<!-- 메뉴 불러오기 -->
