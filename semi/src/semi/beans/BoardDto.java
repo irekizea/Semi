@@ -15,6 +15,12 @@ public class BoardDto {
 		this.udate = udate;
 	}
 
+	@Override
+	public String toString() {
+		return "BoardDto [no=" + no + ", writer=" + writer + ", title=" + title + ", content=" + content + ", wdate="
+				+ wdate + ", udate=" + udate + "]";
+	}
+
 	public BoardDto() {
 		super();
 	}
