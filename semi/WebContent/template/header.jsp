@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import = "semi.beans.BoardDao" %>
-<%@ page import = "semi.beans.BoardDto" %>
+<%@ page import = "semi.beans.board.BoardDao" %>
+<%@ page import = "semi.beans.board.BoardDto" %>
     
 <%
 	String keyword = request.getParameter("keyword"); 

@@ -1,4 +1,4 @@
-package semi.beans;
+package semi.beans.board;
 
 public class BoardDto {
 	private int no;
@@ -13,12 +13,6 @@ public class BoardDto {
 		this.content = content;
 		this.wdate = wdate;
 		this.udate = udate;
-	}
-
-	@Override
-	public String toString() {
-		return "BoardDto [no=" + no + ", writer=" + writer + ", title=" + title + ", content=" + content + ", wdate="
-				+ wdate + ", udate=" + udate + "]";
 	}
 
 	public BoardDto() {

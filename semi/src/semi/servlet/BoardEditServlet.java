@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import semi.beans.BoardDao;
-import semi.beans.BoardDto;
-import semi.beans.BoardTextDao;
-import semi.beans.BoardTextDto;
 import semi.beans.HistoryDao;
 import semi.beans.HistoryDto;
+import semi.beans.board.BoardDao;
+import semi.beans.board.BoardDto;
+import semi.beans.board.BoardTextDao;
+import semi.beans.board.BoardTextDto;
 
 @WebServlet(urlPatterns="/board/boardedit.do")
 public class BoardEditServlet extends HttpServlet{
