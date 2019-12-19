@@ -65,6 +65,7 @@
 
 
   <nav class="navmenu">
+  <%if(request.getParameter("keyword")!=null){ %>
         <ul>
             <li><a href="#">역사</a> </li>
             <li><a href="#">토론</a> </li>
@@ -72,7 +73,7 @@
             <li><a href="#">좋아요</a> </li>
 
         </ul>
-
+	<%} %>
         <form class="search-form" action="<%=request.getContextPath()%>/board/searchResult.jsp">
             <input name = "keyword" class = "navsearch" type="text" placeholder="search">
             <button>검색</button>
