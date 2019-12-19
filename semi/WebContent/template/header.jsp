@@ -19,16 +19,13 @@
     	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/common.css">
 </head>
 <body test>
-    <main>
         <header>
            <div>
            		<a href="<%=request.getContextPath()%>">
                 <img src="<%=request.getContextPath()%>/image/logo2.png" width=50px. height=auto>
                 </a>
            </div>
-           <div>
-              검색창...?
-           </div>
+
         </header>
         
 			<!-- 메뉴 불러오기 -->

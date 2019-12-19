@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%
-String id = request.getParameter("id");
+String id = request.getParameter( "id");
 %>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
