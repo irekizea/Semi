@@ -24,11 +24,8 @@
 	
 	BoardReplyDao boardReplyDao = new BoardReplyDao();
 	List<BoardReplyDto> replyList = boardReplyDao.replyList(keyword);
-<<<<<<< HEAD
 %>
-=======
-%>
->>>>>>> refs/remotes/origin/master
+
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/board.css">
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -72,7 +69,6 @@
 <!-- 				댓글(토론) 목록 -->
 				<%for(BoardReplyDto boardReplyDto: replyList){ %>
 					<div class="reply-list">
-<<<<<<< HEAD
 							<div class="writer">
 									<%if(boardReplyDto.getWriter()!=null){ %>
 <%-- 										<span><%=boardReplyDto.getRn() %></span> --%>
@@ -92,18 +88,7 @@
 					</div>
 				<%} %>	
  				<div class="row-empty"></div>
-=======
-						<div>
-							<a href="#'"> 기여내역
-								<span><%=boardReplyDto.getWriter() %></span>
-							</a>
-								<span><%=boardReplyDto.getWdate() %></span>
-						</div>
-						<div><%=boardReplyDto.getContent() %></div>
-					</div>
-				<%} %>	
- 
->>>>>>> refs/remotes/origin/master
+
  <script>
 	 <!-- 댓글(토론) 입력 글자수 제한 스크립트-->
 	 function textLimit(reply, maxByte) {				// textLimit(입력문자열 이름, max크기)
@@ -154,13 +139,8 @@
 						</span>
 						
 		            	<p align="right"><input type="submit" value="등록"></p>
-<<<<<<< HEAD
 	            	</div>	            			            	
-=======
-	            	</div>
-	            	
-		            	
->>>>>>> refs/remotes/origin/master
+
             	</form>
             	
 					<% }
