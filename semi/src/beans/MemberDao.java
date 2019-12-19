@@ -77,23 +77,6 @@ public class MemberDao {
 		return result;
 	}
 
-	// 기능 : 최종 로그인 시간 변경
-	// 이름 : updateLastLogin
-	// 매개변수 : id
-	// 반환형 : 없음
-
-	public void updateLastLogin(String id) throws Exception {
-		Connection con = getConnection();
-
-		String sql = "update member set last_login = sysdate where id =?";
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, id);
-		ps.execute();
-
-		con.close();
-
-	}
-
 	// 기능 : 이메일로 아이디 찾기
 	// 이름 : find
 	// 매개변수 : email
@@ -113,8 +96,8 @@ public class MemberDao {
 		if (rs.next()) {
 			id = rs.getString("id");
 		}
-
-		;
+		
+		con.close();
 
 		return id; // 아이디를 내놓겠다
 

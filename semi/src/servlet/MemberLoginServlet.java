@@ -34,13 +34,13 @@ public class MemberLoginServlet extends HttpServlet{
 				req.getSession().setAttribute("grade", dto.getGrade());
 				
 //				추가 : 사용자의 최종 로그인 시각을 수정
-				dao.updateLastLogin(id);
+//				dao.updateLastLogin(id);
 				
-				resp.sendRedirect(req.getContextPath());
+				resp.sendRedirect("../index.jsp");
 			}
 			else {//로그인 실패 시
 //				error 메시지가 표시되는 로그인 화면으로 이동해라
-				resp.sendRedirect("login.jsp?error");
+				resp.sendRedirect("login_fail.jsp");
 
 			}
 		}
