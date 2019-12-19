@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+
 int pagesize = 10;
 int navsize = 10;
 
@@ -22,6 +23,10 @@ BA_BoardDao dao = new BA_BoardDao();
 List<BA_BoardDto> list = dao.getList(start,finish);
 
 int count=dao.getCount();
+
+String grade = (String)session.getAttribute("grade");
+
+boolean isAdmin = grade.equals("관리자");
 %>
 <h1>헤더</h1>
 <div align="center">
@@ -32,7 +37,9 @@ int count=dao.getCount();
 				<th>제목</th>
 				<th>작성자</th>
 				<th>작성일시</th>
-<%-- 				<%if(관리자라면) {%> --%>
+<%-- 				<%if(isAdmin) {%> --%>
+				<th>좋아요</th>
+				<th>싫어요</th>
 				<th>등록 여부</th>
 <%-- 				<%} %> --%>
 			</tr>
@@ -54,7 +61,8 @@ int count=dao.getCount();
 				<%} else{%>
 					<td><%=dto.getWdate()%></td>
 				<%} %>
-						
+				<td><%=dto.getUp()%></td>
+				<td><%=dto.getDown()%></td>						
 				<td>
 					<input type="button" value="등록">
 					<input type="button" value="미등록">
