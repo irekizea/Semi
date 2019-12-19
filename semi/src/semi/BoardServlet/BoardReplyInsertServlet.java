@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import semi.beans.BoardDao;
-import semi.beans.BoardReplyDao;
-import semi.beans.BoardReplyDto;
+import semi.beans.board.BoardDao;
+import semi.beans.board.BoardReplyDao;
+import semi.beans.board.BoardReplyDto;
 
 @WebServlet(urlPatterns="/board/replyInsert.do")
 public class BoardReplyInsertServlet extends HttpServlet {

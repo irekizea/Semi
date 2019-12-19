@@ -3,10 +3,10 @@
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.util.ArrayList" %>
 
-<%@ page import = "semi.beans.BoardDao" %>
-<%@ page import = "semi.beans.BoardDto" %>
-<%@ page import = "semi.beans.BoardTextDao" %>
-<%@ page import = "semi.beans.BoardTextDto" %>
+<%@ page import = "semi.beans.board.BoardDao" %>
+<%@ page import = "semi.beans.board.BoardDto" %>
+<%@ page import = "semi.beans.board.BoardTextDao" %>
+<%@ page import = "semi.beans.board.BoardTextDto" %>
     
 <%
 	String keyword = request.getParameter("keyword"); 
