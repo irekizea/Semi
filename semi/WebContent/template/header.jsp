@@ -19,7 +19,6 @@
     	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/common.css">
 </head>
 <body test>
-    <main>
         <header>
            <div>
            		<a href="<%=request.getContextPath()%>">
