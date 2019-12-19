@@ -24,7 +24,6 @@ List<BA_BoardDto> list = dao.getList(start,finish);
 int count=dao.getCount();
 %>
 <h1>헤더</h1>
-
 <div align="center">
 	<table border="1" width="90%">
 		<thead>
