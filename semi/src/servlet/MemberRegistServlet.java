@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import baens.MemberDao;
-import baens.MemberDto;
+import beans.MemberDao;
+import beans.MemberDto;
 
 @WebServlet(urlPatterns="/member/regist.do")
 public class MemberRegistServlet extends HttpServlet{
@@ -29,7 +30,10 @@ public class MemberRegistServlet extends HttpServlet{
 			dao.regist(dto);
 			
 //			[3] 이동			
-			resp.sendRedirect("../index.jsp");
+			resp.sendRedirect("regist_success.jsp");
+		}
+		catch(SQLIntegrityConstraintViolationException e) {
+			resp.sendRedirect("regist_fail.jsp");
 			
 		}
 		catch(Exception e){
@@ -37,5 +41,4 @@ public class MemberRegistServlet extends HttpServlet{
 			resp.sendError(500);
 		}
 	}
-
 }
