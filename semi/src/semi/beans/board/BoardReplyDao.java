@@ -92,7 +92,6 @@ public class BoardReplyDao {
 		List<BoardReplyDto> list = new ArrayList<>();
 		
 	// ....?????
-		
 		con.close();		
 		return list;
 	}

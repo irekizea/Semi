@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import baens.BA_BoardDao;
-import baens.BA_BoardDto;
-import baens.BA_FileDao;
-import baens.BA_FileDto;
+import semi.beans.BA_Board.BA_BoardDao;
+import semi.beans.BA_Board.BA_BoardDto;
+import semi.beans.BA_Board.BA_FileDao;
+import semi.beans.BA_Board.BA_FileDto;
 @WebServlet(urlPatterns = "/ba_board/write.do")
 public class BA_BoardWriteServlet extends HttpServlet {
 
@@ -33,8 +33,8 @@ public class BA_BoardWriteServlet extends HttpServlet {
 		dto.setTitle(title);
 		dto.setContent(content);
 		
-//		String id=(String)req.getSession().getAttribute("id");
-		String id=mRequest.getParameter("id");
+		String id=(String)req.getSession().getAttribute("id");
+//		String id=mRequest.getParameter("id");
 		dto.setWriter(id);
 		
 		int no=dao.getSequense();
@@ -56,8 +56,7 @@ public class BA_BoardWriteServlet extends HttpServlet {
 			fdao.fileInsert(fdto);
 		}
 		
-//		resp.sendRedirect("content.jsp?no="+no);
-		resp.sendRedirect("list.jsp");
+		resp.sendRedirect("content.jsp?no="+no);
 		}catch(Exception e){
 			e.printStackTrace();
 			resp.sendError(500);

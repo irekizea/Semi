@@ -1,6 +1,7 @@
 package semi.beans.board;
 
 public class BoardReplyDto {
+
 	int rn, reply_no;
 	String board_title, writer, ip, content, wdate;
 	

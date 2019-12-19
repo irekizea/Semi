@@ -1,4 +1,4 @@
-package baens;
+package semi.beans.BA_Board;
 
 public class BA_FileDto {
 	private int no;

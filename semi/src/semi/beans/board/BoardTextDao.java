@@ -79,4 +79,21 @@ public class BoardTextDao {
 		con.close();
 		return boardtextdto;	
 	}
+
+	//편집 메소드
+		public void btedit(BoardTextDto dto) throws Exception{
+			Connection con = getConnection();
+			
+			String sql = "update board_text set udate=sysdate, writer=?, content=? where no=? ";
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, dto.getWriter());
+			ps.setString(2, dto.getContent());
+			ps.setInt(3, dto.getNo());
+			
+			ps.execute();
+			
+			con.close();
+		}
 }
+
