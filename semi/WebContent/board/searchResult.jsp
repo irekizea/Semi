@@ -71,25 +71,26 @@
 				<%for(BoardReplyDto boardReplyDto: replyList){ %>
 					<div class="reply-list">
 							<div class="writer">
-								<a href="<%=request.getContextPath()%>/board/memberHistory.jsp">
-									<span>기여내역</span>
-								</a>
 									<%if(boardReplyDto.getWriter()!=null){ %>
-										<span><%=boardReplyDto.getWriter() %></span>
+										<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?writer=<%=boardReplyDto.getWriter() %>">
+											<span><%=boardReplyDto.getWriter() %></span>
+										</a>
 									<%} 
 										else {%>
-										<span><%=boardReplyDto.getIp() %></span>
-										<%} %>
+										<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?ip_addr=<%=boardReplyDto.getIp_addr() %>">
+											<span><%=boardReplyDto.getIp_addr() %></span>
+										</a>
+									<%} %>
 							</div>
 							<div  class="wdate">
 									<span><%=boardReplyDto.getWdate() %></span>
 							</div>
-							<article class="clear"></article>
+						<p class="clear p-empty"></p>
 						<div><%=boardReplyDto.getContent() %></div>
 					</div>
-				<%} %>	
  				<div class="row-empty"></div>
-
+				<%} %>	
+				<div class="row-empty"></div>
  <script>
 	 <!-- 댓글(토론) 입력 글자수 제한 스크립트-->
 	 function textLimit(reply, maxByte) {				// textLimit(입력문자열 이름, max크기)
@@ -137,9 +138,9 @@
 		            	<%if(writer==null) { %>
 							[알림] 비로그인 상태로 토론에 참여합니다. 토론 내역에 IP "<%=InetAddress.getLocalHost().getHostAddress()%>"가 영구히 기록됩니다.
 						<%} %>
-						</span>
-						
-		            	<p align="right"><input type="submit" value="등록"></p>
+						</span><br>
+						<span>토론은 사용자에 의한 임의삭제가 불가능하므로 신중하게 작성하여 주시길 바랍니다.</span>
+		            	<p align="right" style="margin: 5px 0px"><input type="submit" value="등록"></p>
 	            	</div>	            			            	
 
             	</form>

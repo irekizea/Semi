@@ -26,13 +26,13 @@ public class BoardReplyInsertServlet extends HttpServlet {
 			String board_title = req.getParameter("board_title");
 
 			String writer = (String)req.getSession().getAttribute("id");
-			String ip = InetAddress.getLocalHost().getHostAddress();
+			String ip_addr = InetAddress.getLocalHost().getHostAddress();
 			String content = req.getParameter("content");
 			
 			BoardReplyDto boardReplyDto = new BoardReplyDto();
 			boardReplyDto.setBoard_title(board_title);
 			boardReplyDto.setWriter(writer);
-			boardReplyDto.setIp(ip);
+			boardReplyDto.setIp_addr(ip_addr);
 			boardReplyDto.setContent(content);
 			
 			BoardReplyDao boardReplyDao = new BoardReplyDao();

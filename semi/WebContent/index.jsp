@@ -14,7 +14,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Alcohol Wiki</title>
+<title>Alcohol Wiki-세상의 모든 알콜</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
 
 <script src="https://kit.fontawesome.com/3f30b7cd52.js" crossorigin="anonymous"></script>
@@ -109,7 +109,7 @@
 				<button id="mainbtn"><i class="fas fa-search"></i></button>
 				<p>
 					<%for(BoardDto boardDto:list) {%>
-						<a href="">
+						<a href="<%=request.getContextPath()%>/board/searchResult.jsp?keyword=<%=URLEncoder.encode(boardDto.getTitle(), "UTF-8") %>" >
 							<span><%=boardDto.getTitle() %>  </span>
 						</a>
 					<%} %>
