@@ -172,7 +172,7 @@ public class ReplyDao {
 		ps.execute();
 		ps.close();
 		
-		//12345
+		
 	}
 	
 	
