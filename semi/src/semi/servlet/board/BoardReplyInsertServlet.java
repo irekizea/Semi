@@ -1,4 +1,4 @@
-package semi.BoardServlet;
+package semi.servlet.board;
 
 import java.io.IOException;
 import java.net.Inet4Address;
