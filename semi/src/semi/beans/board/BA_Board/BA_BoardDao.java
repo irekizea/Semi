@@ -79,6 +79,9 @@ public class BA_BoardDao {
 	public void write(BA_BoardDto dto)throws Exception{
 		Connection con=getConnection();
 		
+		
+		
+		
 		String sql="insert into ba_board "
 					+ "values(?,?,?,?,sysdate,null,0,0)";
 			PreparedStatement ps=con.prepareStatement(sql);
