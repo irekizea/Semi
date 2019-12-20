@@ -3,6 +3,9 @@ package semi.beans.board;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -36,9 +39,9 @@ public class BoardDao {
 		if (rs.next()) {
 			boardDto.setNo(rs.getInt("no"));
 			boardDto.setWriter(rs.getString("writer"));
-			boardDto.setUdate(rs.getString("udate"));
 			boardDto.setTitle(rs.getString("title"));
-			boardDto.setNo(rs.getInt("no"));
+			boardDto.setUdate(rs.getString("udate"));
+			boardDto.setSearchCount(rs.getInt("searchCount"));
 		}
 		con.close();
 		return boardDto;
@@ -57,6 +60,37 @@ public class BoardDao {
 		ps.execute();
 
 		con.close();
+	}
+	
+// 검색어 count
+	public void searchCount(String keyword) throws Exception {
+		Connection con = getConnection();
+		
+		String sql="update board set searchcount=searchcount+1 where title=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, keyword);
+		ps.execute();
+		
+		con.close();
+	}
+	public List<BoardDto> getTitleList() throws Exception {
+		Connection con = getConnection();
+		
+		String sql="select rownum, B. *from( "
+						+ "select title from board order by board.searchcount desc " 
+					+ ")B where rownum <=3";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		
+		List<BoardDto> list =new ArrayList<>();
+		while(rs.next()){
+			BoardDto boardDto = new BoardDto();
+			boardDto.setTitle(rs.getString("title"));
+			
+			list.add(boardDto);
+		}
+		con.close();
+		return list;
 	}
 }
 

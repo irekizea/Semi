@@ -16,6 +16,7 @@
 	
 	BoardDao boardDao = new BoardDao();
 	BoardDto boardDto = boardDao.getSearch(keyword);   
+	boardDao.searchCount(keyword);
 	
 	BoardTextDao boardTextDao = new BoardTextDao();
 	List<BoardTextDto> getList =boardTextDao.getList(keyword);	
@@ -130,7 +131,7 @@
             	<form action="replyInsert.do" method="post">                               
 	            	<div class="reply-insert">
 	            		<input type="hidden" name="board_title" value="<%=boardDto.getTitle()%>">	   
-	            		<textarea name="content" oninput="textLength()" onkeyup="textLimit(this, 1000);" required></textarea>
+	            		<textarea name="content" onkeyup="textLimit(this, 1000);" required></textarea>
 						
 						<span>
 		            	<%if(writer==null) { %>
@@ -147,7 +148,12 @@
 					else {%>
 						<P style="font-size:20px" align="center">
 							"<%=keyword %>"에 대한 검색결과가 없습니다. <br><br>
-							로그인 후 "<%=keyword %>"에 대한 <a href="#">새 글 제안하기</a>
+							<%if(writer==null){ %>
+								로그인 후 "<%=keyword %>"에 대한 <a href="#">새 글 제안하기</a>
+							<%} 
+							else{%>
+								 "<%=keyword %>"에 대한 <a href="#">새 글 제안하기</a>
+							<%} %>
 						</p>
 					<% }%>
 
