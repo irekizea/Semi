@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FileUtils;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 
 import semi.beans.ba_board.BA_FileDao;
 import semi.beans.ba_board.BA_FileDto;
