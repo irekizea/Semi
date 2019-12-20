@@ -1,15 +1,13 @@
-<%@page import="semi.beans.board.BoardTextDto"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
+<%@page import="semi.beans.board.BoardTextDto"%>
 <%@page import="semi.beans.board.BoardTextDao"%>
 <%@page import="semi.beans.board.BoardDto"%>
 <%@page import="semi.beans.board.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 
->>>>>>> branch 'master' of https://github.com/irekizea/Semi
 <%
 	// 	int no = Integer.parseInt(request.getParameter("no"));
 	BoardDao boardDao = new BoardDao();
