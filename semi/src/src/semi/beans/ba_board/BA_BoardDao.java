@@ -1,8 +1,10 @@
-package baens;
+package semi.beans.ba_board;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,9 @@ public class BA_BoardDao {
 	
 	public Connection getConnection()throws Exception{
 		return source.getConnection();
+//		Class.forName("oracle.jdbc.OracleDriver");
+//		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@www.sysout.co.kr:1521:xe", "kh21", "kh21");
+//		return con;
 	}
 
 	
@@ -32,26 +37,37 @@ public class BA_BoardDao {
 //	이름:getList
 //	매개변수:없음
 //	반환형 :데이터 목록(List<BA_BoardDto>)
-	public List<BA_BoardDto> getList() throws Exception{
-		Connection con = this.getConnection();
-		String sql="select * from ba_board";
-		
+	public List<BA_BoardDto> getList(int start, int finish) throws Exception{
+		Connection con = getConnection();
+		String sql="select * from ( "
+					+ "select rownum rn, A.* from ( "
+						+ "select * from ba_board "
+						+ "order by board_no desc "
+					+ ")A "
+				+ ") where rn between ? and ?";
 		PreparedStatement ps=con.prepareStatement(sql);
-
+		ps.setInt(1, start);
+		ps.setInt(2, finish);
+		
 		ResultSet rs = ps.executeQuery();
-		
 		List<BA_BoardDto> list = new ArrayList<>();	
-		
-		while(rs.next()) {												
+		while(rs.next()) {		
+			
 			BA_BoardDto dto = new BA_BoardDto();
+			
 			dto.setBoard_no(rs.getInt("board_no"));
 			dto.setWriter(rs.getString("writer"));
 			dto.setTitle(rs.getString("title"));
 			dto.setContent(rs.getString("content"));
 			dto.setWdate(rs.getString("wdate"));
 			dto.setUdate(rs.getString("udate"));
+			dto.setUp(rs.getInt("up"));
+			dto.setDown(rs.getInt("down"));
+	
+			list.add(dto);
 		}
 		con.close();
+		
 		return list;
 	}	
 	
@@ -64,12 +80,13 @@ public class BA_BoardDao {
 		Connection con=getConnection();
 		
 		String sql="insert into ba_board "
-					+ "values(ba_board_seq.nextval,'?','?','?',sysdate,null)";
+					+ "values(?,?,?,?,sysdate,null)";
 			PreparedStatement ps=con.prepareStatement(sql);
 			
-			ps.setString(1, dto.getWriter());
-			ps.setString(2, dto.getTitle());
-			ps.setString(3, dto.getContent());
+			ps.setInt(1, dto.getBoard_no());
+			ps.setString(2, dto.getWriter());
+			ps.setString(3, dto.getTitle());
+			ps.setString(4, dto.getContent());
 			
 			ps.execute();		
 		con.close();
@@ -130,7 +147,7 @@ public class BA_BoardDao {
 //	반환형:BA_BoardDto
 	public BA_BoardDto get(int no)throws Exception{
 		Connection con=getConnection();
-		String sql="select * from ba_board where no=?";
+		String sql="select * from ba_board where board_no=?";
 		PreparedStatement ps=con.prepareStatement(sql);
 		ps.setInt(1, no);
 		ResultSet rs=ps.executeQuery();
@@ -143,7 +160,75 @@ public class BA_BoardDao {
 			dto.setContent(rs.getString("content"));
 			dto.setWdate(rs.getString("wdate"));
 			dto.setUdate(rs.getString("udate"));
+			dto.setUp(rs.getInt("up"));
+			dto.setDown(rs.getInt("down"));
+			
 		con.close();
 		return dto;
 	}
+	
+//	기능:글 개수 구하기
+//	이름:getCount
+//	매개변수:없음
+//	반환형:int(게시판글 총 개수)
+	public int getCount() throws Exception{
+		Connection con = getConnection();
+		
+		String sql="select count(*) from ba_board";
+		PreparedStatement ps=con.prepareStatement(sql);
+		
+		ResultSet rs= ps.executeQuery();
+		rs.next();
+		
+		int count = rs.getInt(1);
+		con.close();
+		
+		return count;
+	}	
+	
+//	기능:좋아요 수 증가
+//	이름:up
+//	매개변수:게시글번호(board_no)
+//	반환형:없음
+	
+	public void up(int no)throws Exception {
+		Connection con=getConnection();
+//		if(좋아요면) {
+		String sql="update ba_board set up=up+1 where board_no=?";
+//		}else {
+//		String sql="update ba_board set down=down+1 where board_no=?";
+//		}
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setInt(1, no);
+		ps.execute();
+		
+		con.close();
+	}	
+	
+	public void down(int no)throws Exception {
+		Connection con=getConnection();
+		String sql="update ba_board set down=down+1 where board_no=?";
+
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setInt(1, no);
+		ps.execute();
+		
+		con.close();
+	}	
+	
+	
+	public void calculate(int Board_no) throws Exception{
+		Connection con = getConnection();
+		
+		String sql =
+					"update board "
+				 + "set replycount = (select count(*) from ba_reply where board_no = ?) "
+				 + "where no = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, Board_no);
+		ps.setInt(2, Board_no);
+		 
+		ps.execute();
+		con.close();
+	}	
 }

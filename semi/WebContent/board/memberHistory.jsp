@@ -1,16 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "java.util.List" %>
-<%@ page import = "java.util.ArrayList" %>
-<%@ page import = "java.net.InetAddress" %>
-
-<%@ page import = "semi.beans.board.BoardDao" %>
-<%@ page import = "semi.beans.board.BoardDto" %>
-<%@ page import = "semi.beans.board.BoardTextDao" %>
-<%@ page import = "semi.beans.board.BoardTextDto" %>
-<%@ page import = "semi.beans.board.BoardReplyDao" %>
-<%@ page import = "semi.beans.board.BoardReplyDto" %>
-
 <%
 	
 %>
