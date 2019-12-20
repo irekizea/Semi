@@ -1,6 +1,6 @@
 <%@page import="semi.beans.reply.ReplyDto"%>
-<%@page import="java.util.List"%>
 <%@page import="semi.beans.reply.ReplyDao"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="java.util.Set"%>
 <%@page import="semi.beans.ba_board.BA_BoardDto"%>
