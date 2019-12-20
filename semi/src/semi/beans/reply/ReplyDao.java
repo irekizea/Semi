@@ -77,7 +77,9 @@ public class ReplyDao {
 	public List<ReplyDto> getList(int reply_no) throws Exception{
 			Connection con = getConnection();
 			
-			String sql = "select * from ba_reply where reply_no = ? order by no desc";
+			String sql = "select * from ba_reply where title = ? "
+					+ "order by wdate desc";
+			
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, reply_no);
 			ResultSet rs = ps.executeQuery();
@@ -145,7 +147,7 @@ public class ReplyDao {
 	
 	public void insert(ReplyDto dto) throws Exception{
 		Connection con = getConnection();
-		String sql= "insert into ba_reply(reply_no,id,replytitle,wdate) values (?,?,?,?)";
+		String sql= "insert into ba_reply(reply_no,id,replytitle,wdate) values(ba_reply_seq.nextval,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		ps.setInt(1, dto.getReply_no());
