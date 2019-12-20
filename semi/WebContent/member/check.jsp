@@ -10,7 +10,7 @@
 <div align="center">
 <h2> 비밀번호 확인</h2>
 
-<form action="check.do" method="post">
+<form action="check.do" method="get">
 
 <input type="hidden"  name="go" value="<%=go%>">
 <input type="password" name="pw" required>

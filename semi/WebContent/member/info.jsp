@@ -44,9 +44,9 @@
     </table>
     
     <!--  다른 기능으로 링크 -->
-    <h4><a href="#">비밀번호 변경</a></h4>
-    <h4><a href="#">회원정보 변경</a></h4>
-
+	<h4><a href="check.jsp?go=/member/change_pw.jsp">비밀번호 변경</a></h4>
+	<h4><a href="check.jsp?go=/member/change_info.jsp">회원정보 수정</a></h4>
+	
     </div>
       
 <jsp:include page="/template/footer.jsp"></jsp:include>
