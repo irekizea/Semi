@@ -13,24 +13,20 @@
 /* body[test] { */
 /* 	border: dotted 1px black; */
 /* } 개발용 점 윤곽선*/ 
-
 * {
 	margin: auto;
 }
-
 .mainlogo {
 	width: 18%;
 	height: 200px;
 	margin-top: 172px;
 	margin-bottom: 2rem;
 }
-
 .search {
 	width: 60%;
 	height: 45px;
 	margin-top: 2rem;
 }
-
 .button {
 	margin-top: 2rem;
 	width: 90px;
@@ -38,18 +34,15 @@
 	margin-bottom: 200px;
 	font-size: 12px;
 }
-
 .input {
 	width: 60%;
 	margin: auto;
 	text-align: center;
 }
-
 form>* {
 	text-align: center;
 	font-size: 20px
 }
-
 .loginlogo {
 	width: 50px;
 	height: 50px;
