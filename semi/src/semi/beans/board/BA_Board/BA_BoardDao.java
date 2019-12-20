@@ -190,7 +190,6 @@ public class BA_BoardDao {
 //	이름:up
 //	매개변수:게시글번호(board_no)
 //	반환형:없음
-	
 	public void up(int no)throws Exception {
 		Connection con=getConnection();
 		String sql="update ba_board set up=up+1 where board_no=?";
@@ -213,4 +212,21 @@ public class BA_BoardDao {
 		
 		con.close();
 	}	
+//	기능:게시글 전송
+//	이름:regist
+//	매개변수:BA_BoarDto(제목,내용,작성자)
+//	반환형:없음
+	public void regist(BA_BoardDto dto) throws Exception {
+		Connection con=getConnection();
+		String sql="insert into board(no,writer,title,wdate,udate,content) "
+					+ "values(board_seq.nextval,?,?,sysdate,sysdate,?)";
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setString(1, dto.getWriter());
+		ps.setString(2, dto.getTitle());
+		ps.setString(3, dto.getContent());
+		
+		ps.execute();
+		
+		con.close();
+	}
 }

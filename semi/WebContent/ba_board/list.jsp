@@ -4,7 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-
 int pagesize = 10;
 int navsize = 10;
 
@@ -27,6 +26,7 @@ int count=dao.getCount();
 String grade = (String)session.getAttribute("grade");
 
 boolean isAdmin = grade.equals("관리자");
+
 %>
 <h1>헤더</h1>
 <div align="center">
@@ -67,7 +67,7 @@ boolean isAdmin = grade.equals("관리자");
 					<td><%=dto.getUp()%></td>
 					<td><%=dto.getDown()%></td>						
 					<td>
-						<input type="button" value="등록">
+						<a href="regist.do?no=<%=dto.getBoard_no()%>"><input type="button" value="등록"></a>
 						<input type="button" value="미등록">
 					</td>
 				<%} %>
