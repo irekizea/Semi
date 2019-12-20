@@ -1,6 +1,6 @@
-<%@page import="semi.beans.BA_Board.BA_BoardDto"%>
+<%@page import="semi.beans.board.BA_Board.BA_BoardDto"%>
 <%@page import="java.util.List"%>
-<%@page import="semi.beans.BA_Board.BA_BoardDao"%>
+<%@page import="semi.beans.board.BA_Board.BA_BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%

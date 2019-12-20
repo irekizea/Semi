@@ -1,4 +1,4 @@
-package semi.beans;
+package semi.beans.board;
 
 public class BoardTextDto {
 	int no;	// boardTxt 글번호

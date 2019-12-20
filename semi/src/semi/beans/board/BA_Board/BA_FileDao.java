@@ -1,4 +1,4 @@
-package semi.beans.BA_Board;
+package semi.beans.board.BA_Board;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,4 +1,4 @@
-package servlet;
+package semi.servlet.member;
 
 import java.io.IOException;
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.MemberDao;
-import beans.MemberDto;
+import semi.beans.board.member.MemberDao;
+import semi.beans.board.member.MemberDto;
 
 @WebServlet(urlPatterns="/member/regist.do")
 public class MemberRegistServlet extends HttpServlet{

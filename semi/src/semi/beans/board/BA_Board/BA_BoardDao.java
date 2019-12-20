@@ -1,4 +1,4 @@
-package semi.beans.BA_Board;
+package semi.beans.board.BA_Board;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -80,7 +80,7 @@ public class BA_BoardDao {
 		Connection con=getConnection();
 		
 		String sql="insert into ba_board "
-					+ "values(?,?,?,?,sysdate,null)";
+					+ "values(?,?,?,?,sysdate,null,0,0)";
 			PreparedStatement ps=con.prepareStatement(sql);
 			
 			ps.setInt(1, dto.getBoard_no());
@@ -193,11 +193,8 @@ public class BA_BoardDao {
 	
 	public void up(int no)throws Exception {
 		Connection con=getConnection();
-//		if(좋아요면) {
 		String sql="update ba_board set up=up+1 where board_no=?";
-//		}else {
-//		String sql="update ba_board set down=down+1 where board_no=?";
-//		}
+		
 		PreparedStatement ps=con.prepareStatement(sql);
 		ps.setInt(1, no);
 		ps.execute();

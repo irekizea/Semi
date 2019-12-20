@@ -1,4 +1,4 @@
-package servlet;
+package semi.servlet.ba_Board;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import semi.beans.BA_Board.BA_BoardDao;
-import semi.beans.BA_Board.BA_BoardDto;
-import semi.beans.BA_Board.BA_FileDao;
-import semi.beans.BA_Board.BA_FileDto;
+import semi.beans.board.BA_Board.BA_BoardDao;
+import semi.beans.board.BA_Board.BA_BoardDto;
+import semi.beans.board.BA_Board.BA_FileDao;
+import semi.beans.board.BA_Board.BA_FileDto;
 @WebServlet(urlPatterns = "/ba_board/write.do")
 public class BA_BoardWriteServlet extends HttpServlet {
 
