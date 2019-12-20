@@ -1,12 +1,11 @@
 <%@page import="java.util.List"%>
-<%@page import="semi.beans.board.BoardTextDto"%>
 <%@page import="semi.beans.board.BoardTextDao"%>
 <%@page import="semi.beans.board.BoardDto"%>
 <%@page import="semi.beans.board.BoardDao"%>
+<%@page import="semi.beans.board.BoardTextDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
 
 <%
 	// 	int no = Integer.parseInt(request.getParameter("no"));
@@ -16,7 +15,6 @@
 	int boardno = Integer.parseInt(request.getParameter("boardno"));
 	BoardTextDto boardtextdto = boardtextdao.get(boardno);
 	String keyword = request.getParameter("keyword");
-	List<BoardTextDto> getList = boardtextdao.getList(keyword);
 %>
 <jsp:include page="/template/header.jsp"></jsp:include>
 
