@@ -202,6 +202,7 @@ public class BA_BoardDao {
 		con.close();
 	}	
 	
+//	기능:싫어 수 증가	
 	public void down(int no)throws Exception {
 		Connection con=getConnection();
 		String sql="update ba_board set down=down+1 where board_no=?";

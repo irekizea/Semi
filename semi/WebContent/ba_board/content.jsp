@@ -14,9 +14,10 @@ BA_FileDao fdao = new BA_FileDao();
 List<BA_FileDto> flist=fdao.getList(no);
 
 String userId = (String)session.getAttribute("id");
-// String grade = (String)session.getAttribute("grade");
+String grade = (String)session.getAttribute("grade");
 
-// boolean isAdmin = grade.equals("관리자");
+boolean isAdmin = grade.equals("관리자");
+
 %>
 <h1>헤더</h1>
 <link rel="stylesheet" type="text/css" href="../css/semi_common.css">
@@ -60,8 +61,8 @@ String userId = (String)session.getAttribute("id");
 		      
 		      
 	<!--(주제 생성 후)작성된 댓글 내용-->		 
-<%-- 	<%if(bdto.getWriter().equals(rdto.getWriter())) {%> --%>
-		<div class="content-item right">                  
+<%-- 	<%if(bdto.getWriter().equals(rdto.getWriter())||isAdmin) {%> --%>
+<!-- 		<div class="content-item right">                   -->
 <%--     <%} else {%> --%>
         <div class="content-item left" align="right">    
 <%--     <%} %>     --%>
@@ -86,7 +87,11 @@ String userId = (String)session.getAttribute("id");
         
         
         <!--좋아요 싫어요 표시-->
-        <h5>좋아요 <%=bdto.getUp()%> 싫어요<%=bdto.getDown()%></h5>
+        <a href="like.do?no=<%=no%>">좋아요</a> <%=bdto.getUp()%>
+        <a href="dislike.do?no=<%=no%>">싫어요</a> <%=bdto.getDown()%>
+        
+        
+        
 <!--토론 작성 부분-->
 <form action="#" method="post">
 	<input type="hidden" name="writer" value="<%=userId%>">

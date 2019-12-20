@@ -32,10 +32,7 @@ public class BA_FileDownloadServlet extends HttpServlet {
 		
 		if(!target.exists()) {
 			target.mkdir();//폴더 생성
-			System.out.println("생성완료");
-		}
-		else {
-			System.out.println("이미 폴더 있음");
+//			System.out.println("생성완료");
 		}	
 		resp.setHeader("Content-Type", "application/octet-srtream; charset=UTF-8");
 		resp.setHeader("Content-Disposition", "attachment; filename=\""+URLEncoder.encode(fdto.getUploadname(),"UTF-8")+"\"");
