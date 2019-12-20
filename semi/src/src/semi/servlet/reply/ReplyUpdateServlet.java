@@ -1,4 +1,4 @@
-package servlet.reply.active;
+package semi.servlet.reply;
 
 import java.io.IOException;
 
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import servlet.reply.ReplyDao;
-import servlet.reply.ReplyDto;
+import semi.beans.reply.ReplyDao;
+import semi.beans.reply.ReplyDto;
 
 @WebServlet(urlPatterns = "/reply/reply_update.jsp")
 public class ReplyUpdateServlet extends HttpServlet{

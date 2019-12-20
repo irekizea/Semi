@@ -1,12 +1,12 @@
-
 <%@page import="java.util.List"%>
+<%@page import="semi.beans.board.BoardTextDto"%>
 <%@page import="semi.beans.board.BoardTextDao"%>
 <%@page import="semi.beans.board.BoardDto"%>
 <%@page import="semi.beans.board.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 
 <%
 	// 	int no = Integer.parseInt(request.getParameter("no"));

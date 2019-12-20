@@ -1,4 +1,4 @@
-package servlet.reply.active;
+package semi.servlet.reply;
 
 import java.io.IOException;
 
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import servlet.BABoard.BA_BoardDao;
-import servlet.reply.ReplyDao;
+import semi.beans.ba_board.BA_BoardDao;
+import semi.beans.reply.ReplyDao;
 
 
 

@@ -1,15 +1,10 @@
-
-
-<%@page import="servlet.BABoard.BA_BoardDto"%>
-<%@page import="servlet.BABoard.BA_BoardDao"%>
-<%@page import="servlet.reply.ReplyDto"%>
-<%@page import="servlet.reply.ReplyDao"%>
+<%@page import="semi.beans.reply.ReplyDto"%>
 <%@page import="java.util.List"%>
-
+<%@page import="semi.beans.reply.ReplyDao"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="java.util.Set"%>
-
-
+<%@page import="semi.beans.ba_board.BA_BoardDto"%>
+<%@page import="semi.beans.ba_board.BA_BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 

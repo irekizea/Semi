@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import oracle.net.aso.r;
 import semi.beans.board.BoardDao;
 import semi.beans.board.BoardReplyDao;
 import semi.beans.board.BoardReplyDto;
@@ -21,7 +22,7 @@ public class BoardReplyInsertServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			req.setCharacterEncoding("UTF-8");
-			
+		
 			String board_title = req.getParameter("board_title");
 
 			String writer = (String)req.getSession().getAttribute("id");

@@ -1,8 +1,8 @@
-<%@page import="semi.beans.BA_Board.BA_FileDto"%>
+<%@page import="semi.beans.ba_board.BA_FileDto"%>
+<%@page import="semi.beans.ba_board.BA_FileDao"%>
+<%@page import="semi.beans.ba_board.BA_BoardDto"%>
+<%@page import="semi.beans.ba_board.BA_BoardDao"%>
 <%@page import="java.util.List"%>
-<%@page import="semi.beans.BA_Board.BA_FileDao"%>
-<%@page import="semi.beans.BA_Board.BA_BoardDto"%>
-<%@page import="semi.beans.BA_Board.BA_BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -11,7 +11,7 @@ int no=Integer.parseInt(request.getParameter("no"));
 BA_BoardDao bdao = new BA_BoardDao();
 BA_BoardDto bdto = bdao.get(no);
 
-BA_FileDao fdao = new BA_FileDao();
+BA_FileDao fdao = new BA_FileDao(); 
 List<BA_FileDto> flist=fdao.getList(no);
 
 String userId = (String)session.getAttribute("id");

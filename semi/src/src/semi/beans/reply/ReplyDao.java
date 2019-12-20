@@ -1,4 +1,4 @@
-package servlet.reply;
+package semi.beans.reply;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -175,9 +175,6 @@ public class ReplyDao {
 		
 	}
 	
-	
-	
-
 	
 }
 

@@ -27,6 +27,29 @@
     src: url("../font/Arita_ttf/아리따-돋움(TTF)-Thin.ttf")
 }
 
+/* 개발자 테스트용 border:1 */  
+    body[test] main,
+    body[test] section,
+    body[test] article,
+    body[test] div,
+    body[test] header,
+    body[test] footer,
+    body[test] nav,
+    body[test] aside,
+    body[test] span,
+    body[test] p {
+        border: 1px dotted black;
+    }
+        
+    main{
+        margin: auto;
+        width: 1900;
+    }
+	
+    section,
+    article {
+        padding: 0.5rem;
+        }
 
 /*
     내부 영역 스타일
@@ -76,6 +99,7 @@ article {
     margin: auto;
 }
 
+/* 1줄의 float 설정 */
 .row {
     margin: 10px 0px;
     text-align: center;
@@ -89,6 +113,25 @@ article {
 .row-empty {
     height: 20px;
 }
+
+		/* float 기본 설정 */
+		.row-multi > * {
+			box-sizing: border-box;
+			border: 1px, dotted blue;
+				
+			float: left;
+		}
+		.row-multi.col-2 > * {width: 50%;}
+		.row-multi.col-3 > * {width: 33.3333%;}
+		.row-multi.col-4 > * {width: 25%};
+		.row-multi.col-5 > * {width: 20%};
+		
+		.row::after {
+			content: "";
+			display: block;
+			clear: both;
+	}
+
 
 /* 
 게시글 등록 전 상세보기 페이지 설정

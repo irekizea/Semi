@@ -1,16 +1,15 @@
+<%@page import="semi.beans.board.BoardReplyDto"%>
+<%@page import="semi.beans.board.BoardReplyDao"%>
+<%@page import="semi.beans.board.BoardTextDto"%>
+<%@page import="semi.beans.board.BoardTextDao"%>
+<%@page import="semi.beans.board.BoardDto"%>
+<%@page import="semi.beans.board.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import = "java.net.InetAddress" %>
 
-<%@ page import = "semi.beans.board.BoardDao" %>
-<%@ page import = "semi.beans.board.BoardDto" %>
-<%@ page import = "semi.beans.board.BoardTextDao" %>
-<%@ page import = "semi.beans.board.BoardTextDto" %>
-<%@ page import = "semi.beans.board.BoardReplyDao" %>
-<%@ page import = "semi.beans.board.BoardReplyDto" %>
-    
 <%
 	String keyword = request.getParameter("keyword"); 
 	
@@ -24,19 +23,23 @@
 	
 	BoardReplyDao boardReplyDao = new BoardReplyDao();
 	List<BoardReplyDto> replyList = boardReplyDao.replyList(keyword);
-
 %>
 
+
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/board.css">
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 			<!-- 검색된 메인글 주제 -->
             <article class="board">           
-			     <div class="title">
-                   	
+			    <div class="title">
                     <% if(boardDto.getTitle()!=null){ %>
                    		<%=boardDto.getTitle() %>
                 </div>
-				<p class="board-udate">최근 수정 시간: <%=boardDto.getUdate() %></p>
+                <div class="board-udate">
+					<span>최근 수정 시간: <%=boardDto.getUdate() %></span>
+                </div>
+                <article class="clear"></article>
+				<div class="row-empty"></div>
 				
 						<!-- 메인 주제에 대한 상세글-->
 			                <%for(BoardTextDto boardTextDto:getList){ %>
@@ -65,16 +68,26 @@
 <!-- 				댓글(토론) 목록 -->
 				<%for(BoardReplyDto boardReplyDto: replyList){ %>
 					<div class="reply-list">
-						<div>
-							<a href="#'"> 기여내역
-								<span><%=boardReplyDto.getWriter() %></span>
-							</a>
-								<span><%=boardReplyDto.getWdate() %></span>
-						</div>
+							<div class="writer">
+									<%if(boardReplyDto.getWriter()!=null){ %>
+<%-- 										<span><%=boardReplyDto.getRn() %></span> --%>
+										<span><%=boardReplyDto.getWriter() %></span>
+									<%} 
+										else {%>
+										<span><%=boardReplyDto.getIp() %></span>
+										<%} %>
+								<a href="<%=request.getContextPath() %>/board/memberHistory.jsp">
+								기여내역</a>
+							</div>
+							<div  class="wdate">
+									<span><%=boardReplyDto.getWdate() %></span>
+							</div>
+							<article class="clear"></article>
 						<div><%=boardReplyDto.getContent() %></div>
 					</div>
 				<%} %>	
- 
+ 				<div class="row-empty"></div>
+
  <script>
 	 <!-- 댓글(토론) 입력 글자수 제한 스크립트-->
 	 function textLimit(reply, maxByte) {				// textLimit(입력문자열 이름, max크기)
@@ -114,7 +127,7 @@
  </script>
 				<!-- 입력창 -->
             	<form action="replyInsert.do" method="post">                               
-	            	<div class="board-reply">
+	            	<div class="reply-insert">
 	            		<input type="hidden" name="board_title" value="<%=boardDto.getTitle()%>">	   
 	            		<textarea name="content" oninput="textLength()" onkeyup="textLimit(this, 1000);" required></textarea>
 						
@@ -125,9 +138,8 @@
 						</span>
 						
 		            	<p align="right"><input type="submit" value="등록"></p>
-	            	</div>
-	            	
-		            	
+	            	</div>	            			            	
+
             	</form>
             	
 					<% }

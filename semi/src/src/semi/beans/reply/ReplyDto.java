@@ -1,4 +1,4 @@
-package servlet.reply;
+package semi.beans.reply;
 
 public class ReplyDto {
 

@@ -47,12 +47,9 @@ public class BoardReplyDao {
 // 메인상세글 댓글(토론) 목록
 	public List<BoardReplyDto> replyList (String keyword) throws Exception {
 		Connection con = getConnection();
-//		
-//		String sql="select rownum rn, A. *from "
-//				+ "select *from board_reply where board_title=? " 
-//				+ ")A order by wdate asc";
-		String sql="select *from board_reply where board_title=? "
-				+ "order by wdate asc";
+		
+		String sql="select *from board_reply where board_title= ? "
+				+ "order by wdate desc";
 		PreparedStatement ps = con.prepareStatement(sql);		
 		ps.setString(1, keyword);
 		ResultSet rs = ps.executeQuery();
@@ -62,7 +59,6 @@ public class BoardReplyDao {
 		while(rs.next()) {
 			BoardReplyDto boardReplyDto = new BoardReplyDto();
 			
-//			boardReplyDto.setRn(rs.getInt("rn"));
 			boardReplyDto.setReply_no(rs.getInt("reply_no"));
 			boardReplyDto.setBoard_title(rs.getString("board_title"));
 			boardReplyDto.setContent(rs.getString("content"));
@@ -73,25 +69,6 @@ public class BoardReplyDao {
 			list.add(boardReplyDto);
 		}
 		
-		con.close();		
-		return list;
-	}
-
-// 메인상세글 댓글(토론) 목록: 해야함...
-	public List<BoardReplyDto> memberHis (String writer, String ip) throws Exception {
-		Connection con = getConnection();
-			
-		String sql="select content, wdate "
-				+ "from board_reply where writer = ? or ip = ? "
-				+ "order by wdate desc)";
-		PreparedStatement ps = con.prepareStatement(sql);		
-		ps.setString(1, writer);
-		ps.setString(2, ip);
-		ResultSet rs = ps.executeQuery();
-			
-		List<BoardReplyDto> list = new ArrayList<>();
-		
-	// ....?????
 		con.close();		
 		return list;
 	}
