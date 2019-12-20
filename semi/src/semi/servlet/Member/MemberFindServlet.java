@@ -1,4 +1,4 @@
-package servlet;
+package semi.servlet.Member;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.MemberDao;
+import semi.beans.member.MemberDao;
 
 @WebServlet(urlPatterns="/member/find.do")
 public class MemberFindServlet extends HttpServlet{

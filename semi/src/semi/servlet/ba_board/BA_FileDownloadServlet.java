@@ -1,4 +1,4 @@
-package servlet;
+package semi.servlet.ba_board;
 
 import java.io.File;
 import java.io.IOException;
