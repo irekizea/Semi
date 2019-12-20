@@ -153,15 +153,17 @@
             	
 					<% }
 					else {%>
-						<P style="font-size:20px" align="center">
-							"<%=keyword %>"에 대한 검색결과가 없습니다. <br><br>
+						<P style="font-size:25px">
+							"<%=keyword %>"에 대한 검색결과가 없습니다. <br>
+						</P>
+							<p style="font-size: 15px">
 							<%if(writer==null){ %>
-								로그인 후 "<%=keyword %>"에 대한 <a href="#">새 글 제안하기</a>
+								로그인 후 " <%=keyword %> "에 대한 <a href="<%=request.getContextPath()%>/ba_board/write.jsp">새 글 제안하기</a>
 							<%} 
 							else{%>
-								 "<%=keyword %>"에 대한 <a href="#">새 글 제안하기</a>
+								 " <%=keyword %> "에 대한 <a href="<%=request.getContextPath()%>/ba_board/write.jsp">새 글 제안하기</a>
 							<%} %>
-						</p>
+							</p>
 					<% }%>
 
             </article>
