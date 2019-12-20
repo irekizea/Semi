@@ -215,4 +215,20 @@ public class BA_BoardDao {
 		
 		con.close();
 	}	
+	
+	
+	public void calculate(int Board_no) throws Exception{
+		Connection con = getConnection();
+		
+		String sql =
+					"update board "
+				 + "set replycount = (select count(*) from ba_reply where board_no = ?) "
+				 + "where no = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, Board_no);
+		ps.setInt(2, Board_no);
+		 
+		ps.execute();
+		con.close();
+	}	
 }
