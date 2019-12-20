@@ -1,7 +1,6 @@
 package semi.servlet.board;
 
 import java.io.IOException;
-import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.URLEncoder;
 
@@ -11,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import oracle.net.aso.r;
-import semi.beans.board.BoardDao;
 import semi.beans.board.BoardReplyDao;
 import semi.beans.board.BoardReplyDto;
 
