@@ -1,4 +1,4 @@
-package beans;
+package semi.beans.member;
 
 public class MemberDto {
 	

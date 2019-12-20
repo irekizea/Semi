@@ -1,4 +1,4 @@
-package semi.servlet;
+package semi.servlet.board;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import semi.beans.HistoryDao;
-import semi.beans.HistoryDto;
 import semi.beans.board.BoardDao;
 import semi.beans.board.BoardDto;
 import semi.beans.board.BoardTextDao;
 import semi.beans.board.BoardTextDto;
+import semi.beans.board.HistoryDao;
+import semi.beans.board.HistoryDto;
 
 @WebServlet(urlPatterns="/board/boardedit.do")
 public class BoardEditServlet extends HttpServlet{

@@ -70,15 +70,15 @@
 				<%for(BoardReplyDto boardReplyDto: replyList){ %>
 					<div class="reply-list">
 							<div class="writer">
+								<a href="<%=request.getContextPath()%>/board/memberHistory.jsp">
+									<span>기여내역</span>
+								</a>
 									<%if(boardReplyDto.getWriter()!=null){ %>
-<%-- 										<span><%=boardReplyDto.getRn() %></span> --%>
 										<span><%=boardReplyDto.getWriter() %></span>
 									<%} 
 										else {%>
 										<span><%=boardReplyDto.getIp() %></span>
 										<%} %>
-								<a href="<%=request.getContextPath() %>/board/memberHistory.jsp">
-								기여내역</a>
 							</div>
 							<div  class="wdate">
 									<span><%=boardReplyDto.getWdate() %></span>

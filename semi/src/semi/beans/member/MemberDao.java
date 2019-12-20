@@ -1,4 +1,4 @@
-package beans;
+package semi.beans.member;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

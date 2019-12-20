@@ -12,7 +12,6 @@
 <%@ page import = "semi.beans.board.BoardReplyDto" %>
 
 <%
-	String writer = request.getParameter("writer"); 
 	
 %>
 
@@ -21,7 +20,7 @@
 <article>
 	<section>
 		<div>
-			"<%= %>"
+			""
 			기여목록
 		</div>
 		
