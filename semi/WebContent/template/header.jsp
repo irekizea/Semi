@@ -1,33 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- 하단 조각을 보관하는 페이지 -->
-					</th>
-				</tr>
-				<tr>
-					<th>
-						<!-- 
-							하단 홈페이지 정보 작성
-							- 회사정보
-							- 정책안내
-							- 기타 사이트맵
-							- 연락처 
-						-->
-						
-						<h3>KH 정보교육원 과정평가형 정보처리산업기사 과정 &copy;</h3>
-						
-						<!-- 홈페이지 세션 상태값 출력 -->
-						<h5>session id = <%=session.getId()%></h5>
-						
-						<%
-							String id = (String)session.getAttribute("id");
-							String grade = (String)session.getAttribute("grade");
-						%>
-						<h5>id = <%=id%>, grade = <%=grade%></h5>
-						<h5>로그인 상태 = <%=id != null%></h5>
-					</th>
-				</tr>
-			</tbody>	
-		</table>
-	</div>
-</body>
-</html>
+
+<%@ page import = "semi.beans.board.BoardDao" %>
+<%@ page import = "semi.beans.board.BoardDto" %>
+    
+<%
+	String keyword = request.getParameter("keyword"); 
+	
+	BoardDao boardDao = new BoardDao();
+	BoardDto boardDto = boardDao.getSearch(keyword);   
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ALcohol wiki - <%=keyword %></title>
+    	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/common.css">
+</head>
+<body test>
+        <header>
+           <div>
+           		<a href="<%=request.getContextPath()%>">
+                <img src="<%=request.getContextPath()%>/image/logo2.png" width=50px. height=auto>
+                </a>
+           </div>
+
+        </header>
+        
+			<!-- 메뉴 불러오기 -->
+			<jsp:include page="/template/menu.jsp"></jsp:include>
+			
+        <section>
+
+
+
