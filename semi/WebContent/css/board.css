@@ -35,10 +35,10 @@
 		        .reply-list {
 		        	border: 0.5px solid gray;
 		        }
-		        .reply-list > .writer {
+		        .reply-list  .writer {
 		        	float: left;
 		        }
-		        .reply-list > .wdate{
+		        .reply-list  .wdate{
 		        	float: right;
 		        }
 	
