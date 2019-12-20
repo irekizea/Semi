@@ -33,6 +33,7 @@ public class MemberCheckServlet extends HttpServlet{
 			else {//실패시
 				resp.sendRedirect("check.jsp?error&go="+go);
 			}
+
 		}
 		catch(Exception e) {
 			e.printStackTrace();

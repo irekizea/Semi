@@ -59,4 +59,3 @@ public class BoardDao {
 		con.close();
 	}
 }
-

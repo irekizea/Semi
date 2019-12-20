@@ -80,6 +80,8 @@ public class BoardTextDao {
 		return boardtextdto;	
 	}
 
+
+
 	//편집 메소드
 		public void btedit(BoardTextDto dto) throws Exception{
 			Connection con = getConnection();
@@ -96,4 +98,3 @@ public class BoardTextDao {
 			con.close();
 		}
 }
-

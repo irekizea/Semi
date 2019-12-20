@@ -41,6 +41,5 @@ public class BoardReplyInsertServlet extends HttpServlet {
 			e.printStackTrace();
 			resp.sendError(500);
 		}
-
 	}
 }

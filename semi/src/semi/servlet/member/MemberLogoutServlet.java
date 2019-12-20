@@ -16,13 +16,6 @@ public class MemberLogoutServlet extends HttpServlet{
 		req.getSession().removeAttribute("id");
 		
 		resp.sendRedirect(req.getContextPath()+"/index.jsp");
-	
-		
-		/*
-		 * "semi"+"/index.jsp" 
-		 * "semi/index.jsp"
-		 */
-		
 	}
 
 }

@@ -1,7 +1,12 @@
+
+<%@page import="semi.beans.board.BoardTextDto"%>
+
+
 <%@page import="java.util.List"%>
 <%@page import="semi.beans.board.BoardTextDao"%>
 <%@page import="semi.beans.board.BoardDto"%>
 <%@page import="semi.beans.board.BoardDao"%>
+
 <%@page import="semi.beans.board.BoardTextDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
