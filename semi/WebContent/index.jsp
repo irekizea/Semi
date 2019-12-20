@@ -81,8 +81,12 @@
 <body>
 	<div align="right">
 	<a href="<%=request.getContextPath()%>/member/login.jsp">
-		<img src="<%=request.getContextPath()%>/image/login.png" class="loginlogo">
-	</a>
+		<img src="<%=request.getContextPath()%>/image/login7.jpg" class="loginlogo"></a>
+	
+	<a href="<%=request.getContextPath()%>/member/info.jsp">
+		<img src="<%=request.getContextPath()%>/image/user_info.png" class="loginlogo"></a>
+	<a href="<%=request.getContextPath()%>/member/logout.do">
+		<img src="<%=request.getContextPath()%>/image/logout.png" class="loginlogo"></a>
 	</div>
 	
 	<div align="center">
