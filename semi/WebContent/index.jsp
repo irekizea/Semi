@@ -8,7 +8,7 @@
 <%@ page import ="semi.beans.board.BoardDto" %>
 <%
 	BoardDao boardDao = new BoardDao();
-	List<BoardDto> list =boardDao.getTitleList();
+	List<BoardDto> list =boardDao.getTitleList(); 
 %>
  <!DOCTYPE html>
 <html lang="en">
@@ -19,10 +19,14 @@
 
 <script src="https://kit.fontawesome.com/3f30b7cd52.js" crossorigin="anonymous"></script>
 <style>
+
+/* body[test] { */
+/* 	border: dotted 1px black; */
+/* } 개발용 점 윤곽선*/ 
+
 * {
 	margin: auto;
 }
-
 .mainlogo {
 	width: 18%;
 	height: 200px;
@@ -30,7 +34,6 @@
 	margin-bottom: 2rem;
     
 }
-
 .search {
 	width: 50%;
 	height: 35px;
@@ -41,7 +44,6 @@
     padding-left: 20px;
     border-width: 1px;
 }
-
 .button {
 	margin-top: 2rem;
 	width: 90px;
@@ -50,7 +52,6 @@
 	font-size: 12px;
     
 }
-
 .input {
 	width: 60%;
 	margin: auto;
@@ -63,7 +64,6 @@
 	font-size: 20px;
  
 }
-
 .loginlogo {
 	width: 50px;
 	height: 50px;

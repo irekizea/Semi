@@ -1,22 +1,21 @@
+<%@page import="semi.beans.board.BoardReplyDto"%>
+<%@page import="semi.beans.board.BoardReplyDao"%>
+<%@page import="semi.beans.board.BoardTextDto"%>
+<%@page import="semi.beans.board.BoardTextDao"%>
+<%@page import="semi.beans.board.BoardDto"%>
+<%@page import="semi.beans.board.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import = "java.net.InetAddress" %>
 
-<%@ page import = "semi.beans.board.BoardDao" %>
-<%@ page import = "semi.beans.board.BoardDto" %>
-<%@ page import = "semi.beans.board.BoardTextDao" %>
-<%@ page import = "semi.beans.board.BoardTextDto" %>
-<%@ page import = "semi.beans.board.BoardReplyDao" %>
-<%@ page import = "semi.beans.board.BoardReplyDto" %>
-    
 <%
 	String keyword = request.getParameter("keyword"); 
 	
 	BoardDao boardDao = new BoardDao();
 	BoardDto boardDto = boardDao.getSearch(keyword);   
-	boardDao.searchCount(keyword);
+	boardDao.searchCount(keyword); 
 	
 	BoardTextDao boardTextDao = new BoardTextDao();
 	List<BoardTextDto> getList =boardTextDao.getList(keyword);	
@@ -78,7 +77,7 @@
 									<%} 
 										else {%>
 										<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?ip_addr=<%=boardReplyDto.getIp_addr() %>">
-											<span><%=boardReplyDto.getIp_addr() %></span>
+											<span><%=boardReplyDto.getIp_addr() %></span> 
 										</a>
 									<%} %>
 							</div>

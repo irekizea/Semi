@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <!-- server에서 읽어들일 context 내부 설정-->
 <Context>
 	
@@ -16,5 +17,6 @@
 					maxTatal="20"
 					maxIdle="10"
 					maxWait="3000"></Resource>
+
 
 </Context>

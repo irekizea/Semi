@@ -1,9 +1,8 @@
+<%@page import="semi.beans.board.BoardDto"%>
+<%@page import="semi.beans.board.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import = "semi.beans.board.BoardDao" %>
-<%@ page import = "semi.beans.board.BoardDto" %>
-    
 <%
 	String keyword = request.getParameter("keyword"); 
 	
@@ -32,5 +31,6 @@
 			<jsp:include page="/template/menu.jsp"></jsp:include>
 			
         <section>
+
 
 

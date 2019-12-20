@@ -1,4 +1,4 @@
-package baens;
+package semi.beans.ba_board;
 
 public class BA_BoardDto {
 	private int board_no;
@@ -7,6 +7,8 @@ public class BA_BoardDto {
 	private String content;
 	private String wdate;
 	private String udate;
+	private int up;
+	private int down;
 
 	public BA_BoardDto() {
 		super();
@@ -58,6 +60,22 @@ public class BA_BoardDto {
 
 	public void setUdate(String udate) {
 		this.udate = udate;
+	}
+
+	public int getUp() {
+		return up;
+	}
+
+	public void setUp(int up) {
+		this.up = up;
+	}
+
+	public int getDown() {
+		return down;
+	}
+
+	public void setDown(int down) {
+		this.down = down;
 	}
 	
 }

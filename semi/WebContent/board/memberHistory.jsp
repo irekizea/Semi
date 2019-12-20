@@ -1,3 +1,5 @@
+<%@page import="semi.beans.board.HistoryDto"%>
+<%@page import="semi.beans.board.HistoryDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.List" %>
@@ -10,8 +12,6 @@
 <%@ page import = "semi.beans.board.BoardTextDto" %>
 <%@ page import = "semi.beans.board.BoardReplyDao" %>
 <%@ page import = "semi.beans.board.BoardReplyDto" %>
-<%@ page import = "semi.beans.board.HistoryDao" %>
-<%@ page import = "semi.beans.board.HistoryDto" %>
 
 <%
 	String writer=request.getParameter("writer");
