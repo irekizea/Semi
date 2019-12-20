@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import semi.beans.member.MemberDao;
-import semi.beans.member.MemberDto;
+import semi.beans.board.member.MemberDao;
+import semi.beans.board.member.MemberDto;
+
 
 @WebServlet(urlPatterns="/member/regist.do")
 public class MemberRegistServlet extends HttpServlet{

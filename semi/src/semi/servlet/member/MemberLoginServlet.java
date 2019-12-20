@@ -36,7 +36,7 @@ public class MemberLoginServlet extends HttpServlet{
 //				추가 : 사용자의 최종 로그인 시각을 수정
 //				dao.updateLastLogin(id);
 				
-				resp.sendRedirect("../index.jsp");
+				resp.sendRedirect(req.getContextPath());
 			}
 			else {//로그인 실패 시
 //				error 메시지가 표시되는 로그인 화면으로 이동해라

@@ -1,20 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>semi</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  <filter>
-		<filter-name>encoding</filter-name>
-		<filter-class>semi.filter.Efilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>encoding</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-</web-app>
+ 
+ <web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+  	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee    
+  	                    http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+ 
+
+ 	<session-config>
+ 	<!-- 타임 아웃 시간 필요하면 늘리거나 줄일것 -->
+ 		<session-timeout>20</session-timeout>
+ 	</session-config>
+ 	
+ 	
+ 	<filter>
+ 		<filter-name>encoding</filter-name>
+		<filter-class>semi.filter.EFilter</filter-class>
+
+ 	</filter>
+ 	<filter-mapping>
+ 		<filter-name>encoding</filter-name>
+ 		<url-pattern>/*</url-pattern>
+ 	</filter-mapping>
+ 	
+
+ 	
+ 	
+ 	<filter>
+ 		<filter-name>login</filter-name>
+		<filter-class>semi.filter.loginFilter</filter-class>
+
+ 	</filter>
+ 	<filter-mapping>
+ 		<filter-name>login</filter-name>
+ 		<url-pattern></url-pattern>
+ 	</filter-mapping>
+ 	
+ 	<filter>
+ 		<filter-name>admin</filter-name>
+		<filter-class>semi.filter.AdminFilter</filter-class>
+
+ 	</filter>
+ 	<filter-mapping>
+ 		<filter-name>admin</filter-name>
+ 		<url-pattern></url-pattern>
+ 	</filter-mapping>
+ 	
+ 	
+ 	
+ 	
+ 	<error-page>
+ 		<error-code>404</error-code>
+ 		<location>/error/404.jsp</location>
+ 	</error-page>
+ 	
+ 	<error-page>
+ 		<error-code>403</error-code>
+ 		<location>/error/403.jsp</location>
+ 	</error-page>
+ 	<error-page>
+ 		<error-code>405</error-code>
+ 		<location>/error/405.jsp</location>
+ 	</error-page>
+ 	<error-page>
+ 		<error-code>500</error-code>
+ 		<location>/error/500.jsp</location>
+ 	</error-page>
+ 	
+ 	
+ </web-app>
