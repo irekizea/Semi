@@ -1,50 +1,62 @@
+
 <%@page import="semi.beans.board.BoardTextDto"%>
+
+
 <%@page import="java.util.List"%>
 <%@page import="semi.beans.board.BoardTextDao"%>
 <%@page import="semi.beans.board.BoardDto"%>
 <%@page import="semi.beans.board.BoardDao"%>
+
+<%@page import="semi.beans.board.BoardTextDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
+
 <%
-// 	int no = Integer.parseInt(request.getParameter("no"));
+	// 	int no = Integer.parseInt(request.getParameter("no"));
 	BoardDao boardDao = new BoardDao();
 	BoardDto boardDto = boardDao.getSearch(request.getParameter("keyword"));
 	BoardTextDao boardtextdao = new BoardTextDao();
 	int boardno = Integer.parseInt(request.getParameter("boardno"));
 	BoardTextDto boardtextdto = boardtextdao.get(boardno);
+	String keyword = request.getParameter("keyword");
 %>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>편집페이지</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
-</head>
-<body>
-	<form action=boardedit.do method="post">
-	<input type="hidden" name="no" value="<%=boardDto.getNo() %>">
-	<input type="hidden" name="keyword" value=<%=request.getParameter("keyword") %>>
-	<section class="w-100">
-	<table class="w-100, table">
-		<tr>
-			<td colspan="2"><h3><%=boardDto.getTitle() %></h3></td>
-		</tr>
-		<tr>
-			<td>작성자: <%=boardDto.getWriter() %></td>
-			<td>최종 수정시간: <%=boardDto.getUdate() %></td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				내용<br><br>
-				<textarea name="content" style="resize: none; width: 100%; height:200px"><%=boardtextdto.getContent() %></textarea>
-			</td>
-		</tr>
-	</table>
-	<br>
-		<div align="center">
+<jsp:include page="/template/header.jsp"></jsp:include>
+
+
+<form action=boardedit.do method="post">
+	<input type="hidden" name="boardtextno" value="<%=boardDto.getNo()%>"> 
+	<input type="hidden" name="keyword" value="<%=request.getParameter("keyword")%>">
+	<input type="hidden" name="boardtitle" value="<%=boardDto.getTitle() %>">
+	<input type="hidden" name="writer" value="<%=boardDto.getWriter()%>">
+	<input type="hidden" name="boardtextudate" value="<%=boardDto.getUdate()%>">
+	<input type="hidden" name="no"	 value="<%=boardtextdto.getNo() %>">
+	<input type="hidden" name="board_no"	 value="<%=boardtextdto.getBoard_no()%>">
+	<input type="hidden" name="ip_addr" value="111">;
+	<article class="board">
+
+		<div class="title">
+			<%=boardDto.getTitle()%>
+		</div>
+		<div class="sub-title">
+			작성자:<%=boardDto.getWriter()%>
+		</div>
+		<p class="board-udate">
+			최종 수정시간:<%=boardtextdto.getUdate()%>
+		</p>
+
+		<div class="sub-title">
+			내용<br>
+			<textarea name="content"
+				style="resize: none; width: 100%; height: 200px"><%=boardtextdto.getContent()%></textarea>
+		</div>
+
+		<div align="left">	
 		<input type="submit" value="편집완료">
 		</div>
-	</section>
-	</form>
-</body>
-</html>
+	</article>
+	
+</form>
+
+
+<jsp:include page="/template/footer.jsp"></jsp:include>

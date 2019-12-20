@@ -1,9 +1,8 @@
+<%@page import="semi.beans.board.BoardDto"%>
+<%@page import="semi.beans.board.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import = "semi.beans.board.BoardDao" %>
-<%@ page import = "semi.beans.board.BoardDto" %>
-    
 <%
 	String keyword = request.getParameter("keyword"); 
 	
@@ -16,7 +15,14 @@
 <head>
     <meta charset="UTF-8">
     <title>ALcohol wiki - <%=keyword %></title>
-    	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/common.css">
+    	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
+
+
+
+
+
+
+
 </head>
 <body test>
         <header>
@@ -32,5 +38,6 @@
 			<jsp:include page="/template/menu.jsp"></jsp:include>
 			
         <section>
+
 
 

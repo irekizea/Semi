@@ -1,0 +1,51 @@
+
+@charset "UTF-8"
+    
+ * {
+    box-sizing: border-box;
+ }
+
+		  /* 검색상세글용 스타일*/    
+		        .title {
+		            padding: 0.5rem;
+		            font-size: 40px;
+		            float: left;
+		        }
+		        .sub-title {
+		            font-size: 20px;
+		        }
+		        .text {
+		            padding: 1rem 0.5rem;
+		            font-size: 15px;
+		        }
+		        .board-udate {
+		        	font-size: 13px;		        	
+		        	float: right;
+		        	padding-top: 5%;
+		        }
+		        
+		        .clear {
+		        	padding: 1px;
+		        	clear: both;
+		        }
+		        
+		        .reply-list > * {
+					padding:0.5rem;
+		        }
+		        .reply-list {
+		        	border: 0.5px solid gray;
+		        }
+		        .reply-list > .writer {
+		        	float: left;
+		        }
+		        .reply-list > .wdate{
+		        	float: right;
+		        }
+	
+		        .reply-insert > textarea {
+					resize: none;
+		        	padding: 0.5rem;
+		        	width: 98%;
+		        	height: 70px;
+		        }
+		        

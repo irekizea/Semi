@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@page import="semi.beans.board.BA_Board.BA_FileDto"%>
 <%@page import="java.util.List"%>
 <%@page import="semi.beans.board.BA_Board.BA_FileDao"%>

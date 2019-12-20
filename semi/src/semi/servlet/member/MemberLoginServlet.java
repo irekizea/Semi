@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import semi.beans.board.member.MemberDao;
-import semi.beans.board.member.MemberDto;
+import semi.beans.member.MemberDao;
+import semi.beans.member.MemberDto;
 
 @WebServlet(urlPatterns = "/member/login.do")
 public class MemberLoginServlet extends HttpServlet{
@@ -36,7 +36,7 @@ public class MemberLoginServlet extends HttpServlet{
 //				추가 : 사용자의 최종 로그인 시각을 수정
 //				dao.updateLastLogin(id);
 				
-				resp.sendRedirect("../index.jsp");
+				resp.sendRedirect(req.getContextPath());
 			}
 			else {//로그인 실패 시
 //				error 메시지가 표시되는 로그인 화면으로 이동해라

@@ -1,9 +1,13 @@
-<%@page import="semi.beans.board.BA_Board.BA_BoardDto"%>
+
+<%@page import="semi.beans.ba_board.BA_BoardDto"%>
+
 <%@page import="java.util.List"%>
-<%@page import="semi.beans.board.BA_Board.BA_BoardDao"%>
+<%@page import="semi.beans.ba_board.BA_BoardDao"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+
 int pagesize = 10;
 int navsize = 10;
 
@@ -26,7 +30,6 @@ int count=dao.getCount();
 String grade = (String)session.getAttribute("grade");
 
 boolean isAdmin = grade.equals("관리자");
-
 %>
 <h1>헤더</h1>
 <div align="center">
@@ -37,12 +40,11 @@ boolean isAdmin = grade.equals("관리자");
 				<th>제목</th>
 				<th>작성자</th>
 				<th>작성일시</th>
-				
-				<%if(isAdmin) {%>
-					<th>좋아요</th>
-					<th>싫어요</th>
-					<th>등록 여부</th>
-				<%} %>
+<%-- 				<%if(isAdmin) {%> --%>
+				<th>좋아요</th>
+				<th>싫어요</th>
+				<th>등록 여부</th>
+<%-- 				<%} %> --%>
 			</tr>
 		</thead>
 		
@@ -62,15 +64,12 @@ boolean isAdmin = grade.equals("관리자");
 				<%} else{%>
 					<td><%=dto.getWdate()%></td>
 				<%} %>
-				
-				<%if(isAdmin) {%>
-					<td><%=dto.getUp()%></td>
-					<td><%=dto.getDown()%></td>						
-					<td>
-						<a href="regist.do?no=<%=dto.getBoard_no()%>"><input type="button" value="등록"></a>
-						<input type="button" value="미등록">
-					</td>
-				<%} %>
+				<td><%=dto.getUp()%></td>
+				<td><%=dto.getDown()%></td>						
+				<td>
+					<input type="button" value="등록">
+					<input type="button" value="미등록">
+				</td>
 			</tr>
 		<%} %>	
 		
