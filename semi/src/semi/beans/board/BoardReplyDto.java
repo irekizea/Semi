@@ -2,13 +2,12 @@ package semi.beans.board;
 
 public class BoardReplyDto {
 
-	int rn, reply_no;
+	int reply_no;
 	String board_title, writer, ip_addr, content, wdate;
 	
 	
-	public BoardReplyDto(int rn, int reply_no, String board_title, String writer, String ip_addr, String content, String wdate) {
+	public BoardReplyDto(int reply_no, String board_title, String writer, String ip_addr, String content, String wdate) {
 		super();
-		this.rn = rn;
 		this.reply_no = reply_no;
 		this.board_title = board_title;
 		this.ip_addr = ip_addr;
@@ -19,14 +18,6 @@ public class BoardReplyDto {
 
 	public BoardReplyDto() {
 		super();
-	}
-
-	public int getRn() {
-		return rn;
-	}
-
-	public void setRn(int rn) {
-		this.rn = rn;
 	}
 
 	public int getReply_no() {
