@@ -30,12 +30,12 @@ public class BoardReplyDao {
 	public void replyInsert(BoardReplyDto boardReplyDto) throws Exception{
 		Connection con = getConnection();
 				
-		String sql="insert into board_reply (reply_no, board_title, writer, ip, content) "
+		String sql="insert into board_reply (reply_no, board_title, writer, ip_addr, content) "
 				+ "values(board_reply_seq.nextval, ?, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, boardReplyDto.getBoard_title());
 		ps.setString(2, boardReplyDto.getWriter());
-		ps.setString(3, boardReplyDto.getIp());
+		ps.setString(3, boardReplyDto.getIp_addr());
 		ps.setString(4, boardReplyDto.getContent());
 		
 		ps.execute();
@@ -47,10 +47,7 @@ public class BoardReplyDao {
 // 메인상세글 댓글(토론) 목록
 	public List<BoardReplyDto> replyList (String keyword) throws Exception {
 		Connection con = getConnection();
-//		
-//		String sql="select rownum rn, A. *from "
-//				+ "select *from board_reply where board_title=? " 
-//				+ ")A order by wdate asc";
+
 		String sql="select *from board_reply where board_title=? "
 				+ "order by wdate asc";
 		PreparedStatement ps = con.prepareStatement(sql);		
@@ -62,36 +59,16 @@ public class BoardReplyDao {
 		while(rs.next()) {
 			BoardReplyDto boardReplyDto = new BoardReplyDto();
 			
-//			boardReplyDto.setRn(rs.getInt("rn"));
 			boardReplyDto.setReply_no(rs.getInt("reply_no"));
 			boardReplyDto.setBoard_title(rs.getString("board_title"));
 			boardReplyDto.setContent(rs.getString("content"));
 			boardReplyDto.setWriter(rs.getString("writer"));
-			boardReplyDto.setIp(rs.getString("ip"));
+			boardReplyDto.setIp_addr(rs.getString("ip_addr"));
 			boardReplyDto.setWdate(rs.getString("wdate"));
 			
 			list.add(boardReplyDto);
 		}
 		
-		con.close();		
-		return list;
-	}
-
-// 메인상세글 댓글(토론) 목록: 해야함...
-	public List<BoardReplyDto> memberHis (String writer, String ip) throws Exception {
-		Connection con = getConnection();
-			
-		String sql="select content, wdate "
-				+ "from board_reply where writer = ? or ip = ? "
-				+ "order by wdate desc)";
-		PreparedStatement ps = con.prepareStatement(sql);		
-		ps.setString(1, writer);
-		ps.setString(2, ip);
-		ResultSet rs = ps.executeQuery();
-			
-		List<BoardReplyDto> list = new ArrayList<>();
-		
-	// ....?????
 		con.close();		
 		return list;
 	}

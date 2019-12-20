@@ -113,11 +113,17 @@ article {
 .row-empty {
     height: 20px;
 }
-
 		/* float 기본 설정 */
+		.row-left {
+        	text-align: left;
+        }
+        .row-right {
+       		 text-align: right;
+        }
+
 		.row-multi > * {
 			box-sizing: border-box;
-			border: 1px, dotted blue;
+			border: 1px, solid gray;
 				
 			float: left;
 		}
@@ -125,6 +131,7 @@ article {
 		.row-multi.col-3 > * {width: 33.3333%;}
 		.row-multi.col-4 > * {width: 25%};
 		.row-multi.col-5 > * {width: 20%};
+		
 		
 		.row::after {
 			content: "";

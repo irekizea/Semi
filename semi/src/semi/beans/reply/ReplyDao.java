@@ -10,6 +10,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import semi.beans.board.BoardReplyDto;
+
 
 
 public class ReplyDao {
@@ -43,17 +45,35 @@ public class ReplyDao {
 	public void write(ReplyDto dto) throws Exception{
 		Connection con = getConnection();
 		
-		String sql = "insert into ba_reply(reply_no, replytitle, id, board_no "
-					+ "value(reply_seq.nextval,?,?,?)";
+		String sql = "insert into ba_reply(reply_no, replytitle, id "
+					+ "value(ba_reply_seq.nextval,?,?)";
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, dto.getReply_title());
-		ps.setString(2, dto.getId());
-		ps.setInt(3, dto.getBoard_no());
+		ps.setInt(1, dto.getReply_no());
+		ps.setString(2, dto.getReply_title());
+		ps.setString(3, dto.getId());
+		
 		
 		ps.execute();
 		
 		con.close();
 	}
+	
+	public void replyCreate(ReplyDto dto) throws Exception{
+		Connection con = getConnection();
+		
+		String sql = "insert into ba_reply (reply_no, reply_title, id, wdate "
+				+ "values(ba_reply_seq.nextval, ?, ?, ?)";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, dto.getReply_title());
+		ps.setString(2, dto.getId());
+		ps.setString(3, dto.getWdate());
+		
+		ps.execute();
+		
+		con.close();
+		
+	}
+	
 	
 	//	삭제기능
 	//	이름 : delete 
@@ -74,12 +94,14 @@ public class ReplyDao {
     //매개변수 : 게시글번호(board no)
     //반환형 : 댓글목록(List<ReplyDt>)
 	
-	public List<ReplyDto> getList(int reply_no) throws Exception{
+	public List<ReplyDto> getList(int board_no) throws Exception{
 			Connection con = getConnection();
 			
-			String sql = "select * from ba_reply where reply_no = ? order by no desc";
+			String sql = "select * from ba_reply where board_no = ? "
+					+ "order by reply_no desc";
+			
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, reply_no);
+			ps.setInt(1, board_no);
 			ResultSet rs = ps.executeQuery();
 			
 			List<ReplyDto> list = new ArrayList<>();
@@ -96,6 +118,37 @@ public class ReplyDao {
 			con.close();
 			return list;	
 	}
+	
+	//댓글 목록
+	public List<BoardReplyDto> replyList (String keyword) throws Exception {
+		Connection con = getConnection();
+
+		String sql="select *from board_reply where board_title=? "
+				+ "order by wdate asc";
+		PreparedStatement ps = con.prepareStatement(sql);		
+		ps.setString(1, keyword);
+		ResultSet rs = ps.executeQuery();
+		
+		List<BoardReplyDto> list = new ArrayList<>();
+		
+		while(rs.next()) {
+			BoardReplyDto boardReplyDto = new BoardReplyDto();
+			
+//			boardReplyDto.setRn(rs.getInt("rn"));
+			boardReplyDto.setReply_no(rs.getInt("reply_no"));
+			boardReplyDto.setBoard_title(rs.getString("board_title"));
+			boardReplyDto.setContent(rs.getString("content"));
+			boardReplyDto.setWriter(rs.getString("writer"));
+			boardReplyDto.setIp_addr(rs.getString("ip_addr"));
+			boardReplyDto.setWdate(rs.getString("wdate"));
+			
+			list.add(boardReplyDto);
+		}
+		
+		con.close();		
+		return list;
+	}
+
 	
 	public List<ReplyDto> select(int board_no)throws Exception{
 	
@@ -145,7 +198,7 @@ public class ReplyDao {
 	
 	public void insert(ReplyDto dto) throws Exception{
 		Connection con = getConnection();
-		String sql= "insert into ba_reply(reply_no,id,replytitle,wdate) values (?,?,?,?)";
+		String sql= "insert into ba_reply(reply_no,id,replytitle,wdate) values(ba_reply_seq.nextval,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		ps.setInt(1, dto.getReply_no());
@@ -177,5 +230,4 @@ public class ReplyDao {
 	
 	
 }
-
 
