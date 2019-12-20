@@ -1,18 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Alcohol Wiki</title>
-<link rel="stylesheet" type="text/css" href="../css/common.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/common.css">
 
-
+<script src="https://kit.fontawesome.com/3f30b7cd52.js" crossorigin="anonymous"></script>
 <style>
+
 /* body[test] { */
 /* 	border: dotted 1px black; */
 /* } 개발용 점 윤곽선*/ 
+
 * {
 	margin: auto;
 }
@@ -21,11 +22,17 @@
 	height: 200px;
 	margin-top: 172px;
 	margin-bottom: 2rem;
+    
 }
 .search {
-	width: 60%;
-	height: 45px;
+	width: 50%;
+	height: 35px;
 	margin-top: 2rem;
+    border-radius: 20px;
+    border-color : darkgray;
+    font-size : 20px;
+    padding-left: 20px;
+    border-width: 1px;
 }
 .button {
 	margin-top: 2rem;
@@ -33,15 +40,19 @@
 	height: 30px;
 	margin-bottom: 200px;
 	font-size: 12px;
+    
 }
 .input {
 	width: 60%;
 	margin: auto;
 	text-align: center;
+    border:0px;
 }
-form>* {
+
+.form {
 	text-align: center;
-	font-size: 20px
+	font-size: 20px;
+ 
 }
 .loginlogo {
 	width: 50px;
@@ -49,27 +60,45 @@ form>* {
 	margin-right: 10px;
 	margin-top: 10px;
 }
-</style>
+    
+    #mainbtn{
+        position :absolute;
+        top: 553px;
+        right: 35%;
+        border:none;
+        background-color: #fff;
+        
+        
+    } 
+    .fa-search{
+        font-size :20px;
+    }
+    
+    
+    </style>
 </head>
 
 <body>
 	<div align="right">
-	<a href="<%=request.getContextPath()%>/login.jsp">
+	<a href="<%=request.getContextPath()%>/member/login.jsp">
 		<img src="<%=request.getContextPath()%>/image/login.png" class="loginlogo">
 	</a>
 	</div>
 	
 	<div align="center">
-		<img src="<%=request.getContextPath()%>/image/capture.png" class="mainlogo">
+		<img src="<%=request.getContextPath()%>/image/logo2.png" class="mainlogo">
 	</div>
 	
 	<h1 align="center">Welcome to Alcohol Wiki</h1>
 	
 	<div class="input">
-		<form action="search.do" method="get">
-			<input type="search" class="search" name="keyword"
-				placeholder="검색어를 입력하세요" required> <br>
-			<input type="button" class="button" value="검색">
+
+		<form action="<%=request.getContextPath()%>/board/searchResult.jsp" method="get">
+			<input type="text" class="search" name="keyword"
+				placeholder="검색어를 입력하세요" required> 
+				<button id="mainbtn"><i class="fas fa-search"></i></button>
+				<span></span>
+				<br>
 		</form>
 	</div>
 	
