@@ -38,10 +38,11 @@
 		<div class="">
 		<%for(HistoryDto memberHis : list){ %>
 			<div class="">
-				<%=memberHis.getBoardtitle() %>
-				<div>
-					<%=memberHis.getBoardtextudate() %>
+				project: <%=memberHis.getBoardtitle() %>
+				<div class="wdate">
+					최근 수정 시간: <%=memberHis.getBoardtextudate() %>
 				</div>
+
 				<div class="">
 					<%=memberHis.getContent() %>
 				</div>
