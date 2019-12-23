@@ -94,14 +94,20 @@ public class ReplyDao {
     //매개변수 : 게시글번호(board no)
     //반환형 : 댓글목록(List<ReplyDt>)
 	
+
 	public List<ReplyDto> rList (int boardno) throws Exception{
+
 			Connection con = getConnection();
 			
 			String sql = "select * from ba_reply where board_no = ? "
+
 					+ "order by wdate asc";
+
 			
 			PreparedStatement ps = con.prepareStatement(sql);
+
 			ps.setInt(1, boardno);
+
 			ResultSet rs = ps.executeQuery();
 			
 			List<ReplyDto> list = new ArrayList<>();
@@ -136,11 +142,13 @@ public class ReplyDao {
 			BoardReplyDto boardReplyDto = new BoardReplyDto();
 			
 
+
 			boardReplyDto.setReply_no(rs.getInt("reply_no"));
 			boardReplyDto.setBoard_title(rs.getString("board_title"));
 			boardReplyDto.setContent(rs.getString("content"));
 			boardReplyDto.setWriter(rs.getString("writer"));
-			boardReplyDto.setIp(rs.getString("ip"));
+
+
 			boardReplyDto.setWdate(rs.getString("wdate"));
 			
 			list.add(boardReplyDto);
@@ -232,5 +240,4 @@ public class ReplyDao {
 
 	
 }
-
 

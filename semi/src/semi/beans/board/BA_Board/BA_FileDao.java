@@ -1,4 +1,4 @@
-package semi.beans.ba_board;
+package semi.beans.board.BA_Board;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -100,6 +100,4 @@ public class BA_FileDao {
 			con.close();
 			return fdto;
 		}
-		
-	
 }

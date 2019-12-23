@@ -1,7 +1,6 @@
 package semi.servlet.board;
 
 import java.io.IOException;
-import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.URLEncoder;
 
@@ -11,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import oracle.net.aso.r;
-import semi.beans.board.BoardDao;
 import semi.beans.board.BoardReplyDao;
 import semi.beans.board.BoardReplyDto;
 
@@ -26,13 +23,13 @@ public class BoardReplyInsertServlet extends HttpServlet {
 			String board_title = req.getParameter("board_title");
 
 			String writer = (String)req.getSession().getAttribute("id");
-			String ip = InetAddress.getLocalHost().getHostAddress();
+			String ip_addr = InetAddress.getLocalHost().getHostAddress();
 			String content = req.getParameter("content");
 			
 			BoardReplyDto boardReplyDto = new BoardReplyDto();
 			boardReplyDto.setBoard_title(board_title);
 			boardReplyDto.setWriter(writer);
-			boardReplyDto.setIp(ip);
+			boardReplyDto.setIp_addr(ip_addr);
 			boardReplyDto.setContent(content);
 			
 			BoardReplyDao boardReplyDao = new BoardReplyDao();
@@ -44,6 +41,5 @@ public class BoardReplyInsertServlet extends HttpServlet {
 			e.printStackTrace();
 			resp.sendError(500);
 		}
-
 	}
 }

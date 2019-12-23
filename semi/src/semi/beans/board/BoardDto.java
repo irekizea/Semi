@@ -1,11 +1,11 @@
 package semi.beans.board;
 
 public class BoardDto {
-	private int no;
+	private int no, searchCount;
 	private String writer, title, content, wdate, udate;	
 	
 	
-	public BoardDto(int no, String writer, String title, String content, String wdate, String udate) {
+	public BoardDto(int no, int searchCount, String writer, String title, String content, String wdate, String udate) {
 		super();
 		this.no = no;
 		this.writer = writer;
@@ -13,6 +13,7 @@ public class BoardDto {
 		this.content = content;
 		this.wdate = wdate;
 		this.udate = udate;
+		this.searchCount = searchCount;
 	}
 
 	public BoardDto() {
@@ -67,5 +68,12 @@ public class BoardDto {
 		this.udate = udate;
 	}
 
+	public int getSearchCount() {
+		return searchCount;
+	}
+
+	public void setSearchCount(int searchCount) {
+		this.searchCount = searchCount;
+	}
 	
 }

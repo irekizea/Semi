@@ -1,4 +1,4 @@
-package semi.beans.ba_board;
+package semi.beans.board.BA_Board;
 
 public class BA_BoardDto {
 	private int board_no;

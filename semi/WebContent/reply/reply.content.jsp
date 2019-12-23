@@ -1,5 +1,10 @@
 
+
+
+<%@page import="semi.beans.reply.ReplyDao"%>
 <%@page import="semi.beans.reply.ReplyDto"%>
+
+
 <%@page import="java.util.List"%>
 <%@page import="semi.beans.board.BoardReplyDao"%>
 <%@page import="semi.beans.reply.ReplyDao"%>

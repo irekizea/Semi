@@ -2,6 +2,9 @@ package semi.beans.board;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -41,6 +44,35 @@ public class HistoryDao {
 		ps.execute();
 		con.close();
 	}
-	
-	
+
+// 사용자 기여내역(사용자의 글 작성(수정) history )
+	public List<HistoryDto> memberHis (String writer, String ip_addr) throws Exception {
+		Connection con = getConnection();
+				
+		String sql="select writer, board_title, content, board_text_udate "
+					+ "from history where writer= ? or ip_addr= ? "
+					+ "order by board_text_udate desc";
+		PreparedStatement ps = con.prepareStatement(sql);		
+		ps.setString(1, writer);
+		ps.setString(2, ip_addr);
+		ResultSet rs = ps.executeQuery();
+			
+		List<HistoryDto> list = new ArrayList<>();
+		
+		while(rs.next()) {
+			HistoryDto memberHis = new HistoryDto();
+			
+			if(rs.getString("writer")!=null) {
+				memberHis.setWriter(rs.getString("writer"));
+			}
+			memberHis.setBoardtitle(rs.getString("board_title"));
+			memberHis.setContent(rs.getString("content"));
+			memberHis.setBoardtextudate(rs.getString("board_text_udate"));
+			
+			list.add(memberHis);
+		}
+		con.close();		
+		return list;
+	}
+
 }

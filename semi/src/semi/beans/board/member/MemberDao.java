@@ -1,4 +1,4 @@
-package semi.beans.member;
+package semi.beans.board.member;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -131,19 +131,8 @@ public class MemberDao {
 				
 	}
 	
-	// 비밀번호 변경 메소드
-	public void changePassword(String id,String pw) throws Exception{
-		// 공개합니다. 결과는 없고요 준비물은 아이디랑, 비번이구요 예외는 나도 모르오 
-		Connection con = getConnection();
-	
-		String sql ="update member set pw=? where id=?";
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, pw);
-		ps.setString(2, id);
-		
-		ps.execute();
-		
-		con.close();
-	
-	}
+
 }
+
+
+
