@@ -33,7 +33,7 @@ public class BoardTextDao {
 	public List<BoardTextDto> getList(String keyword) throws Exception {
 		Connection con = getConnection();
 		
-		String sql ="SELECT A.no, B.writer, A.title, A.wdate, A.udate, A.searchcount, B.content, B.board_no, B.sub_title, B.ip_addr FROM BOARD A left join Board_Text B on a.no = b.board_no where title = ?";
+		String sql ="SELECT A.no, B.writer, A.title, A.wdate, A.udate, A.searchcount, B.text_content, B.board_no, B.sub_title, B.ip_addr FROM BOARD A left join Board_Text B on a.no = b.board_no where title = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, keyword);
 		ResultSet rs = ps.executeQuery();
@@ -46,8 +46,9 @@ public class BoardTextDao {
 			boardTextDto.setBoard_no(rs.getInt("board_no"));
 			boardTextDto.setWriter(rs.getString("writer"));
 			boardTextDto.setSub_title(rs.getString("sub_title"));
-			boardTextDto.setContent(rs.getString("content"));
+			boardTextDto.setContent(rs.getString("text_content"));
 			boardTextDto.setUdate(rs.getString("udate"));
+			boardTextDto.setIp_addr(rs.getString("ip_addr"));
 			System.out.println(boardTextDto.getContent()+"content");
 			System.out.println(boardTextDto.getWriter()+"writer");
 			
@@ -73,8 +74,9 @@ public class BoardTextDao {
 			boardtextdto.setBoard_no(rs.getInt("board_no"));
 			boardtextdto.setWriter(rs.getString("writer"));
 			boardtextdto.setSub_title(rs.getString("sub_title"));
-			boardtextdto.setContent(rs.getString("content"));
+			boardtextdto.setContent(rs.getString("text_content"));
 			boardtextdto.setUdate(rs.getString("udate"));
+			boardtextdto.setIp_addr(rs.getString("ip_addr"));
 		}
 		con.close();
 		return boardtextdto;	
@@ -86,12 +88,13 @@ public class BoardTextDao {
 		public void btedit(BoardTextDto dto) throws Exception{
 			Connection con = getConnection();
 			
-			String sql = "update board_text set udate=sysdate, writer=?, content=? where no=? ";
+			String sql = "update board_text set udate=sysdate, writer=?, text_content=?, ip_addr=? where no=? ";
 			
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, dto.getWriter());
 			ps.setString(2, dto.getContent());
-			ps.setInt(3, dto.getNo());
+			ps.setString(3, dto.getIp_addr());
+			ps.setInt(4, dto.getNo());
 			
 			ps.execute();
 			

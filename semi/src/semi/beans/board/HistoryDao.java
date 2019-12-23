@@ -89,7 +89,7 @@ public class HistoryDao {
 			historydto.setWriter(rs.getString("writer"));
 			historydto.setBoardtitle(rs.getString("board_title"));
 			historydto.setBoardtextudate(rs.getString("board_text_udate"));
-			historydto.setContent(rs.getString("content"));
+			historydto.setContent(rs.getString("text_content"));
 			historydto.setIp_addr(rs.getString("ip_addr"));
 		}
 		con.close();
