@@ -21,9 +21,17 @@
  		<url-pattern>/*</url-pattern>
  	</filter-mapping>
  	
-
+<!--  	    admin(관리자)로그인 =>테스트용이므로 개발 후 삭제할 것 -->
+    <filter>
+    	<filter-name>testAdminFilter</filter-name>
+    	<filter-class>semi.filter.TestAdminFilter</filter-class>
+    </filter>
+    <filter-mapping>
+    	<filter-name>testAdminFilter</filter-name>
+    	<url-pattern>/*</url-pattern>
+    </filter-mapping>
  	
- 	<!-- 
+
  	<filter>
  		<filter-name>login</filter-name>
 		<filter-class>semi.filter.loginFilter</filter-class>
@@ -43,9 +51,7 @@
  		<filter-name>admin</filter-name>
  		<url-pattern></url-pattern>
  	</filter-mapping>
- 	 -->
- 	
- 	
+
  	
  	<error-page>
  		<error-code>404</error-code>

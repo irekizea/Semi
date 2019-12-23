@@ -1,9 +1,9 @@
-<%@page import="semi.beans.board.BA_Board.BA_BoardDto"%>
-<%@page import="semi.beans.board.BA_Board.BA_BoardDao"%>
+
+<%@page import="semi.beans.ba_board.BA_BoardDto"%>
+<%@page import="semi.beans.ba_board.BA_BoardDao"%>
 <%@page import="semi.beans.reply.ReplyDao"%>
 <%@page import="semi.beans.reply.ReplyDto"%>
 
-<%@page import="semi.beans.reply.ReplyDao"%>
 
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashSet"%>
@@ -12,6 +12,8 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<jsp:include page="/template/header.jsp"></jsp:include>
 
 <%
 	//[1] 번호를 받고 [2] 조회수 증가시킨 뒤 게시글을 불러오고 [3] 출력
@@ -44,11 +46,10 @@
 	
 	int reply_no = Integer.parseInt(request.getParameter("reply_no"));
 	ReplyDao rdao = new ReplyDao();
-	List<ReplyDto> list = rdao.getList(reply_no);
+//	List<ReplyDto> list = rdao.getList(reply_no);
 			
 %>
 
-<jsp:include page="/template/header.jsp"></jsp:include>
 
 
 

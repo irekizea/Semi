@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import semi.beans.board.BA_Board.BA_BoardDao;
-import semi.beans.board.BA_Board.BA_BoardDto;
+import semi.beans.ba_board.BA_BoardDao;
+import semi.beans.ba_board.BA_BoardDto;
 @WebServlet(urlPatterns = "/ba_board/like.do")
 public class BA_BoardLikeServlet extends HttpServlet {
 

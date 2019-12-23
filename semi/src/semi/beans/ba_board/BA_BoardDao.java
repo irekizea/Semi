@@ -1,4 +1,4 @@
-package semi.beans.board.BA_Board;
+package semi.beans.ba_board;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -60,9 +60,9 @@ public class BA_BoardDao {
 			dto.setTitle(rs.getString("title"));
 			dto.setContent(rs.getString("content"));
 			dto.setWdate(rs.getString("wdate"));
-			dto.setUdate(rs.getString("udate"));
 			dto.setUp(rs.getInt("up"));
 			dto.setDown(rs.getInt("down"));
+			dto.setRegist(rs.getInt("regist"));
 	
 			list.add(dto);
 		}
@@ -79,11 +79,8 @@ public class BA_BoardDao {
 	public void write(BA_BoardDto dto)throws Exception{
 		Connection con=getConnection();
 		
-		
-		
-		
 		String sql="insert into ba_board "
-					+ "values(?,?,?,?,sysdate,null,0,0)";
+					+ "values(?,?,?,?,sysdate,null,0,0,0)";
 			PreparedStatement ps=con.prepareStatement(sql);
 			
 			ps.setInt(1, dto.getBoard_no());
@@ -101,7 +98,7 @@ public class BA_BoardDao {
 //	반환형:없음
 	public void delete(int no) throws Exception {
 		Connection con=getConnection();
-		String sql="delete ba_board where no=?";
+		String sql="delete ba_board where board_no=?";
 		PreparedStatement ps=con.prepareStatement(sql);
 		ps.setInt(1, no);
 		ps.execute();
@@ -162,9 +159,9 @@ public class BA_BoardDao {
 			dto.setTitle(rs.getString("title"));
 			dto.setContent(rs.getString("content"));
 			dto.setWdate(rs.getString("wdate"));
-			dto.setUdate(rs.getString("udate"));
 			dto.setUp(rs.getInt("up"));
 			dto.setDown(rs.getInt("down"));
+			dto.setRegist(rs.getInt("regist"));
 			
 		con.close();
 		return dto;
@@ -219,8 +216,9 @@ public class BA_BoardDao {
 //	이름:regist
 //	매개변수:BA_BoarDto(제목,내용,작성자)
 //	반환형:없음
-	public void regist(BA_BoardDto dto) throws Exception {
+	public boolean regist(BA_BoardDto dto) throws Exception {
 		Connection con=getConnection();
+		
 		String sql="insert into board(no,writer,title,wdate,udate,content) "
 					+ "values(board_seq.nextval,?,?,sysdate,sysdate,?)";
 		PreparedStatement ps=con.prepareStatement(sql);
@@ -229,7 +227,27 @@ public class BA_BoardDao {
 		ps.setString(3, dto.getContent());
 		
 		ps.execute();
+		int update=ps.executeUpdate();
 		
-		con.close();
+		boolean result=false;
+		if(update>0) {
+			result=true;
+		}
+		
+		con.close();	
+		return result;
+	}
+//	기능:게시글 등록 완료 표시
+//	이름:registUpdate
+//	매개변수:no
+//	반환형:없음
+	public void registUpdate(int no) throws Exception {
+		Connection con=getConnection();
+		String sql="update ba_board set regist=regist+1 where board_no=?";
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setInt(1, no);
+		
+		ps.execute();
+		con.close();	
 	}
 }
