@@ -26,9 +26,7 @@ BA_BoardDao dao = new BA_BoardDao();
 List<BA_BoardDto> list = dao.getList(start,finish);
 
 int count=dao.getCount();
-
 String grade = (String)session.getAttribute("grade");
-
 boolean isAdmin = grade.equals("관리자");
 %>
 <h1>헤더</h1>
@@ -40,11 +38,11 @@ boolean isAdmin = grade.equals("관리자");
 				<th>제목</th>
 				<th>작성자</th>
 				<th>작성일시</th>
-<%-- 				<%if(isAdmin) {%> --%>
-				<th>좋아요</th>
-				<th>싫어요</th>
-				<th>등록 여부</th>
-<%-- 				<%} %> --%>
+				<%if(isAdmin) {%>
+					<th>좋아요</th>
+					<th>싫어요</th>
+					<th>등록 여부</th>
+				<%} %>
 			</tr>
 		</thead>
 		
@@ -67,8 +65,13 @@ boolean isAdmin = grade.equals("관리자");
 				<td><%=dto.getUp()%></td>
 				<td><%=dto.getDown()%></td>						
 				<td>
-					<input type="button" value="등록">
-					<input type="button" value="미등록">
+				<%if(dto.getRegist()>0) {%>
+					<h5>등록 완료</h5>
+				<%} else {%>
+					<a href="regist.do?no=<%=dto.getBoard_no()%>"><input type="button" value="등록"></a>
+					<a href="delete.do?no=<%=dto.getBoard_no()%>"><input type="button" value="미등록"></a>
+					
+				<%} %>	
 				</td>
 			</tr>
 		<%} %>	

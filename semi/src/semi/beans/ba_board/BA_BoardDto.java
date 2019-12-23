@@ -9,6 +9,8 @@ public class BA_BoardDto {
 	private String udate;
 	private int up;
 	private int down;
+	private int regist;
+	
 
 	public BA_BoardDto() {
 		super();
@@ -76,6 +78,14 @@ public class BA_BoardDto {
 
 	public void setDown(int down) {
 		this.down = down;
+	}
+
+	public int getRegist() {
+		return regist;
+	}
+
+	public void setRegist(int regist) {
+		this.regist = regist;
 	}
 	
 }
