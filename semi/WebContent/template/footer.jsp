@@ -1,6 +1,11 @@
+<%@page import="semi.beans.HistoryDto"%>
+<%@page import="semi.beans.HistoryDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+    <%
+    	HistoryDao dao = new HistoryDao();
+    	int check = dao.recentwriter(1);
+    %>
         </section>
         <footer>
             푸터
@@ -17,7 +22,9 @@
 						<%
 							String id = (String)session.getAttribute("id");
 							String grade = (String)session.getAttribute("grade");
+							
 						%>
+						<h5><%=check %></h5>
 						<h5>id = <%=id%>, grade = <%=grade%></h5>
 						<h5>로그인 상태 = <%=id != null%></h5>
         </footer>

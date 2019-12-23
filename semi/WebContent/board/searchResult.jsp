@@ -1,3 +1,5 @@
+<%@page import="semi.beans.HistoryDto"%>
+<%@page import="semi.beans.HistoryDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.List" %>
@@ -16,11 +18,13 @@
 	
 	BoardTextDao boardtextdao = new BoardTextDao();
 	List<BoardTextDto> getList =boardtextdao.getList(keyword);
-	
-	System.out.println("<p>Remote Addr: " + request.getRemoteAddr() + "</p>");
-	System.out.println("<p>Remote Host: " + request.getRemoteHost() + "</p>");
-	System.out.println("<p>X-Forwarded-For: " + request.getHeader("x-forwarded-for") + "</p>");
 
+	
+// 	System.out.println("<p>Remote Addr: " + request.getRemoteAddr() + "</p>");
+// 	System.out.println("<p>Remote Host: " + request.getRemoteHost() + "</p>");
+// 	System.out.println("<p>X-Forwarded-For: " + request.getHeader("x-forwarded-for") + "</p>");
+			
+	String login = (String)session.getAttribute("id");
 %>
 
 
@@ -36,8 +40,17 @@
 				<p class="board-udate">최근 수정 시간: <%=boardDto.getUdate() %></p>
 				
 						<!-- 메인 주제에 대한 상세글-->
+			           
+			         
 			                <%for(BoardTextDto boardTextDto:getList){ %>
-							<p class="board-udate">최근 수정자: <%=boardTextDto.getWriter() %></p>
+			              
+							
+							<%if(boardTextDto.getIp_addr() !=null){ %>
+								<p class="board-udate">최근수정자: <%=boardTextDto.getIp_addr() %></p>
+							<%}else{ %>
+								<p class="board-udate">최근수정자: <%=boardTextDto.getWriter() %></p>
+							<%} %>
+							
 			                <div class="sub-title">
 			                  	상세
 			                    <hr>

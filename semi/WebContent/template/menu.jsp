@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div align="right">
-	아마도 메뉴. float 하던지 해서 '검색창 또는 상세글 주제부분'이랑 한줄에 넣거나 / 그냥 이대로 두거나
+	<a href="<%=request.getContextPath()%>/board/history.jsp">역사</a>아마도 메뉴. float 하던지 해서 '검색창 또는 상세글 주제부분'이랑 한줄에 넣거나 / 그냥 이대로 두거나
 	</div>
 </body>
 </html>

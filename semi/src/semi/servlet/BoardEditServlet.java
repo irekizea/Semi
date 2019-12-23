@@ -48,6 +48,7 @@ public class BoardEditServlet extends HttpServlet{
 			BoardTextDao bdao = new BoardTextDao();
 			bdto.setWriter(writer);
 			bdto.setContent(content);
+			bdto.setIp_addr(ipaddr);
 			bdto.setNo(no);
 			
 			bdao.btedit(bdto);
@@ -58,9 +59,7 @@ public class BoardEditServlet extends HttpServlet{
 			dto.setUdate("sysdate");
 			dao.bedit(boardno);
 			
-			
-			
-			
+		
 			
 			resp.sendRedirect("searchResult.jsp?keyword="+URLEncoder.encode(keyword, "UTF-8")+"&no="+no);
 		}
