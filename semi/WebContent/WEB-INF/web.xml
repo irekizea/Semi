@@ -15,7 +15,6 @@
  	<filter>
  		<filter-name>encoding</filter-name>
 		<filter-class>semi.filter.EFilter</filter-class>
-
  	</filter>
  	<filter-mapping>
  		<filter-name>encoding</filter-name>
@@ -24,7 +23,7 @@
  	
 
  	
- 	
+ 	<!-- 
  	<filter>
  		<filter-name>login</filter-name>
 		<filter-class>semi.filter.loginFilter</filter-class>
@@ -44,7 +43,7 @@
  		<filter-name>admin</filter-name>
  		<url-pattern></url-pattern>
  	</filter-mapping>
- 	
+ 	 -->
  	
  	
  	
