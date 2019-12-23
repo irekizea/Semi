@@ -1,4 +1,4 @@
-package semi.beans.board.BA_Board;
+package semi.beans.ba_board;
 
 public class BA_FileDto {
 	private int no;
@@ -59,5 +59,5 @@ public class BA_FileDto {
 	public void setFilesize(long filesize) {
 		this.filesize = filesize;
 	}
-	
+
 }

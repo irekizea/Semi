@@ -27,6 +27,7 @@
 	BoardTextDao boardTextDao = new BoardTextDao();
 	List<BoardTextDto> getList =boardTextDao.getList(keyword);	
 	
+	
 	String writer = (String)request.getSession().getAttribute("id");
 	
 	BoardReplyDao boardReplyDao = new BoardReplyDao();
