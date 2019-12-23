@@ -47,7 +47,7 @@ public class BoardEditServlet extends HttpServlet{
 			BoardTextDto bdto = new BoardTextDto();
 			BoardTextDao bdao = new BoardTextDao();
 			bdto.setWriter(writer);
-			bdto.setContent(content);
+			bdto.setText_content(content);
 			bdto.setNo(no);
 			
 			bdao.btedit(bdto);
@@ -57,10 +57,10 @@ public class BoardEditServlet extends HttpServlet{
 			BoardDto dto = new BoardDto();
 			dto.setUdate("sysdate");
 			dao.bedit(boardno);
-			
-			
-			
-			
+						
+			// editCheck 부르기(승인후 최초 글인지, 수정된 글인지).
+			BoardDao boardDao = new BoardDao();
+			boardDao.editCheck(keyword);
 			
 			resp.sendRedirect("searchResult.jsp?keyword="+URLEncoder.encode(keyword, "UTF-8")+"&no="+no);
 		}

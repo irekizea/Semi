@@ -29,7 +29,7 @@ public class BoardTextInsertServlet extends HttpServlet {
 			boardTextDto.setBoard_no(board_no);
 			boardTextDto.setWriter(writer);
 			boardTextDto.setSub_title(req.getParameter("sub_title"));
-			boardTextDto.setContent(req.getParameter("content"));
+			boardTextDto.setText_content(req.getParameter("text_content"));
 			boardTextDto.setIp_addr(ip_addr);
 			
 			BoardTextDao boardTextDao = new BoardTextDao();

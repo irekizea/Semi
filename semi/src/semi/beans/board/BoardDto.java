@@ -2,10 +2,11 @@ package semi.beans.board;
 
 public class BoardDto {
 	private int no, searchCount;
-	private String writer, title, content, wdate, udate;	
+	private String writer, title, content, wdate, udate;
+	private boolean editCheck;	// 승인된 최초글(수정이전), 수정된글인지 판단할 변수
 	
 	
-	public BoardDto(int no, int searchCount, String writer, String title, String content, String wdate, String udate) {
+	public BoardDto(int no, int searchCount, String writer, String title, String content, String wdate, String udate, boolean editCheck) {
 		super();
 		this.no = no;
 		this.writer = writer;
@@ -14,6 +15,7 @@ public class BoardDto {
 		this.wdate = wdate;
 		this.udate = udate;
 		this.searchCount = searchCount;
+		this.editCheck = editCheck;
 	}
 
 	public BoardDto() {
@@ -75,5 +77,15 @@ public class BoardDto {
 	public void setSearchCount(int searchCount) {
 		this.searchCount = searchCount;
 	}
+
+	public boolean getEditCheck() {
+		return editCheck;
+	}
+
+	public void setEditCheck(Boolean editCheck) {
+		this.editCheck = editCheck;
+	}
+	
+	
 	
 }

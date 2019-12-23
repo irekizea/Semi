@@ -35,7 +35,7 @@ public class BoardTextDao {
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, boardTextDto.getWriter());
 		ps.setString(2, boardTextDto.getSub_title());
-		ps.setString(3, boardTextDto.getContent());
+		ps.setString(3, boardTextDto.getText_content());
 		ps.setInt(4, boardTextDto.getBoard_no());
 		ps.setString(5, boardTextDto.getIp_addr());
 		ps.execute();
@@ -63,7 +63,7 @@ public class BoardTextDao {
 			boardTextDto.setBoard_no(rs.getInt("board_no"));
 			boardTextDto.setWriter(rs.getString("writer"));
 			boardTextDto.setSub_title(rs.getString("sub_title"));
-			boardTextDto.setContent(rs.getString("content"));
+			boardTextDto.setText_content(rs.getString("text_content"));
 			boardTextDto.setUdate(rs.getString("udate"));
 			
 			list.add(boardTextDto);
@@ -88,7 +88,7 @@ public class BoardTextDao {
 			boardtextdto.setBoard_no(rs.getInt("board_no"));
 			boardtextdto.setWriter(rs.getString("writer"));
 			boardtextdto.setSub_title(rs.getString("sub_title"));
-			boardtextdto.setContent(rs.getString("content"));
+			boardtextdto.setText_content(rs.getString("text_content"));
 			boardtextdto.setUdate(rs.getString("udate"));
 		}
 		con.close();
@@ -101,11 +101,11 @@ public class BoardTextDao {
 		public void btedit(BoardTextDto dto) throws Exception{
 			Connection con = getConnection();
 			
-			String sql = "update board_text set udate=sysdate, writer=?, content=? where no=? ";
+			String sql = "update board_text set udate=sysdate, writer=?, text_content=? where no=? ";
 			
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, dto.getWriter());
-			ps.setString(2, dto.getContent());
+			ps.setString(2, dto.getText_content());
 			ps.setInt(3, dto.getNo());
 			
 			ps.execute();
