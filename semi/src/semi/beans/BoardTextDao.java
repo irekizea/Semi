@@ -10,6 +10,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import semi.beans.board.BoardTextDto;
+
 public class BoardTextDao {
 	private static DataSource source;
 	static {

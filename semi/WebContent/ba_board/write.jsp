@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<h1>헤더</h1>
+<jsp:include page="/template/header.jsp"></jsp:include>
 
 	<form action="write.do" method="post"  enctype="multipart/form-data">
 	<table border="1">
@@ -8,7 +8,7 @@
 				<tr>
 					<th>첨부파일</th>
 						<td>
-							<input type="text" name="id" placeholder="임시 아이디 입력공간">
+<!-- 						<input type="text" name="id" placeholder="임시 아이디 입력공간"> -->
 							<input type="file" name="file" accept="jpg,png,gif">
 						</td>
 				</tr>
@@ -38,6 +38,6 @@
 		</table><br>
 	
 	</form>
-	<h5>※글 작성 후 수정은 불가능하며, 추가만 가능하다는 점 유의해주십시오.※</h5>
+	<h5>[알림] 글 작성 후 수정은 불가능하며, 추가만 가능하다는 점 유의해주십시오.</h5>
 
-<h1>푸터</h1>
+<jsp:include page="/template/footer.jsp"></jsp:include>

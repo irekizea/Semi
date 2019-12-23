@@ -1,12 +1,21 @@
-<%@page import="semi.beans.HistoryDto"%>
-<%@page import="semi.beans.HistoryDao"%>
+<<<<<<< HEAD
+<%@page import="semi.beans.board.HistoryDto"%>
+<%@page import="semi.beans.board.HistoryDao"%>
+=======
+
+<%@page import="semi.beans.board.BoardTextDto"%>
+
+
+<%@page import="java.util.List"%>
+<%@page import="semi.beans.board.BoardTextDao"%>
+<%@page import="semi.beans.board.BoardDto"%>
+<%@page import="semi.beans.board.BoardDao"%>
+
+<%@page import="semi.beans.board.BoardTextDto"%>
+>>>>>>> refs/remotes/origin/master
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="semi.beans.BoardTextDto"%>
-<%@page import="java.util.List"%>
-<%@page import="semi.beans.BoardTextDao"%>
-<%@page import="semi.beans.BoardDto"%>
-<%@page import="semi.beans.BoardDao"%>
+
 
 <%
 	// 	int no = Integer.parseInt(request.getParameter("no"));
@@ -16,6 +25,7 @@
 	int boardno = Integer.parseInt(request.getParameter("boardno"));
 	BoardTextDto boardtextdto = boardtextdao.get(boardno);
 	String keyword = request.getParameter("keyword");
+
 	List<BoardTextDto> getList = boardtextdao.getList(keyword);
 // 	HistoryDao hdao = new HistoryDao();
 // 	HistoryDto hdto = hdao.get(Integer.parseInt(request.getParameter("no")));
@@ -25,7 +35,7 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 
-<form action=boardedit.do method="post">
+<form action="boardedit.do" method="post">
 	<input type="hidden" name="boardtextno" value="<%=boardDto.getNo()%>"> 
 	<input type="hidden" name="keyword" value="<%=request.getParameter("keyword")%>">
 	<input type="hidden" name="boardtitle" value="<%=boardDto.getTitle() %>">
