@@ -6,7 +6,7 @@
 	<div align="center">
 	
 	<h2>비밀번호 변경이 완료되었습니다</h2>
-	<h4><a href="<%=request.getContextPath() %>"></a></h4>
+	<h4><a href="<%=request.getContextPath()%>">home으로 </a></h4>
 	
 	</div>
 	
