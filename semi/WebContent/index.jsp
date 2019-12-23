@@ -1,10 +1,20 @@
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "java.util.List" %>
+<%@ page import = "java.util.ArrayList" %>    
+    
+<%@ page import ="semi.beans.board.BoardDao" %>
+<%@ page import ="semi.beans.board.BoardDto" %>
+<%
+	BoardDao boardDao = new BoardDao();
+	List<BoardDto> list =boardDao.getTitleList(); 
+%>
  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Alcohol Wiki</title>
+<title>Alcohol Wiki-세상의 모든 알콜</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
 
 <script src="https://kit.fontawesome.com/3f30b7cd52.js" crossorigin="anonymous"></script>
@@ -101,8 +111,13 @@
 			<input type="text" class="search" name="keyword"
 				placeholder="검색어를 입력하세요" required> 
 				<button id="mainbtn"><i class="fas fa-search"></i></button>
-				<span></span>
-				<br>
+				<p>
+					<%for(BoardDto boardDto:list) {%>
+						<a href="<%=request.getContextPath()%>/board/searchResult.jsp?keyword=<%=URLEncoder.encode(boardDto.getTitle(), "UTF-8") %>" >
+							<span><%=boardDto.getTitle() %>  </span>
+						</a>
+					<%} %>
+				</p>
 		</form>
 	</div>
 	

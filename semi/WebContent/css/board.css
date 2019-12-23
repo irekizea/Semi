@@ -5,7 +5,8 @@
     box-sizing: border-box;
  }
 
-		  /* 검색상세글용 스타일*/    
+		  /* 검색상세글용 스타일*/
+		  		.p-empty { margin: 5px 0px;] }    
 		        .title {
 		            padding: 0.5rem;
 		            font-size: 40px;
@@ -25,7 +26,6 @@
 		        }
 		        
 		        .clear {
-		        	padding: 1px;
 		        	clear: both;
 		        }
 		        
@@ -35,17 +35,17 @@
 		        .reply-list {
 		        	border: 0.5px solid gray;
 		        }
-		        .reply-list > .writer {
+		        .reply-list  .writer {
 		        	float: left;
 		        }
-		        .reply-list > .wdate{
+		        .reply-list  .wdate{
 		        	float: right;
 		        }
 	
 		        .reply-insert > textarea {
 					resize: none;
 		        	padding: 0.5rem;
-		        	width: 98%;
+		        	width: 100%;
 		        	height: 70px;
 		        }
 		        

@@ -50,6 +50,8 @@ public class BoardTextDao {
 			boardTextDto.setSub_title(rs.getString("sub_title"));
 			boardTextDto.setContent(rs.getString("content"));
 			boardTextDto.setUdate(rs.getString("udate"));
+			System.out.println(boardTextDto.getContent()+"content");
+			System.out.println(boardTextDto.getWriter()+"writer");
 			
 			list.add(boardTextDto);
 		}

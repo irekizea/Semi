@@ -16,6 +16,7 @@ import semi.beans.ba_board.BA_BoardDao;
 import semi.beans.ba_board.BA_BoardDto;
 import semi.beans.ba_board.BA_FileDao;
 import semi.beans.ba_board.BA_FileDto;
+
 @WebServlet(urlPatterns = "/ba_board/write.do")
 public class BA_BoardWriteServlet extends HttpServlet {
 
@@ -39,7 +40,7 @@ public class BA_BoardWriteServlet extends HttpServlet {
 		
 		int no=dao.getSequense();
 		dto.setBoard_no(no);
-		
+
 		dao.write(dto);
 		
 		//파일 등록

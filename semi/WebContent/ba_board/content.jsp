@@ -1,3 +1,4 @@
+
 <%@page import="semi.beans.ba_board.BA_FileDto"%>
 <%@page import="java.util.List"%>
 <%@page import="semi.beans.ba_board.BA_FileDao"%>
@@ -19,7 +20,7 @@ String grade = (String)session.getAttribute("grade");
 boolean isAdmin = grade.equals("관리자");
 
 %>
-<h1>헤더</h1>
+<jsp:include page="/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="../css/semi_common.css">
 
 <article class="w-40">
@@ -108,4 +109,4 @@ boolean isAdmin = grade.equals("관리자");
     </div>
 </article>
 
-<h1>푸터</h1>
+<jsp:include page="/template/footer.jsp"></jsp:include>

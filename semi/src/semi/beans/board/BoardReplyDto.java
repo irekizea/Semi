@@ -1,16 +1,16 @@
 package semi.beans.board;
 
 public class BoardReplyDto {
-	int rn, reply_no;
-	String board_title, writer, ip, content, wdate;
+
+	int reply_no;
+	String board_title, writer, ip_addr, content, wdate;
 	
 	
-	public BoardReplyDto(int rn, int reply_no, String board_title, String writer, String ip, String content, String wdate) {
+	public BoardReplyDto(int reply_no, String board_title, String writer, String ip_addr, String content, String wdate) {
 		super();
-		this.rn = rn;
 		this.reply_no = reply_no;
 		this.board_title = board_title;
-		this.ip = ip;
+		this.ip_addr = ip_addr;
 		this.writer = writer;
 		this.content = content;
 		this.wdate = wdate;
@@ -18,14 +18,6 @@ public class BoardReplyDto {
 
 	public BoardReplyDto() {
 		super();
-	}
-
-	public int getRn() {
-		return rn;
-	}
-
-	public void setRn(int rn) {
-		this.rn = rn;
 	}
 
 	public int getReply_no() {
@@ -52,12 +44,12 @@ public class BoardReplyDto {
 		this.writer = writer;
 	}
 
-	public String getIp() {
-		return ip;
+	public String getIp_addr() {
+		return ip_addr;
 	}
 
-	public void setIp(String ip) {
-		this.ip = ip;
+	public void setIp_addr(String ip_addr) {
+		this.ip_addr = ip_addr;
 	}
 
 	public String getContent() {

@@ -59,5 +59,5 @@ public class BA_FileDto {
 	public void setFilesize(long filesize) {
 		this.filesize = filesize;
 	}
-	
+
 }
