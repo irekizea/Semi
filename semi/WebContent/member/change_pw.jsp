@@ -5,7 +5,7 @@
    
    <div align="center">
    
-   <form action="change_pw_do" method="post">
+   <form action="change_pw.do" method="post">
    
    <h1> 신규 비밀번호 입력</h1>
   
