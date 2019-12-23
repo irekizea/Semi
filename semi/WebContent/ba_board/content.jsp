@@ -1,4 +1,3 @@
-
 <%@page import="semi.beans.ba_board.BA_FileDto"%>
 <%@page import="java.util.List"%>
 <%@page import="semi.beans.ba_board.BA_FileDao"%>
@@ -7,18 +6,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-int no=Integer.parseInt(request.getParameter("no"));
-BA_BoardDao bdao = new BA_BoardDao();
-BA_BoardDto bdto = bdao.get(no);
+	int no=Integer.parseInt(request.getParameter("no"));
 
-BA_FileDao fdao = new BA_FileDao();
-List<BA_FileDto> flist=fdao.getList(no);
+	BA_BoardDao bdao = new BA_BoardDao();
+	BA_BoardDto bdto = bdao.get(no);
 
-String userId = (String)session.getAttribute("id");
-String grade = (String)session.getAttribute("grade");
-
-boolean isAdmin = grade.equals("관리자");
-
+	BA_FileDao fdao = new BA_FileDao();
+	List<BA_FileDto> flist=fdao.getList(no);
+	
+	String userId = (String)session.getAttribute("id");
+	String grade = (String)session.getAttribute("grade");
+	boolean isAdmin = grade.equals("관리자");
 %>
 <jsp:include page="/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="../css/semi_common.css">
@@ -57,10 +55,6 @@ boolean isAdmin = grade.equals("관리자");
             <%=bdto.getContent()%>
             <h5 id="writer left"><%=bdto.getWriter()%></h5>
         </div>
-
-		      
-		      
-		      
 	<!--(주제 생성 후)작성된 댓글 내용-->		 
 <%-- 	<%if(bdto.getWriter().equals(rdto.getWriter())||isAdmin) {%> --%>
 <!-- 		<div class="content-item right">                   -->

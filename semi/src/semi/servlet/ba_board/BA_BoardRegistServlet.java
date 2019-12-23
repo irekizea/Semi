@@ -38,7 +38,6 @@ public class BA_BoardRegistServlet extends HttpServlet {
 			System.out.println(content);
 			
 			boolean result = dao.regist(dto);
-			
 			System.out.println(result);
 			
 			if(result) {
