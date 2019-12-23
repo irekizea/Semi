@@ -7,6 +7,7 @@ public class ReplyDto {
 	private int board_no;
 	private String reply_title;
 	private String wdate;
+	private String ip;
 	public ReplyDto() {
 		super();
 	}
@@ -40,5 +41,12 @@ public class ReplyDto {
 	public void setWdate(String wdate) {
 		this.wdate = wdate;
 	}
+	public String getIp() {
+		return ip;
+	}
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+	
 	
 }

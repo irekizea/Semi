@@ -1,4 +1,6 @@
 
+<%@page import="semi.beans.reply.ReplyDto"%>
+<%@page import="semi.beans.reply.ReplyDao"%>
 <%@page import="semi.beans.ba_board.BA_FileDto"%>
 <%@page import="java.util.List"%>
 <%@page import="semi.beans.ba_board.BA_FileDao"%>
@@ -18,6 +20,11 @@ String userId = (String)session.getAttribute("id");
 String grade = (String)session.getAttribute("grade");
 
 boolean isAdmin = grade.equals("관리자");
+
+
+int board_no=Integer.parseInt(request.getParameter("board_no"));
+ReplyDao replydao = new ReplyDao();
+List<ReplyDto> replylist = replydao.ReplyList(board_no);
 
 %>
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -94,7 +101,7 @@ boolean isAdmin = grade.equals("관리자");
         
         
 <!--토론 작성 부분-->
-<form action="#" method="post">
+<form action="replywrite.do?no=<%=board_no %>" method="post"> 
 	<input type="hidden" name="writer" value="<%=userId%>">
     <div class="reply">
         <h4>댓글달기</h4>

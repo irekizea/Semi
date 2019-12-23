@@ -15,15 +15,17 @@
 
 <jsp:include page="/template/header.jsp"></jsp:include>
 
+<div aling ="center">
 
+	<h2>게시글 보기></h2>
+	
+	<table border="1" width="70%"> 
+		<tr>
+			<
+		</tr>
+	</table>
 
-
-
-
-<h1>안녕!!</h1>
-
-
-
+</div>
 <jsp:include page="/template/footer.jsp"></jsp:include>
 
 
