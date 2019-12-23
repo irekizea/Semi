@@ -94,26 +94,27 @@ public class ReplyDao {
     //매개변수 : 게시글번호(board no)
     //반환형 : 댓글목록(List<ReplyDt>)
 	
-	public List<ReplyDto> getList(int board_no) throws Exception{
+	public List<ReplyDto> rList (int boardno) throws Exception{
 			Connection con = getConnection();
 			
 			String sql = "select * from ba_reply where board_no = ? "
-					+ "order by reply_no desc";
+					+ "order by wdate asc";
 			
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, board_no);
+			ps.setInt(1, boardno);
 			ResultSet rs = ps.executeQuery();
 			
 			List<ReplyDto> list = new ArrayList<>();
 			if(rs.next()) {
 				ReplyDto dto = new ReplyDto();
 				dto.setReply_no(rs.getInt("reply_no"));
+				dto.setId(rs.getString("id"));
 				dto.setReply_title(rs.getString("reply_title"));
 				dto.setWdate(rs.getString("wdate"));
 				dto.setBoard_no(rs.getInt("board_no"));
 				
 				list.add(dto);
-			}while(rs.next());
+			}
 			
 			con.close();
 			return list;	
@@ -134,7 +135,7 @@ public class ReplyDao {
 		while(rs.next()) {
 			BoardReplyDto boardReplyDto = new BoardReplyDto();
 			
-//			boardReplyDto.setRn(rs.getInt("rn"));
+
 			boardReplyDto.setReply_no(rs.getInt("reply_no"));
 			boardReplyDto.setBoard_title(rs.getString("board_title"));
 			boardReplyDto.setContent(rs.getString("content"));
@@ -210,6 +211,7 @@ public class ReplyDao {
 		ps.close();
 		
 	}
+	
 	//테이블에 데이터 수정 구현 :update()
 	public void update(ReplyDto dto) throws Exception{
 		Connection con = getConnection();
@@ -227,7 +229,7 @@ public class ReplyDao {
 		
 		
 	}
-	
+
 	
 }
 
