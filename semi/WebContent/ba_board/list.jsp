@@ -1,7 +1,8 @@
 
+
+
 <%@page import="semi.beans.board.BA_Board.BA_BoardDto"%>
 <%@page import="semi.beans.board.BA_Board.BA_BoardDao"%>
-
 <%@page import="java.util.List"%>
 
 
