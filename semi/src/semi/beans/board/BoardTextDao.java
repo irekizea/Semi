@@ -26,7 +26,22 @@ public class BoardTextDao {
 		return source.getConnection();
 	}
 	
-// 주제1에 대한 상세글 작성
+// 주제1에 대한 상세글 작성(목차 추가)	
+	public void textInsert(BoardTextDto boardTextDto) throws Exception {
+		Connection con = getConnection();
+		
+		String sql="insert into board_text(no, writer, sub_title, content, board_no, ip_addr) "
+				+ "values(board_text_seq.nextval, ?, ?, ?, ?, ?)";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, boardTextDto.getWriter());
+		ps.setString(2, boardTextDto.getSub_title());
+		ps.setString(3, boardTextDto.getContent());
+		ps.setInt(4, boardTextDto.getBoard_no());
+		ps.setString(5, boardTextDto.getIp_addr());
+		ps.execute();
+				
+		con.close();
+	}
 	
 	
 // 주제1에 대한 상세글 목록

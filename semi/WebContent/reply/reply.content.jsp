@@ -1,14 +1,15 @@
+<%@page import="semi.beans.board.BA_Board.BA_BoardDto"%>
+<%@page import="semi.beans.board.BA_Board.BA_BoardDao"%>
 <%@page import="semi.beans.reply.ReplyDao"%>
 <%@page import="semi.beans.reply.ReplyDto"%>
-<<<<<<< HEAD
-=======
+
 <%@page import="semi.beans.reply.ReplyDao"%>
->>>>>>> refs/remotes/origin/master
+
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="java.util.Set"%>
-<%@page import="semi.beans.ba_board.BA_BoardDto"%>
-<%@page import="semi.beans.ba_board.BA_BoardDao"%>
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
