@@ -6,6 +6,7 @@
 
 
 <%@page import="java.util.List"%>
+
 <%@page import="semi.beans.board.BoardReplyDao"%>
 <%@page import="semi.beans.reply.ReplyDao"%>
 
