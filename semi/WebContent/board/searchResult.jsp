@@ -31,6 +31,8 @@
 	
 	BoardReplyDao boardReplyDao = new BoardReplyDao();
 	List<BoardReplyDto> replyList = boardReplyDao.replyList(keyword);
+	
+
 %>
 
 
