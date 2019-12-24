@@ -17,6 +17,9 @@
 	.checbox:checked +div {
 		display: block;
 	}
+	.table {
+		width
+	}
 </style>
     
 <%@page import="semi.beans.board.BoardReplyDto"%>
@@ -33,6 +36,8 @@
 <%@ page import = "semi.beans.board.BoardDto" %>
 <%@ page import = "semi.beans.board.BoardTextDao" %>
 <%@ page import = "semi.beans.board.BoardTextDto" %>
+<%@page import="semi.beans.ba_board.BA_FileDao"%>
+<%@page import="semi.beans.ba_board.BA_FileDto"%>
     
 <%
 	String keyword = request.getParameter("keyword"); 
@@ -48,10 +53,15 @@
 	String writer = (String)request.getSession().getAttribute("id");
 	
 	BoardReplyDao boardReplyDao = new BoardReplyDao();
-	List<BoardReplyDto> replyList = boardReplyDao.replyList(keyword);
+	List<BoardReplyDto> replyList = boardReplyDao.replyList(keyword);	
 	
+	// 승인된 후 첫글인지, 사용자가 수정한 글인지 판단
 	boolean editCheck= boardDto.getEditCheck();
-
+	
+	// 파일 다운로드 파일정보 불러오기(List)
+	BA_FileDao fdao = new BA_FileDao();
+	List<BA_FileDto> flist=fdao.getList(keyword);
+	
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
@@ -59,18 +69,18 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <% if(boardDto.getTitle()!=null){ %>
-
-<table border="1">
-	<tr>
+<article>
+<table border="1" class="w-80">
+	<tr>				<!-- 승인된 첫 화면.(=사용자 수정 전) -->
 		<th>
 		<%=boardDto.getTitle() %>
 		</th>
 	</tr>
-	
+
 		<%if(!editCheck){ %>
 	<tr>
 		<th>
-		개요
+			개요
 		</th>
 		<th>
 		</th>
@@ -78,7 +88,7 @@
 			최근 수정시간
 		</th>
 		<th>
-		최근 수정자
+			최근 수정자
 		</th>
 	</tr>
 	
@@ -92,6 +102,10 @@
 	<tr>
 	<td colspan = "4">
 		  <%= boardDto.getContent()%>
+		   <%for(BA_FileDto boardFileDto : flist) {%>
+		  	<!-- 파일 미리보기 -->
+		  	<img src="filedown.do?keyword=<%=boardFileDto.getTitle_key() %>" class="img" style="width:100px; height:auto;">
+		  <%} %>
 	</td>
 	</tr>
 	
@@ -105,8 +119,8 @@
 	</tr>
 	
 	
-<%} else{%>
-	<tr>
+<%} else{%>	
+	<tr>							<!-- 사용자들이 수정된 뒤의 상세글 -->
 		<th>
 		<%=boardDto.getTitle() %>
 		</th>
@@ -144,14 +158,13 @@
 			else { %>
 				<%=boardTextDto.getIp_addr() %>
 			<%} %>
-				
-				
+							
 		</td>
 	</tr>
 	
 	<tr>
 	<td colspan = "4">
-		  <%= boardDto.getContent()%>
+		  <%= boardTextDto.getText_content()%>
 	</td>
 	</tr>
 	
@@ -169,13 +182,16 @@
 	<tr>
 	
 		<td colspan = "4">
-			<form action="textInsert.do" method="post">
+			<form action="textInsert.do" method="post"  enctype="multipart/form-data">
 							<label for="show">목차 추가</label>
 							<input type="checkbox" id="show" class="checkbox'">
 							
 								<input type="hidden" name="keyword" value=<%=keyword %>>
 								<input type="hidden" name="board_no" value="<%=boardDto.getNo()%>">
 								<input type="text" name="sub_title" value="목차[소제목]" required class="sub-title" style="width:100%; height:5%;">
+								
+								<input type="file" name="file" accept="jpg,png,gif" >
+								
 								<textarea name="text_content" required class="text">
 								</textarea>
 								<%if(writer==null) {%> 
@@ -271,7 +287,7 @@
 
 
 </table>
-
+</article>
 
 
 
