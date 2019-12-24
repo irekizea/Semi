@@ -30,7 +30,7 @@ public class BoardTextDao {
 	public void textInsert(BoardTextDto boardTextDto) throws Exception {
 		Connection con = getConnection();
 		
-		String sql="insert into board_text(no, writer, sub_title, content, board_no, ip_addr) "
+		String sql="insert into board_text(no, writer, sub_title, text_content, board_no, ip_addr) "
 				+ "values(board_text_seq.nextval, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, boardTextDto.getWriter());

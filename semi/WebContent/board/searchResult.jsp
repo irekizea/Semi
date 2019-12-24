@@ -43,14 +43,13 @@
 	BoardTextDao boardTextDao = new BoardTextDao();
 	List<BoardTextDto> getList =boardTextDao.getList(keyword);	
 	
-	
+	String ip = request.getRemoteAddr();	//전송자 ip
 	String writer = (String)request.getSession().getAttribute("id");
 	
 	BoardReplyDao boardReplyDao = new BoardReplyDao();
 	List<BoardReplyDto> replyList = boardReplyDao.replyList(keyword);
 	
 	boolean editCheck= boardDto.getEditCheck();
-	System.out.println(editCheck);
 
 %>
 
@@ -124,10 +123,10 @@
 								<input type="hidden" name="keyword" value=<%=keyword %>>
 								<input type="hidden" name="board_no" value="<%=boardDto.getNo()%>">
 								<input type="text" name="sub_title" value="목차[소제목]" required class="sub-title" style="width:100%; height:5%;">
-								<textarea name="content" required class="text">
+								<textarea name="text_content" required class="text">
 								</textarea>
 								<%if(writer==null) {%> 
-										[알림] 비로그인 상태로 편집합니다. 편집 내역에 IP "<%=InetAddress.getLocalHost().getHostAddress()%>"가 영구히 기록됩니다.
+										[알림] 비로그인 상태로 편집합니다. 편집 내역에 IP "<%=ip %>"가 영구히 기록됩니다.
 								<%} %> 
 								<p align="right" style="margin: 5px 0px"><input type="submit" value="등록완료"></p>
 							</div>
@@ -174,7 +173,7 @@
 						
 						<span>
 		            	<%if(writer==null) { %>
-							[알림] 비로그인 상태로 토론에 참여합니다. 토론 내역에 IP "<%=InetAddress.getLocalHost().getHostAddress()%>"가 영구히 기록됩니다.
+							[알림] 비로그인 상태로 토론에 참여합니다. 토론 내역에 IP "<%=ip %>"가 영구히 기록됩니다.
 						<%} %>
 						</span><br>
 						<span>토론은 사용자에 의한 임의삭제가 불가능하므로 신중하게 작성하여 주시길 바랍니다.</span>
