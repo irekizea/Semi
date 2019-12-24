@@ -27,7 +27,7 @@ public class BA_FileDownloadServlet extends HttpServlet {
 		BA_FileDao fdao=new BA_FileDao();
 		BA_FileDto fdto=fdao.get(no);
 		
-		File target=new File("D:/upload/kh21/ba_board",fdto.getSavename());
+		File target=new File("D:/upload/kh21",fdto.getSavename());
 		byte[] data=FileUtils.readFileToByteArray(target);
 		
 		resp.setHeader("Content-Type", "application/octet-srtream; charset=UTF-8");
