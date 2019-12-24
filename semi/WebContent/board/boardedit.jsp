@@ -1,4 +1,7 @@
 
+<%@page import="semi.beans.board.HistoryDto"%>
+<%@page import="semi.beans.board.HistoryDao"%>
+
 <%@page import="semi.beans.board.BoardTextDto"%>
 
 
@@ -20,26 +23,40 @@
 	int boardno = Integer.parseInt(request.getParameter("boardno"));
 	BoardTextDto boardtextdto = boardtextdao.get(boardno);
 	String keyword = request.getParameter("keyword");
+
+	List<BoardTextDto> getList = boardtextdao.getList(keyword);
+// 	HistoryDao hdao = new HistoryDao();
+// 	HistoryDto hdto = hdao.get(Integer.parseInt(request.getParameter("no")));
+	//아이피/아이디 판별
+	String login = (String)session.getAttribute("id");
 %>
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 
-<form action=boardedit.do method="post">
+<form action="boardedit.do" method="post">
 	<input type="hidden" name="boardtextno" value="<%=boardDto.getNo()%>"> 
 	<input type="hidden" name="keyword" value="<%=request.getParameter("keyword")%>">
 	<input type="hidden" name="boardtitle" value="<%=boardDto.getTitle() %>">
-	<input type="hidden" name="writer" value="<%=boardDto.getWriter()%>">
 	<input type="hidden" name="boardtextudate" value="<%=boardDto.getUdate()%>">
 	<input type="hidden" name="no"	 value="<%=boardtextdto.getNo() %>">
 	<input type="hidden" name="board_no"	 value="<%=boardtextdto.getBoard_no()%>">
-	<input type="hidden" name="ip_addr" value="111">;
+	<%if(login !=null){ %>
+		<input type="hidden" name="writer" value="<%=session.getAttribute("id") %>">
+	<%}else{ %>
+		<input type="hidden" name="ip_addr" value="<%=request.getRemoteAddr() %>">	
+	<%} %>
+	
 	<article class="board">
 
 		<div class="title">
 			<%=boardDto.getTitle()%>
 		</div>
 		<div class="sub-title">
-			작성자:<%=boardDto.getWriter()%>
+			<%if(login !=null) {%>
+				수정자: <%=session.getAttribute("id")%>	
+			<%}else{ %>
+				수정자: <%=request.getRemoteAddr() %>
+			<%} %>
 		</div>
 		<p class="board-udate">
 			최종 수정시간:<%=boardtextdto.getUdate()%>
@@ -48,7 +65,9 @@
 		<div class="sub-title">
 			내용<br>
 			<textarea name="content"
-				style="resize: none; width: 100%; height: 200px"><%=boardtextdto.getText_content()%></textarea>
+
+				style="resize: none; width: 100%; height: 200px;"><%=boardtextdto.getContent()%></textarea>
+
 		</div>
 
 		<div align="left">	

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
- 
  <web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
   	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee    
   	                    http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
  
-
+	
  	<session-config>
  	<!-- 타임 아웃 시간 필요하면 늘리거나 줄일것 -->
  		<session-timeout>20</session-timeout>
@@ -22,35 +21,35 @@
  	</filter-mapping>
  	
 <!--  	    admin(관리자)로그인 =>테스트용이므로 개발 후 삭제할 것 -->
-    <filter>
-    	<filter-name>testAdminFilter</filter-name>
-    	<filter-class>semi.filter.TestAdminFilter</filter-class>
-    </filter>
-    <filter-mapping>
-    	<filter-name>testAdminFilter</filter-name>
-    	<url-pattern>/*</url-pattern>
-    </filter-mapping>
+<!--     <filter> -->
+<!--     	<filter-name>testAdminFilter</filter-name> -->
+<!--     	<filter-class>semi.filter.TestAdminFilter</filter-class> -->
+<!--     </filter> -->
+<!--     <filter-mapping> -->
+<!--     	<filter-name>testAdminFilter</filter-name> -->
+<!--     	<url-pattern>/*</url-pattern> -->
+<!--     </filter-mapping> -->
  	
+<!--  	<filter> -->
+<!--  		<filter-name>login</filter-name> -->
+<!-- 		<filter-class>semi.filter.loginFilter</filter-class> -->
 
- 	<filter>
- 		<filter-name>login</filter-name>
-		<filter-class>semi.filter.loginFilter</filter-class>
-
- 	</filter>
- 	<filter-mapping>
- 		<filter-name>login</filter-name>
- 		<url-pattern></url-pattern>
- 	</filter-mapping>
+<!--  	<filter-mapping> -->
+<!--  		<filter-name>login</filter-name> -->
+<!--  		<url-pattern></url-pattern> -->
+<!--  	</filter-mapping> -->
  	
- 	<filter>
- 		<filter-name>admin</filter-name>
-		<filter-class>semi.filter.AdminFilter</filter-class>
+<!--  	<filter> -->
+<!--  		<filter-name>admin</filter-name> -->
+<!-- 		<filter-class>semi.filter.AdminFilter</filter-class> -->
 
- 	</filter>
- 	<filter-mapping>
- 		<filter-name>admin</filter-name>
- 		<url-pattern></url-pattern>
- 	</filter-mapping>
+<!--  	</filter> -->
+<!--  	<filter-mapping> -->
+<!--  		<filter-name>admin</filter-name> -->
+<!--  		<url-pattern></url-pattern> -->
+<!--  	</filter-mapping> -->
+
+ 	
 
  	
  	<error-page>

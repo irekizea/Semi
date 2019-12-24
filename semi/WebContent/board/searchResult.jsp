@@ -1,3 +1,5 @@
+<%@page import="semi.beans.board.HistoryDto"%>
+<%@page import="semi.beans.board.HistoryDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -40,6 +42,7 @@
 	BoardDto boardDto = boardDao.getSearch(keyword);   
 	boardDao.searchCount(keyword); 
 	
+
 	BoardTextDao boardTextDao = new BoardTextDao();
 	List<BoardTextDto> getList =boardTextDao.getList(keyword);	
 	
@@ -49,8 +52,14 @@
 	BoardReplyDao boardReplyDao = new BoardReplyDao();
 	List<BoardReplyDto> replyList = boardReplyDao.replyList(keyword);
 	
+// 	System.out.println("<p>Remote Addr: " + request.getRemoteAddr() + "</p>");
+// 	System.out.println("<p>Remote Host: " + request.getRemoteHost() + "</p>");
+// 	System.out.println("<p>X-Forwarded-For: " + request.getHeader("x-forwarded-for") + "</p>");
+			
+	String login = (String)session.getAttribute("id");
+	
 	boolean editCheck= boardDto.getEditCheck();
-	System.out.println(editCheck);
+
 
 %>
 
@@ -65,6 +74,25 @@
                     <% if(boardDto.getTitle()!=null){ %>
                    		<%=boardDto.getTitle() %>
                 </div>
+
+                <div class="board-udate">
+					<span>최근 수정 시간: <%=boardDto.getUdate() %></span>
+                </div>
+                <article class="clear"></article>
+				<div class="row-empty"></div>
+				
+						<!-- 메인 주제에 대한 상세글-->
+			           
+			         
+			                <%for(BoardTextDto boardTextDto:getList){ %>
+			              
+							
+							<%if(boardTextDto.getIp_addr() !=null){ %>
+								<p class="board-udate">최근수정자: <%=boardTextDto.getIp_addr() %></p>
+							<%}else{ %>
+								<p class="board-udate">최근수정자: <%=boardTextDto.getWriter() %></p>
+							<%} %>
+							
                 		<!-- 승인후 최초 글이라면(사용자 수정 전) false -->        
                 		<%if(!editCheck){ %>
 	                		<div class="board-udate">
