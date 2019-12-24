@@ -218,7 +218,7 @@
 		<%if(boardReplyDto.getWriter()!=null){ %>
 		<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?writer=<%=boardReplyDto.getWriter() %>">
 									<%=boardReplyDto.getWriter() %>
-				
+		</a>		
 								
 		<%} else {%>
 				<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?ip_addr=<%=boardReplyDto.getIp_addr() %>">
