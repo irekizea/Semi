@@ -1,8 +1,6 @@
-<%@page import="semi.beans.board.HistoryDto"%>
-<%@page import="semi.beans.board.HistoryDao"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!-- 게시글 체크박스(누르면 나타나기) 설정 
 	<label for="체크박스id"> 클릭할 것 </label>
 	<input type="checkbox" id="체크박스id">
@@ -19,10 +17,10 @@
 		display: block;
 	}
 	.table {
-		width:100%;
+		width
 	}
 </style>
-    
+
 <%@page import="semi.beans.board.BoardReplyDto"%>
 <%@page import="semi.beans.board.BoardReplyDao"%>
 <%@page import="semi.beans.board.BoardTextDto"%>
@@ -32,14 +30,13 @@
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import = "java.net.InetAddress" %>
-
 <%@ page import = "semi.beans.board.BoardDao" %>
 <%@ page import = "semi.beans.board.BoardDto" %>
 <%@ page import = "semi.beans.board.BoardTextDao" %>
 <%@ page import = "semi.beans.board.BoardTextDto" %>
 <%@page import="semi.beans.ba_board.BA_FileDao"%>
 <%@page import="semi.beans.ba_board.BA_FileDto"%>
-    
+
 <%
 	String keyword = request.getParameter("keyword"); 
 	
@@ -61,51 +58,16 @@
 	
 	// 파일 다운로드 파일정보 불러오기(List)
 	BA_FileDao fdao = new BA_FileDao();
-	List<BA_FileDto> flist=fdao.getList(keyword);	
+	List<BA_FileDto> flist=fdao.getList(keyword);
 	
-	String login = (String)session.getAttribute("id");
-
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/board.css">
 <jsp:include page="/template/header.jsp"></jsp:include>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="../lib/toast/css/codemirror.min.css">
-    <link rel="stylesheet" type="text/css" href="../lib/toast/css/github.min.css">
-    <link rel="stylesheet" type="text/css" href="../lib/toast/css/tui-color-picker.min.css">
-    <link rel="stylesheet" type="text/css" href="../lib/toast/dist/tui-editor.min.css">
-    <link rel="stylesheet" type="text/css" href="../lib/toast/dist/tui-editor-contents.min.css">
-    
-    <script src="../dist/tui-editor-Editor-full.min.js"></script>
-    <!-- naver toast ui editor를 쓰기 위해 필요한 준비물 -->
 
-    <script>
-        //naver toast ui를 만들기 위한 코드
-        function createViewer(){
-            //editor 옵션
-            var options = {
-                //el(element) : 에디터가 될 영역
-                el:document.querySelector(".naver-viewer"),
-                
-                viewer:true,
-                //height : 생성될 에디터의 높이
-                height:'auto',
-                
-            };
-            //editor 생성 코드
-            var editor = tui.Editor.factory(options);
-            var input = document.querySelector(".naver-viewer + input");
-            var text = input.value;
-            editor.setValue(text);
-        }
-        //body가 없는 경우에는 다음과 같이 작성
-        // - 예약 실행(callback)
-        window.onload = createViewer;
-    </script>
-    
-   <% if(boardDto.getTitle()!=null){ %>
+<% if(boardDto.getTitle()!=null){ %>
+
 <article>
 <table border="1" class="w-80">
 	<tr>				<!-- 승인된 첫 화면.(=사용자 수정 전) -->
@@ -154,8 +116,8 @@
 		</td>
 	
 	</tr>
-	
-	
+
+
 <%} else{%>	
 	<tr>							<!-- 사용자들이 수정된 뒤의 상세글 -->
 		<th>
@@ -242,7 +204,6 @@
 	</tr>
 
 
-
 </table>
 <table border="1">
 	<tr>
@@ -257,7 +218,7 @@
 		<%if(boardReplyDto.getWriter()!=null){ %>
 		<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?writer=<%=boardReplyDto.getWriter() %>">
 									<%=boardReplyDto.getWriter() %>
-		</a>		
+				
 								
 		<%} else {%>
 				<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?ip_addr=<%=boardReplyDto.getIp_addr() %>">
@@ -321,9 +282,10 @@
 	</tr>
 			<%} %>
 
-
-
 </table>
+
 </article>
+
+
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

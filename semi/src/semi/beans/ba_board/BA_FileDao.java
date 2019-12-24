@@ -1,15 +1,12 @@
 package semi.beans.ba_board;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
 public class BA_FileDao {
 	private static DataSource source;
 	static {
@@ -34,7 +31,9 @@ public class BA_FileDao {
 		String sql="insert into ba_file "
 				+ "values(ba_file_seq.nextval,?,?,?,?,?)";
 		
+
 		PreparedStatement ps=con.prepareStatement(sql);
+		
 
 		ps.setInt(1, fdto.getOrigin());
 		ps.setString(2, fdto.getUploadname());
@@ -88,6 +87,7 @@ public class BA_FileDao {
 				fdto.setFiletype(rs.getString("filetype"));
 				fdto.setFilesize(rs.getLong("filesize"));
 				fdto.setTitle_key(rs.getString("title_key"));
+
 				list.add(fdto);
 			}
 			
@@ -97,7 +97,7 @@ public class BA_FileDao {
 		
 //기능:목록조회2 (board)
 //이름:get
-//매개변수: 상세글(board_text) 번호(no)
+//매개변수: 대주제(=검색 키워드)
 //반환형:BA_FileDto
 		public List<BA_FileDto> getList(String keyword) throws Exception{
 			Connection con = getConnection();
@@ -117,9 +117,10 @@ public class BA_FileDao {
 				fdto.setFiletype(rs.getString("filetype"));
 				fdto.setFilesize(rs.getLong("filesize"));
 				fdto.setTitle_key(rs.getString("title_key"));
+
 				list.add(fdto);
 			}
-			
+
 			con.close();
 			return list;
 		}
@@ -147,15 +148,15 @@ public class BA_FileDao {
 				fdto.setFilesize(rs.getLong("filesize"));
 				fdto.setTitle_key(rs.getString("title_key"));
 			}
-			
+
 			con.close();
 			return fdto;
 		}
 
-//기능:단일조회
+//기능:단일조회2
 //이름:get
 //매개변수: 검색어(title_key)
-//반환형:BA_FileDto
+//반환형:BA_FileDto 
 		public BA_FileDto get(String keyword) throws Exception{
 			Connection con = getConnection();
 	
@@ -181,3 +182,4 @@ public class BA_FileDao {
 		}
 
 }
+
