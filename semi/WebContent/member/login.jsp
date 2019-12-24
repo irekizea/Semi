@@ -30,8 +30,8 @@
 			</div>
 
 			<div class="row-left">
-				<a href="find.jsp">아이디 찾기</a>
-				<a href="findpw.jsp">비밀번호 찾기</a>
+				<a href="find_id.jsp">아이디 찾기</a>
+				<a href="find_pw.jsp">비밀번호 찾기</a>
 				<a href="regist.jsp">회원가입</a>
 			</div>
 		

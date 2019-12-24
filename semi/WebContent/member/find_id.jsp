@@ -7,7 +7,7 @@
 
 	<h3>아이디 찾기</h3>
 	
-	<form action="find.do"  method="post">
+	<form action="find_id.do"  method="post">
 		<table border="0">
 			<tr>
 				<th>이메일 </th>
