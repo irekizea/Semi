@@ -112,10 +112,7 @@ public class ReplyDao {
 	con.close();
 	return list;
 	}	
-	
-	//테이블에 데이터 수정 구현 :update()
 
-	
 	public void Rwrite(ReplyDto dto) throws Exception{
 		Connection con = getConnection();
 		

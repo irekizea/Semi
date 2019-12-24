@@ -1,20 +1,15 @@
+
 package semi.beans.board;
 
 public class BoardTextDto {
 	int no;	// boardTxt 글번호
 	int board_no; // 메인상세글 글번호
 
-	String writer, sub_title, text_content, udate;
-	String ip_addr;
-	
-	@Override
-	public String toString() {
-		return "BoardTextDto [no=" + no + ", board_no=" + board_no + ", writer=" + writer + ", sub_title=" + sub_title
-				+ ", content=" + "text_content" + ", udate=" + udate + ", ip_addr=" + ip_addr + "]";
-	}
-	
-	
+	String writer, sub_title, text_content, udate, ip_addr;
+
+
 	public BoardTextDto(int no, int board_no, String writer, String sub_title, String text_content, String udate, String ip_addr) {
+
 		super();
 		this.no = no;
 		this.board_no = board_no;
@@ -84,5 +79,6 @@ public class BoardTextDto {
 	public void setIp_addr(String ip_addr) {
 		this.ip_addr = ip_addr;
 	}
+
 	
 }

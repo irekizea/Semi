@@ -1,7 +1,7 @@
-
 <%@page import="semi.beans.reply.ReplyDto"%>
 <%@page import="semi.beans.reply.ReplyDao"%>
 <%@page import="semi.beans.ba_board.BA_FileDto"%>
+
 <%@page import="java.util.List"%>
 <%@page import="semi.beans.ba_board.BA_FileDao"%>
 <%@page import="semi.beans.ba_board.BA_BoardDto"%>
@@ -9,27 +9,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-int no=Integer.parseInt(request.getParameter("no"));
-BA_BoardDao bdao = new BA_BoardDao();
-BA_BoardDto bdto = bdao.get(no);
+	int no=Integer.parseInt(request.getParameter("no"));
+	BA_BoardDao bdao = new BA_BoardDao();
+	BA_BoardDto bdto = bdao.get(no);
 
-BA_FileDao fdao = new BA_FileDao();
-List<BA_FileDto> flist=fdao.getList(no);
-
-String userId = (String)session.getAttribute("id");
-String grade = (String)session.getAttribute("grade");
-
-boolean isAdmin = grade.equals("관리자");
-
-
-int board_no=Integer.parseInt(request.getParameter("board_no"));
-ReplyDao replydao = new ReplyDao();
-List<ReplyDto> replylist = replydao.ReplyList(board_no);
-
+	BA_FileDao fdao = new BA_FileDao();
+	List<BA_FileDto> flist=fdao.getList(no);
+	
+	String userId = (String)session.getAttribute("id");
+	String grade = (String)session.getAttribute("grade");
+	boolean isAdmin = grade.equals("관리자");
+	
+	ReplyDao rdao = new ReplyDao(); 
+	List<ReplyDto> rlist=rdao.ReplyList(no);
 %>
 <jsp:include page="/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="../css/semi_common.css">
 
+>>>>>>> refs/remotes/origin/master
 <article class="w-40">
 <!--토론 부분-->
     <div class="content-wrap">
@@ -64,34 +61,37 @@ List<ReplyDto> replylist = replydao.ReplyList(board_no);
             <%=bdto.getContent()%>
             <h5 id="writer left"><%=bdto.getWriter()%></h5>
         </div>
-
-		      
-		      
-		      
+        
 	<!--(주제 생성 후)작성된 댓글 내용-->		 
-<%-- 	<%if(bdto.getWriter().equals(rdto.getWriter())||isAdmin) {%> --%>
-<!-- 		<div class="content-item right">                   -->
-<%--     <%} else {%> --%>
+    <%for(ReplyDto rdto : rlist) {%>
+    
+	<%if(bdto.getWriter().equals(rdto.getId()) || isAdmin) {%>
+		<div class="content-item right">                  
+    <%} else {%>
         <div class="content-item left" align="right">    
-<%--     <%} %>     --%>
+    <%} %>    
+    
+           <!--댓글 작성시간  -->
            <div class="date">
-                <h5>댓글 작성 시각</h5>
+                <h5><%=rdto.getWdate()%></h5>
             </div>
-<!--              <div> -->
-<%--                 <%if(flist.size() > 0){ %> --%>
-<%-- 				 	<%for(BA_FileDto fdto : flist){ %> --%>
-<!-- 					 		파일 미리보기 출력 -->
-<%-- 					 		<img src="download.do?no=<%=fdto.getNo()%>" class="img"> --%>
-<!-- 					 		<h5> -->
-<%-- 					 		<%=fdto.getUploadname()%> --%>
-<%-- 					 		(<%=fdto.getFilesize()%> bytes) --%>
-<!-- 					 		</h5> -->
-<%-- 				 	<%} %> --%>
-<%-- 				<%} %> --%>
-<!--             </div> -->
-            	댓글내용 표시 될 자리
-            <h5 id="writer right">댓글 작성자</h5>
+            
+	        <div>  
+			<!--댓글 내용  -->
+             	<%=rdto.getReply_title()%>	
+            </div>
+            
+            <!--댓글 작성자  -->	
+            <h5 id="writer right">
+            <%if(rdto.getId() != null) {%>
+            	<%=rdto.getId()%>
+            <%} else {%>
+            	<%=rdto.getIp()%>
+            <%} %>	
+            </h5>
+            
         </div>
+	<%} %>
         
         
         <!--좋아요 싫어요 표시-->
@@ -101,18 +101,18 @@ List<ReplyDto> replylist = replydao.ReplyList(board_no);
         
         
 <!--토론 작성 부분-->
-<%-- <form action="replywrite.do?no=<%=board_no %>" method="post">  --%>
-<%-- 	<input type="hidden" name="writer" value="<%=userId%>"> --%>
-<!--     <div class="reply"> -->
-<!--         <h4>댓글달기</h4> -->
-<!--         <h6>[알림] 비로그인 상태로 토론에 참여합니다. 토론 내역에 IP(?)가 영구히 기록됩니다.</h6> -->
-<!--         <textarea name="reply_title" id="rt" rows="3" cols="80" required></textarea><br><br> -->
+<form action="replywrite.do?no=<%=no%>" method="post">
+	<input type="hidden" name="writer" value="<%=userId%>">
+    <div class="reply">
+        <h4>댓글달기</h4>
+        <h6>[알림] 비로그인 상태로 토론에 참여합니다. 토론 내역에 IP(?)가 영구히 기록됩니다.</h6>
+        <textarea name="reply_title" id="rt" rows="3" cols="80" required></textarea><br><br>
 
-<!--         <div align="right"> -->
-<!--             <input type="submit" value="전송" id="bt"> -->
-<!--         </div> -->
-<!--     </div> -->
-<!-- </form> -->
+        <div align="right">
+            <input type="submit" value="전송" id="bt">
+        </div>
+    </div>
+</form>
     </div>
 </article>
 

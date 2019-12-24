@@ -23,7 +23,7 @@ public class BoardTextInsertServlet extends HttpServlet {
 			int board_no = Integer.parseInt(req.getParameter("board_no"));	
 			String keyword=req.getParameter("keyword");
 			String writer = (String)req.getSession().getAttribute("id");
-			String ip_addr = InetAddress.getLocalHost().getHostAddress();
+			String ip_addr = req.getRemoteAddr();
 			
 			BoardTextDto boardTextDto = new BoardTextDto();
 			boardTextDto.setBoard_no(board_no);
