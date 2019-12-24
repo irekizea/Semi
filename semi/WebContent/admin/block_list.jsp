@@ -10,86 +10,92 @@
 <!--  관리자 차단회원 검색 페이지 -->
 
 <%
-	// - 검색 기능 구현
-	// - 검색어가 없으면 빈 페이지를 출력
+//	페이지 크기
+	int pagesize = 10;
+//	네비게이터 크기
+	int navsize = 10;
 
-	// [1] 검색어 받기(type, keyword)
+//	페이징 추가
+	int pno;
+	try{
+		pno = Integer.parseInt(request.getParameter("pno"));
+		if(pno <= 0) throw new Exception();
+	}
+	catch(Exception e){
+		pno = 1;
+	}
+	
+	int finish = pno * pagesize;
+	int start = finish - (pagesize - 1);
+
 	String type = request.getParameter("type");
 	String keyword = request.getParameter("keyword");
 
-	//[2] 검색인지 아닌지 판정
-
-	//     boolean isSearch는   type도 null이 아니고 keyword도  null이 아니고
 	boolean isSearch = type != null && keyword != null;
-
-	//[3] 처리
+	
 	BlockMemberDao dao = new BlockMemberDao();
-
 	List<BlockMemberDto> list;
-// 	if (isSearch) {
-// 		list = dao.getList(start, finish);
-// 	} else {
-// 		list = null;
-// 	}
+	if (isSearch) {
+		list = dao.search(type, keyword, start, finish);
+	} else {
+		list = dao.getList(start, finish);
+	}
+	
+	int count=dao.getCount(type, keyword);
 %>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <div align="center">
-	<h2>회원 검색</h2>
+	<h2>차단 회원 목록</h2>
+	<table border="0" width="80%">
+	<!-- 테이블 헤더 -->
+		<thead>
+			<tr>
+				<th>회원 아이디</th>
+				<th>차단 날짜</th>
+				<th>관리자</th>
+				<th>차단 사유</th>
+			</tr>
+		</thead>
 
-	<!-- 검색창 -->
-	<form action="list.jsp" method="get">
-
-		<select name="type">
-
-			<option value="id">아이디</option>
-			<option value="date">차단 날짜</option>
-			<option value="admin">관리자</option>
-			<option value="reason">차단사유</option>
-
-		</select> <input type="text" name="keyword"> <input type="submit"
-			value="검색">
-
-	</form>
-
-	<h3>
-		type =
-		<%=request.getParameter("type") %>, keyword =<%=request.getParameter("keyword") %>
-	</h3>
-
-<%-- 	<%if(list == null){%> --%>
-<!-- 	<!-- 검색어 입력이 없는거 --> -->
-<!-- 	<h3>검색어를 입력해주세요</h3> -->
-<%-- 	<%}else{ %> --%>
-<!-- 	<!--  검색 결과  --> -->
-<!-- 	<table border="0" width="80%"> -->
-<!-- 	<!-- 테이블 헤더 --> -->
-<!-- 	<thead> -->
-<!-- 	<tr> -->
-<!-- 	<th>ID</th> -->
-<!-- 	<th>차단 날짜</th> -->
-<!-- 	<th>관리자</th> -->
-<!-- 	<th>차단 사유</th> -->
-<!-- 	</tr> -->
-<!-- 	</thead> -->
-
-<!-- 	<tbody align="center"> -->
-<%-- 		<%for(BlockMemberDto dto : list){ %> --%>
-<!-- 		<tr> -->
-<%-- 	<td><%=dto.getB_id()%></td> --%>
-<%-- 	<td><%=dto.getBdate()%></td> --%>
-<%-- 	<td><%=dto.getBadmin()%></td> --%>
-<%-- 	<td><%=dto.getBreason()%></td> --%>
+		<tbody align="center">
+		<%for(BlockMemberDto dto : list){ %>
+			<tr>
+				<td><%=dto.getB_id()%></td>
+				<td><%=dto.getBdate()%></td>
+				<td><%=dto.getBadmin()%></td>
+				<td><%=dto.getBreason()%></td>
+			</tr>
+		<%} %>
+		</tbody>
+	</table>
 	
-<!-- 					</tr> -->
-<%-- 			<%} %> --%>
-<!-- 		</tbody> -->
+	<div>
+		<!-- 네비게이터(navigator) -->
+		<jsp:include page="/template/navigatorSearch.jsp">
+			<jsp:param name="pno" value="<%=pno%>"/>
+			<jsp:param name="count" value="<%=count%>"/>
+			<jsp:param name="navsize" value="<%=navsize%>"/>
+			<jsp:param name="pagesize" value="<%=pagesize%>"/>
+		</jsp:include>
+	</div>
+	<div>
+	
+		<form action="block_list.jsp" method="get">
 		
+			<select name="type">
+				<option value="b_id">회원아이디</option>
+				<option value="badmin">관리자아이디</option>
+				<option value="breason">차단 사유</option>
+				
+			</select>
+			
+			<input type="search" name="keyword" placeholder="검색어" required>
+			<input type="submit" value="검색">
+		</form>
 		
-<!-- 	</table> -->
-<%-- 	<%} %> --%>
-
-<!-- </div> -->
+	</div>
+</div>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

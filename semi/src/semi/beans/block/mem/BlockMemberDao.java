@@ -49,11 +49,10 @@ public class BlockMemberDao {
 		while(rs.next()) {		
 			
 			BlockMemberDto dto = new BlockMemberDto();
-			
-			ps.setString(1, dto.getB_id());
-			ps.setString(2, dto.getBdate());
-			ps.setString(3, dto.getBadmin());
-			ps.setString(4, dto.getBreason());
+			dto.setB_id(rs.getString("b_id"));
+			dto.setBadmin(rs.getString("badmin"));
+			dto.setBdate(rs.getString("bdate"));
+			dto.setBreason(rs.getString("breason"));
 	
 			list.add(dto);
 		}
@@ -119,5 +118,69 @@ public class BlockMemberDao {
 			
 		con.close();
 		return dto;
+	}
+	
+//	기능:총 차단 회원 수 구하기
+//	이름:getCount
+//	매개변수:없음
+//	반환형:차단 회원 수(int)
+	public int getCount(String type, String keyword) throws Exception {
+		Connection con=getConnection();
+		boolean isSearch=type!=null&&keyword!=null;
+		
+		String sql="select count(*)from block_mem";
+		if(isSearch) {
+			sql+=" where " + type +" like '%'||?||'%'";
+		}
+		PreparedStatement ps=con.prepareStatement(sql);
+		if(isSearch) {
+			ps.setString(1, keyword);		
+		}
+		
+		ResultSet rs=ps.executeQuery();//결과는 무조건 1개
+		rs.next();
+
+		int count=rs.getInt(1);
+		
+		con.close();
+		return count;
+	}
+//	기능:총 차단 회원 검색
+//	이름:search
+//	매개변수:검색타입, 검색어, 시작점, 끝점
+//	반환형:차단 회원 수(int)
+	public List<BlockMemberDto> search(String type, String keyword, int start, int finish) throws Exception{
+		Connection con = getConnection();
+		
+		String sql = "select * from ( "
+							+ "select rownum rn, A.* from( "
+								+ "select * from block_mem "
+								+ "where "+type+" like '%'||?||'%' "
+								+ "order by bdate desc "
+							+ ")A "
+						+ ") where rn between ? and ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, keyword);
+		ps.setInt(2, start);
+		ps.setInt(3, finish);
+		ResultSet rs = ps.executeQuery();
+		
+		//변환
+		List<BlockMemberDto> list = new ArrayList<>();
+		
+		while(rs.next()) {
+			BlockMemberDto dto=new BlockMemberDto();
+			
+			dto.setB_id(rs.getString("b_id"));
+			dto.setBadmin(rs.getString("badmin"));
+			dto.setBdate(rs.getString("bdate"));
+			dto.setBreason(rs.getString("breason"));
+			
+			list.add(dto);
+		}
+		
+		con.close();
+		
+		return list;
 	}
 }

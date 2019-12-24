@@ -10,7 +10,6 @@
     pageEncoding="UTF-8"%>
 <%
 	int no=Integer.parseInt(request.getParameter("no"));
-
 	BA_BoardDao bdao = new BA_BoardDao();
 	BA_BoardDto bdto = bdao.get(no);
 
@@ -27,6 +26,7 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="../css/semi_common.css">
 
+>>>>>>> refs/remotes/origin/master
 <article class="w-40">
 <!--토론 부분-->
     <div class="content-wrap">
