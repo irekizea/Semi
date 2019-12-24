@@ -16,7 +16,7 @@ public class BoardTextDto {
 	public BoardTextDto(int no, int board_no, String writer, String sub_title, String content, String udate, String ip_addr) {
 
 	String writer, sub_title, text_content, udate, ip_addr;
-	
+	}
 	public BoardTextDto(int no, int board_no, String writer, String sub_title, String text_content, String udate, String ip_addr) {
 		super();
 		this.no = no;
