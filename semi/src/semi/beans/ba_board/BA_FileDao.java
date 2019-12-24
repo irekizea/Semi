@@ -31,8 +31,10 @@ public class BA_FileDao {
 		String sql="insert into ba_file "
 				+ "values(ba_file_seq.nextval,?,?,?,?,?)";
 		
+
 		PreparedStatement ps=con.prepareStatement(sql);
 		
+
 		ps.setInt(1, fdto.getOrigin());
 		ps.setString(2, fdto.getUploadname());
 		ps.setString(3, fdto.getSavename());
@@ -154,7 +156,7 @@ public class BA_FileDao {
 //기능:단일조회2
 //이름:get
 //매개변수: 검색어(title_key)
-//반환형:BA_FileDto
+//반환형:BA_FileDto 
 		public BA_FileDto get(String keyword) throws Exception{
 			Connection con = getConnection();
 	

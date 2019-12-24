@@ -108,11 +108,33 @@ public class HistoryDao {
 		int recentwriter = 0;
 		if (rs.next()) {
 			rs.getInt(1);
-			System.out.println(rs.getInt(1));
 			recentwriter = rs.getInt(1);
 		}
 
 		con.close();
 		return recentwriter;
 	}
+	public List<HistoryDto> hList(String keyword) throws Exception {
+		Connection con = getConnection();
+		String sql = "select*from history where board_title= ? order by board_text_udate asc";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, keyword);
+		ResultSet rs = ps.executeQuery();
+
+		HistoryDto historydto = new HistoryDto();
+		List<HistoryDto> list = new ArrayList<>();
+		while (rs.next()) {
+			historydto.setWriter(rs.getString("writer"));
+			historydto.setBoardtextudate(rs.getString("board_text_udate"));
+			historydto.setIp_addr(rs.getString("ip_addr"));
+			
+			list.add(historydto);
+		}
+		con.close();
+		return list;
+	}
+
+	
+	
 }
