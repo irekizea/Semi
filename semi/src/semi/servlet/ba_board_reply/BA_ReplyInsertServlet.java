@@ -33,6 +33,7 @@ public class BA_ReplyInsertServlet extends HttpServlet {
 			//내용과 아이피를 가져오고
 			ReplyDto dto = new ReplyDto();
 			dto.setReply_title(reply_title);
+
 			dto.setBoard_no(no);
 
 			if(writer != null) {
@@ -57,3 +58,4 @@ public class BA_ReplyInsertServlet extends HttpServlet {
 	}
 	
 }
+

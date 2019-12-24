@@ -110,7 +110,7 @@ class Button extends ToolbarItem {
     tooltip.hide();
   }
 
-  /**
+  /*
    * enable button
    */
   enable() {
