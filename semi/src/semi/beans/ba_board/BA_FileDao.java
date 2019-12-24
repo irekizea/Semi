@@ -25,7 +25,7 @@ public class BA_FileDao {
 		return source.getConnection();
 	}
 	
-//기능:파일 등록
+//기능:파일 등록(BA_board)
 //이름:FilesInsert
 //매개변수:BA_FileDto(no,origin,uploadname,savename,filetype,filesize)
 //반환형:없음
@@ -35,7 +35,7 @@ public class BA_FileDao {
 				+ "values(ba_file_seq.nextval,?,?,?,?,?)";
 		
 		PreparedStatement ps=con.prepareStatement(sql);
-		System.out.println(fdto.getOrigin());
+
 		ps.setInt(1, fdto.getOrigin());
 		ps.setString(2, fdto.getUploadname());
 		ps.setString(3, fdto.getSavename());
@@ -45,6 +45,26 @@ public class BA_FileDao {
 		ps.execute();
 		con.close();
 	}
+//기능:파일 등록(board)
+//이름:FilesInsert
+//매개변수:BA_FileDto(no,origin,uploadname,savename,filetype,filesize)
+//반환형:없음
+	public void board_fileInsert(BA_FileDto boardFileDto)throws Exception{
+		Connection con=getConnection();
+		String sql="insert into ba_file(no, uploadname, savename, filetype, filesize, title_key) "
+				+ "values(ba_file_seq.nextval,?,?,?,?,?)";
+			
+		PreparedStatement ps=con.prepareStatement(sql);
+
+		ps.setString(1, boardFileDto.getUploadname());
+		ps.setString(2, boardFileDto.getSavename());
+		ps.setString(3, boardFileDto.getFiletype());
+		ps.setLong(4, boardFileDto.getFilesize());
+		ps.setString(5, boardFileDto.getTitle_key());
+			
+		ps.execute();
+		con.close();
+		}
 	
 //기능:파일 목록 조회
 //이름:getList

@@ -48,9 +48,13 @@
 	String writer = (String)request.getSession().getAttribute("id");
 	
 	BoardReplyDao boardReplyDao = new BoardReplyDao();
-	List<BoardReplyDto> replyList = boardReplyDao.replyList(keyword);
+	List<BoardReplyDto> replyList = boardReplyDao.replyList(keyword);	
 	
+	// 승인된 후 첫글인지, 사용자가 수정한 글인지 판단
 	boolean editCheck= boardDto.getEditCheck();
+	
+	// 메인상세글 글번호
+	
 
 %>
 
@@ -66,11 +70,11 @@
 		<%=boardDto.getTitle() %>
 		</th>
 	</tr>
-	
+
 		<%if(!editCheck){ %>
 	<tr>
 		<th>
-		개요
+			개요
 		</th>
 		<th>
 		</th>
@@ -78,7 +82,7 @@
 			최근 수정시간
 		</th>
 		<th>
-		최근 수정자
+			최근 수정자
 		</th>
 	</tr>
 	
@@ -151,7 +155,7 @@
 	
 	<tr>
 	<td colspan = "4">
-		  <%= boardDto.getContent()%>
+		  <%= boardTextDto.getText_content()%>
 	</td>
 	</tr>
 	
@@ -169,13 +173,16 @@
 	<tr>
 	
 		<td colspan = "4">
-			<form action="textInsert.do" method="post">
+			<form action="textInsert.do" method="post"  enctype="multipart/form-data">
 							<label for="show">목차 추가</label>
 							<input type="checkbox" id="show" class="checkbox'">
 							
 								<input type="hidden" name="keyword" value=<%=keyword %>>
 								<input type="hidden" name="board_no" value="<%=boardDto.getNo()%>">
 								<input type="text" name="sub_title" value="목차[소제목]" required class="sub-title" style="width:100%; height:5%;">
+								
+								<input type="file" name="file" accept="jpg,png,gif" >
+								
 								<textarea name="text_content" required class="text">
 								</textarea>
 								<%if(writer==null) {%> 
