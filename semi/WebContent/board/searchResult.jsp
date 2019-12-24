@@ -74,6 +74,7 @@
 		<%=boardDto.getTitle() %>
 		</th>
 	</tr>
+
 		<%if(!editCheck){ %>
 	<tr>
 		<th>
@@ -105,7 +106,7 @@
 		  <%} %>
 	</td>
 	</tr>
-
+	
 	<tr>
 		<td colspan = "4">
 			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
@@ -125,6 +126,7 @@
 		최근 수정 시간: <%=boardDto.getUdate() %>
 		</th>
 	</tr>
+
 	<tr>
 		<th>
 		개요
@@ -154,10 +156,10 @@
 			else { %>
 				<%=boardTextDto.getIp_addr() %>
 			<%} %>
-
+							
 		</td>
 	</tr>
-
+	
 	<tr>
 	<td colspan = "4">
 		  <%= boardTextDto.getText_content()%>
@@ -174,6 +176,7 @@
 	</tr>
 <%} %>
 <%} %>
+
 	<tr>
 	
 		<td colspan = "4">
@@ -198,6 +201,8 @@
 		</td>
 	
 	</tr>
+
+
 </table>
 <table border="1">
 	<tr>
@@ -234,6 +239,7 @@
 			<%=boardReplyDto.getContent() %>
 		</td>
 	</tr>
+
 	<%} %>
 	
 	<tr>
@@ -274,7 +280,6 @@
 	
 	</tr>
 			<%} %>
-
 
 </table>
 

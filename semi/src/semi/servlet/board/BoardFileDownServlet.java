@@ -21,17 +21,17 @@ public class BoardFileDownServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			String keyword =req.getParameter("keyword");
-
+			
 			BA_FileDao boardFileDao = new BA_FileDao();
 			BA_FileDto boardFileDto = boardFileDao.get(keyword);
-
+			
 			File target = new File("D:/upload/kh21", boardFileDto.getSavename());
 			byte[] data = FileUtils.readFileToByteArray(target);
-
+			
 			resp.setHeader("Content-Type", "application/octet-srtream; charset=UTF-8");
 			resp.setHeader("Content-Disposition", "attachment; filename=\""+URLEncoder.encode(boardFileDto.getUploadname(),"UTF-8")+"\"");
 			resp.setHeader("Content-Length", String.valueOf(boardFileDto.getFilesize()));
-
+			
 			resp.getOutputStream().write(data);
 		}
 		catch(Exception e){

@@ -46,6 +46,7 @@ public class BoardEditServlet extends HttpServlet{
 			BoardTextDto bdto = new BoardTextDto();
 			BoardTextDao bdao = new BoardTextDao();
 			bdto.setWriter(writer);
+
 			bdto.setIp_addr(ipaddr);
 			bdto.setText_content(content);
 			bdto.setNo(no);

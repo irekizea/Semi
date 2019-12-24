@@ -32,6 +32,7 @@ public class BA_FileDao {
 				+ "values(ba_file_seq.nextval,?,?,?,?,?)";
 		
 		PreparedStatement ps=con.prepareStatement(sql);
+		
 		ps.setInt(1, fdto.getOrigin());
 		ps.setString(2, fdto.getUploadname());
 		ps.setString(3, fdto.getSavename());
@@ -51,6 +52,7 @@ public class BA_FileDao {
 				+ "values(ba_file_seq.nextval,?,?,?,?,?)";
 			
 		PreparedStatement ps=con.prepareStatement(sql);
+
 		ps.setString(1, boardFileDto.getUploadname());
 		ps.setString(2, boardFileDto.getSavename());
 		ps.setString(3, boardFileDto.getFiletype());
@@ -83,25 +85,26 @@ public class BA_FileDao {
 				fdto.setFiletype(rs.getString("filetype"));
 				fdto.setFilesize(rs.getLong("filesize"));
 				fdto.setTitle_key(rs.getString("title_key"));
+
 				list.add(fdto);
 			}
-
+			
 			con.close();
 			return list;
 		}
-
+		
 //기능:목록조회2 (board)
 //이름:get
-//매개변수: 상세글(board_text) 번호(no)
+//매개변수: 대주제(=검색 키워드)
 //반환형:BA_FileDto
 		public List<BA_FileDto> getList(String keyword) throws Exception{
 			Connection con = getConnection();
-
+			
 			String sql = "select * from ba_file where title_key = ? order by no asc";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, keyword);
 			ResultSet rs = ps.executeQuery();
-
+			
 			List<BA_FileDto> list = new ArrayList<>();
 			while(rs.next()) {
 				BA_FileDto fdto = new BA_FileDto();
@@ -112,6 +115,7 @@ public class BA_FileDao {
 				fdto.setFiletype(rs.getString("filetype"));
 				fdto.setFilesize(rs.getLong("filesize"));
 				fdto.setTitle_key(rs.getString("title_key"));
+
 				list.add(fdto);
 			}
 
@@ -147,18 +151,18 @@ public class BA_FileDao {
 			return fdto;
 		}
 
-//기능:단일조회
+//기능:단일조회2
 //이름:get
 //매개변수: 검색어(title_key)
 //반환형:BA_FileDto
 		public BA_FileDto get(String keyword) throws Exception{
 			Connection con = getConnection();
-
+	
 			String sql = "select * from ba_file where title_key = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, keyword);
 			ResultSet rs = ps.executeQuery();
-
+					
 			BA_FileDto fdto = null;
 			if(rs.next()) {
 				fdto = new BA_FileDto();
@@ -170,9 +174,10 @@ public class BA_FileDao {
 				fdto.setFilesize(rs.getLong("filesize"));
 				fdto.setTitle_key(rs.getString("title_key"));
 			}
-
+					
 			con.close();
 			return fdto;
 		}
 
 }
+
