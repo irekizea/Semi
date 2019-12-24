@@ -1,3 +1,4 @@
+
 package semi.beans.ba_board;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -70,6 +71,7 @@ public class BA_FileDao {
 //매개변수:게시글 번호(origin)
 //반환형:List<BA_FilesDto>
 		public List<BA_FileDto> getList(int origin) throws Exception{
+
 			Connection con = getConnection();
 			
 			String sql = "select * from ba_file where origin = ? order by no asc";
