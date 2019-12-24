@@ -9,8 +9,7 @@
 <!--  관리자 회원 검색 페이지 -->
 
 <%
-		// 필요한 데이터를 불러오기 위한 자바 코드 작업
-		// - 관리자가 회원을 검색하기 위한 페이지이므로 검색기능만 구현
+		// - 검색기능 구현
 		// - 검색어가 없으면 빈 페이지를 출력
 		
 		//[1] 검색어 받기(type, keyword)
@@ -21,7 +20,7 @@
 // 		boolean isSearch =type도 있고 keyword도 있으면;
 		boolean isSearch = type != null && keyword != null;
 		
-//		[3]처리]
+//		[3]처리
 		MemberDao dao = new MemberDao();
 // 		List<MemberDto> list = isSearch가 true일 때 / is Search가  false일 때 
 // 		List<MemberDto> list = dao.search(type,keyword) or null;
