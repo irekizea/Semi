@@ -15,7 +15,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import semi.beans.reply.ReplyDao;
 import semi.beans.reply.ReplyDto;
 
-@WebServlet(urlPatterns = "/reply/replywrite.do")
+@WebServlet(urlPatterns = "/ba_board/replywrite.do")
 public class BA_ReplyInsertServlet extends HttpServlet {
 
 	@Override
@@ -25,7 +25,7 @@ public class BA_ReplyInsertServlet extends HttpServlet {
 			req.setCharacterEncoding("UTF-8");
 			
 			String reply_title = req.getParameter("reply_title");
-			int board_no = Integer.parseInt(req.getParameter("board_no"));
+			int no = Integer.parseInt(req.getParameter("no"));
 			String writer = (String)req.getSession().getAttribute("id");
 			String ip = InetAddress.getLocalHost().getHostAddress();
 			
@@ -33,8 +33,13 @@ public class BA_ReplyInsertServlet extends HttpServlet {
 			//내용과 아이피를 가져오고
 			ReplyDto dto = new ReplyDto();
 			dto.setReply_title(reply_title);
-			dto.setBoard_no(board_no);
-			dto.setIp(ip);
+			dto.setBoard_no(no);
+
+			if(writer != null) {
+				dto.setId(writer);		
+			} else {
+				dto.setIp(ip);				
+			}
 			
 			
 			
@@ -42,7 +47,7 @@ public class BA_ReplyInsertServlet extends HttpServlet {
 			replydao.Rwrite(dto);
 		
 			
-			resp.sendRedirect("content.jsp?no="+board_no);
+			resp.sendRedirect("content.jsp?no="+no);
 		}
 		catch(Exception e){
 			e.printStackTrace();
