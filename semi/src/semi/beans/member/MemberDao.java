@@ -12,6 +12,7 @@ import javax.naming.spi.DirStateFactory.Result;
 import javax.sql.DataSource;
 
 import oracle.jdbc.proxy.annotation.Pre;
+import semi.beans.block.mem.BlockMemberDto;
 
 public class MemberDao {
 
@@ -189,5 +190,66 @@ public class MemberDao {
 		
 		return list;
 	}
+	
+//	기능:차단 목록 조회
+//	이름:getList
+//	매개변수:없음
+//	반환형 :데이터 목록(List<MemberDto>)
+	public List<MemberDto> getList(int start, int finish) throws Exception{
+		Connection con = getConnection();
+		String sql="select * from ( "
+					+ "select rownum rn, A.* from ( "
+						+ "select * from member "
+						+ "order by id desc "
+					+ ")A "
+				+ ") where rn between ? and ?";
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setInt(1, start);
+		ps.setInt(2, finish);
+		
+		ResultSet rs = ps.executeQuery();
+		List<MemberDto> list = new ArrayList<>();	
+		while(rs.next()) {		
+			
+			MemberDto dto = new MemberDto();
+			
+			dto.setId(rs.getString("id"));
+			dto.setEmail(rs.getString("email"));
+			dto.setGrade(rs.getString("grade"));
+			dto.setPoint(rs.getInt("point"));
+	
+			list.add(dto);
+		}
+		con.close();
+		
+		return list;
+	}	
+	//회원 수 구하기
+		public int getCount(String type, String keyword) throws Exception{
+			Connection con = getConnection();
+			
+			boolean isSearch = type != null && keyword != null;
+			
+			String sql = "select count(*) from member";
+			if(isSearch) {
+				sql += " where "+type+" like '%'||?||'%'";
+			}
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			if(isSearch) {
+				ps.setString(1, keyword);
+			}
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+//			int count = rs.getInt("count(*)");
+			int count = rs.getInt(1);
+			
+			con.close();
+			
+			return count;
+		}
+		
+	
+	
 	
 }

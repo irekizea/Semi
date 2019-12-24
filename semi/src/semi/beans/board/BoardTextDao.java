@@ -28,8 +28,8 @@ public class BoardTextDao {
 // 주제1에 대한 상세글 작성(목차 추가)	
 	public void textInsert(BoardTextDto boardTextDto) throws Exception {
 		Connection con = getConnection();
-
-		String sql = "insert into board_text(no, writer, sub_title, text_content, board_no, ip_addr) "
+		
+		String sql="insert into board_text(no, writer, sub_title, text_content, board_no, ip_addr) "
 				+ "values(board_text_seq.nextval, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, boardTextDto.getWriter());
@@ -115,3 +115,4 @@ public class BoardTextDao {
 
 	}
 }
+

@@ -34,7 +34,13 @@ public class BA_ReplyInsertServlet extends HttpServlet {
 			ReplyDto dto = new ReplyDto();
 			dto.setReply_title(reply_title);
 			dto.setBoard_no(no);
-			dto.setIp(ip);
+
+			if(writer != null) {
+				dto.setId(writer);		
+			} else {
+				dto.setIp(ip);				
+			}
+
 			
 			
 			
