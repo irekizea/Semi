@@ -3,22 +3,18 @@ package semi.beans.board;
 public class BoardTextDto {
 	int no;	// boardTxt 글번호
 	int board_no; // 메인상세글 글번호
-	String writer, sub_title, content, udate;
-	String ip_addr;
-	
-	@Override
-	public String toString() {
-		return "BoardTextDto [no=" + no + ", board_no=" + board_no + ", writer=" + writer + ", sub_title=" + sub_title
-				+ ", content=" + content + ", udate=" + udate + ", ip_addr=" + ip_addr + "]";
-	}
-	
-	public BoardTextDto(int no, int board_no, String writer, String sub_title, String content, String udate, String ip_addr) {
+
+	String writer, sub_title, text_content, udate, ip_addr;
+
+
+	public BoardTextDto(int no, int board_no, String writer, String sub_title, String text_content, String udate, String ip_addr) {
+
 		super();
 		this.no = no;
 		this.board_no = board_no;
 		this.writer = writer;
 		this.sub_title = sub_title;
-		this.content = content;
+		this.text_content = text_content;
 		this.udate = udate;
 		this.ip_addr = ip_addr;
 	}
@@ -59,12 +55,12 @@ public class BoardTextDto {
 		this.sub_title = sub_title;
 	}
 
-	public String getContent() {
-		return content;
+	public String getText_content() {
+		return text_content;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setText_content(String text_content) {
+		this.text_content = text_content;
 	}
 
 	public String getUdate() {
@@ -74,7 +70,7 @@ public class BoardTextDto {
 	public void setUdate(String udate) {
 		this.udate = udate;
 	}
-	
+
 	public String getIp_addr() {
 		return ip_addr;
 	}
@@ -82,5 +78,6 @@ public class BoardTextDto {
 	public void setIp_addr(String ip_addr) {
 		this.ip_addr = ip_addr;
 	}
+
 	
 }

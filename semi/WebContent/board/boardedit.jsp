@@ -67,7 +67,8 @@
 		<div class="sub-title">
 			내용<br>
 			<textarea name="content"
-				style="resize: none; width: 100%; height: 200px;"><%=boardtextdto.getContent()%></textarea>
+				style="resize: none; width: 100%; height: 200px"><%=boardtextdto.getText_content()%>
+				</textarea>
 		</div>
 
 		<div align="left">	

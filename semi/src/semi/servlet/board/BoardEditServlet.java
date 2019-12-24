@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import semi.beans.board.BoardDao;
 import semi.beans.board.BoardTextDao;
 import semi.beans.board.BoardTextDto;
 import semi.beans.board.HistoryDao;
@@ -44,8 +46,8 @@ public class BoardEditServlet extends HttpServlet{
 			BoardTextDto bdto = new BoardTextDto();
 			BoardTextDao bdao = new BoardTextDao();
 			bdto.setWriter(writer);
-			bdto.setContent(content);
 			bdto.setIp_addr(ipaddr);
+			bdto.setText_content(content);
 			bdto.setNo(no);
 			
 			bdao.btedit(bdto);
@@ -55,10 +57,13 @@ public class BoardEditServlet extends HttpServlet{
 			semi.beans.board.BoardDto dto = new semi.beans.board.BoardDto();
 			dto.setUdate("sysdate");
 			dao.bedit(boardno);
-			
-		
+						
+			// editCheck 부르기(승인후 최초 글인지, 수정된 글인지).
+			BoardDao boardDao = new BoardDao();
+			boardDao.editCheck(keyword);
 			
 			resp.sendRedirect("searchResult.jsp?keyword="+URLEncoder.encode(keyword, "UTF-8")+"&no="+no);
+
 		}
 		catch(Exception e) {
 			e.printStackTrace();
