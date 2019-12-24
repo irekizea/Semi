@@ -4,19 +4,16 @@ public class BoardTextDto {
 	int no;	// boardTxt 글번호
 	int board_no; // 메인상세글 글번호
 
-	String writer, sub_title, content, udate;
+	String writer, sub_title, text_content, udate;
 	String ip_addr;
 	
 	@Override
 	public String toString() {
 		return "BoardTextDto [no=" + no + ", board_no=" + board_no + ", writer=" + writer + ", sub_title=" + sub_title
-				+ ", content=" + content + ", udate=" + udate + ", ip_addr=" + ip_addr + "]";
+				+ ", content=" + "text_content" + ", udate=" + udate + ", ip_addr=" + ip_addr + "]";
 	}
 	
-	public BoardTextDto(int no, int board_no, String writer, String sub_title, String content, String udate, String ip_addr) {
-
-	String writer, sub_title, text_content, udate, ip_addr;
-	}
+	
 	public BoardTextDto(int no, int board_no, String writer, String sub_title, String text_content, String udate, String ip_addr) {
 		super();
 		this.no = no;
@@ -80,16 +77,6 @@ public class BoardTextDto {
 		this.udate = udate;
 	}
 
-	public String getIp_addr() {
-		return ip_addr;
-	}
-
-	public void setIp_addr(String ip_addr) {
-		this.ip_addr = ip_addr;
-	}
-	
-
-	
 	public String getIp_addr() {
 		return ip_addr;
 	}

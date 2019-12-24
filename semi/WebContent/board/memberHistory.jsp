@@ -25,31 +25,62 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/board.css">
 <jsp:include page="/template/header.jsp"></jsp:include>
 
-<article>
-	<section>
-		<div>
-		<%if(request.getParameter("writer")!=null){ %>
+
+<style>
+
+    .table {
+            width: 100%;
+            border: 1px solid black;
+            border-collapse: collapse
+        }
+
+        .table>thead>tr>td,
+        .table>thead>tr>th,
+        .table>tbody>tr>td,
+        .table>tbody>tr>th {
+            border: 1px solid black;
+            padding: 0.5rem;
+        }
+</style>
+	
+
+<div align = "center">
+
+<table style = "border:1px solid black; width:90% ">
+	<tr>
+		<th>
+	<%if(request.getParameter("writer")!=null){ %>
 				"<%=request.getParameter("writer") %>"의 기여목록
 		<% } 
 			else{ %>
 				"<%=request.getParameter("ip_addr") %>"의 기여목록
 		<%} %>
-		</div>		
-		<div class="">
-		<%for(HistoryDto memberHis : list){ %>
-			<div class="">
-				project: <%=memberHis.getBoardtitle() %>
-				<div class="wdate">
-					최근 수정 시간: <%=memberHis.getBoardtextudate() %>
-				</div>
+		</th>
+	</tr>
+	<%for(HistoryDto memberHis : list){ %>
+	<tr>
+		<td>
+			project
+		</td>
+		<td>
+		 	<%=memberHis.getBoardtitle() %>
+		</td>
+		<td>
+			최근 수정 시간
+		</td>
+		<td>
+		 	<%=memberHis.getBoardtextudate() %>
+		</td>
+	
+	</tr>
+	<tr>
+		<td>
+		<%=memberHis.getContent() %>
+		</td>
+	</tr>
+	<%} %>
 
-				<div class="">
-					<%=memberHis.getContent() %>
-				</div>
-		<%} %>
-			</div>
-		</div>
-	</section>
-</article>
+</table>
+</div>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>
