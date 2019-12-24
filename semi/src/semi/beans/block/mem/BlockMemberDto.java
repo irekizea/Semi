@@ -1,6 +1,7 @@
 package semi.beans.block.mem;
 
 public class BlockMemberDto {
+	
 	private String b_id;
 	private String bdate;
 	private String badmin;

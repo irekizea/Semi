@@ -9,10 +9,25 @@
 <!--  관리자 회원 검색 페이지 -->
 
 <%
-		// - 검색기능 구현
-		// - 검색어가 없으면 빈 페이지를 출력
-		
-		//[1] 검색어 받기(type, keyword)
+//	페이지 크기
+int pagesize = 10;
+//	네비게이터 크기
+int navsize = 10;
+
+//	   페이징 추가
+	int pno;
+	try{
+		pno = Integer.parseInt(request.getParameter("pno"));
+		if(pno <= 0) throw new Exception();
+	}
+	catch(Exception e){
+		pno = 1;
+	}
+	
+	int finish = pno * pagesize;
+	int start = finish - (pagesize - 1);
+
+	
 		String type = request.getParameter("type");
 		String keyword = request.getParameter("keyword");
 		
@@ -32,8 +47,9 @@
 // 			list = new ArrayList<>();
 		}
 		else{
-		list=null;
+		list=dao.getList(start, finish);
 		}
+			int count = dao.getCount(type, keyword);	
 %>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -99,7 +115,13 @@
 
 	</table>
 	<%} %>
-
+	<!-- 네비게이터(navigator) -->
+		<jsp:include page="/template/navigator.jsp">
+			<jsp:param name="pno" value="<%=pno%>"/>
+			<jsp:param name="count" value="<%=count%>"/>
+			<jsp:param name="navsize" value="<%=navsize%>"/>
+			<jsp:param name="pagesize" value="<%=pagesize%>"/>
+		</jsp:include>
 </div>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>
