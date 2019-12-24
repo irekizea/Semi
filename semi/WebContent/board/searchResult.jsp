@@ -1,7 +1,5 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!-- 게시글 체크박스(누르면 나타나기) 설정 
 	<label for="체크박스id"> 클릭할 것 </label>
 	<input type="checkbox" id="체크박스id">
@@ -21,7 +19,7 @@
 		width
 	}
 </style>
-    
+
 <%@page import="semi.beans.board.BoardReplyDto"%>
 <%@page import="semi.beans.board.BoardReplyDao"%>
 <%@page import="semi.beans.board.BoardTextDto"%>
@@ -31,14 +29,13 @@
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import = "java.net.InetAddress" %>
-
 <%@ page import = "semi.beans.board.BoardDao" %>
 <%@ page import = "semi.beans.board.BoardDto" %>
 <%@ page import = "semi.beans.board.BoardTextDao" %>
 <%@ page import = "semi.beans.board.BoardTextDto" %>
 <%@page import="semi.beans.ba_board.BA_FileDao"%>
 <%@page import="semi.beans.ba_board.BA_FileDto"%>
-    
+
 <%
 	String keyword = request.getParameter("keyword"); 
 	
@@ -69,6 +66,7 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <% if(boardDto.getTitle()!=null){ %>
+
 <article>
 <table border="1" class="w-80">
 	<tr>				<!-- 승인된 첫 화면.(=사용자 수정 전) -->
@@ -117,8 +115,8 @@
 		</td>
 	
 	</tr>
-	
-	
+
+
 <%} else{%>	
 	<tr>							<!-- 사용자들이 수정된 뒤의 상세글 -->
 		<th>
@@ -205,7 +203,6 @@
 	</tr>
 
 
-
 </table>
 <table border="1">
 	<tr>
@@ -284,9 +281,8 @@
 	</tr>
 			<%} %>
 
-
-
 </table>
+
 </article>
 
 
