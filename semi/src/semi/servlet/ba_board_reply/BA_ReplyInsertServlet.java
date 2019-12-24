@@ -40,6 +40,7 @@ public class BA_ReplyInsertServlet extends HttpServlet {
 			} else {
 				dto.setIp(ip);				
 			}
+
 			
 			
 			
