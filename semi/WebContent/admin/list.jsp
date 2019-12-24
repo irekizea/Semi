@@ -109,9 +109,10 @@ int navsize = 10;
 			<tr>
 				<td>
 				<%=dto.getId()%>
-<%-- 				<%if(dto.getId().equals(bdto.getB_id())) {%> --%>
-<!-- 					<font color="red">[차단 회원]</font> -->
-<%-- 				<%} %> --%>
+				<%-- <%if(bdao.check(dto.getId())) {%>
+					<font color="red">[차단 회원]</font>
+				<%} %> --%>
+
 				</td>
 				<td><%=dto.getEmail()%></td>
 				<td><%=dto.getGrade()%></td>				
