@@ -3,6 +3,7 @@ package semi.beans.block.mem;
 public class BlockMemberDto {
 	private String b_id;
 	private String bdate;
+	private String badmin;
 	private String breason;
 	
 	public BlockMemberDto() {
@@ -24,6 +25,14 @@ public class BlockMemberDto {
 	public void setBdate(String bdate) {
 		this.bdate = bdate;
 	}
+	
+	public String getBadmin() {
+		return badmin;
+	}
+
+	public void setBadmin(String badmin) {
+		this.badmin = badmin;
+	}
 
 	public String getBreason() {
 		return breason;
@@ -32,5 +41,6 @@ public class BlockMemberDto {
 	public void setBreason(String breason) {
 		this.breason = breason;
 	}
+	
 
 }

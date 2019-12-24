@@ -31,7 +31,7 @@ public class BlockMemberDao {
 //	기능:차단 목록 조회
 //	이름:getList
 //	매개변수:없음
-//	반환형 :데이터 목록(List<BlockMembeDto>)
+//	반환형 :데이터 목록(List<BlockMemberDto>)
 	public List<BlockMemberDto> getList(int start, int finish) throws Exception{
 		Connection con = getConnection();
 		String sql="select * from ( "
@@ -50,9 +50,10 @@ public class BlockMemberDao {
 			
 			BlockMemberDto dto = new BlockMemberDto();
 			
-			dto.setB_id(rs.getString("b_id"));
-			dto.setBdate(rs.getString("bdate"));
-//			dto.set
+			ps.setString(1, dto.getB_id());
+			ps.setString(2, dto.getBdate());
+			ps.setString(3, dto.getBadmin());
+			ps.setString(4, dto.getBreason());
 	
 			list.add(dto);
 		}
@@ -61,25 +62,62 @@ public class BlockMemberDao {
 		return list;
 	}	
 	
-//	기능:글쓰기
-//	이름:write
-//	매개변수:(BA_BordDto)
+//	기능:회원 차단
+//	이름:blockMem
+//	매개변수:(BlockMemberDto)
 //	반환형:없음
 	
-	public void write(BA_BoardDto dto)throws Exception{
+	public void blockMem(BlockMemberDto dto)throws Exception{
 		Connection con=getConnection();
 		
-		String sql="insert into ba_board "
-					+ "values(?,?,?,?,sysdate,null,0,0,0)";
+		String sql="insert into block_mem "
+					+ "values(?,sysdate,?,?)";
 			PreparedStatement ps=con.prepareStatement(sql);
 			
-			ps.setInt(1, dto.getBoard_no());
-			ps.setString(2, dto.getWriter());
-			ps.setString(3, dto.getTitle());
-			ps.setString(4, dto.getContent());
+			ps.setString(1, dto.getB_id());
+			ps.setString(3, dto.getBadmin());
+			ps.setString(4, dto.getBreason());
 			
 			ps.execute();		
 		con.close();
 	}
-
+	
+//	기능:회원차단 해제
+//	이름:releaseMem
+//	매개변수:회원 아이디(id)
+//	반환형:없음
+	public void releaseMem(String id) throws Exception {
+		Connection con=getConnection();
+		String sql="delete block_mem where b_id=?";
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setString(1, id);
+		ps.execute();
+		
+		con.close();
+	}
+	
+//	기능:단일 조회
+//	이름:get
+//	매개변수:회원 아이디
+//	반환형:BlockMemberDto
+	public BlockMemberDto get(String id)throws Exception{
+		Connection con=getConnection();
+		String sql="select * from block_mem where b_id=?";
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setString(1, id);
+		ResultSet rs=ps.executeQuery();
+		
+		BlockMemberDto dto = new BlockMemberDto();
+		
+		ps.setString(1, dto.getB_id());
+		ps.setString(2, dto.getBdate());
+		ps.setString(3, dto.getBadmin());
+		ps.setString(4, dto.getBreason());
+		
+		rs.next();
+			
+			
+		con.close();
+		return dto;
+	}
 }
