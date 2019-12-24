@@ -1,18 +1,15 @@
-
 <%@page import="semi.beans.board.HistoryDto"%>
 <%@page import="semi.beans.board.HistoryDao"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@page import="semi.beans.board.HistoryDto"%>
+<%@page import="semi.beans.board.HistoryDao"%>
 <%@page import="semi.beans.board.BoardTextDto"%>
 <%@page import="java.util.List"%>
 <%@page import="semi.beans.board.BoardTextDao"%>
 <%@page import="semi.beans.board.BoardDto"%>
 <%@page import="semi.beans.board.BoardDao"%>
-
 <%@page import="semi.beans.board.BoardTextDto"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-
 <%
 	// 	int no = Integer.parseInt(request.getParameter("no"));
 	BoardDao boardDao = new BoardDao();
@@ -21,55 +18,126 @@
 	int boardno = Integer.parseInt(request.getParameter("boardno"));
 	BoardTextDto boardtextdto = boardtextdao.get(boardno);
 	String keyword = request.getParameter("keyword");
-
 	List<BoardTextDto> getList = boardtextdao.getList(keyword);
-
-	String login = (String)session.getAttribute("id");
-
+	String login = (String) session.getAttribute("id");
 %>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/semi_common.css">
+<link rel="stylesheet" type="text/css" 
+	href="<%=request.getContextPath() %>/css/board.css">
 <jsp:include page="/template/header.jsp"></jsp:include>
-
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/lib/toast/css/codemirror.min.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/lib/toast/css/github.min.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/lib/toast/css/tui-color-picker.min.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/lib/toast/dist/tui-editor.min.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/lib/toast/dist/tui-editor-contents.min.css">
+<script
+	src="<%=request.getContextPath()%>/lib/toast/dist/tui-editor-Editor-full.min.js"></script>
+<script>
+	//naver toast ui를 만들기 위한 코드
+	function createEditor() {
+		
+		//editor 옵션
+		var options = {
+			//el(element) : 에디터가 될 영역
+			el : document.querySelector(".naver-editor"),
+			//previewStyle : 표시되는 방식(horizontal, vertical)
+			previewStyle : 'vertical',
+			//height : 생성될 에디터의 높이
+			width: '100%',
+			height : '300px',
+			//initialEditType : 생성될 에디터의 초기화면 형태(markdown, wysiwyg)
+			initialEditType : 'markdown'
+		};
+		//editor 생성 코드
+		
+		var editor = tui.Editor.factory(options);
+		
+		//editor에 이벤트를 설정해서 입력하면 자동으로 input에 복사되게 구현
+		//- input이라는 상황이 발생하면 오른쪽 function을 실행하라
+		//- oninput이랑 동일한데 자바스크립트로만 구현
+		editor.on("change", function() {
+			//editor의 입력값을 가져와서 input에 설정
+			var text = editor.getValue();
+			var input = document.querySelector(".naver-editor + input");
+			input.value = text;
+		});
+	}
+	window.onload = createEditor;
+</script>
 <form action="boardedit.do" method="post">
-	<input type="hidden" name="boardtextno" value="<%=boardDto.getNo()%>"> 
-	<input type="hidden" name="keyword" value="<%=request.getParameter("keyword")%>">
-	<input type="hidden" name="boardtitle" value="<%=boardDto.getTitle() %>">
-	<input type="hidden" name="boardtextudate" value="<%=boardDto.getUdate()%>">
-	<input type="hidden" name="no"	 value="<%=boardtextdto.getNo() %>">
-	<input type="hidden" name="board_no"	 value="<%=boardtextdto.getBoard_no()%>">
-	<%if(login !=null){ %>
-		<input type="hidden" name="writer" value="<%=session.getAttribute("id") %>">
-	<%}else{ %>
-		<input type="hidden" name="ip_addr" value="<%=request.getRemoteAddr() %>">	
-	<%} %>
-	
+	<input type="hidden" name="boardtextno" value="<%=boardDto.getNo()%>">
+	<input type="hidden" name="keyword"
+		value="<%=request.getParameter("keyword")%>"> <input
+		type="hidden" name="boardtitle" value="<%=boardDto.getTitle()%>">
+	<input type="hidden" name="boardtextudate"
+		value="<%=boardDto.getUdate()%>"> <input type="hidden"
+		name="no" value="<%=boardtextdto.getNo()%>"> <input
+		type="hidden" name="board_no" value="<%=boardtextdto.getBoard_no()%>">
+	<%
+		if (login != null) {
+	%>
+	<input type="hidden" name="writer"
+		value="<%=session.getAttribute("id")%>">
+	<%
+		} else {
+	%>
+	<input type="hidden" name="ip_addr"
+		value="<%=request.getRemoteAddr()%>">
+	<%
+		}
+	%>
+
 	<article class="board">
 
 		<div class="title">
 			<%=boardDto.getTitle()%>
 		</div>
-		<div class="sub-title">
-			<%if(login !=null) {%>
-				수정자: <%=session.getAttribute("id")%>	
-			<%}else{ %>
-				수정자: <%=request.getRemoteAddr() %>
-			<%} %>
-		</div>
-		<p class="board-udate">
+			<br><br><br>
+			
+	<div>	
 			최종 수정시간:<%=boardtextdto.getUdate()%>
-		</p>
-
 		<div class="sub-title">
-			내용<br>
-			<textarea name="content"
-				style="resize: none; width: 100%; height: 200px"><%=boardtextdto.getText_content()%>
-				</textarea>
+			<%
+				if (login != null) {
+			%>
+			수정자:
+			<%=session.getAttribute("id")%>
+			<%
+				} else {
+			%>
+			수정자:
+			<%=request.getRemoteAddr()%>
+			<%
+				}
+			%>
+		</div>
+	</div>
+		<div class="text">
+			<br>
+			<div class="naver-editor"><%=boardtextdto.getText_content()%></div>
 		</div>
 
-		<div align="left">	
-		<input type="submit" value="편집완료">
+		<div align="left">
+			<input type="submit" value="편집완료">
 		</div>
 	</article>
-	
+	<!-- 
+        이 div 태그가 에디터로 변함 
+        - 주의 : 입력창이 아니기 때문에 전송이 안됨
+        - 전송하려면 submit 상황에서 추가 코드 필요
+    -->
+	<!--    body가 없는 경우에는 다음과 같이 작성 -->
+	<!--    - 예약 실행(callback) -->
+<!-- 	        window.onload = createEditor; -->
+	<div class="naver-editor"></div>
+	<input type="hidden" name="text_content">
 </form>
 <jsp:include page="/template/footer.jsp"></jsp:include>

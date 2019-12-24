@@ -1,3 +1,5 @@
+<%@page import="semi.beans.block.mem.BlockMemberDto"%>
+<%@page import="semi.beans.block.mem.BlockMemberDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.lang.reflect.Array"%>
 <%@page import="semi.beans.member.MemberDto"%>
@@ -9,6 +11,8 @@
 <!--  관리자 회원 검색 페이지 -->
 
 <%
+String id=(String)request.getSession().getAttribute("id");
+
 //	페이지 크기
 int pagesize = 10;
 //	네비게이터 크기
@@ -50,6 +54,9 @@ int navsize = 10;
 		list=dao.getList(start, finish);
 		}
 			int count = dao.getCount(type, keyword);	
+			
+	BlockMemberDao bdao=new BlockMemberDao();
+	BlockMemberDto bdto=new BlockMemberDto();
 %>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -92,22 +99,36 @@ int navsize = 10;
 				<th>email</th>
 				<th>등급</th>
 				<th>포인트</th>
-				<th>차단 관리</th>
+				<th>회원 차단</th>
+				
 			</tr>
 		</thead>
 
 		<tbody align="center">
 			<%for(MemberDto dto : list){ %>
 			<tr>
-				<td><%=dto.getId()%></td>
+				<td>
+				<%=dto.getId()%>
+				<%-- <%if(bdao.check(dto.getId())) {%>
+					<font color="red">[차단 회원]</font>
+				<%} %> --%>
+
+				</td>
 				<td><%=dto.getEmail()%></td>
 				<td><%=dto.getGrade()%></td>				
 				<td><%=dto.getPoint()%></td>
-			<!--  관리 메뉴 --> 	
+			
+			<!--회원 차단--> 	
 			<td>
-		<a href="#" ><input type="button" name="block" value="차단"></a> 
-		<a href="#" ><input type="button" name="release"  value="차단해제"></a> 
-				</td>	
+			<form action="block.do">
+			<input type="hidden" name="id" value="<%=dto.getId()%>">
+			<input 	type="hidden" name="admin" value="<%=id%>">
+				
+				<input type="text" name="reason">
+				<input type="submit" value="차단">
+			</form>
+			</td>
+				
 			</tr>
 			<%} %>
 		</tbody>

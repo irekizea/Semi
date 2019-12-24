@@ -68,7 +68,7 @@
   <nav class="navmenu">
   <%if(request.getParameter("keyword")!=null){ %>
         <ul>
-            <li><a href="<%=request.getContextPath()%>/board/history.jsp">역사</a> </li>
+            <li><a href="<%=request.getContextPath()%>/board/history.jsp?keyword=<%=request.getParameter("keyword")%>">역사</a> </li>
             <li><a href="#">토론</a> </li>
             <li><a href="#">편집</a> </li>
             <li><a href="#">좋아요</a> </li>
