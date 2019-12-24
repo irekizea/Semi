@@ -26,7 +26,22 @@ public class BoardTextDao {
 		return source.getConnection();
 	}
 	
-// 주제1에 대한 상세글 작성
+// 주제1에 대한 상세글 작성(목차 추가)	
+	public void textInsert(BoardTextDto boardTextDto) throws Exception {
+		Connection con = getConnection();
+		
+		String sql="insert into board_text(no, writer, sub_title, content, board_no, ip_addr) "
+				+ "values(board_text_seq.nextval, ?, ?, ?, ?, ?)";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, boardTextDto.getWriter());
+		ps.setString(2, boardTextDto.getSub_title());
+		ps.setString(3, boardTextDto.getText_content());
+		ps.setInt(4, boardTextDto.getBoard_no());
+		ps.setString(5, boardTextDto.getIp_addr());
+		ps.execute();
+				
+		con.close();
+	}
 	
 	
 // 주제1에 대한 상세글 목록
@@ -51,6 +66,8 @@ public class BoardTextDao {
 			boardTextDto.setIp_addr(rs.getString("ip_addr"));
 			System.out.println(boardTextDto.getContent()+"content");
 			System.out.println(boardTextDto.getWriter()+"writer");
+			boardTextDto.setText_content(rs.getString("text_content"));
+			boardTextDto.setUdate(rs.getString("udate"));
 			
 			list.add(boardTextDto);
 		}
@@ -75,6 +92,7 @@ public class BoardTextDao {
 			boardtextdto.setWriter(rs.getString("writer"));
 			boardtextdto.setSub_title(rs.getString("sub_title"));
 			boardtextdto.setContent(rs.getString("text_content"));
+			boardtextdto.setText_content(rs.getString("text_content"));
 			boardtextdto.setUdate(rs.getString("udate"));
 			boardtextdto.setIp_addr(rs.getString("ip_addr"));
 		}
@@ -88,6 +106,7 @@ public class BoardTextDao {
 		public void btedit(BoardTextDto dto) throws Exception{
 			Connection con = getConnection();
 			
+
 			String sql = "update board_text set udate=sysdate, writer=?, text_content=?, ip_addr=? where no=? ";
 			
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -95,7 +114,7 @@ public class BoardTextDao {
 			ps.setString(2, dto.getContent());
 			ps.setString(3, dto.getIp_addr());
 			ps.setInt(4, dto.getNo());
-			
+
 			ps.execute();
 			
 			con.close();

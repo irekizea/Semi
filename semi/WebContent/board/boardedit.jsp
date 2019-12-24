@@ -1,7 +1,6 @@
-<<<<<<< HEAD
+
 <%@page import="semi.beans.board.HistoryDto"%>
 <%@page import="semi.beans.board.HistoryDao"%>
-=======
 
 <%@page import="semi.beans.board.BoardTextDto"%>
 
@@ -12,7 +11,6 @@
 <%@page import="semi.beans.board.BoardDao"%>
 
 <%@page import="semi.beans.board.BoardTextDto"%>
->>>>>>> refs/remotes/origin/master
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -67,7 +65,9 @@
 		<div class="sub-title">
 			내용<br>
 			<textarea name="content"
+
 				style="resize: none; width: 100%; height: 200px;"><%=boardtextdto.getContent()%></textarea>
+
 		</div>
 
 		<div align="left">	

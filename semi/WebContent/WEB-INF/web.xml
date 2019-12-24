@@ -14,7 +14,6 @@
  	<filter>
  		<filter-name>encoding</filter-name>
 		<filter-class>semi.filter.EFilter</filter-class>
-
  	</filter>
  	<filter-mapping>
  		<filter-name>encoding</filter-name>
@@ -35,7 +34,6 @@
 <!--  		<filter-name>login</filter-name> -->
 <!-- 		<filter-class>semi.filter.loginFilter</filter-class> -->
 
-<!--  	</filter> -->
 <!--  	<filter-mapping> -->
 <!--  		<filter-name>login</filter-name> -->
 <!--  		<url-pattern></url-pattern> -->
@@ -52,7 +50,7 @@
 <!--  	</filter-mapping> -->
 
  	
- 	
+
  	
  	<error-page>
  		<error-code>404</error-code>

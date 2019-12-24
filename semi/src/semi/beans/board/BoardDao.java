@@ -24,7 +24,7 @@ public class BoardDao {
 	public Connection getConnection() throws Exception {
 		return source.getConnection();
 	}
-
+	
 //	메인검색글 상세페이지
 	public BoardDto getSearch(String keyword) throws Exception {
 		Connection con = getConnection();
@@ -40,8 +40,11 @@ public class BoardDao {
 			boardDto.setNo(rs.getInt("no"));
 			boardDto.setWriter(rs.getString("writer"));
 			boardDto.setTitle(rs.getString("title"));
+			boardDto.setContent(rs.getString("content"));
 			boardDto.setUdate(rs.getString("udate"));
 			boardDto.setSearchCount(rs.getInt("searchCount"));
+			boolean editcheck=Boolean.parseBoolean(rs.getString("editcheck"));
+			boardDto.setEditCheck(editcheck);
 		}
 		con.close();
 		return boardDto;
@@ -62,7 +65,7 @@ public class BoardDao {
 		con.close();
 	}
 	
-// 검색어 count
+// 검색어 순위 count
 	public void searchCount(String keyword) throws Exception {
 		Connection con = getConnection();
 		
@@ -91,6 +94,19 @@ public class BoardDao {
 		}
 		con.close();
 		return list;
+	}
+
+// 승인된 최초글(수정 전)인지, 수정된 글인지 판단하는 메소드
+// 승인된 최초 글이 수정되면 'true'로 변경
+	public void editCheck(String keyword) throws Exception {
+		Connection con = getConnection();
+		
+		String sql="update board set editcheck='true' where title=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, keyword);
+		ps.execute();
+		
+		con.close();
 	}
 }
 
