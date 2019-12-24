@@ -59,9 +59,7 @@
 	BoardReplyDao boardReplyDao = new BoardReplyDao();
 	List<BoardReplyDto> replyList = boardReplyDao.replyList(keyword);
 	
-// 	System.out.println("<p>Remote Addr: " + request.getRemoteAddr() + "</p>");
-// 	System.out.println("<p>Remote Host: " + request.getRemoteHost() + "</p>");
-// 	System.out.println("<p>X-Forwarded-For: " + request.getHeader("x-forwarded-for") + "</p>");
+
 			
 	String login = (String)session.getAttribute("id");
 	
