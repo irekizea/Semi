@@ -61,11 +61,9 @@ public class BoardTextDao {
 			boardTextDto.setBoard_no(rs.getInt("board_no"));
 			boardTextDto.setWriter(rs.getString("writer"));
 			boardTextDto.setSub_title(rs.getString("sub_title"));
-			boardTextDto.setContent(rs.getString("text_content"));
 			boardTextDto.setUdate(rs.getString("udate"));
 			boardTextDto.setIp_addr(rs.getString("ip_addr"));
-			System.out.println(boardTextDto.getContent()+"content");
-			System.out.println(boardTextDto.getWriter()+"writer");
+	
 			boardTextDto.setText_content(rs.getString("text_content"));
 			boardTextDto.setUdate(rs.getString("udate"));
 			
@@ -91,7 +89,6 @@ public class BoardTextDao {
 			boardtextdto.setBoard_no(rs.getInt("board_no"));
 			boardtextdto.setWriter(rs.getString("writer"));
 			boardtextdto.setSub_title(rs.getString("sub_title"));
-			boardtextdto.setContent(rs.getString("text_content"));
 			boardtextdto.setText_content(rs.getString("text_content"));
 			boardtextdto.setUdate(rs.getString("udate"));
 			boardtextdto.setIp_addr(rs.getString("ip_addr"));
@@ -111,7 +108,7 @@ public class BoardTextDao {
 			
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, dto.getWriter());
-			ps.setString(2, dto.getContent());
+			ps.setString(2, dto.getText_content());
 			ps.setString(3, dto.getIp_addr());
 			ps.setInt(4, dto.getNo());
 
