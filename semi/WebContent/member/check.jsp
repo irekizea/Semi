@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+ 
+    <%--
+	공통 모듈로 사용할 비밀번호 검사 페이지
+	 - 목적지 정보(go)를 받아서 hidden 형태로 form에 첨부
+ --%>
+ 
     <%
 	String go = request.getParameter("go");
 %>

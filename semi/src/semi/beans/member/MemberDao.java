@@ -3,10 +3,15 @@ package semi.beans.member;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.naming.spi.DirStateFactory.Result;
 import javax.sql.DataSource;
+
+import oracle.jdbc.proxy.annotation.Pre;
 
 public class MemberDao {
 
@@ -146,4 +151,43 @@ public class MemberDao {
 		con.close();
 	
 	}
+	
+	// 관리자 기능 (조회)
+	
+	// 기능 : 관리자 기능으로 회원 조회
+	// 이름 : search
+	// 매개변수 : type , keyword,
+	// 반환형 : list
+	
+	public List<MemberDto> search(String type,String keyword) throws Exception{
+		Connection con = getConnection();
+		
+		String sql = "select * from member "
+				+ "where "+type+" like '%'||?||'%' "
+						+ "order by "+type+" asc ";
+		
+		System.out.println(sql);
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, keyword);
+		ResultSet rs = ps.executeQuery();
+		
+		//ResultSet을 List로 변환
+		List<MemberDto> list = new ArrayList<>();
+		while(rs.next()) {
+			MemberDto dto = new MemberDto();
+			dto.setId(rs.getString("id"));
+			dto.setEmail(rs.getString("email"));
+			dto.setGrade(rs.getString("grade"));
+			dto.setPoint(rs.getInt("point"));
+		
+			
+			list.add(dto);
+		}
+		
+		con.close();
+		
+		return list;
+	}
+	
 }
