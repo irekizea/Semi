@@ -8,23 +8,23 @@
 
 @font-face {
     font-family: 아리따B;
-    src: url("../font/Arita_ttf/아리따-돋움(TTF)-SemiBold.ttf")
+    src: url("../font/Arita_ttf/ARITA4.0_B.TTF")
 }
 @font-face {
     font-family: 아리따L;
-    src: url("../font/Arita_ttf/아리따-돋움(TTF)-Light.ttf")
+    src: url("../font/Arita_ttf/ARITA4.0_L.TTF")
 }
 @font-face {
     font-family: 아리따M;
-    src: url("../font/Arita_ttf/아리따-돋움(TTF)-Medium.ttf")
+    src: url("../font/Arita_ttf/ARITA4.0_M.TTF")
 }
 @font-face {
     font-family: 아리따SB;
-    src: url("../font/Arita_ttf/아리따-돋움(TTF)-SemiBold.ttf")
+    src: url("../font/Arita_ttf/ARITA4.0_SB.TTF")
 }
 @font-face {
     font-family: 아리따T;
-    src: url("../font/Arita_ttf/아리따-돋움(TTF)-Thin.ttf")
+    src: url("../font/Arita_ttf/ARITA4.0_T.TTF")
 }
 
 /* 개발자 테스트용 border:1 */  
