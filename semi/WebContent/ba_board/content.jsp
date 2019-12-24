@@ -1,4 +1,6 @@
 
+<%@page import="semi.beans.reply.ReplyDto"%>
+<%@page import="semi.beans.reply.ReplyDao"%>
 <%@page import="semi.beans.ba_board.BA_FileDto"%>
 <%@page import="java.util.List"%>
 <%@page import="semi.beans.ba_board.BA_FileDao"%>
@@ -18,6 +20,11 @@ String userId = (String)session.getAttribute("id");
 String grade = (String)session.getAttribute("grade");
 
 boolean isAdmin = grade.equals("관리자");
+
+
+int board_no=Integer.parseInt(request.getParameter("board_no"));
+ReplyDao replydao = new ReplyDao();
+List<ReplyDto> replylist = replydao.ReplyList(board_no);
 
 %>
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -94,18 +101,18 @@ boolean isAdmin = grade.equals("관리자");
         
         
 <!--토론 작성 부분-->
-<form action="#" method="post">
-	<input type="hidden" name="writer" value="<%=userId%>">
-    <div class="reply">
-        <h4>댓글달기</h4>
-        <h6>[알림] 비로그인 상태로 토론에 참여합니다. 토론 내역에 IP(?)가 영구히 기록됩니다.</h6>
-        <textarea name="reply_title" id="rt" rows="3" cols="80" required></textarea><br><br>
+<%-- <form action="replywrite.do?no=<%=board_no %>" method="post">  --%>
+<%-- 	<input type="hidden" name="writer" value="<%=userId%>"> --%>
+<!--     <div class="reply"> -->
+<!--         <h4>댓글달기</h4> -->
+<!--         <h6>[알림] 비로그인 상태로 토론에 참여합니다. 토론 내역에 IP(?)가 영구히 기록됩니다.</h6> -->
+<!--         <textarea name="reply_title" id="rt" rows="3" cols="80" required></textarea><br><br> -->
 
-        <div align="right">
-            <input type="submit" value="전송" id="bt">
-        </div>
-    </div>
-</form>
+<!--         <div align="right"> -->
+<!--             <input type="submit" value="전송" id="bt"> -->
+<!--         </div> -->
+<!--     </div> -->
+<!-- </form> -->
     </div>
 </article>
 

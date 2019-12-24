@@ -1,9 +1,3 @@
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> refs/remotes/origin/master
 <%@page import="semi.beans.ba_board.BA_BoardDto"%>
 <%@page import="semi.beans.ba_board.BA_BoardDao"%>
 <%@page import="java.util.List"%>

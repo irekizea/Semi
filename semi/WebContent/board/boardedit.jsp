@@ -1,18 +1,14 @@
-<<<<<<< HEAD
+
 <%@page import="semi.beans.board.HistoryDto"%>
 <%@page import="semi.beans.board.HistoryDao"%>
-=======
 
 <%@page import="semi.beans.board.BoardTextDto"%>
-
-
 <%@page import="java.util.List"%>
 <%@page import="semi.beans.board.BoardTextDao"%>
 <%@page import="semi.beans.board.BoardDto"%>
 <%@page import="semi.beans.board.BoardDao"%>
 
 <%@page import="semi.beans.board.BoardTextDto"%>
->>>>>>> refs/remotes/origin/master
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -29,6 +25,7 @@
 	List<BoardTextDto> getList = boardtextdao.getList(keyword);
 
 	String login = (String)session.getAttribute("id");
+
 %>
 <jsp:include page="/template/header.jsp"></jsp:include>
 
@@ -75,6 +72,4 @@
 	</article>
 	
 </form>
-
-
 <jsp:include page="/template/footer.jsp"></jsp:include>

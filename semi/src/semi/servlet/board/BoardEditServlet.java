@@ -62,6 +62,7 @@ public class BoardEditServlet extends HttpServlet{
 			BoardDao boardDao = new BoardDao();
 			boardDao.editCheck(keyword);
 			
+
 			resp.sendRedirect("searchResult.jsp?keyword="+URLEncoder.encode(keyword, "UTF-8")+"&no="+no);
 
 		}
@@ -71,3 +72,5 @@ public class BoardEditServlet extends HttpServlet{
 		}
 	}
 }
+
+

@@ -57,7 +57,9 @@
 
 	boolean editCheck= boardDto.getEditCheck();
 	System.out.println(editCheck);
-
+	
+	boardDao.searchCount(keyword); 
+	
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
