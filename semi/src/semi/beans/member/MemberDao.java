@@ -213,10 +213,10 @@ public class MemberDao {
 			
 			MemberDto dto = new MemberDto();
 			
-			ps.setString(1, dto.getId());
-			ps.setString(2, dto.getEmail());
-			ps.setString(3, dto.getGrade());
-			ps.setInt(4, dto.getPoint());
+			dto.setId(rs.getString("id"));
+			dto.setEmail(rs.getString("email"));
+			dto.setGrade(rs.getString("grade"));
+			dto.setPoint(rs.getInt("point"));
 	
 			list.add(dto);
 		}
