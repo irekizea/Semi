@@ -15,13 +15,6 @@
 <head>
     <meta charset="UTF-8">
     <title>ALcohol wiki - <%=keyword %></title>
-    	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
-
-
-
-
-
-
 
 </head>
 <body test>
