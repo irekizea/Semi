@@ -1,3 +1,4 @@
+
 package semi.beans.board;
 
 public class BoardTextDto {
