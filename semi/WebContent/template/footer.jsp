@@ -81,9 +81,10 @@
 						<h3>ACOHOL WIKI&copy;</h3><br>
 						<form action="<%=request.getContextPath()%>/operationPolicy/OP.jsp">
 							  <button class="button type1">
-  								 운영 방침
+  								운영 방침
   							</button>
-						</form><br>
+						</form>
+						<br>
 								<h5>이하 개발용 상태값 확인</h5>
 								<%
 									String id = (String)session.getAttribute("id");
