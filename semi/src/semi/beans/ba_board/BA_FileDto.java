@@ -7,6 +7,7 @@ public class BA_FileDto {
 	private String savename;
 	private String filetype;
 	private long filesize;
+	private String title_key;
 	
 	public BA_FileDto() {
 		super();
@@ -59,5 +60,15 @@ public class BA_FileDto {
 	public void setFilesize(long filesize) {
 		this.filesize = filesize;
 	}
+
+	public String getTitle_key() {
+		return title_key;
+	}
+
+	public void setTitle_key(String title_key) {
+		this.title_key = title_key;
+	}
+	
+	
 
 }
