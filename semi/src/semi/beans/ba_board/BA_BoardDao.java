@@ -159,6 +159,7 @@ public class BA_BoardDao {
 			dto.setTitle(rs.getString("title"));
 			dto.setContent(rs.getString("content"));
 			dto.setWdate(rs.getString("wdate"));
+			dto.setUdate(rs.getString("update"));
 			dto.setUp(rs.getInt("up"));
 			dto.setDown(rs.getInt("down"));
 			dto.setRegist(rs.getInt("regist"));
