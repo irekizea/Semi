@@ -46,7 +46,7 @@
 
 <div align = "center">
 
-<table style = "border:1px solid black; width:90% ">
+<table border = "1" style = width:90%>
 	<tr>
 		<th>
 	<%if(request.getParameter("writer")!=null){ %>
