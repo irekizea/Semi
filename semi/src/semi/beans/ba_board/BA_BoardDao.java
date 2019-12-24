@@ -219,7 +219,6 @@ public class BA_BoardDao {
 //	반환형:없음
 	public boolean regist(BA_BoardDto dto) throws Exception {
 		Connection con=getConnection();
-		
 		String sql="insert into board(no,writer,title,wdate,udate,content) "
 					+ "values(board_seq.nextval,?,?,sysdate,sysdate,?)";
 		PreparedStatement ps=con.prepareStatement(sql);
@@ -227,7 +226,6 @@ public class BA_BoardDao {
 		ps.setString(2, dto.getTitle());
 		ps.setString(3, dto.getContent());
 		
-		ps.execute();
 		int update=ps.executeUpdate();
 		
 		boolean result=false;
@@ -238,6 +236,7 @@ public class BA_BoardDao {
 		con.close();	
 		return result;
 	}
+	
 //	기능:게시글 등록 완료 표시
 //	이름:registUpdate
 //	매개변수:no

@@ -1,4 +1,5 @@
-
+<%@page import="semi.beans.board.HistoryDao"%>
+<%@page import="semi.beans.board.HistoryDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -7,9 +8,6 @@
        <style>
         .footer {
             width: 100%;
-
-
-
         }
 
         .footer>.foodiv>* {
@@ -68,19 +66,9 @@
   width: 100%;
   height: 100%;
 }
-        
-        
+          
     </style>
-  
-
-
-
-    
-    
-    
-    
         <footer>
- 
 								<!-- 
 									하단 홈페이지 정보 작성
 									- 회사정보
@@ -93,9 +81,10 @@
 						<h3>ACOHOL WIKI&copy;</h3><br>
 						<form action="<%=request.getContextPath()%>/operationPolicy/OP.jsp">
 							  <button class="button type1">
-  								 운영 방침
+  								운영 방침
   							</button>
-						</form><br>
+						</form>
+						<br>
 								<h5>이하 개발용 상태값 확인</h5>
 								<%
 									String id = (String)session.getAttribute("id");
@@ -104,14 +93,8 @@
 								<h5>id = <%=id%>, grade = <%=grade%></h5>
 								<h5>로그인 상태 = <%=id != null%></h5>
 							
-				 </div>
-				
-				 
-				 
+				 </div>		 
 		    </article>
- 
-
         </footer>
 </body>
 </html>
-

@@ -32,14 +32,8 @@ public class BA_BoardRegistServlet extends HttpServlet {
 			dto.setTitle(title);
 			dto.setContent(content);
 			
-			System.out.println(no);
-			System.out.println(writer);
-			System.out.println(title);
-			System.out.println(content);
 			
 			boolean result = dao.regist(dto);
-			
-			System.out.println(result);
 			
 			if(result) {
 				dao.registUpdate(no);

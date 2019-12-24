@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
+
 
 <style>
         body {
@@ -67,11 +68,10 @@
   <nav class="navmenu">
   <%if(request.getParameter("keyword")!=null){ %>
         <ul>
-            <li><a href="#">역사</a> </li>
+            <li><a href="<%=request.getContextPath()%>/board/history.jsp?keyword=<%=request.getParameter("keyword")%>">역사</a> </li>
             <li><a href="#">토론</a> </li>
             <li><a href="#">편집</a> </li>
             <li><a href="#">좋아요</a> </li>
-
         </ul>
 	<%} %>
         <form class="search-form" action="<%=request.getContextPath()%>/board/searchResult.jsp">
@@ -83,3 +83,4 @@
 
 
     </nav>
+
