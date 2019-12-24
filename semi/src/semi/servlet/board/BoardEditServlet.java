@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import semi.beans.board.BoardDao;
 import semi.beans.board.BoardTextDao;
 import semi.beans.board.BoardTextDto;
 import semi.beans.board.HistoryDao;
@@ -45,7 +47,7 @@ public class BoardEditServlet extends HttpServlet{
 			BoardTextDao bdao = new BoardTextDao();
 			bdto.setWriter(writer);
 
-			bdto.setContent(content);
+			bdto.setText_content(content);
 			bdto.setIp_addr(ipaddr);
 			bdto.setText_content(content);
 			bdto.setNo(no);
