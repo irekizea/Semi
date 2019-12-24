@@ -30,6 +30,8 @@ public class BlockMemeberInsertServlet extends HttpServlet{
 		
 			dao.blockMem(dto);
 			
+			resp.sendRedirect("list.jsp");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.sendError(500);

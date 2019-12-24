@@ -69,13 +69,12 @@ public class BlockMemberDao {
 	public void blockMem(BlockMemberDto dto)throws Exception{
 		Connection con=getConnection();
 		
-		String sql="insert into block_mem "
-					+ "values(?,sysdate,?,?)";
+		String sql="insert into block_mem values(?,sysdate,?,?)";
 			PreparedStatement ps=con.prepareStatement(sql);
 			
 			ps.setString(1, dto.getB_id());
-			ps.setString(3, dto.getBadmin());
-			ps.setString(4, dto.getBreason());
+			ps.setString(2, dto.getBadmin());
+			ps.setString(3, dto.getBreason());
 			
 			ps.execute();		
 		con.close();

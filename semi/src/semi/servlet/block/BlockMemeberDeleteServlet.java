@@ -21,6 +21,8 @@ public class BlockMemeberDeleteServlet extends HttpServlet{
 			String id=req.getParameter("id");
 			dao.releaseMem(id);
 			
+			resp.sendRedirect("block_list.jsp");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.sendError(500);
