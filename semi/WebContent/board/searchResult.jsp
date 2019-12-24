@@ -74,25 +74,6 @@
                     <% if(boardDto.getTitle()!=null){ %>
                    		<%=boardDto.getTitle() %>
                 </div>
-
-                <div class="board-udate">
-					<span>최근 수정 시간: <%=boardDto.getUdate() %></span>
-                </div>
-                <article class="clear"></article>
-				<div class="row-empty"></div>
-				
-						<!-- 메인 주제에 대한 상세글-->
-			           
-			         
-			                <%for(BoardTextDto boardTextDto:getList){ %>
-			              
-							
-							<%if(boardTextDto.getIp_addr() !=null){ %>
-								<p class="board-udate">최근수정자: <%=boardTextDto.getIp_addr() %></p>
-							<%}else{ %>
-								<p class="board-udate">최근수정자: <%=boardTextDto.getWriter() %></p>
-							<%} %>
-							
                 		<!-- 승인후 최초 글이라면(사용자 수정 전) false -->        
                 		<%if(!editCheck){ %>
 	                		<div class="board-udate">
