@@ -58,69 +58,121 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/board.css">
 <jsp:include page="/template/header.jsp"></jsp:include>
 
-			<!-- 검색된 메인글 주제 -->
-            <article class="board">           
-			    <div class="title">
-			    <!-- 검색어(title)가 있다면 -->
-                    <% if(boardDto.getTitle()!=null){ %>
-                   		<%=boardDto.getTitle() %>
-                </div>
-                		<!-- 승인후 최초 글이라면(사용자 수정 전) false -->        
-                		<%if(!editCheck){ %>
-	                		<div class="board-udate">
-								<span>최근 수정 시간: <%=boardDto.getUdate() %></span>
-		                	</div>
-		                	<article class="clear"></article>
-		                	<p class="board-udate"> 최근 수정자: 
-									<%=boardDto.getWriter() %>							
-							</p>
-			                <div class="sub-title">
-			                  	개요
-			                    <hr>
-			                </div>
-			                <div class="text">			                	
-			                    <%= boardDto.getContent()%>
-			                </div>
-								<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+<% if(boardDto.getTitle()!=null){ %>
+
+<table border="1">
+	<tr>
+		<th>
+		<%=boardDto.getTitle() %>
+		</th>
+	</tr>
+	
+		<%if(!editCheck){ %>
+	<tr>
+		<th>
+		개요
+		</th>
+		<th>
+		</th>
+		<th>
+			최근 수정시간
+		</th>
+		<th>
+		최근 수정자
+		</th>
+	</tr>
+	
+	<tr>
+		<td></td>
+		<td></td>
+		<td><%=boardDto.getUdate() %></td>
+		<td><%=boardDto.getWriter() %></td>
+	</tr>
+	
+	<tr>
+	<td colspan = "4">
+		  <%= boardDto.getContent()%>
+	</td>
+	</tr>
+	
+	<tr>
+		<td colspan = "4">
+			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
 								<input type="button" value="편집">
 								</a>
-						<%} 
-                		
-                		// 승인 후 사용자가 수정한 글
-                		else {%>
-			                <div class="board-udate">
-								<span>최근 수정 시간: <%=boardDto.getUdate() %></span>
-			                </div>
-		                	<article class="clear"></article>
-							<div class="row-empty"></div>
-						
-							<!-- 메인 주제에 대한 상세글-->
-					        	<%for(BoardTextDto boardTextDto:getList){ %>
-									<p class="board-udate"> 최근 수정자: 
-										<%if(boardTextDto.getWriter()!=null){ %>
-											<%=boardTextDto.getWriter() %>
-										<%} 
-										else { %>
-											<%=boardTextDto.getIp_addr() %>
-										<%} %>
-									</p>
-					                <div class="sub-title">
-					                  	<%=boardTextDto.getSub_title() %>
-					                    <hr>
-					                </div>
-					                <div class="text">			                	
-					                    <%= boardTextDto.getText_content()%>
-					                </div>
-										<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
-										<input type="button" value="편집">
-										</a>
-								<%} %>               			
-                		<%} %>
-					
-						<form action="textInsert.do" method="post">
+		</td>
+	
+	</tr>
+	
+	
+<%} else{%>
+	<tr>
+		<th>
+		<%=boardDto.getTitle() %>
+		</th>
+		<th>
+		최근 수정 시간: <%=boardDto.getUdate() %>
+		</th>
+	</tr>
+
+	<tr>
+		<th>
+		개요
+		</th>
+		<th>
+		</th>
+		<th>
+		수정시간
+		</th>
+		<th>
+		수정자
+		</th>
+	</tr>
+		
+	  	<%for(BoardTextDto boardTextDto:getList){ %>
+	
+	<tr>
+		<td><%=boardTextDto.getSub_title()%></td>
+		<td></td>
+		<td>
+			<%=boardDto.getUdate() %>
+		</td>
+		<td>
+			<%if(boardTextDto.getWriter()!=null){ %>
+				<%=boardTextDto.getWriter() %>
+			<%} 
+			else { %>
+				<%=boardTextDto.getIp_addr() %>
+			<%} %>
+				
+				
+		</td>
+	</tr>
+	
+	<tr>
+	<td colspan = "4">
+		  <%= boardDto.getContent()%>
+	</td>
+	</tr>
+	
+	<tr>
+		<td colspan = "4">
+			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+			<input type="button" value="편집">
+			</a>
+		</td>
+	
+	</tr>
+<%} %>
+<%} %>
+
+	<tr>
+	
+		<td colspan = "4">
+			<form action="textInsert.do" method="post">
 							<label for="show">목차 추가</label>
 							<input type="checkbox" id="show" class="checkbox'">
-							<div class="reply-insert">
+							
 								<input type="hidden" name="keyword" value=<%=keyword %>>
 								<input type="hidden" name="board_no" value="<%=boardDto.getNo()%>">
 								<input type="text" name="sub_title" value="목차[소제목]" required class="sub-title" style="width:100%; height:5%;">
@@ -130,77 +182,97 @@
 										[알림] 비로그인 상태로 편집합니다. 편집 내역에 IP "<%=ip %>"가 영구히 기록됩니다.
 								<%} %> 
 								<p align="right" style="margin: 5px 0px"><input type="submit" value="등록완료"></p>
-							</div>
-						</form>
-		     </article>
-            
-           <!-- 메인 주제에 대한 댓글(토론) -->
-            <article>
-				<span class="sub-title">토론</span>
-				<hr>
+							
+			</form>
+		</td>
+	
+	</tr>
 
-<!-- 				댓글(토론) 목록 -->
-				<%for(BoardReplyDto boardReplyDto: replyList){ %>
-					<div class="reply-list">
-						<div class="writer">
-							<%if(boardReplyDto.getWriter()!=null){ %>
-								<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?writer=<%=boardReplyDto.getWriter() %>">
-									<span><%=boardReplyDto.getWriter() %></span>
-								</a>
-								<%} 
-								else {%>
-									<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?ip_addr=<%=boardReplyDto.getIp_addr() %>">
-										<span><%=boardReplyDto.getIp_addr() %></span> 
-									</a>
-								<%} %>
-							</div>
-							<div  class="wdate">
-								<span><%=boardReplyDto.getWdate() %></span>
-							</div>
-						<p class="clear p-empty"></p>
-						<div><%=boardReplyDto.getContent() %></div>
-					</div>
- 				<div class="row-empty"></div>
-				<%} %>	
-				<div class="row-empty"></div>
 
-<jsp:include page="/board/searchResultScript.jsp"></jsp:include>
 
-				<!-- 입력창 -->
-            	<form action="replyInsert.do" method="post">                               
-	            	<div class="reply-insert">
+</table>
+<table border="1">
+	<tr>
+		<th colspan = "4">
+			토론
+		</th>
+	</tr>
+	<%for(BoardReplyDto boardReplyDto: replyList){ %>
+	
+	<tr>
+		<td>
+		<%if(boardReplyDto.getWriter()!=null){ %>
+		<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?writer=<%=boardReplyDto.getWriter() %>">
+									<%=boardReplyDto.getWriter() %>
+				
+								
+		<%} else {%>
+				<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?ip_addr=<%=boardReplyDto.getIp_addr() %>">
+					<%=boardReplyDto.getIp_addr() %>
+				</a>
+			<%} %>
+		</td>
+		
+		<td colspan ="2">
+		</td>
+	
+		<td>
+			<%=boardReplyDto.getWdate() %>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan = "4">
+			<%=boardReplyDto.getContent() %>
+		</td>
+	</tr>
+
+	<%} %>
+	
+	<tr>
+			<td clospan="4">
+					<form action="replyInsert.do" method="post">                               
+	       
 	            		<input type="hidden" name="board_title" value="<%=boardDto.getTitle()%>">	   
 	            		<textarea name="content" onkeyup="textLimit(this, 1000);" required></textarea>
-						
-						<span>
+	            		
 		            	<%if(writer==null) { %>
 							[알림] 비로그인 상태로 토론에 참여합니다. 토론 내역에 IP "<%=ip %>"가 영구히 기록됩니다.
 						<%} %>
-						</span><br>
-						<span>토론은 사용자에 의한 임의삭제가 불가능하므로 신중하게 작성하여 주시길 바랍니다.</span>
-		            	<p align="right" style="margin: 5px 0px"><input type="submit" value="등록"></p>
-	            	</div>	            			            	
-
-            	</form>
-     
-					<% }
-                    
-               // 검색결과가 없으면    
-					else {%>
-					<div>
-						<P style="font-size:25px">
-							"<%=keyword %>"에 대한 검색결과가 없습니다. <br>
-						</P>
-							<p style="font-size: 15px">
-							<%if(writer==null){ %>
+		
+			</td>
+	
+		</tr>
+	
+		<tr>
+			<td>
+			토론은 사용자에 의한 임의삭제가 불가능하므로 신중하게 작성하여 주시길 바랍니다.
+			<input type="submit" value="등록">
+			</form>
+		</td>
+	</tr>
+	
+					<% }else {%>
+	<tr>
+		<td >
+		"<%=keyword %>"에 대한 검색결과가 없습니다. <br>
+		</td>
+		<td colspan="3">
+			<%if(writer==null){ %>
 								로그인 후 " <%=keyword %> "에 대한 <a href="<%=request.getContextPath()%>/member/login.jsp">새 글 제안하기</a>
-							<%} 
-							else{%>
-								 " <%=keyword %> "에 대한 <a href="<%=request.getContextPath()%>/ba_board/write.jsp">새 글 제안하기</a>
-							<%} %>
-							</p>
-					<%} %>
-					</div>
-            </article>
+			<%}else{%>
+				 " <%=keyword %> "에 대한 <a href="<%=request.getContextPath()%>/ba_board/write.jsp">새 글 제안하기</a>
+			<%} %>
+		</td>
+	
+	</tr>
+			<%} %>
+
+
+
+</table>
+
+
+
 
 <jsp:include page="/template/footer.jsp"></jsp:include>
