@@ -66,7 +66,7 @@ int navsize = 10;
 			<option value="id">아이디</option>
 			<option value="name">이름</option>
 			<option value="grade">등급</option>
-			<option value="phone">전화번호</option>
+			<option value="point">포인트</option>
 		</select>
 				
 		<input type="text" name="keyword">
@@ -81,9 +81,9 @@ int navsize = 10;
 	</h3>
 	
 	<%--결과 list가 null인지 아닌지에 따라 다른 결과를 보여 주겠다--%>
- 	<%if(list == null){ %> <!-- 검색어 입력을 안한거 -->
-		<h3> 검색어를 입력해주세요</h3>
-	<%}else{ %>	
+<%--  	<%if(list == null){ %> <!-- 검색어 입력을 안한거 --> --%>
+<!-- 		<h3> 검색어를 입력해주세요</h3> -->
+<%-- 	<%}else{ %>	 --%>
 	<!-- 검색 결과 -->
 	<table border="0" width="80%">
 		<!-- 테이블 헤더 -->
@@ -107,6 +107,7 @@ int navsize = 10;
 			<!--  관리 메뉴 --> 	
 			<td>
 		<a href="#" ><input type="button" name="block" value="차단"></a> 
+		<a href="#" ><input type="button" name="release"  value="차단해제"></a> 
 				</td>	
 			</tr>
 			<%} %>
@@ -114,9 +115,9 @@ int navsize = 10;
 
 
 	</table>
-	<%} %>
+<%-- 	<%} %> --%>
 	<!-- 네비게이터(navigator) -->
-		<jsp:include page="/template/navigator.jsp">
+		<jsp:include page="/template/navigatorSearch.jsp">
 			<jsp:param name="pno" value="<%=pno%>"/>
 			<jsp:param name="count" value="<%=count%>"/>
 			<jsp:param name="navsize" value="<%=navsize%>"/>
