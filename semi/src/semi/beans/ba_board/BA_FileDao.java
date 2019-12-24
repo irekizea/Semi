@@ -87,6 +87,36 @@ public class BA_FileDao {
 				fdto.setSavename(rs.getString("savename"));
 				fdto.setFiletype(rs.getString("filetype"));
 				fdto.setFilesize(rs.getLong("filesize"));
+				fdto.setTitle_key(rs.getString("title_key"));
+				list.add(fdto);
+			}
+			
+			con.close();
+			return list;
+		}
+		
+//기능:목록조회2 (board)
+//이름:get
+//매개변수: 상세글(board_text) 번호(no)
+//반환형:BA_FileDto
+		public List<BA_FileDto> getList(String keyword) throws Exception{
+			Connection con = getConnection();
+			
+			String sql = "select * from ba_file where title_key = ? order by no asc";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, keyword);
+			ResultSet rs = ps.executeQuery();
+			
+			List<BA_FileDto> list = new ArrayList<>();
+			while(rs.next()) {
+				BA_FileDto fdto = new BA_FileDto();
+				fdto.setNo(rs.getInt("no"));
+				fdto.setOrigin(rs.getInt("origin"));
+				fdto.setUploadname(rs.getString("uploadname"));
+				fdto.setSavename(rs.getString("savename"));
+				fdto.setFiletype(rs.getString("filetype"));
+				fdto.setFilesize(rs.getLong("filesize"));
+				fdto.setTitle_key(rs.getString("title_key"));
 				list.add(fdto);
 			}
 			
@@ -115,9 +145,39 @@ public class BA_FileDao {
 				fdto.setSavename(rs.getString("savename"));
 				fdto.setFiletype(rs.getString("filetype"));
 				fdto.setFilesize(rs.getLong("filesize"));
+				fdto.setTitle_key(rs.getString("title_key"));
 			}
 			
 			con.close();
 			return fdto;
 		}
+
+//기능:단일조회
+//이름:get
+//매개변수: 검색어(title_key)
+//반환형:BA_FileDto
+		public BA_FileDto get(String keyword) throws Exception{
+			Connection con = getConnection();
+	
+			String sql = "select * from ba_file where title_key = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, keyword);
+			ResultSet rs = ps.executeQuery();
+					
+			BA_FileDto fdto = null;
+			if(rs.next()) {
+				fdto = new BA_FileDto();
+				fdto.setNo(rs.getInt("no"));
+				fdto.setOrigin(rs.getInt("origin"));
+				fdto.setUploadname(rs.getString("uploadname"));
+				fdto.setSavename(rs.getString("savename"));
+				fdto.setFiletype(rs.getString("filetype"));
+				fdto.setFilesize(rs.getLong("filesize"));
+				fdto.setTitle_key(rs.getString("title_key"));
+			}
+					
+			con.close();
+			return fdto;
+		}
+
 }

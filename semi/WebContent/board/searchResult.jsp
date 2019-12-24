@@ -17,6 +17,9 @@
 	.checbox:checked +div {
 		display: block;
 	}
+	.table {
+		width
+	}
 </style>
     
 <%@page import="semi.beans.board.BoardReplyDto"%>
@@ -33,6 +36,8 @@
 <%@ page import = "semi.beans.board.BoardDto" %>
 <%@ page import = "semi.beans.board.BoardTextDao" %>
 <%@ page import = "semi.beans.board.BoardTextDto" %>
+<%@page import="semi.beans.ba_board.BA_FileDao"%>
+<%@page import="semi.beans.ba_board.BA_FileDto"%>
     
 <%
 	String keyword = request.getParameter("keyword"); 
@@ -53,9 +58,10 @@
 	// 승인된 후 첫글인지, 사용자가 수정한 글인지 판단
 	boolean editCheck= boardDto.getEditCheck();
 	
-	// 메인상세글 글번호
+	// 파일 다운로드 파일정보 불러오기(List)
+	BA_FileDao fdao = new BA_FileDao();
+	List<BA_FileDto> flist=fdao.getList(keyword);
 	
-
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
@@ -63,9 +69,9 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <% if(boardDto.getTitle()!=null){ %>
-
-<table border="1">
-	<tr>
+<article>
+<table border="1" class="w-80">
+	<tr>				<!-- 승인된 첫 화면.(=사용자 수정 전) -->
 		<th>
 		<%=boardDto.getTitle() %>
 		</th>
@@ -96,6 +102,10 @@
 	<tr>
 	<td colspan = "4">
 		  <%= boardDto.getContent()%>
+		   <%for(BA_FileDto boardFileDto : flist) {%>
+		  	<!-- 파일 미리보기 -->
+		  	<img src="filedown.do?keyword=<%=boardFileDto.getTitle_key() %>" class="img" style="width:100px; height:auto;">
+		  <%} %>
 	</td>
 	</tr>
 	
@@ -109,8 +119,8 @@
 	</tr>
 	
 	
-<%} else{%>
-	<tr>
+<%} else{%>	
+	<tr>							<!-- 사용자들이 수정된 뒤의 상세글 -->
 		<th>
 		<%=boardDto.getTitle() %>
 		</th>
@@ -148,8 +158,7 @@
 			else { %>
 				<%=boardTextDto.getIp_addr() %>
 			<%} %>
-				
-				
+							
 		</td>
 	</tr>
 	
@@ -278,7 +287,7 @@
 
 
 </table>
-
+</article>
 
 
 
