@@ -36,8 +36,7 @@ public class BA_FileDao {
 		
 		PreparedStatement ps=con.prepareStatement(sql);
 
-
-	ps.setInt(1, fdto.getOrigin());
+		ps.setInt(1, fdto.getOrigin());
 		ps.setString(2, fdto.getUploadname());
 		ps.setString(3, fdto.getSavename());
 		ps.setString(4, fdto.getFiletype());
