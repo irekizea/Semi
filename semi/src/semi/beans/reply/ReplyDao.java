@@ -34,45 +34,8 @@ public class ReplyDao {
 		return source.getConnection();
 	}
 	
-	//	필요한 기능 : 등록기능, 목록기능 , 삭제기능
-	
-	// 등록 기능 insert
-	
-	//-이름 : write
-	//-매개변수 : replytitle, id ,board_no
-	//-반환형 : void
-	
-	public void write(ReplyDto dto) throws Exception{
-		Connection con = getConnection();
-		
-		String sql = "insert into ba_reply(reply_no, replytitle, id "
-					+ "value(ba_reply_seq.nextval,?,?)";
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setInt(1, dto.getReply_no());
-		ps.setString(2, dto.getReply_title());
-		ps.setString(3, dto.getId());
-		
-		
-		ps.execute();
-		
-		con.close();
-	}
-	
-	public void replyCreate(ReplyDto dto) throws Exception{
-		Connection con = getConnection();
-		
-		String sql = "insert into ba_reply (reply_no, reply_title, id, wdate "
-				+ "values(ba_reply_seq.nextval, ?, ?, ?)";
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, dto.getReply_title());
-		ps.setString(2, dto.getId());
-		ps.setString(3, dto.getWdate());
-		
-		ps.execute();
-		
-		con.close();
-		
-	}
+
+
 	
 	
 	//	삭제기능
@@ -89,74 +52,8 @@ public class ReplyDao {
 		con.close();
 		
 	}
-    //목록기능
-    //이름:getList
-    //매개변수 : 게시글번호(board no)
-    //반환형 : 댓글목록(List<ReplyDt>)
-	
-
-	public List<ReplyDto> rList (int boardno) throws Exception{
-
-			Connection con = getConnection();
-			
-			String sql = "select * from ba_reply where board_no = ? "
-
-					+ "order by wdate asc";
-
-			
-			PreparedStatement ps = con.prepareStatement(sql);
-
-			ps.setInt(1, boardno);
-
-			ResultSet rs = ps.executeQuery();
-			
-			List<ReplyDto> list = new ArrayList<>();
-			if(rs.next()) {
-				ReplyDto dto = new ReplyDto();
-				dto.setReply_no(rs.getInt("reply_no"));
-				dto.setId(rs.getString("id"));
-				dto.setReply_title(rs.getString("reply_title"));
-				dto.setWdate(rs.getString("wdate"));
-				dto.setBoard_no(rs.getInt("board_no"));
-				
-				list.add(dto);
-			}
-			
-			con.close();
-			return list;	
-	}
-	
-	//댓글 목록
-	public List<BoardReplyDto> replyList (String keyword) throws Exception {
-		Connection con = getConnection();
-
-		String sql="select *from board_reply where board_title=? "
-				+ "order by wdate asc";
-		PreparedStatement ps = con.prepareStatement(sql);		
-		ps.setString(1, keyword);
-		ResultSet rs = ps.executeQuery();
-		
-		List<BoardReplyDto> list = new ArrayList<>();
-		
-		while(rs.next()) {
-			BoardReplyDto boardReplyDto = new BoardReplyDto();
-			
 
 
-			boardReplyDto.setReply_no(rs.getInt("reply_no"));
-			boardReplyDto.setBoard_title(rs.getString("board_title"));
-			boardReplyDto.setContent(rs.getString("content"));
-			boardReplyDto.setWriter(rs.getString("writer"));
-
-
-			boardReplyDto.setWdate(rs.getString("wdate"));
-			
-			list.add(boardReplyDto);
-		}
-		
-		con.close();		
-		return list;
-	}
 
 	
 	public List<ReplyDto> select(int board_no)throws Exception{
@@ -183,37 +80,51 @@ public class ReplyDao {
   
 	}
 	
-	// 테이블 no 로 데이터 한개 가져오기 : get1()
-	public ReplyDto get1(int reply_no) throws Exception{
-		ReplyDto dto = new ReplyDto();
-		String sql = "select * from Ba_reply where reply_no= ?";
+    //목록기능
+    //이름:getList
+    //매개변수 : 게시글번호(board no)
+    //반환형 : 댓글목록(List<ReplyDt>)
+	
+	// 테이블 no 로 데이터 한개 가져오기 : ReplyList()
+	public List<ReplyDto> ReplyList(int board_no) throws Exception{
 		Connection con = getConnection();
+		String sql = "select * from Ba_reply where Board_no = ? order by reply_no asc";
+	
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setInt(1, reply_no);
-		ResultSet rs = ps.executeQuery();
-		rs.next();
+		ps.setInt(1, board_no);
 		
+		ResultSet rs = ps.executeQuery();
+		
+		List<ReplyDto> list = new ArrayList<>();
+		
+		while(rs.next()) {
+		ReplyDto dto = new ReplyDto();
 		dto.setReply_no(rs.getInt("reply_no"));
+		dto.setId(rs.getString("id"));
+		dto.setBoard_no(rs.getInt("board_no"));
 		dto.setReply_title(rs.getString("reply_title"));
 		dto.setWdate(rs.getString("wdate"));
-		dto.setBoard_no(rs.getInt("board_no"));
+		dto.setIp(rs.getString("ip"));
 	
-		return dto;
+		list.add(dto);
 		
 	}
-	
-	//테이블에 데이터 수정 구현 :update()
+	con.close();
+	return list;
+	}	
 
-	
-	public void insert(ReplyDto dto) throws Exception{
+	public void Rwrite(ReplyDto dto) throws Exception{
 		Connection con = getConnection();
-		String sql= "insert into ba_reply(reply_no,id,replytitle,wdate) values(ba_reply_seq.nextval,?,?,?)";
+		
+		
+		String sql= "insert into ba_reply(reply_no,id,board_no,reply_title,wdate,ip) values(ba_reply_seq.nextval,?,?,?,sysdate,?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
-		ps.setInt(1, dto.getReply_no());
-		ps.setString(2, dto.getId());
+		
+		ps.setString(1, dto.getId());
+		ps.setInt(2, dto.getBoard_no());
 		ps.setString(3, dto.getReply_title());
-		ps.setString(4, dto.getWdate());
+		ps.setString(4, dto.getIp());
 		
 		ps.execute();
 		ps.close();
@@ -237,6 +148,8 @@ public class ReplyDao {
 		
 		
 	}
+	
+
 
 	
 }
