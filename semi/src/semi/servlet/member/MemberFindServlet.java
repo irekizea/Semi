@@ -21,9 +21,7 @@ public class MemberFindServlet extends HttpServlet{
 		// 처리
 			MemberDao dao = new MemberDao();
 			// MemberDto dto = dto,find(email);
-			System.out.println(email);
 			String id = dao.find(email); // 아이디내놔/ 이메일로찾을게
-			System.out.println(id);
 			if(id == null) { // 아이디가 없으면
 				resp.sendRedirect("find_result.jsp");
 			}
