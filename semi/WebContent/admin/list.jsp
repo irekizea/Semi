@@ -64,7 +64,6 @@ int navsize = 10;
 
 		<select name="type">
 			<option value="id">아이디</option>
-			<option value="name">이름</option>
 			<option value="grade">등급</option>
 			<option value="point">포인트</option>
 		</select>

@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.beans.board.member.MemberDao;
-@WebServlet(urlPatterns="/member/find.do")
-public class MemberFindServlet extends HttpServlet{
+@WebServlet(urlPatterns="/member/find_id.do")
+public class MemberFindIdServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,10 +25,10 @@ public class MemberFindServlet extends HttpServlet{
 			String id = dao.find(email); // 아이디내놔/ 이메일로찾을게
 			System.out.println(id);
 			if(id == null) { // 아이디가 없으면
-				resp.sendRedirect("find_result.jsp");
+				resp.sendRedirect("find_id_result.jsp");
 			}
 			else {
-				resp.sendRedirect("find_result.jsp?id="+id);
+				resp.sendRedirect("find_id_result.jsp?id="+id);
 			}
 
 		// 이동
