@@ -2,11 +2,9 @@
 <%@page import="semi.beans.ba_board.BA_BoardDao"%>
 <%@page import="java.util.List"%>
 
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-
 int pagesize = 10;
 int navsize = 10;
 

@@ -85,6 +85,7 @@
 									<%=boardDto.getWriter() %>							
 							</p>
 
+
 			                <div class="sub-title">
 			                  	개요
 			                    <hr>
