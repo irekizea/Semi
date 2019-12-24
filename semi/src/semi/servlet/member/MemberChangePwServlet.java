@@ -17,7 +17,7 @@ public class MemberChangePwServlet extends HttpServlet{
 		try {
 			
 	//    [1] 수신
-			req.setCharacterEncoding("UTF-80"); // 한글로 받겠다
+			req.setCharacterEncoding("UTF-8"); // 한글로 받겠다
 			String pw = req.getParameter("pw");  //파라미터는 전달하는 데이터를 받겠다
 			
 			String id = (String)req.getSession().getAttribute("id"); //pw와는 다름/session에서 꺼내서 해야함
@@ -29,9 +29,7 @@ public class MemberChangePwServlet extends HttpServlet{
 			
 	//		[3] 이동
 			resp.sendRedirect("change_pw_result.jsp");
-					
-			
-		}
+			}
 		catch(Exception e) {
 			e.printStackTrace();
 			resp.sendError(500);
