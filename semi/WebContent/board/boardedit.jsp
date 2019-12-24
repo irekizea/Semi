@@ -27,9 +27,7 @@
 	String keyword = request.getParameter("keyword");
 
 	List<BoardTextDto> getList = boardtextdao.getList(keyword);
-// 	HistoryDao hdao = new HistoryDao();
-// 	HistoryDto hdto = hdao.get(Integer.parseInt(request.getParameter("no")));
-	//아이피/아이디 판별
+
 	String login = (String)session.getAttribute("id");
 %>
 <jsp:include page="/template/header.jsp"></jsp:include>
