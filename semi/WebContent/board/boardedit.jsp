@@ -3,8 +3,6 @@
 <%@page import="semi.beans.board.HistoryDao"%>
 
 <%@page import="semi.beans.board.BoardTextDto"%>
-
-
 <%@page import="java.util.List"%>
 <%@page import="semi.beans.board.BoardTextDao"%>
 <%@page import="semi.beans.board.BoardDto"%>
@@ -25,10 +23,9 @@
 	String keyword = request.getParameter("keyword");
 
 	List<BoardTextDto> getList = boardtextdao.getList(keyword);
-// 	HistoryDao hdao = new HistoryDao();
-// 	HistoryDto hdto = hdao.get(Integer.parseInt(request.getParameter("no")));
-	//아이피/아이디 판별
+
 	String login = (String)session.getAttribute("id");
+
 %>
 <jsp:include page="/template/header.jsp"></jsp:include>
 
@@ -65,9 +62,8 @@
 		<div class="sub-title">
 			내용<br>
 			<textarea name="content"
-
-				style="resize: none; width: 100%; height: 200px;"><%=boardtextdto.getText_content()%></textarea>
-
+				style="resize: none; width: 100%; height: 200px"><%=boardtextdto.getText_content()%>
+				</textarea>
 		</div>
 
 		<div align="left">	
@@ -76,6 +72,4 @@
 	</article>
 	
 </form>
-
-
 <jsp:include page="/template/footer.jsp"></jsp:include>

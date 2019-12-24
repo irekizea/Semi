@@ -51,16 +51,15 @@
 	
 	BoardReplyDao boardReplyDao = new BoardReplyDao();
 	List<BoardReplyDto> replyList = boardReplyDao.replyList(keyword);
-	
-// 	System.out.println("<p>Remote Addr: " + request.getRemoteAddr() + "</p>");
-// 	System.out.println("<p>Remote Host: " + request.getRemoteHost() + "</p>");
-// 	System.out.println("<p>X-Forwarded-For: " + request.getHeader("x-forwarded-for") + "</p>");
-			
+
+
 	String login = (String)session.getAttribute("id");
-	
+
 	boolean editCheck= boardDto.getEditCheck();
-
-
+	System.out.println(editCheck);
+	
+	boardDao.searchCount(keyword); 
+	
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
@@ -73,7 +72,9 @@
 			    <!-- 검색어(title)가 있다면 -->
                     <% if(boardDto.getTitle()!=null){ %>
                    		<%=boardDto.getTitle() %>
-                </div>
+                </div> 
+						<!-- 메인 주제에 대한 상세글-->
+
                 		<!-- 승인후 최초 글이라면(사용자 수정 전) false -->        
                 		<%if(!editCheck){ %>
 	                		<div class="board-udate">
@@ -83,6 +84,8 @@
 		                	<p class="board-udate"> 최근 수정자: 
 									<%=boardDto.getWriter() %>							
 							</p>
+
+
 			                <div class="sub-title">
 			                  	개요
 			                    <hr>
@@ -192,7 +195,7 @@
 
             	</form>
      
-					<% } %>
+					
                     
                // 검색결과가 없으면    
 					else {%>
