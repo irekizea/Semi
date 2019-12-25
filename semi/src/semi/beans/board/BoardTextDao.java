@@ -114,5 +114,24 @@ public class BoardTextDao {
 		con.close();
 
 	}
+
+//	목차추가 파일 업로드(DB text_file)
+	public void textFile(BoardTextDto textFileDto) throws Exception {
+		Connection con = getConnection();
+		System.out.println(textFileDto.getText_no()+"dsfdfsfsaf");
+		String sql="insert into text_file(file_no, text_no, uploadname, savename, filetype, filesize) "
+				+ "values(text_file_seq.nextval, ?, ?, ?, ?, ?)";
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setInt(1, textFileDto.getText_no());
+		ps.setString(2, textFileDto.getUploadname());
+		ps.setString(3, textFileDto.getSavename());
+		ps.setString(4, textFileDto.getFiletype());
+		ps.setLong(5, textFileDto.getFilesize());
+		ps.execute();
+		
+		System.out.println(textFileDto.getText_no());
+		con.close();
+	}
 }
 
