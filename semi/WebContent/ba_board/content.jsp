@@ -15,6 +15,8 @@
 	BA_FileDao fdao = new BA_FileDao();
 	List<BA_FileDto> flist=fdao.getList(no);
 	
+	String ip = request.getRemoteAddr();	//전송자 ip
+	
 	String userId = (String)session.getAttribute("id");
 	String grade = (String)session.getAttribute("grade");
 	boolean isAdmin = grade.equals("관리자");
@@ -104,7 +106,9 @@
 	<input type="hidden" name="writer" value="<%=userId%>">
     <div class="reply">
         <h4>댓글달기</h4>
-        <h6>[알림] 비로그인 상태로 토론에 참여합니다. 토론 내역에 IP(?)가 영구히 기록됩니다.</h6>
+      	<%if(userId==null) { %>
+        <h6>[알림] 비로그인 상태로 토론에 참여합니다. 토론 내역에 IP " <%=ip %> "가 영구히 기록됩니다.</h6>
+        <%} %>
         <textarea name="reply_title" id="rt" rows="3" cols="80" required></textarea><br><br>
 
         <div align="right">

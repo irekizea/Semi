@@ -50,40 +50,25 @@ public class BoardTextInsertServlet extends HttpServlet {
 			BoardTextDao boardTextDao = new BoardTextDao();
 			boardTextDao.textInsert(boardTextDto);
 			
-//		파일등록(승인 대기에서 넘어온 처음)
-//			int no = boardTextDao.getSequence();
+//		파일등록(목록 추가시)
+			int no = boardTextDto.getNo();		// sub_title no
 
 			File file = mRequest.getFile("file");
 			
 			if(file != null) {	// 파일이 있다면
-				if(boardTextDto.getText_content()==null) {		// board_Text의 Text_content가 null이면 넘어오는 파일
-
-					BA_FileDto boardFileDto = new BA_FileDto();
-					boardFileDto.setUploadname(mRequest.getOriginalFileName("file"));
-					boardFileDto.setSavename(mRequest.getFilesystemName("file"));
-					boardFileDto.setFiletype(mRequest.getContentType("file"));
-					boardFileDto.setFilesize(file.length());
-					boardFileDto.setTitle_key(keyword);
-					
-					BA_FileDao boardFileDao = new BA_FileDao();
-					boardFileDao.board_fileInsert(boardFileDto);
-					}
-				else {										// board_Text의 Text_content가 null이 아니면 추가 등록
 
 					BoardTextDto textFileDto = new BoardTextDto();
 
-//					textFileDto.setText_no(no);
-					System.out.println(textFileDto.getText_no()+"textno");
+					textFileDto.setText_no(no);
+
 					textFileDto.setUploadname(mRequest.getOriginalFileName("file"));
 					textFileDto.setSavename(mRequest.getFilesystemName("file"));
 					textFileDto.setFiletype(mRequest.getContentType("file"));
 					textFileDto.setFilesize(file.length());
-					
-					System.out.println(boardTextDto.getNo()+"no"+mRequest.getContentType("file")+"type");
-					
+										
 					BoardTextDao textFileDao = new BoardTextDao();
 					textFileDao.textFile(textFileDto);
-				}
+
 			}
 			
 			resp.sendRedirect(req.getContextPath()+"/board/searchResult.jsp?keyword="+URLEncoder.encode(keyword, "UTF-8")+"&board_no="+board_no);
