@@ -83,16 +83,12 @@
 
   		
 </script>
-
 <style>
-
 		/*title style*/
         .titlee {
             margin-left: 5%;
             font-size: 2rem;
         }
-
-
 
 	/* 실제 input 또는 textarea 숨김처리 */
 	.naver-editor + textarea {
@@ -110,7 +106,6 @@
 		display: block;
 	}
 </style>
-
 <%
 	String keyword = request.getParameter("keyword"); 
 	
@@ -135,19 +130,29 @@
 	List<BA_FileDto> flist=fdao.getList(keyword);
 	                                                                                                                       
 %>
-
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/board.css">
 <jsp:include page="/template/header.jsp"></jsp:include>
-
 <% if(boardDto.getTitle()!=null){ %>
-
 <article>
 <div class="titlee"><%=boardDto.getTitle() %></div>
 <div align = "right">최근 수정 시간 : <%=boardDto.getUdate() %></div>
 <div align="center">
+
+
+
 <form action="textInsert.do" method="post"  enctype="multipart/form-data">
 <table class="w-90">
+	<%for(BoardTextDto boardTextDto:getList){ %>
+	<tr>
+		<td>
+			<%= boardTextDto.getSub_title()%>
+		</td>
+	</tr>
+	<%} %>
+
+
+
 <%if(!editCheck){ %>
 
 <%for(BA_FileDto boardFileDto : flist) {%>
@@ -164,7 +169,9 @@
 	<%for(BoardTextDto boardTextDto:getList){ %>
 
 
+
 	<tr>
+
 		<td>
 		<!-- for(BoardTextDto boardTextDto:getList){
 				<a id="indexlist" href="#s-boardTextDto.getRn()">boardTextDto.getRn() boardTextDto.getSubTitle()</a><br>
@@ -181,23 +188,27 @@
 		</td>
 	</tr>
 	<tr>
-		<td width="100%" align = "right">최근 수정자: <%=boardDto.getWriter() %></td>
+		<td width="100%" align = "right">최근 수정자 : <%=boardDto.getWriter() %></td>
 	</tr>
 	<tr>
 		<td colspan = "4">
+			  <%= boardDto.getContent()%>
+
 
 			  <%= boardTextDto.getText_content()%>
 
 		</td>
 	</tr>
 	<%} %>
-	
+
 
 <%} else{%>	
-
 	<%for(BoardTextDto boardTextDto:getList){ %>
+
 	<tr>
-		<td class="sub-title" colspan="3"><!-- <a id ="s-boardTextDto.getRn()" href ="#indexlist">boardTextDto.getRn()</a> --><%=boardTextDto.getSub_title() %></td>
+
+		<td class="sub-title" colspan="2"><!-- <a id ="s-boardTextDto.getRn()" href ="#indexlist">boardTextDto.getRn()</a> --><%=boardTextDto.getSub_title() %></td>
+
 		<td>
 			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
 				<input type="button" value="편집">
@@ -211,7 +222,6 @@
 	<%} %>
 	
 <%} %>
-
 	<tr>
 	
 		<td colspan = "4">
@@ -247,13 +257,19 @@
 		</td>
 	
 	</tr>
-
 </table>
 </form>
 
+
+
+
+</form>
+
+
 <label for="reply"><p align="left" class="w-80">[토론 보기]</p></label>
 <input type="checkbox" id="reply" class="checkbox">
-<table border="1" class="checked-show w-80">
+<form action="replyInsert.do" method="post">  
+<table class="checked-show w-90">
 	<%for(BoardReplyDto boardReplyDto: replyList){ %>	
 	<tr>
 		<td>
@@ -287,7 +303,7 @@
 	
 	<tr>
 			<td clospan="4">
-					<form action="replyInsert.do" method="post">                               
+                             
 	       
 	            		<input type="hidden" name="board_title" value="<%=boardDto.getTitle()%>">	   
 	            		<textarea name="content" onkeyup="textLimit(this, 1000);" required></textarea>
@@ -304,11 +320,11 @@
 			<td>
 				토론은 사용자에 의한 임의삭제가 불가능하므로 신중하게 작성하여 주시길 바랍니다.
 			<input type="submit" value="등록">
-			</form>
+		
 			</td>
 		</tr>
 </table>
-
+</form>
 <!-- 검색결과가 없다면 -->
 <table>	
 <% }else {%>
