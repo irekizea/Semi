@@ -10,6 +10,7 @@
 	BoardDao boardDao = new BoardDao();
 	List<BoardDto> list =boardDao.getTitleList(); 
 %>
+<jsp:include page="/template/header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,3 +88,4 @@
     </main>
 </body>
 </html>
+<jsp:include page="/template/footer.jsp"></jsp:include>
