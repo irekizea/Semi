@@ -43,8 +43,7 @@ public class BoardDao {
 			boardDto.setContent(rs.getString("content"));
 			boardDto.setUdate(rs.getString("udate"));
 			boardDto.setSearchCount(rs.getInt("searchCount"));
-			boolean editcheck=Boolean.parseBoolean(rs.getString("editcheck"));
-			boardDto.setEditCheck(editcheck);
+			
 		}
 		con.close();
 		return boardDto;
@@ -81,7 +80,7 @@ public class BoardDao {
 		
 		String sql="select rownum, B. *from( "
 						+ "select title from board order by board.searchcount desc " 
-					+ ")B where rownum <=3";
+					+ ")B where rownum <=4";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		

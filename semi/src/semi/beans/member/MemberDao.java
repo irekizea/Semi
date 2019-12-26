@@ -89,7 +89,7 @@ public class MemberDao {
 	// 반환형 : id
 
 	// 전체 공개 / 반환String (입력 받을게 email인데 형식이 String이라서 )
-	public String find(String email) throws Exception {
+	public String find_id(String email) throws Exception {
 		// 연결하기/ con은 별칭 / get.onnection / 연결하기 가져오겠다를
 		Connection con = getConnection();
 
@@ -106,6 +106,32 @@ public class MemberDao {
 		con.close();
 
 		return id; // 아이디를 내놓겠다
+
+	}
+	// 기능 : 아이디로 비밀번호 찾기
+	// 이름 : find
+	// 매개변수 : id
+	// 반환형 : pw
+
+	// 전체 공개 / 반환String (입력 받을게 email인데 형식이 String이라서 )
+	
+	public String find_pw(String id) throws Exception {
+		// 연결하기/ con은 별칭 / get.onnection / 연결하기 가져오겠다를
+		Connection con = getConnection();
+
+		String sql = "select pw from member where id=?"; 
+		PreparedStatement ps = con.prepareStatement(sql); /* 준비된 명령 */
+		ps.setString(1, id);
+		ResultSet rs = ps.executeQuery();
+
+		String  pw= null;
+		if (rs.next()) {
+			pw = rs.getString("pw");
+		}
+		
+		con.close();
+
+		return pw; // 비번을 내놓겠다
 
 	}
 	// 단일 조회

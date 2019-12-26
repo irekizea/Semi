@@ -52,6 +52,7 @@ public class BA_BoardWriteServlet extends HttpServlet {
 			fdto.setSavename(mRequest.getFilesystemName("file"));
 			fdto.setFiletype(mRequest.getContentType("file"));
 			fdto.setFilesize(file.length());
+			fdto.setTitle_key(title);
 			
 			BA_FileDao fdao = new BA_FileDao();
 			fdao.fileInsert(fdto);

@@ -100,7 +100,7 @@ public class BoardTextDao {
 	// 편집 메소드
 	public void btedit(BoardTextDto dto) throws Exception {
 		Connection con = getConnection();
-
+		
 		String sql = "update board_text set udate=sysdate, writer=?, text_content=?, ip_addr=? where no=? ";
 
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -113,6 +113,24 @@ public class BoardTextDao {
 
 		con.close();
 
+	}
+
+//	목차추가 파일 업로드(DB text_file)
+	public void textFile(BoardTextDto textFileDto) throws Exception {
+		Connection con = getConnection();
+
+		String sql="insert into text_file(file_no, text_no, uploadname, savename, filetype, filesize) "
+				+ "values(text_file_seq.nextval, ?, ?, ?, ?, ?)";
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setInt(1, textFileDto.getText_no());
+		ps.setString(2, textFileDto.getUploadname());
+		ps.setString(3, textFileDto.getSavename());
+		ps.setString(4, textFileDto.getFiletype());
+		ps.setLong(5, textFileDto.getFilesize());
+		ps.execute();
+
+		con.close();
 	}
 }
 
