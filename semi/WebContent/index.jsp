@@ -12,7 +12,7 @@
 %>
 
 	<jsp:include page="/template/header.jsp"></jsp:include>
-	
+
     <style>
         /* 검색창 */      
     main{
@@ -80,4 +80,5 @@
 	        </div>
 		</form>
     </article>
+
 <jsp:include page="/template/footer.jsp"></jsp:include>

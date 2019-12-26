@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -54,12 +53,14 @@
 		editor.on("change", function() {
 			//editor의 입력값을 가져와서 input에 설정
 			var text = editor.getValue();
-			var input = document.querySelector(".naver-editor + textarea");
+			var input = document.querySelector(".naver-editor + input");
 			input.value = text;
 		});
 	}
+	
 	// editor로 쓰여진 글을 불러오기 위한 viewer 생성
 	function createViewer(){
+		
         //editor 옵션
         var options = {
             //el(element) : 에디터가 될 영역
@@ -76,24 +77,43 @@
         var text = input.value;
         editor.setValue(text);
     }
+	
+	function createMultiViewer(){
+		//전체 naver-viewer를 불러온다.
+		var list = document.querySelectorAll(".naver-viewer");
+		for(var i=0; i < list.length; i++){
+			//하나씩 초기화 진행
+	        var options = {
+	            //el(element) : 에디터가 될 영역
+	            el:list[i],
+	            
+	            viewer:true,
+	            //height : 생성될 에디터의 높이
+	            height:'auto',
+	            
+	        };
+	        //editor 생성 코드
+	        var editor = tui.Editor.factory(options);
+	        
+	        //list[i] 의 뒤에 있는 input의 값을 불러와 설정
+	        var input = list[i].nextElementSibling;
+	        var text = input.value;
+	        editor.setValue(text);
+		}
+	}
     //body가 없는 경우에는 다음과 같이 작성
     // - 예약 실행(callback)
     // window 실행시 자동으로 editor 생성
-	window.onload = createEditor;
+	window.onload = function(){
+		createEditor();
+// 		createViewer();
+		createMultiViewer();
+    };
 
   		
 </script>
 
 <style>
-
-		/*title style*/
-        .titlee {
-            margin-left: 5%;
-            font-size: 2rem;
-        }
-
-
-
 	/* 실제 input 또는 textarea 숨김처리 */
 	.naver-editor + textarea {
 		display: none;
@@ -120,6 +140,7 @@
 	
 	BoardTextDao boardTextDao = new BoardTextDao();
 	List<BoardTextDto> getList =boardTextDao.getList(keyword);	
+// 	BoardTextDto boardtextdto = boardTextDao.get(boardno)
 	
 	String ip = request.getRemoteAddr();	//전송자 ip
 	String writer = (String)request.getSession().getAttribute("id");
@@ -128,12 +149,10 @@
 	List<BoardReplyDto> replyList = boardReplyDao.replyList(keyword);	
 	
 	// 승인된 후 첫글인지, 사용자가 수정한 글인지 판단
-	boolean editCheck= boardDto.getEditCheck();
-	
+	boolean check = boardDao.check(keyword);
 	// 파일 다운로드 파일정보 불러오기(List)
 	BA_FileDao fdao = new BA_FileDao();
 	List<BA_FileDto> flist=fdao.getList(keyword);
-	                                                                                                                       
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
@@ -143,91 +162,86 @@
 <% if(boardDto.getTitle()!=null){ %>
 
 <article>
-<div class="titlee"><%=boardDto.getTitle() %></div>
+
+<div class="title"><%=boardDto.getTitle() %></div>
 <div align = "right">최근 수정 시간 : <%=boardDto.getUdate() %></div>
 <div align="center">
-<form action="textInsert.do" method="post"  enctype="multipart/form-data">
-<table class="w-90">
-<%if(!editCheck){ %>
 
+<table border="1" class="w-100">
+<%System.out.println("check = " + check); %>
+<%if(check==false){ %>
 <%for(BA_FileDto boardFileDto : flist) {%>
-
 	<tr>
 		<td colspan="4">			
 			<!-- 파일 미리보기 -->
-			
-			  	<img src="filedown.do?keyword=<%=boardFileDto.getTitle_key() %>" class="img">
-
+			  	<img src="filedown.do?keyword=<%=boardFileDto.getTitle_key() %>" class="img" style="width:100px; height:auto;">	
 		</td>
 	</tr>
 		<%} %>
 	<%for(BoardTextDto boardTextDto:getList){ %>
-
-
 	<tr>
-		<td>
-		<!-- for(BoardTextDto boardTextDto:getList){
-				<a id="indexlist" href="#s-boardTextDto.getRn()">boardTextDto.getRn() boardTextDto.getSubTitle()</a><br>
-		} -->
-		
+		<td class="sub-title" colspan="3">최초작성글이므로 목차가 설정되어있지 않습니다.</td>
+	</tr>
+	<tr>
+		<td width="100%" align = "right">작성자: <%=boardDto.getWriter() %></td>
+	</tr>
+	<tr>
+		<td colspan = "4" class="text">
+			  <div class="naver-viewer"></div><input type="hidden" value="<%=boardTextDto.getText_content() %>">
 		</td>
 	</tr>
 	<tr>
-		<td class="sub-title" colspan="3"><!-- <a id ="s-1" href ="#indexlist">1</a> -->개요</td>
 		<td>
-			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+			<a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
 				<input type="button" value="편집">
 			</a>
 		</td>
 	</tr>
-	<tr>
-		<td width="100%" align = "right">최근 수정자: <%=boardDto.getWriter() %></td>
-	</tr>
-	<tr>
-		<td colspan = "4">
-
-			  <%= boardTextDto.getText_content()%>
-
-		</td>
-	</tr>
 	<%} %>
-	
 
 <%} else{%>	
-
+	<%for(BA_FileDto boardFileDto : flist) {%>
+	<tr>
+		<td colspan="4">			
+			<!-- 파일 미리보기 -->
+			  	<img src="filedown.do?keyword=<%=boardFileDto.getTitle_key() %>" class="img" style="width:100px; height:auto;">	
+		</td>
+	</tr>
+	<%} %>
 	<%for(BoardTextDto boardTextDto:getList){ %>
 	<tr>
-		<td class="sub-title" colspan="3"><!-- <a id ="s-boardTextDto.getRn()" href ="#indexlist">boardTextDto.getRn()</a> --><%=boardTextDto.getSub_title() %></td>
+		<td class="sub-title" colspan="3"><%=boardTextDto.getSub_title() %></td>
+	</tr>
+	<tr>
+		<td width="100%" align = "right">최근 수정자: <%=boardTextDto.getWriter() %></td>
+	</tr>
+	<tr>
+		<td colspan="4" class="text">
+		<div class="naver-viewer"></div>
+		<input type="hidden" value="<%=boardTextDto.getText_content() %>">
+		</td>
+	</tr>
+	<tr>	
 		<td>
-			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+			<a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
 				<input type="button" value="편집">
 			</a>
 		</td>
 	</tr>
-	
-	<tr>
-		<td colspan="4"><%=boardTextDto.getText_content() %></td>
-	</tr>	
 	<%} %>
-	
 <%} %>
 
 	<tr>
-	
 		<td colspan = "4">
 			<label for="show">[목차 추가]</label>
 			<input type="checkbox" id="show" class="checkbox'">
 			<div class="checked-show">
-				
+				<form action="textInsert.do" method="post"  enctype="multipart/form-data">
 						<input type="hidden" name="keyword" value=<%=keyword %>>
 						<input type="hidden" name="board_no" value="<%=boardDto.getNo()%>">
-						<input type="text" name="sub_title" value="목차[소제목]" required class="sub-title" style="width:100%; height:5%;">
-								
-						<input type="file" name="file" >
-								
-						<div class="naver-editor"></div>
-							<textarea name="text_content" rows="4" required style="resize:vertical; width:100%" class="text">
-							</textarea>
+						<input type="text" name="sub_title" value="목차[소제목]" required class="sub-title" style="width:100%; height:5%;">				
+						<input type="file" name="file" >								
+						<div class="naver-editor"></div><input type="hidden" name="text_content">
 							<span>
 								문서 편집을 저장하면 기여한 내용을 CC-BY-NC-SA 2.0 KR으로 배포하고
 								기여한 문서에 대한 하이퍼링크나 URL을 이용하여 저작자 표시를 하는 것으로
@@ -235,9 +249,10 @@
 							</span>
 							<input type="checkbox">
 						<p align="right" style="margin: 5px 0px" class="checked-show">
-							<input type="submit" value="등록완료">
+							<input type="submit" value="등록완료">							
 						</p>
-				
+				</form>
+						<%boardDao.editCheck(keyword); %>
 								<%if(writer==null) {%>
 									<p> 
 										[알림] 비로그인 상태로 편집합니다. 편집 내역에 IP "<%=ip %>"가 영구히 기록됩니다.
@@ -249,7 +264,6 @@
 	</tr>
 
 </table>
-</form>
 
 <label for="reply"><p align="left" class="w-80">[토론 보기]</p></label>
 <input type="checkbox" id="reply" class="checkbox">
@@ -328,6 +342,7 @@
 <%} %>
 
 </table>
+
 </div>
 </article>
 
