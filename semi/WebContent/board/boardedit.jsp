@@ -131,7 +131,6 @@
 		<div class="text">
 			<br>
 			<div class="naver-editor"><%=boardtextdto.getText_content()%></div>
-			<%System.out.println(boardtextdto.getText_content()); %>
 		</div>
 		<span>
 			문서 편집을 저장하면 기여한 내용을 CC-BY-NC-SA 2.0 KR으로 배포하고
