@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import semi.beans.ba_board.BA_FileDao;
-import semi.beans.ba_board.BA_FileDto;
+import semi.beans.board.BoardDto;
 import semi.beans.board.BoardTextDao;
 import semi.beans.board.BoardTextDto;
 
@@ -33,7 +32,6 @@ public class BoardTextInsertServlet extends HttpServlet {
 
 //		TestInert 메인게시글 상세글 입력
 			req.setCharacterEncoding("UTF-8");
-			
 			
 			int board_no = Integer.parseInt(mRequest.getParameter("board_no"));	
 			String keyword = mRequest.getParameter("keyword");

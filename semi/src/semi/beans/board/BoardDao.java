@@ -43,8 +43,7 @@ public class BoardDao {
 			boardDto.setContent(rs.getString("content"));
 			boardDto.setUdate(rs.getString("udate"));
 			boardDto.setSearchCount(rs.getInt("searchCount"));
-			boolean editcheck=Boolean.parseBoolean(rs.getString("editcheck"));
-			boardDto.setEditCheck(editcheck);
+			
 		}
 		con.close();
 		return boardDto;
