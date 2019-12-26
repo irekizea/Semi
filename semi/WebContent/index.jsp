@@ -15,6 +15,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Alcohol wiki - 어디까지 마셔봤니?</title>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
     <style>
       
     main{
