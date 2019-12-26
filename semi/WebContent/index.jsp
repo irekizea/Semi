@@ -32,7 +32,7 @@
             position: relative;
             width: 60%;
             text-align: center;
-            margin-top:10%;
+            margin-top:15%;
         }
         .search {
             position: absolute;

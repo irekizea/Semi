@@ -10,52 +10,87 @@
 	HistoryDao dao = new HistoryDao();
 	List<HistoryDto> list = dao.hList(keyword);
 	
-
 %>    
 
+<style>
+    /* history style */
+    .history-title{
+        font-weight: bold;
+        font-size: xx-large;
+    }
+    .history-board {
+        border-collapse: collapse;
+    }
+    .history-board .board-style {
+    	padding: 1rem 0;
+        border-bottom: 1px dotted gray;
+    }
 
-
-
+    /* 좋아요, 싫어요 -> javaScript 구현 */
+    .liked {
+        color: blue;
+    }
+    .hate {
+        color: red;
+    }
+</style>
+<!--
+<script>
+    var result=3;
+    function liked(){
+        var tag = document.querySelector(".liked");
+        if(result){
+            tag.classList.remove("hate");
+            tag.classList.add("liked");
+        }        
+    }
+    function hate(){
+        var tag = document.querySelector(".liked");
+        if(result<0){
+            tag.classList.remove("liked");
+            tag.classList.add("hate");
+        }    
+    }
+</script>
+-->
 
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 
+<article class="w-90">
 
-<div align=center>
+    <p class="history-title"><%=keyword %></p>
 
-<table border="1" width = 70%>
-	
-	<tr>
-		<th>
-			<%=keyword %>
-		</th>
-
-		<th>
-		수정일자
-		</th>
-		<th>
-		작성자
-		</th>
-	</tr>
-	
-	<% for(HistoryDto hdto : list){ %>
-	<tr>
-		<td></td>
-		<td><%=hdto.getBoardtextudate() %></td>
-		<td>
-		<%if(hdto.getWriter()!=null){ %>
-		<%=hdto.getWriter() %>
-		<%} else {%>
-		<%=hdto.getIp_addr() %>
-		<%} %>
-		
-		</td>
-	</tr>
-	<%} %>
-</table>
-
-</div>
-
+    <div align=left>
+        <table class="history-board" border="0" width = 80%>            
+            <tr>
+                <td>수정시간(버전)</td>
+                <td>좋아요/싫어요</td>
+                <td>작성자</td>
+            </tr>
+            
+            <tr class=row-empty></tr>
+            
+           	<% for(HistoryDto hdto : list){ %>
+            <tr  class="board-style">
+                <td><a href="#"><%=hdto.getBoardtextudate() %></a></td>
+                <td class="liked">(+/- count) </td>
+                <td>
+                        <%if(hdto.getWriter()!=null){ %>
+                			<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?writer=<%=hdto.getWriter() %>">
+                				<%=hdto.getWriter() %>
+                			</a>
+						<%} else {%>
+							<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?writer=<%=hdto.getIp_addr() %>">
+                				<%=hdto.getIp_addr() %>
+                			</a>
+						<%} %>
+				</td>
+            </tr>
+           	<%} %>
+        </table>
+    </div>
+</article>
 
 
 <jsp:include page="/template/footer.jsp"></jsp:include>
