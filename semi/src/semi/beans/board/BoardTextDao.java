@@ -46,7 +46,7 @@ public class BoardTextDao {
 	public List<BoardTextDto> getList(String keyword) throws Exception {
 		Connection con = getConnection();
 
-		String sql = "SELECT A.no, B.writer, A.title, A.wdate, A.udate, A.searchcount, B.text_content, B.board_no, B.sub_title, B.ip_addr FROM BOARD A left join Board_Text B on a.no = b.board_no where title = ?";
+		String sql = "SELECT B.no, B.writer, A.title, A.wdate, A.udate, A.searchcount, B.text_content, B.board_no, B.sub_title, B.ip_addr FROM BOARD A left join Board_Text B on a.no = b.board_no where title = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, keyword);
 		ResultSet rs = ps.executeQuery();
@@ -56,15 +56,15 @@ public class BoardTextDao {
 		while (rs.next()) {
 			BoardTextDto boardTextDto = new BoardTextDto();
 			boardTextDto.setNo(rs.getInt("no"));
-			boardTextDto.setBoard_no(rs.getInt("board_no"));
 			boardTextDto.setWriter(rs.getString("writer"));
-			boardTextDto.setSub_title(rs.getString("sub_title"));
-			boardTextDto.setUdate(rs.getString("udate"));
-			boardTextDto.setIp_addr(rs.getString("ip_addr"));
-
 			boardTextDto.setText_content(rs.getString("text_content"));
 			boardTextDto.setUdate(rs.getString("udate"));
-
+			boardTextDto.setBoard_no(rs.getInt("board_no"));
+			boardTextDto.setSub_title(rs.getString("sub_title"));
+			boardTextDto.setIp_addr(rs.getString("ip_addr"));
+				
+			boardTextDto.setText_content(rs.getString("text_content"));
+			
 			list.add(boardTextDto);
 		}
 

@@ -58,6 +58,7 @@
 			input.value = text;
 		});
 	}
+	
 	// editor로 쓰여진 글을 불러오기 위한 viewer 생성
 	function createViewer(){
 		
@@ -77,12 +78,37 @@
         var text = input.value;
         editor.setValue(text);
     }
+	
+	function createMultiViewer(){
+		//전체 naver-viewer를 불러온다.
+		var list = document.querySelectorAll(".naver-viewer");
+		for(var i=0; i < list.length; i++){
+			//하나씩 초기화 진행
+	        var options = {
+	            //el(element) : 에디터가 될 영역
+	            el:list[i],
+	            
+	            viewer:true,
+	            //height : 생성될 에디터의 높이
+	            height:'auto',
+	            
+	        };
+	        //editor 생성 코드
+	        var editor = tui.Editor.factory(options);
+	        
+	        //list[i] 의 뒤에 있는 input의 값을 불러와 설정
+	        var input = list[i].nextElementSibling;
+	        var text = input.value;
+	        editor.setValue(text);
+		}
+	}
     //body가 없는 경우에는 다음과 같이 작성
     // - 예약 실행(callback)
     // window 실행시 자동으로 editor 생성
 	window.onload = function(){
 		createEditor();
-		createViewer();
+// 		createViewer();
+		createMultiViewer();
     };
 
   		
@@ -143,6 +169,7 @@
 <div align="center">
 
 <table border="1" class="w-100">
+<%System.out.println("check = " + check); %>
 <%if(check==false){ %>
 <%for(BA_FileDto boardFileDto : flist) {%>
 	<tr>
@@ -166,14 +193,12 @@
 	</tr>
 	<tr>
 		<td>
-			<%System.out.println(boardTextDto.getNo()); %>
-			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>&no=<%=boardTextDto.getNo()%>">
+			<a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
 				<input type="button" value="편집">
 			</a>
 		</td>
 	</tr>
 	<%} %>
-	
 
 <%} else{%>	
 	<%for(BA_FileDto boardFileDto : flist) {%>
@@ -189,7 +214,7 @@
 		<td class="sub-title" colspan="3"><%=boardTextDto.getSub_title() %></td>
 	</tr>
 	<tr>
-		<td width="100%" align = "right">최근 수정자: <%=boardDto.getWriter() %></td>
+		<td width="100%" align = "right">최근 수정자: <%=boardTextDto.getWriter() %></td>
 	</tr>
 	<tr>
 		<td colspan="4" class="text">
@@ -199,7 +224,7 @@
 	</tr>
 	<tr>	
 		<td>
-			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+			<a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
 				<input type="button" value="편집">
 			</a>
 		</td>

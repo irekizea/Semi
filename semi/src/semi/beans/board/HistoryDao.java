@@ -29,7 +29,7 @@ public class HistoryDao {
 	public void savehistory(HistoryDto dto) throws Exception {
 		Connection con = getConnection();
 
-		String sql = "insert into history values(history_seq.nextval,?,?,?,to_date(?,'yyyy-mm-dd'),?,?)";
+		String sql = "insert into history values(history_seq.nextval,?,?,to_date(?,'yyyy-mm-dd'),?,?,?)";
 
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, dto.getWriter());

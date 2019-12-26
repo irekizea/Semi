@@ -26,7 +26,7 @@ public class BoardEditServlet extends HttpServlet{
 			String writer = req.getParameter("writer");
 			String boardtitle = req.getParameter("boardtitle");
 			String boardtextudate = req.getParameter("boardtextudate");
-			String content = req.getParameter("content");
+			String content = req.getParameter("text_content");
 			String keyword = req.getParameter("keyword");
 			int no = Integer.parseInt(req.getParameter("no"));
 			int boardno = Integer.parseInt(req.getParameter("board_no"));
