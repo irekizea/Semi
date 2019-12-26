@@ -29,16 +29,16 @@ public class HistoryDao {
 	public void savehistory(HistoryDto dto) throws Exception {
 		Connection con = getConnection();
 
-		String sql = "insert into history values(history_seq.nextval,?,?,?,to_date(?,'yy-mm-dd'),?,?)";
+		String sql = "insert into history values(history_seq.nextval,?,?,to_date(?,'yyyy-mm-dd'),?,?,?)";
 
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setInt(1, dto.getBoard_text_no());
-		ps.setString(2, dto.getWriter());
-		ps.setString(3, dto.getBoardtitle());
-		ps.setString(4, dto.getBoardtextudate().substring(0, 10));
-		ps.setString(5, dto.getContent());
-		ps.setString(6, dto.getIp_addr());
-
+		ps.setString(1, dto.getWriter());
+		ps.setString(2, dto.getBoardtitle());
+		ps.setString(3, dto.getBoardtextudate().substring(0, 10));
+		ps.setString(4, dto.getContent());
+		ps.setString(5, dto.getIp_addr());
+		ps.setInt(6, dto.getboard_no());
+		
 		ps.execute();
 		con.close();
 	}
@@ -85,7 +85,7 @@ public class HistoryDao {
 		HistoryDto historydto = new HistoryDto();
 		if (rs.next()) {
 			historydto.setNo(rs.getInt("no"));
-			historydto.setBoard_text_no(rs.getInt("board_text_no"));
+			historydto.setboard_no(rs.getInt("board_no"));
 			historydto.setWriter(rs.getString("writer"));
 			historydto.setBoardtitle(rs.getString("board_title"));
 			historydto.setBoardtextudate(rs.getString("board_text_udate"));
@@ -97,13 +97,13 @@ public class HistoryDao {
 	}
 
 	// 최신글의 writer 뽑아오는 메소드
-	public int recentwriter(int board_text_no) throws Exception {
+	public int recentwriter(int board_no) throws Exception {
 		Connection con = getConnection();
 
-		String sql = "select max(no) from history where board_text_no=?";
+		String sql = "select max(no) from history where board_no=?";
 
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setInt(1, board_text_no);
+		ps.setInt(1, board_no);
 		ResultSet rs = ps.executeQuery();
 		int recentwriter = 0;
 		if (rs.next()) {
