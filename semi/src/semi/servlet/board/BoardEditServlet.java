@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.beans.board.BoardDao;
+import semi.beans.board.BoardDto;
 import semi.beans.board.BoardTextDao;
 import semi.beans.board.BoardTextDto;
 import semi.beans.board.HistoryDao;
@@ -48,12 +49,20 @@ public class BoardEditServlet extends HttpServlet{
 			bdto.setWriter(writer);
 
 			bdto.setIp_addr(ipaddr);
-			bdto.setText_content(content);
+			
+			BoardDto boardDto = new BoardDto();
+			boolean editCheck = boardDto.getEditCheck();
+			if(!editCheck) {	// 승인대기 후 넘어온 최초글
+				bdto.setText_content(boardDto.getContent());
+			}
+			else {
+				bdto.setText_content(content);
+			}
+
 			bdto.setNo(no);
 			
 			bdao.btedit(bdto);
-			
-			
+						
 			semi.beans.board.BoardDao dao = new semi.beans.board.BoardDao();
 			semi.beans.board.BoardDto dto = new semi.beans.board.BoardDto();
 			dto.setUdate("sysdate");

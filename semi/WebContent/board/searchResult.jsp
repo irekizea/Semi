@@ -138,9 +138,11 @@
 <div class="title"><%=boardDto.getTitle() %></div>
 <div align = "right">최근 수정 시간 : <%=boardDto.getUdate() %></div>
 <div align="center">
+
 <table border="1" class="w-100">
 <%if(!editCheck){ %>
 <%for(BA_FileDto boardFileDto : flist) {%>
+
 	<tr>
 		<td colspan="4">			
 			<!-- 파일 미리보기 -->
@@ -180,7 +182,7 @@
 			</a>
 		</td>
 	</tr>
-
+	
 	<tr>
 		<td colspan="4"><%=boardTextDto.getText_content() %></td>
 	</tr>	
