@@ -167,8 +167,15 @@
 <div align = "right">최근 수정 시간 : <%=boardDto.getUdate() %></div>
 <div align="center">
 
-<table border="1" class="w-100">
-<%System.out.println("check = " + check); %>
+<table class="w-100">
+	<%for(BoardTextDto boardTextDto:getList){ %>
+	<tr>
+		<td id = "#list">
+		  <a href ="#s-<%=boardTextDto.getRn() %>"><%=boardTextDto.getRn() %>:<%=boardTextDto.getSub_title() %></a>
+		</td>
+	</tr>
+	<%} %>
+
 <%if(check==false){ %>
 <%for(BA_FileDto boardFileDto : flist) {%>
 	<tr>
@@ -180,7 +187,7 @@
 		<%} %>
 	<%for(BoardTextDto boardTextDto:getList){ %>
 	<tr>
-		<td class="sub-title" colspan="3">최초작성글이므로 목차가 설정되어있지 않습니다.</td>
+		<td class="sub-title" colspan="3">최초작성글이므로 목차가 설정되어있지 않습니다. <%=boardTextDto.getRn() %></td>
 	</tr>
 	<tr>
 		<td width="100%" align = "right">작성자: <%=boardDto.getWriter() %></td>
@@ -210,7 +217,7 @@
 	<%} %>
 	<%for(BoardTextDto boardTextDto:getList){ %>
 	<tr>
-		<td class="sub-title" colspan="3"><%=boardTextDto.getSub_title() %></td>
+		<td class="sub-title" colspan="3"> <a id="s-<%=boardTextDto.getRn() %>" href= "#list"><%=boardTextDto.getRn() %></a>:<%=boardTextDto.getSub_title() %></td>
 	</tr>
 	<tr>
 		<td width="100%" align = "right">최근 수정자: <%=boardTextDto.getWriter() %></td>

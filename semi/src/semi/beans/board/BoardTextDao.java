@@ -46,7 +46,18 @@ public class BoardTextDao {
 	public List<BoardTextDto> getList(String keyword) throws Exception {
 		Connection con = getConnection();
 
-		String sql = "SELECT B.no, B.writer, A.title, A.wdate, A.udate, A.searchcount, B.text_content, B.board_no, B.sub_title, B.ip_addr FROM BOARD A left join Board_Text B on a.no = b.board_no where title = ?";
+		
+//		select rownum rn, C.*from(SELECT B.no, B.writer, A.title, A.wdate, A.udate, A.searchcount,
+//			       B.text_content, B.board_no, B.sub_title, B.ip_addr FROM BOARD A 
+//			       left join Board_Text B on a.no = b.board_no where title = '술')C
+		
+		
+		
+		
+		String sql = "select rownum rn, C.*from(SELECT B.no, B.writer, A.title, A.wdate, A.udate, "
+				+ "A.searchcount, B.text_content, B.board_no, "
+				+ "B.sub_title, B.ip_addr FROM BOARD A left "
+				+ "join Board_Text B on a.no = b.board_no where title = ?)C";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, keyword);
 		ResultSet rs = ps.executeQuery();
@@ -62,6 +73,7 @@ public class BoardTextDao {
 			boardTextDto.setBoard_no(rs.getInt("board_no"));
 			boardTextDto.setSub_title(rs.getString("sub_title"));
 			boardTextDto.setIp_addr(rs.getString("ip_addr"));
+			boardTextDto.setRn(rs.getInt("rn"));
 				
 			boardTextDto.setText_content(rs.getString("text_content"));
 			
