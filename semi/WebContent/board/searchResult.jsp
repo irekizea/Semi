@@ -157,10 +157,13 @@
 			<!-- 파일 미리보기 -->
 			
 			  	<img src="filedown.do?keyword=<%=boardFileDto.getTitle_key() %>" class="img">
-		
+
 		</td>
 	</tr>
 		<%} %>
+	<%for(BoardTextDto boardTextDto:getList){ %>
+
+
 	<tr>
 		<td>
 		<!-- for(BoardTextDto boardTextDto:getList){
@@ -182,10 +185,12 @@
 	</tr>
 	<tr>
 		<td colspan = "4">
-			  <%= boardDto.getContent()%>
-			  
+
+			  <%= boardTextDto.getText_content()%>
+
 		</td>
 	</tr>
+	<%} %>
 	
 
 <%} else{%>	
