@@ -182,4 +182,24 @@ public class BlockMemberDao {
 		
 		return list;
 	}
+//	기능:차단 회원 검사
+//	이름:same
+//	매개변수:없음
+//	반환형:List
+	public List<String> same() throws Exception{
+		Connection con = getConnection();	
+		String sql="select B.b_id from member M "
+					+ "inner join block_mem B "
+						+ "on M.id=B.b_id";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs=ps.executeQuery();
+		
+		List<String> list = new ArrayList<>();
+		while(rs.next()) {
+			list.add(rs.getString("b_id"));
+		}
+//		System.out.println(list);
+		con.close();
+		return list;
+	}
 }

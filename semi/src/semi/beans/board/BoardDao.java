@@ -80,7 +80,7 @@ public class BoardDao {
 		
 		String sql="select rownum, B. *from( "
 						+ "select title from board order by board.searchcount desc " 
-					+ ")B where rownum <=3";
+					+ ")B where rownum <=4";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		

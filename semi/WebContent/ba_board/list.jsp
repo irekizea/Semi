@@ -75,7 +75,11 @@ boolean isAdmin = grade.equals("관리자");
 		
 		</tbody>
 	</table>
-	
+	<div align="right">
+	<a href="write.jsp">
+	<input type="button" value="글쓰기">
+	</a>
+	</div>
 	<!-- 네비게이터(navigator) -->
 	<jsp:include page="/template/navigator.jsp">
 		<jsp:param name="pno" value="<%=pno%>"/>
