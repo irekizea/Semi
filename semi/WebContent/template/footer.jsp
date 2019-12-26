@@ -9,7 +9,6 @@
         .footer {
             width: 100%;
         }
-
         .footer>.foodiv>* {
             color:dimgray;
             font-size: 10;
@@ -20,9 +19,15 @@
       @import url("https://fonts.googleapis.com/css?family=Raleway");
 * {
   box-sizing: border-box;
+  
 }
-
-
+.footer{
+    background-color: black;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    
+} 
 .button {
   position: relative;
   padding: 1em 1.5em;
@@ -34,7 +39,7 @@
   margin: 1em 0.8em;
 }
 .button.type1 {
-  color: #566473;
+  color: white;
 }
 .button.type1.type1::after, .button.type1.type1::before {
   content: "";
@@ -51,21 +56,27 @@
   right: 0;
   border-top-color: transparent;
   border-left-color: transparent;
-  border-bottom-color: #566473;
-  border-right-color: #566473;
+  border-bottom-color: white;
+  border-right-color: white;
 }
 .button.type1.type1::before {
   top: 0;
   left: 0;
   border-bottom-color: transparent;
   border-right-color: transparent;
-  border-top-color: #566473;
-  border-left-color: #566473;
+  border-top-color: white;
+  border-left-color: white;
 }
 .button.type1.type1:hover:after, .button.type1.type1:hover:before {
   width: 100%;
   height: 100%;
 }
+.footer > .foodiv h3{
+    color: white;
+}
+.footer > .foodiv button{
+    color: white;
+} 
           
     </style>
         <footer>
@@ -78,21 +89,12 @@
 								-->						
 			<article class="footer">
 		        <div class="foodiv">
-						<h3>ALCOHOL WIKI&copy;</h3><br>
+						<h3>ACOHOL WIKI&copy;</h3>
 						<form action="<%=request.getContextPath()%>/operationPolicy/OP.jsp">
 							  <button class="button type1">
   								운영 방침
   							</button>
-						</form>
-						<br>
-								<h5>이하 개발용 상태값 확인</h5>
-								<%
-									String id = (String)session.getAttribute("id");
-									String grade = (String)session.getAttribute("grade");
-								%>
-								<h5>id = <%=id%>, grade = <%=grade%></h5>
-								<h5>로그인 상태 = <%=id != null%></h5>
-							
+						</form>	
 				 </div>		 
 		    </article>
         </footer>
