@@ -32,72 +32,41 @@ public class BoardEditServlet extends HttpServlet{
 			int boardno = Integer.parseInt(req.getParameter("board_no"));
 			String ipaddr= req.getParameter("ip_addr");
 			
-			BoardDao boardDao = new BoardDao();
-			BoardTextDao bdao = new BoardTextDao();
-			BoardTextDto bdto = new BoardTextDto();
-			if(boardDao.check(boardno)==false) {
-				//최초 승인 후 첫번째 수정글을 저장하기  위한 메소드
-				bdto.setWriter(writer);
-				bdto.setSub_title(boardtitle);
-				bdto.setText_content(content);
-				bdto.setBoard_no(boardno);
-				bdto.setIp_addr(ipaddr);
-				
-				bdao.textInsert(bdto);
-				//역사테이블 저장기능
-				HistoryDao hdao = new HistoryDao();
-				HistoryDto hdto = new HistoryDto();
-				
-				hdto.setboard_no(boardno);
-				hdto.setWriter(writer);
-				hdto.setBoardtitle(boardtitle);
-				hdto.setBoardtextudate(boardtextudate);
-				hdto.setContent(content);
-				hdto.setIp_addr(ipaddr);			
-				
-				hdao.savehistory(hdto);
-				
-				//현재글수정기능
-				bdto.setWriter(writer);
-				bdto.setIp_addr(ipaddr);
-				bdto.setText_content(content);
-				bdto.setNo(no);
-				bdto.setBoard_no(boardno);
-				
-				bdao.btedit(bdto);
-				
-				BoardDto boardDto = new BoardDto();
-				boardDto.setUdate("sysdate");
-				boardDao.bedit(boardno);
-			}else {
-				//역사테이블 저장기능
-				HistoryDao hdao = new HistoryDao();
-				HistoryDto hdto = new HistoryDto();
-				
-				hdto.setboard_no(boardno);
-				hdto.setWriter(writer);
-				hdto.setBoardtitle(boardtitle);
-				hdto.setBoardtextudate(boardtextudate);
-				hdto.setContent(content);
-				hdto.setIp_addr(ipaddr);			
-				
-				hdao.savehistory(hdto);
-				
-				//현재글수정기능
-				bdto.setWriter(writer);
-				bdto.setIp_addr(ipaddr);
-				bdto.setText_content(content);
-				bdto.setNo(no);
-				bdto.setBoard_no(boardno);
-				
-				bdao.btedit(bdto);
-				
-				BoardDto boardDto = new BoardDto();
-				boardDto.setUdate("sysdate");
-				boardDao.bedit(boardno);
-			}
+			HistoryDto hdto = new HistoryDto();
+			HistoryDao hdao = new HistoryDao();
+			hdto.setboard_no(no);
+			hdto.setWriter(writer);
+			hdto.setBoardtitle(boardtitle);
+			hdto.setBoardtextudate(boardtextudate);
+			hdto.setContent(content);
+			hdto.setIp_addr(ipaddr);
+			hdao.savehistory(hdto);
 			
-		
+			//현재글수정기능
+			BoardTextDto bdto = new BoardTextDto();
+			BoardTextDao bdao = new BoardTextDao();
+			bdto.setWriter(writer);
+
+			bdto.setIp_addr(ipaddr);
+			
+			BoardDto boardDto = new BoardDto();
+			BoardDao boardDao = new BoardDao();
+			boolean editCheck = boardDto.getEditCheck();
+			if(!editCheck) {	// 승인대기 후 넘어온 최초글
+				bdto.setText_content(boardDto.getContent());
+			}
+			else {
+				bdto.setText_content(content);
+			}
+
+			bdto.setNo(no);
+			
+			bdao.btedit(bdto);
+						
+			
+			boardDto.setUdate("sysdate");
+			boardDao.bedit(boardno);
+
 			// editCheck 부르기(승인후 최초 글인지, 수정된 글인지).
 			boardDao.editCheck(keyword);
 

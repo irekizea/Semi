@@ -214,12 +214,12 @@ public class BA_BoardDao {
 	}	
 //	기능:게시글 전송
 //	이름:regist
-//	매개변수:BA_BoarDto(제목,내용,작성자)
+//	매개변수:BA_BoarDto(제목,작성자)
 //	반환형:없음
 	public boolean regist(BA_BoardDto dto) throws Exception {
 		Connection con=getConnection();
-		String sql="insert into board(no,writer,title,wdate,udate,content) "
-					+ "values(board_seq.nextval,?,?,sysdate,sysdate,?)";
+		String sql="insert into board(no,writer,title,wdate,udate) "
+					+ "values(board_seq.nextval,?,?,sysdate,sysdate)";
 		PreparedStatement ps=con.prepareStatement(sql);
 		ps.setString(1, dto.getWriter());
 		ps.setString(2, dto.getTitle());
@@ -235,6 +235,7 @@ public class BA_BoardDao {
 		con.close();	
 		return result;
 	}
+
 	
 //	기능:게시글 등록 완료 표시
 //	이름:registUpdate
