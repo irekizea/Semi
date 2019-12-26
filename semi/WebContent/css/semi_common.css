@@ -206,10 +206,8 @@ article {
             left: 0;
             right: 0;
             top: 0;
-            
             line-height: 1;
             font-size: 1em;
-<<<<<<< HEAD
             background-color: white;
         }
         .tab{
@@ -268,7 +266,6 @@ article {
             margin-left: 12px;
             margin-top: 10px;
             text-align: left;
-=======
         }
         .tab{
             position: absolute;
@@ -336,13 +333,10 @@ article {
             margin-top: 10px;
             text-align: left;
             background-color: white;
->>>>>>> branch 'dahye' of https://github.com/irekizea/Semi
-
         }
         
         .tab li:hover ul{
            display: block;
-<<<<<<< HEAD
         }
         
         .logo{
@@ -352,17 +346,104 @@ article {
             line-height: 55px;
             left:30px;
             position:fixed;       
-=======
             background-color: white;
         }
         
-        .logo{
-            color: black;
-            text-decoration: none;
-            font-size: 30px;
-            line-height: 55px;
-            left:30px;
-            position:fixed;
-            background-color: white;         
->>>>>>> branch 'dahye' of https://github.com/irekizea/Semi
-        }
+        .sun-container {
+	display: table;
+	width: 100%;
+	text-align: center;
+	height: 350px;
+}
+
+.sun-container-wrap {
+	display: table-cell;
+	vertical-align: top;
+}
+
+.sun-container-wrap>h3 {
+	margin: 30px 0;
+	padding: 0;
+	margin-left: 40px;
+}
+
+table.sun-table tr {
+	text-align: center;
+}
+
+table.sun-table label {
+	width: 70px;
+	display: inline-block;
+	text-align: left;
+}
+
+table.sun-table input {
+	width: 200px;
+	line-height: 30px;
+	padding: 0 10px;
+	height: 30px;
+}
+
+table.sun-table input[type="submit"] {
+	margin-top: 20px;
+	color: white;
+	background: black;
+}
+
+table.sun-table tr {
+	text-align: center;
+}
+
+.vcenter {
+	vertical-align: middle;
+}
+
+table.sun-user-table {
+	width: 650px;
+}
+
+table.sun-user-table td, table.sun-user-table th {
+    border-bottom: 1px solid #eee;
+    padding: 5px 0;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+table.sun-user-table th {
+    border-bottom: 1px solid #999;
+}
+
+table.sun-user-table button, table.sun-user-table input[type="button"], table.sun-user-table input[type="submit"] {
+    background: black;
+    color: white;
+    outline: none;
+    border: 1px solid black;
+    width: 85px;
+    cursor: pointer;
+}
+
+table.sun-user-table button:hover, table.sun-user-table input[type="button"]:hover, table.sun-user-table input[type="submit"]:hover {
+    opacity: 0.8;
+}
+
+.sun-select select {
+    width: 100px;
+    border: 1px solid #ccc;
+    height: 35px;
+    padding: 0 5px;
+}
+
+.sun-select input[type="text"] {line-height: 35px; width: 170px; padding: 0 10px; border: 1px solid #ccc;height: 35px;vertical-align: top;}
+
+.sun-select input[type="submit"], .sun-select input[type="button"] {
+    height: 35px;
+    background: black;
+    color: white;
+    border: none;
+    width: 80px;
+    cursor: pointer;
+}
+
+.sun-select input[type="submit"]:hover, .sun-select input[type="button"]:hover {
+    opacity: 0.8;
+}
