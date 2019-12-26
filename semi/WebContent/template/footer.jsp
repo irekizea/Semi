@@ -2,33 +2,25 @@
 <%@page import="semi.beans.board.HistoryDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<<<<<<< HEAD
+ 
         </section>
         
        <style>
-        .footer {
-            width: 100%;
-        }
-        .footer>.foodiv>* {
-            color:dimgray;
-            font-size: 10;
-            text-align: center
-        }
-        
-          
-      @import url("https://fonts.googleapis.com/css?family=Raleway");
+.footer {
+    width: 100%;
+    background-color: black;
+    left: 0px;
+}
+.footer>.foodiv>* {
+	color:white;
+	font-size: 10;
+	text-align: center
+}      
+@import url("https://fonts.googleapis.com/css?family=Raleway");
 * {
   box-sizing: border-box;
   
 }
-.footer{
-    background-color: black;
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    
-} 
 .button {
   position: relative;
   padding: 1em 1.5em;
@@ -79,7 +71,6 @@
     color: white;
 } 
           
-=======
         </section>
         
        <style>
@@ -152,11 +143,6 @@
 .footer > .foodiv h3{
     color: white;
 }
-.footer > .foodiv button{
-    color: white;
-} 
-          
->>>>>>> branch 'dahye' of https://github.com/irekizea/Semi
     </style>
         <footer>
 								<!-- 
@@ -165,7 +151,7 @@
 									- 정책안내
 									- 기타 사이트맵
 									- 연락처 
-<<<<<<< HEAD
+
 								-->						
 			<article class="footer">
 		        <div class="foodiv">
@@ -173,23 +159,10 @@
 						<form action="<%=request.getContextPath()%>/operationPolicy/OP.jsp">
 							  <button class="button type1">
   								운영 방침
-=======
-								-->						
-			<article class="footer">
-		        <div class="foodiv">
-						<h3>ACOHOL WIKI&copy;</h3>
-						<form action="<%=request.getContextPath()%>/operationPolicy/OP.jsp">
-							  <button class="button type1">
-  								운영 방침
->>>>>>> branch 'dahye' of https://github.com/irekizea/Semi
-  							</button>
-<<<<<<< HEAD
+  								</button>
 						</form>	
 				 </div>		 
-=======
-						</form>	
-				 </div>		 
->>>>>>> branch 'dahye' of https://github.com/irekizea/Semi
+
 		    </article>
         </footer>
 </body>
