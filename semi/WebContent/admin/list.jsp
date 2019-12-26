@@ -55,8 +55,13 @@ int navsize = 10;
 		}
 			int count = dao.getCount(type, keyword);	
 			
-	BlockMemberDao bdao=new BlockMemberDao();
-	BlockMemberDto bdto=new BlockMemberDto();
+	BlockMemberDao bdao= new BlockMemberDao();
+	List<String> blist=bdao.same();
+			
+// 	System.out.println(blist);
+	String[] bArrays=blist.toArray(new String[blist.size()]);
+	
+	
 %>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -86,10 +91,6 @@ int navsize = 10;
 	    keyword =<%=request.getParameter("keyword")%>
 	</h3>
 	
-	<%--결과 list가 null인지 아닌지에 따라 다른 결과를 보여 주겠다--%>
-<%--  	<%if(list == null){ %> <!-- 검색어 입력을 안한거 --> --%>
-<!-- 		<h3> 검색어를 입력해주세요</h3> -->
-<%-- 	<%}else{ %>	 --%>
 	<!-- 검색 결과 -->
 	<table border="0" width="80%">
 		<!-- 테이블 헤더 -->
@@ -109,9 +110,11 @@ int navsize = 10;
 			<tr>
 				<td>
 				<%=dto.getId()%>
-				<%-- <%if(bdao.check(dto.getId())) {%>
-					<font color="red">[차단 회원]</font>
-				<%} %> --%>
+				<%for(String b : bArrays) { %>
+					<%if(b.equals(dto.getId())) {%>
+						<font color="red">[차단 회원]</font>
+					<%} %>
+				<%} %>
 
 				</td>
 				<td><%=dto.getEmail()%></td>
@@ -135,7 +138,6 @@ int navsize = 10;
 
 
 	</table>
-<%-- 	<%} %> --%>
 	<!-- 네비게이터(navigator) -->
 		<jsp:include page="/template/navigatorSearch.jsp">
 			<jsp:param name="pno" value="<%=pno%>"/>
