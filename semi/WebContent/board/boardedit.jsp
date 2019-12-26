@@ -80,15 +80,37 @@
 			input.value = text;
 		});
 	}
-	window.onload = createEditor;
+	// editor로 쓰여진 글을 불러오기 위한 viewer 생성
+	function createViewer(){
+		
+        //editor 옵션
+        var options = {
+            //el(element) : 에디터가 될 영역
+            el:document.querySelector(".naver-viewer"),
+            
+            viewer:true,
+            //height : 생성될 에디터의 높이
+            height:'auto',
+            
+        };
+        //editor 생성 코드
+        var editor = tui.Editor.factory(options);
+        var input = document.querySelector(".naver-viewer + input");
+        var text = input.value;
+        editor.setValue(text);
+    }
+	window.onload = function(){
+		createEditor();
+		createViewer();
+	}
 </script>
 <form action="boardedit.do" method="post">
 	<input type="hidden" name="boardtextno" value="<%=boardDto.getNo()%>">
 	<input type="hidden" name="keyword" value="<%=request.getParameter("keyword")%>"> 
 	<input type="hidden" name="boardtitle" value="<%=boardDto.getTitle()%>">
 	<input type="hidden" name="boardtextudate" value="<%=boardDto.getUdate()%>"> 
-	<input type="hidden"name="no" value="<%=boardtextdto.getNo()%>"> 
 	<input type="hidden" name="board_no" value="<%=request.getParameter("boardno")%>">
+	<input type="hidden"name="no" value="<%=boardtextdto.getNo()%>"> 
 	<%
 		if (login != null) {
 	%>
@@ -130,7 +152,7 @@
 	</div>
 		<div class="text">
 			<br>
-			<div class="naver-editor"><%=boardtextdto.getText_content()%></div>
+			<div class="naver-editor"></div><input type="hidden" value="<%=boardtextdto.getText_content() %>">
 		</div>
 		<span>
 			문서 편집을 저장하면 기여한 내용을 CC-BY-NC-SA 2.0 KR으로 배포하고
@@ -142,14 +164,7 @@
 			<input type="submit" value="편집완료">
 		</div>
 	</article>
-	<!-- 
-        이 div 태그가 에디터로 변함 
-        - 주의 : 입력창이 아니기 때문에 전송이 안됨
-        - 전송하려면 submit 상황에서 추가 코드 필요
-    -->
-	<!--    body가 없는 경우에는 다음과 같이 작성 -->
-	<!--    - 예약 실행(callback) -->
-<!-- 	        window.onload = createEditor; -->
+
 	<div class="naver-editor"></div>
 	<input type="hidden" name="text_content">
 </form>

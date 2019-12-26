@@ -34,35 +34,27 @@ public class BoardEditServlet extends HttpServlet{
 			
 			HistoryDto hdto = new HistoryDto();
 			HistoryDao hdao = new HistoryDao();
-			hdto.setboard_no(no);
 			hdto.setWriter(writer);
 			hdto.setBoardtitle(boardtitle);
 			hdto.setBoardtextudate(boardtextudate);
 			hdto.setContent(content);
 			hdto.setIp_addr(ipaddr);
+			hdto.setboard_no(boardno);
+			
 			hdao.savehistory(hdto);
 			
 			//현재글수정기능
 			BoardTextDto bdto = new BoardTextDto();
 			BoardTextDao bdao = new BoardTextDao();
 			bdto.setWriter(writer);
-
 			bdto.setIp_addr(ipaddr);
-			
-			BoardDto boardDto = new BoardDto();
-			BoardDao boardDao = new BoardDao();
-			boolean editCheck = boardDto.getEditCheck();
-			if(!editCheck) {	// 승인대기 후 넘어온 최초글
-				bdto.setText_content(boardDto.getContent());
-			}
-			else {
-				bdto.setText_content(content);
-			}
-
+			bdto.setText_content(content);
 			bdto.setNo(no);
 			
 			bdao.btedit(bdto);
 						
+			BoardDto boardDto = new BoardDto();
+			BoardDao boardDao = new BoardDao();
 			
 			boardDto.setUdate("sysdate");
 			boardDao.bedit(boardno);

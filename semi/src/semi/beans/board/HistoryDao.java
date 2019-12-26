@@ -38,7 +38,6 @@ public class HistoryDao {
 		ps.setString(4, dto.getContent());
 		ps.setString(5, dto.getIp_addr());
 		ps.setInt(6, dto.getboard_no());
-		System.out.println(dto.getBoardtextudate());
 		
 		ps.execute();
 		con.close();

@@ -30,7 +30,7 @@ public class BoardTextInsertServlet extends HttpServlet {
 			DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();
 			MultipartRequest mRequest = new MultipartRequest(req, path, max, encoding, policy);
 
-//		TestInert 메인게시글 상세글 입력
+//		TextInert 메인게시글 상세글 입력
 			req.setCharacterEncoding("UTF-8");
 			
 			int board_no = Integer.parseInt(mRequest.getParameter("board_no"));	

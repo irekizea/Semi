@@ -8,6 +8,15 @@ public class BoardTextDto {
 	String writer, sub_title, text_content, udate, ip_addr;
 	
 	
+	
+	@Override
+	public String toString() {
+		return "BoardTextDto [no=" + no + ", board_no=" + board_no + ", writer=" + writer + ", sub_title=" + sub_title
+				+ ", text_content=" + text_content + ", udate=" + udate + ", ip_addr=" + ip_addr + ", file_no="
+				+ file_no + ", text_no=" + text_no + ", uploadname=" + uploadname + ", savename=" + savename
+				+ ", filetype=" + filetype + ", filesize=" + filesize + "]";
+	}
+
 	// 파일등록을 위한 변수
 	private int file_no; //파일 no
 	private int text_no; // 목차(sub_title) no
