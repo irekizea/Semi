@@ -194,4 +194,91 @@ article {
             
         }
 
+/* 
+헤더 디자인
+-logo:로고 디자인
+-tab:전체 헤더 영역을 감싸는 디자인
+-content:내용물 영역
+*/
+        /*고정 메뉴 설정(옵션)*/
+        .fixed{
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            
+            line-height: 1;
+            font-size: 1em;
+        }
+        .tab{
+            position: absolute;
+            width: 100%;
+            height: 60px;
+            overflow: hidden;
+            transition: height 0.4s;
+            border-bottom: 1px solid black;
+            background-color: white;
+        }
+        .tab a{
+            color: black;
+            text-decoration: none;
+        }
+        .tab:hover{
+            height: 130px;
+        }
+        .tab > ul{
+            text-align: center;
+        }
+        .tab > ul > li{
+            display: inline-block;
+            position: relative;
+            padding: 0 30px;
+            line-height: 30px;
+            transition: background-color 0.3s;
+            
+        }
+        .tab > ul > li:hover > a{
+            color: #f5f5f5;
+            
+        }
+        .tab ul ul li:hover a{
+            color: darkgrey;
+        }
+        .tab ul ul{
+            position: absolute;
+            left: -25%;
+            width: 150%;
+          
+        }
+        
+        .tab li:nth-child(1) ul{
+            left: 0;
+            width: 100%;
+        }
+        .tab ul ul a{
+            display: block;
+            text-decoration: none;
+            line-height: 30px;
+            font-size: 14px;
+        }
+        .tab ul ul li{
+            list-style: none;
+            margin-left: 12px;
+            margin-top: 10px;
+            text-align: left;
 
+        }
+        
+        .tab li:hover ul{
+           display: block;
+        }
+        
+        .logo{
+            color: black;
+            text-decoration: none;
+            font-size: 30px;
+            line-height: 55px;
+            left:30px;
+            position:fixed;
+                    
+        }
