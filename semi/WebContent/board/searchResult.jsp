@@ -136,102 +136,76 @@
 <div align="center">
 <table border="1" class="w-80">
 	<tr>				<!-- 승인된 첫 화면.(=사용자 수정 전) -->
-		<th class="title" colspan="2">
-		<%=boardDto.getTitle() %>
+		<th class="title" colspan="2" rowspan="2">
+			<%=boardDto.getTitle() %>
 		</th>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	
 		<%if(!editCheck){ %>
-	<tr>
-		<th></th>
-		<th></th>
-		<th>
-			최근 수정시간
-		</th>
-		<td>
-			<%=boardDto.getUdate() %>
-		</td>
+		<td></td>
+		<td></td>
 	</tr>
 	
 	<tr>
-		<td class="sub-title">개요</td>
 		<td></td>
-		<th>최근 수정자</th>
-		<td><%=boardDto.getWriter() %></td>
-	</tr>
-	
-	<tr>
-	<td colspan = "4">
-		  <%= boardDto.getContent()%>
-		   <%for(BA_FileDto boardFileDto : flist) {%>
-		  	<!-- 파일 미리보기 -->
-		  	<img src="filedown.do?keyword=<%=boardFileDto.getTitle_key() %>" class="img" style="width:100px; height:auto;">
-		  <%} %>
-	</td>
-	</tr>
-	
-	<tr>
-		<td colspan = "4">
-			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
-				<input type="button" value="편집">
-			</a>
-		</td>
-	
-	</tr>
-
-
-<%} else{%>	
-	<tr>			<!-- 사용자들이 수정한 뒤의 상세글 -->
-		<th class="title" colspan="2">
-		<%=boardDto.getTitle() %>
-		</th>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td>최근 수정시간: <%=boardDto.getUdate() %></td>
 	</tr>
 	<tr>
-		<th></th>
-		<th></th>
-		<th>
-			최근 수정시간
-		</th>
-		<td>
-			<%=boardDto.getUdate() %>
-		</td>
-	</tr>
-		
-	  	<%for(BoardTextDto boardTextDto:getList){ %>
-	<tr>
-		<td class="sub-title"><%=boardTextDto.getSub_title() %></td>
-		<td></td>
-		<th>최근 수정자</th>
-		<td><%if(boardTextDto.getWriter()!=null){ %>
-				<%=boardTextDto.getWriter() %>
-			<%} 
-			else { %>
-				<%=boardTextDto.getIp_addr() %>
+		<td colspan="4">			
+			<!-- 파일 미리보기 -->
+			<%for(BA_FileDto boardFileDto : flist) {%>
+			  	<img src="filedown.do?keyword=<%=boardFileDto.getTitle_key() %>" class="img" style="width:100px; height:auto;">
 			<%} %>
 		</td>
 	</tr>
-	
 	<tr>
-	<td colspan = "4">
-		  <%= boardTextDto.getText_content()%>
-	</td>
-	</tr>
-	
-	<tr>
-		<td colspan = "4">
+		<td class="sub-title" colspan="3">개요</td>
+		<td>
 			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
 				<input type="button" value="편집">
 			</a>
 		</td>
-	
 	</tr>
-<%} %>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td>최근 수정자: <%=boardDto.getWriter() %></td>
+	</tr>
+	<tr>
+		<td colspan = "4">
+			  <%= boardDto.getContent()%>
+		</td>
+	</tr>
+	
+
+<%} else{%>	
+	<tr>			<!-- 사용자들이 수정한 뒤의 상세글 -->
+		<th class="title" colspan="2" rowspan="2">
+			<%=boardDto.getTitle() %>
+		</th>
+		<td></td>
+		<td></td>
+	</tr>
+	
+	<tr>
+		<td></td>
+		<td>최근 수정시간: <%=boardDto.getUdate() %></td>
+	</tr>
+		
+	<%for(BoardTextDto boardTextDto:getList){ %>
+	<tr>
+		<td class="sub-title" colspan="3"><%=boardTextDto.getSub_title() %></td>
+		<td>
+			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+				<input type="button" value="편집">
+			</a>
+		</td>
+	</tr>
+
+	<tr>
+		<td colspan="4"><%=boardTextDto.getText_content() %></td>
+	</tr>	
+	<%} %>
+	
 <%} %>
 
 	<tr>
@@ -241,29 +215,29 @@
 			<input type="checkbox" id="show" class="checkbox'">
 			<div class="checked-show">
 				<form action="textInsert.do" method="post"  enctype="multipart/form-data">
-								<input type="hidden" name="keyword" value=<%=keyword %>>
-								<input type="hidden" name="board_no" value="<%=boardDto.getNo()%>">
-								<input type="text" name="sub_title" value="목차[소제목]" required class="sub-title" style="width:100%; height:5%;">
+						<input type="hidden" name="keyword" value=<%=keyword %>>
+						<input type="hidden" name="board_no" value="<%=boardDto.getNo()%>">
+						<input type="text" name="sub_title" value="목차[소제목]" required class="sub-title" style="width:100%; height:5%;">
 								
-								<input type="file" name="file" >
+						<input type="file" name="file" >
 								
-								<div class="naver-editor"></div>
-								<textarea name="text_content" required class="text">
-								</textarea>
-								<span>
-									문서 편집을 저장하면 기여한 내용을 CC-BY-NC-SA 2.0 KR으로 배포하고
-									기여한 문서에 대한 하이퍼링크나 URL을 이용하여 저작자 표시를 하는 것으로
-									충분하다는 데 동의하는 것입니다. 이 동의는 철회할 수 없습니다.
-								</span>
-								<input type="checkbox">
-								<p align="right" style="margin: 5px 0px" class="checked-show">
-									<input type="submit" value="등록완료">
-								</p>
+						<div class="naver-editor"></div>
+							<textarea name="text_content" required class="text">
+							</textarea>
+							<span>
+								문서 편집을 저장하면 기여한 내용을 CC-BY-NC-SA 2.0 KR으로 배포하고
+								기여한 문서에 대한 하이퍼링크나 URL을 이용하여 저작자 표시를 하는 것으로
+								충분하다는 데 동의하는 것입니다. 이 동의는 철회할 수 없습니다.
+							</span>
+							<input type="checkbox">
+						<p align="right" style="margin: 5px 0px" class="checked-show">
+							<input type="submit" value="등록완료">
+						</p>
 				</form>
 								<%if(writer==null) {%>
-										<p> 
+									<p> 
 										[알림] 비로그인 상태로 편집합니다. 편집 내역에 IP "<%=ip %>"가 영구히 기록됩니다.
-										</p>
+									</p>
 								<%} %> 
 			</div>
 		</td>

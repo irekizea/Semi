@@ -30,7 +30,7 @@ public class BA_FileDao {
 	public void fileInsert(BA_FileDto fdto)throws Exception{
 		Connection con=getConnection();
 		String sql="insert into ba_file "
-				+ "values(ba_file_seq.nextval,?,?,?,?,?)";
+				+ "values(ba_file_seq.nextval,?,?,?,?,?,?)";
 		
 
 		PreparedStatement ps=con.prepareStatement(sql);
@@ -41,6 +41,7 @@ public class BA_FileDao {
 		ps.setString(3, fdto.getSavename());
 		ps.setString(4, fdto.getFiletype());
 		ps.setLong(5, fdto.getFilesize());
+		ps.setString(6, fdto.getTitle_key());
 		
 		ps.execute();
 		con.close();
