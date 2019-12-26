@@ -80,6 +80,7 @@
     // - 예약 실행(callback)
     // window 실행시 자동으로 editor 생성
 	window.onload = createEditor;
+
   		
 </script>
 
@@ -133,29 +134,22 @@
 <% if(boardDto.getTitle()!=null){ %>
 
 <article>
+
+<div class="title"><%=boardDto.getTitle() %></div>
+<div align = "right">최근 수정 시간 : <%=boardDto.getUdate() %></div>
 <div align="center">
-<table border="1" class="w-80">
-	<tr>				<!-- 승인된 첫 화면.(=사용자 수정 전) -->
-		<th class="title" colspan="2" rowspan="2">
-			<%=boardDto.getTitle() %>
-		</th>
-		<%if(!editCheck){ %>
-		<td></td>
-		<td></td>
-	</tr>
-	
-	<tr>
-		<td></td>
-		<td>최근 수정시간: <%=boardDto.getUdate() %></td>
-	</tr>
+<table border="1" class="w-100">
+<%if(!editCheck){ %>
+<%for(BA_FileDto boardFileDto : flist) {%>
 	<tr>
 		<td colspan="4">			
 			<!-- 파일 미리보기 -->
-			<%for(BA_FileDto boardFileDto : flist) {%>
+			
 			  	<img src="filedown.do?keyword=<%=boardFileDto.getTitle_key() %>" class="img" style="width:100px; height:auto;">
-			<%} %>
+		
 		</td>
 	</tr>
+		<%} %>
 	<tr>
 		<td class="sub-title" colspan="3">개요</td>
 		<td>
@@ -165,32 +159,18 @@
 		</td>
 	</tr>
 	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td>최근 수정자: <%=boardDto.getWriter() %></td>
+		<td width="100%" align = "right">최근 수정자: <%=boardDto.getWriter() %></td>
 	</tr>
 	<tr>
 		<td colspan = "4">
 			  <%= boardDto.getContent()%>
+			  
 		</td>
 	</tr>
 	
 
 <%} else{%>	
-	<tr>			<!-- 사용자들이 수정한 뒤의 상세글 -->
-		<th class="title" colspan="2" rowspan="2">
-			<%=boardDto.getTitle() %>
-		</th>
-		<td></td>
-		<td></td>
-	</tr>
-	
-	<tr>
-		<td></td>
-		<td>최근 수정시간: <%=boardDto.getUdate() %></td>
-	</tr>
-		
+
 	<%for(BoardTextDto boardTextDto:getList){ %>
 	<tr>
 		<td class="sub-title" colspan="3"><%=boardTextDto.getSub_title() %></td>
