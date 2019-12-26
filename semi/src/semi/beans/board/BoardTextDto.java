@@ -4,6 +4,15 @@ package semi.beans.board;
 public class BoardTextDto {
 	int no;	// boardTxt 글번호
 	int board_no; // 메인상세글 글번호
+	int rn;
+
+	public int getRn() {
+		return rn;
+	}
+
+	public void setRn(int rn) {
+		this.rn = rn;
+	}
 
 	String writer, sub_title, text_content, udate, ip_addr;
 	
@@ -153,6 +162,26 @@ public class BoardTextDto {
 	}
 
 	public void setFilesize(long filesize) {
+		this.filesize = filesize;
+	}
+
+	public BoardTextDto(int no, int board_no, int rn, String writer, String sub_title, String text_content,
+			String udate, String ip_addr, int file_no, int text_no, String uploadname, String savename, String filetype,
+			long filesize) {
+		super();
+		this.no = no;
+		this.board_no = board_no;
+		this.rn = rn;
+		this.writer = writer;
+		this.sub_title = sub_title;
+		this.text_content = text_content;
+		this.udate = udate;
+		this.ip_addr = ip_addr;
+		this.file_no = file_no;
+		this.text_no = text_no;
+		this.uploadname = uploadname;
+		this.savename = savename;
+		this.filetype = filetype;
 		this.filesize = filesize;
 	}
 
