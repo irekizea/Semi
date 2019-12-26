@@ -20,7 +20,7 @@
     main{
         margin: auto;
         height: auto;
-        width: 1900px;
+        width: 1000px;
     }
 	
     section,
