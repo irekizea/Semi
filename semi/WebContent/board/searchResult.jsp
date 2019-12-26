@@ -135,18 +135,18 @@
 <article>
 <div align="center">
 <table border="1" class="w-80">
-	<tr>				<!-- 승인된 첫 화면.(=사용자 수정 전) -->
+		<%if(!editCheck){ %> <!-- 승인된 첫 화면.(=사용자 수정 전) -->
+	<tr>				
 		<th class="title" colspan="2" rowspan="2">
 			<%=boardDto.getTitle() %>
 		</th>
-		<%if(!editCheck){ %>
 		<td></td>
 		<td></td>
 	</tr>
 	
 	<tr>
 		<td></td>
-		<td>최근 수정시간: <%=boardDto.getUdate() %></td>
+		<td class="board-udate">최근 수정시간: <%=boardDto.getUdate() %></td>
 	</tr>
 	<tr>
 		<td colspan="4">			
@@ -200,7 +200,7 @@
 			</a>
 		</td>
 	</tr>
-
+	
 	<tr>
 		<td colspan="4"><%=boardTextDto.getText_content() %></td>
 	</tr>	
