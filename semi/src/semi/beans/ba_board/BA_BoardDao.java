@@ -80,7 +80,7 @@ public class BA_BoardDao {
 		Connection con=getConnection();
 		
 		String sql="insert into ba_board "
-					+ "values(?,?,?,?,sysdate,null,0,0,0)";
+					+ "values(?,?,?,?,sysdate,0,0,0)";
 			PreparedStatement ps=con.prepareStatement(sql);
 			
 			ps.setInt(1, dto.getBoard_no());

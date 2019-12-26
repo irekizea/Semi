@@ -21,6 +21,16 @@
 	List<BoardTextDto> getList = boardtextdao.getList(keyword);
 	String login = (String) session.getAttribute("id");
 %>
+<style>
+	/* 문서배포 동의 checkbox 숨김 */
+	input[type=checkbox] +.checked-show {
+		display: none;
+	}
+	input[type=checkbox]:checked +.checked-show {
+		display: block;
+	}
+</style>
+
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/semi_common.css">
 <link rel="stylesheet" type="text/css" 
@@ -124,8 +134,13 @@
 			<br>
 			<div class="naver-editor"><%=boardtextdto.getText_content()%></div>
 		</div>
-
-		<div align="left">
+		<span>
+			문서 편집을 저장하면 기여한 내용을 CC-BY-NC-SA 2.0 KR으로 배포하고
+			기여한 문서에 대한 하이퍼링크나 URL을 이용하여 저작자 표시를 하는 것으로
+			충분하다는 데 동의하는 것입니다. 이 동의는 철회할 수 없습니다.
+		</span>
+		<input type="checkbox">
+		<div align="left" class="checked-show">
 			<input type="submit" value="편집완료">
 		</div>
 	</article>

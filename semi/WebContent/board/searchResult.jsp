@@ -1,28 +1,7 @@
-<%@page import="semi.beans.board.HistoryDto"%>
-<%@page import="semi.beans.board.HistoryDao"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<!-- 게시글 체크박스(누르면 나타나기) 설정 
-	<label for="체크박스id"> 클릭할 것 </label>
-	<input type="checkbox" id="체크박스id">
-	이하 숨겨둘 div 영역                                    
--->
-<style> 
-	.checkbox {
-		display: none;
-	}
-	.checkbox +div {
-		display: none;
-	}
-	.checbox:checked +div {
-		display: block;
-	}
-	.table {
-		width:100%;
-	}
-</style>
-    
 <%@page import="semi.beans.board.BoardReplyDto"%>
 <%@page import="semi.beans.board.BoardReplyDao"%>
 <%@page import="semi.beans.board.BoardTextDto"%>
@@ -32,14 +11,96 @@
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import = "java.net.InetAddress" %>
-
 <%@ page import = "semi.beans.board.BoardDao" %>
 <%@ page import = "semi.beans.board.BoardDto" %>
 <%@ page import = "semi.beans.board.BoardTextDao" %>
 <%@ page import = "semi.beans.board.BoardTextDto" %>
 <%@page import="semi.beans.ba_board.BA_FileDao"%>
 <%@page import="semi.beans.ba_board.BA_FileDto"%>
-    
+
+<!-- naver toast ui를 사용하기 위한 준비 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/lib/toast/css/codemirror.min.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/lib/toast/css/github.min.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/lib/toast/css/tui-color-picker.min.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/lib/toast/dist/tui-editor.min.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/lib/toast/dist/tui-editor-contents.min.css">
+<script src="<%=request.getContextPath()%>/lib/toast/dist/tui-editor-Editor-full.min.js"></script>
+
+<script>
+	//naver toast ui를 만들기 위한 코드
+	function createEditor() {
+		
+		//editor 옵션
+		var options = {
+			//el(element) : 에디터가 될 영역
+			el : document.querySelector(".naver-editor"),
+			//previewStyle : 표시되는 방식(horizontal, vertical)
+			previewStyle : 'vertical',
+			//height : 생성될 에디터의 높이
+			width: '100%',
+			height : '300px',
+			//initialEditType : 생성될 에디터의 초기화면 형태(markdown, wysiwyg)
+			initialEditType : 'wysiwyg'
+		};
+		//editor 생성 코드
+		
+		var editor = tui.Editor.factory(options);
+		
+		//editor에 이벤트를 설정해서 입력하면 자동으로 input에 복사되게 구현
+		//- input이라는 상황이 발생하면 오른쪽 function을 실행하라
+		//- oninput이랑 동일한데 자바스크립트로만 구현
+		editor.on("change", function() {
+			//editor의 입력값을 가져와서 input에 설정
+			var text = editor.getValue();
+			var input = document.querySelector(".naver-editor + textarea");
+			input.value = text;
+		});
+	}
+	// editor로 쓰여진 글을 불러오기 위한 viewer 생성
+	function createViewer(){
+        //editor 옵션
+        var options = {
+            //el(element) : 에디터가 될 영역
+            el:document.querySelector(".naver-viewer"),
+            
+            viewer:true,
+            //height : 생성될 에디터의 높이
+            height:'auto',
+            
+        };
+        //editor 생성 코드
+        var editor = tui.Editor.factory(options);
+        var input = document.querySelector(".naver-viewer + input");
+        var text = input.value;
+        editor.setValue(text);
+    }
+    //body가 없는 경우에는 다음과 같이 작성
+    // - 예약 실행(callback)
+    // window 실행시 자동으로 editor 생성
+	window.onload = createEditor;
+  		
+</script>
+
+<style>
+	/* 실제 input 또는 textarea 숨김처리 */
+	.naver-editor + textarea {
+		display: none;
+	}
+	
+	/* 목록추가, 댓글(토론), 문서배포 checkbox 숨김 */
+	label + input[type=checkbox]{
+		display: none;
+	}
+	input[type=checkbox] +.checked-show {
+		display: none;
+	}
+	input[type=checkbox]:checked +.checked-show {
+		display: block;
+	}
+</style>
+
 <%
 	String keyword = request.getParameter("keyword"); 
 	
@@ -61,205 +122,142 @@
 	
 	// 파일 다운로드 파일정보 불러오기(List)
 	BA_FileDao fdao = new BA_FileDao();
-	List<BA_FileDto> flist=fdao.getList(keyword);	
+	List<BA_FileDto> flist=fdao.getList(keyword);
 	
-	String login = (String)session.getAttribute("id");
-
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/board.css">
 <jsp:include page="/template/header.jsp"></jsp:include>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="../lib/toast/css/codemirror.min.css">
-    <link rel="stylesheet" type="text/css" href="../lib/toast/css/github.min.css">
-    <link rel="stylesheet" type="text/css" href="../lib/toast/css/tui-color-picker.min.css">
-    <link rel="stylesheet" type="text/css" href="../lib/toast/dist/tui-editor.min.css">
-    <link rel="stylesheet" type="text/css" href="../lib/toast/dist/tui-editor-contents.min.css">
-    
-    <script src="../dist/tui-editor-Editor-full.min.js"></script>
-    <!-- naver toast ui editor를 쓰기 위해 필요한 준비물 -->
 
-    <script>
-        //naver toast ui를 만들기 위한 코드
-        function createViewer(){
-            //editor 옵션
-            var options = {
-                //el(element) : 에디터가 될 영역
-                el:document.querySelector(".naver-viewer"),
-                
-                viewer:true,
-                //height : 생성될 에디터의 높이
-                height:'auto',
-                
-            };
-            //editor 생성 코드
-            var editor = tui.Editor.factory(options);
-            var input = document.querySelector(".naver-viewer + input");
-            var text = input.value;
-            editor.setValue(text);
-        }
-        //body가 없는 경우에는 다음과 같이 작성
-        // - 예약 실행(callback)
-        window.onload = createViewer;
-    </script>
-    
-   <% if(boardDto.getTitle()!=null){ %>
+<% if(boardDto.getTitle()!=null){ %>
+
 <article>
+<div align="center">
 <table border="1" class="w-80">
 	<tr>				<!-- 승인된 첫 화면.(=사용자 수정 전) -->
-		<th>
-		<%=boardDto.getTitle() %>
+		<th class="title" colspan="2" rowspan="2">
+			<%=boardDto.getTitle() %>
 		</th>
-	</tr>
-
 		<%if(!editCheck){ %>
-	<tr>
-		<th>
-			개요
-		</th>
-		<th>
-		</th>
-		<th>
-			최근 수정시간
-		</th>
-		<th>
-			최근 수정자
-		</th>
+		<td></td>
+		<td></td>
 	</tr>
 	
 	<tr>
 		<td></td>
-		<td></td>
-		<td><%=boardDto.getUdate() %></td>
-		<td><%=boardDto.getWriter() %></td>
+		<td>최근 수정시간: <%=boardDto.getUdate() %></td>
 	</tr>
-	
 	<tr>
-	<td colspan = "4">
-		  <%= boardDto.getContent()%>
-		   <%for(BA_FileDto boardFileDto : flist) {%>
-		  	<!-- 파일 미리보기 -->
-		  	<img src="filedown.do?keyword=<%=boardFileDto.getTitle_key() %>" class="img" style="width:100px; height:auto;">
-		  <%} %>
-	</td>
-	</tr>
-	
-	<tr>
-		<td colspan = "4">
-			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
-								<input type="button" value="편집">
-								</a>
-		</td>
-	
-	</tr>
-	
-	
-<%} else{%>	
-	<tr>							<!-- 사용자들이 수정된 뒤의 상세글 -->
-		<th>
-		<%=boardDto.getTitle() %>
-		</th>
-		<th>
-		최근 수정 시간: <%=boardDto.getUdate() %>
-		</th>
-	</tr>
-
-	<tr>
-		<th>
-		개요
-		</th>
-		<th>
-		</th>
-		<th>
-		수정시간
-		</th>
-		<th>
-		수정자
-		</th>
-	</tr>
-		
-	  	<%for(BoardTextDto boardTextDto:getList){ %>
-	
-	<tr>
-		<td><%=boardTextDto.getSub_title()%></td>
-		<td></td>
-		<td>
-			<%=boardDto.getUdate() %>
-		</td>
-		<td>
-			<%if(boardTextDto.getWriter()!=null){ %>
-				<%=boardTextDto.getWriter() %>
-			<%} 
-			else { %>
-				<%=boardTextDto.getIp_addr() %>
+		<td colspan="4">			
+			<!-- 파일 미리보기 -->
+			<%for(BA_FileDto boardFileDto : flist) {%>
+			  	<img src="filedown.do?keyword=<%=boardFileDto.getTitle_key() %>" class="img" style="width:100px; height:auto;">
 			<%} %>
-							
 		</td>
 	</tr>
-	
 	<tr>
-	<td colspan = "4">
-		  <%= boardTextDto.getText_content()%>
-	</td>
-	</tr>
-	
-	<tr>
-		<td colspan = "4">
+		<td class="sub-title" colspan="3">개요</td>
+		<td>
 			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
-			<input type="button" value="편집">
+				<input type="button" value="편집">
 			</a>
 		</td>
-	
 	</tr>
-<%} %>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td>최근 수정자: <%=boardDto.getWriter() %></td>
+	</tr>
+	<tr>
+		<td colspan = "4">
+			  <%= boardDto.getContent()%>
+		</td>
+	</tr>
+	
+
+<%} else{%>	
+	<tr>			<!-- 사용자들이 수정한 뒤의 상세글 -->
+		<th class="title" colspan="2" rowspan="2">
+			<%=boardDto.getTitle() %>
+		</th>
+		<td></td>
+		<td></td>
+	</tr>
+	
+	<tr>
+		<td></td>
+		<td>최근 수정시간: <%=boardDto.getUdate() %></td>
+	</tr>
+		
+	<%for(BoardTextDto boardTextDto:getList){ %>
+	<tr>
+		<td class="sub-title" colspan="3"><%=boardTextDto.getSub_title() %></td>
+		<td>
+			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+				<input type="button" value="편집">
+			</a>
+		</td>
+	</tr>
+
+	<tr>
+		<td colspan="4"><%=boardTextDto.getText_content() %></td>
+	</tr>	
+	<%} %>
+	
 <%} %>
 
 	<tr>
 	
 		<td colspan = "4">
-			<form action="textInsert.do" method="post"  enctype="multipart/form-data">
-							<label for="show">목차 추가</label>
-							<input type="checkbox" id="show" class="checkbox'">
-							
-								<input type="hidden" name="keyword" value=<%=keyword %>>
-								<input type="hidden" name="board_no" value="<%=boardDto.getNo()%>">
-								<input type="text" name="sub_title" value="목차[소제목]" required class="sub-title" style="width:100%; height:5%;">
+			<label for="show">[목차 추가]</label>
+			<input type="checkbox" id="show" class="checkbox'">
+			<div class="checked-show">
+				<form action="textInsert.do" method="post"  enctype="multipart/form-data">
+						<input type="hidden" name="keyword" value=<%=keyword %>>
+						<input type="hidden" name="board_no" value="<%=boardDto.getNo()%>">
+						<input type="text" name="sub_title" value="목차[소제목]" required class="sub-title" style="width:100%; height:5%;">
 								
-								<input type="file" name="file" accept="jpg,png,gif" >
+						<input type="file" name="file" >
 								
-								<textarea name="text_content" required class="text">
-								</textarea>
-								<%if(writer==null) {%> 
+						<div class="naver-editor"></div>
+							<textarea name="text_content" required class="text">
+							</textarea>
+							<span>
+								문서 편집을 저장하면 기여한 내용을 CC-BY-NC-SA 2.0 KR으로 배포하고
+								기여한 문서에 대한 하이퍼링크나 URL을 이용하여 저작자 표시를 하는 것으로
+								충분하다는 데 동의하는 것입니다. 이 동의는 철회할 수 없습니다.
+							</span>
+							<input type="checkbox">
+						<p align="right" style="margin: 5px 0px" class="checked-show">
+							<input type="submit" value="등록완료">
+						</p>
+				</form>
+								<%if(writer==null) {%>
+									<p> 
 										[알림] 비로그인 상태로 편집합니다. 편집 내역에 IP "<%=ip %>"가 영구히 기록됩니다.
+									</p>
 								<%} %> 
-								<p align="right" style="margin: 5px 0px"><input type="submit" value="등록완료"></p>
-							
-			</form>
+			</div>
 		</td>
 	
 	</tr>
 
-
-
 </table>
-<table border="1">
-	<tr>
-		<th colspan = "4">
-			토론
-		</th>
-	</tr>
-	<%for(BoardReplyDto boardReplyDto: replyList){ %>
-	
+
+<label for="reply"><p align="left" class="w-80">[토론 보기]</p></label>
+<input type="checkbox" id="reply" class="checkbox">
+<table border="1" class="checked-show w-80">
+	<%for(BoardReplyDto boardReplyDto: replyList){ %>	
 	<tr>
 		<td>
 		<%if(boardReplyDto.getWriter()!=null){ %>
-		<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?writer=<%=boardReplyDto.getWriter() %>">
-									<%=boardReplyDto.getWriter() %>
-		</a>		
-								
-		<%} else {%>
+			<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?writer=<%=boardReplyDto.getWriter() %>">
+										<%=boardReplyDto.getWriter() %>
+			</a>									
+		<%} 
+			else {%>
 				<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?ip_addr=<%=boardReplyDto.getIp_addr() %>">
 					<%=boardReplyDto.getIp_addr() %>
 				</a>
@@ -299,13 +297,16 @@
 	
 		<tr>
 			<td>
-			토론은 사용자에 의한 임의삭제가 불가능하므로 신중하게 작성하여 주시길 바랍니다.
+				토론은 사용자에 의한 임의삭제가 불가능하므로 신중하게 작성하여 주시길 바랍니다.
 			<input type="submit" value="등록">
 			</form>
-		</td>
-	</tr>
-	
-					<% }else {%>
+			</td>
+		</tr>
+</table>
+
+<!-- 검색결과가 없다면 -->
+<table>	
+<% }else {%>
 	<tr>
 		<td >
 		"<%=keyword %>"에 대한 검색결과가 없습니다. <br>
@@ -319,11 +320,13 @@
 		</td>
 	
 	</tr>
-			<%} %>
-
-
+<%} %>
 
 </table>
+
+</div>
 </article>
+
+
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

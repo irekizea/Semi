@@ -34,6 +34,7 @@ public class BoardTextInsertServlet extends HttpServlet {
 //		TestInert 메인게시글 상세글 입력
 			req.setCharacterEncoding("UTF-8");
 			
+			
 			int board_no = Integer.parseInt(mRequest.getParameter("board_no"));	
 			String keyword = mRequest.getParameter("keyword");
 			String writer = (String)req.getSession().getAttribute("id");
@@ -49,20 +50,25 @@ public class BoardTextInsertServlet extends HttpServlet {
 			BoardTextDao boardTextDao = new BoardTextDao();
 			boardTextDao.textInsert(boardTextDto);
 			
-//		파일등록
+//		파일등록(목록 추가시)
+			int no = boardTextDto.getNo();		// sub_title no
 
 			File file = mRequest.getFile("file");
 			
 			if(file != null) {	// 파일이 있다면
-				BA_FileDto boardFileDto = new BA_FileDto();
-				boardFileDto.setUploadname(mRequest.getOriginalFileName("file"));
-				boardFileDto.setSavename(mRequest.getFilesystemName("file"));
-				boardFileDto.setFiletype(mRequest.getContentType("file"));
-				boardFileDto.setFilesize(file.length());
-				boardFileDto.setTitle_key(keyword);
-				
-				BA_FileDao boardFileDao = new BA_FileDao();
-				boardFileDao.board_fileInsert(boardFileDto);
+
+					BoardTextDto textFileDto = new BoardTextDto();
+
+					textFileDto.setText_no(no);
+
+					textFileDto.setUploadname(mRequest.getOriginalFileName("file"));
+					textFileDto.setSavename(mRequest.getFilesystemName("file"));
+					textFileDto.setFiletype(mRequest.getContentType("file"));
+					textFileDto.setFilesize(file.length());
+										
+					BoardTextDao textFileDao = new BoardTextDao();
+					textFileDao.textFile(textFileDto);
+
 			}
 			
 			resp.sendRedirect(req.getContextPath()+"/board/searchResult.jsp?keyword="+URLEncoder.encode(keyword, "UTF-8")+"&board_no="+board_no);

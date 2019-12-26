@@ -56,6 +56,7 @@
 				<th>차단 날짜</th>
 				<th>관리자</th>
 				<th>차단 사유</th>
+				<th>차단 해제</th>
 			</tr>
 		</thead>
 
@@ -66,6 +67,7 @@
 				<td><%=dto.getBdate()%></td>
 				<td><%=dto.getBadmin()%></td>
 				<td><%=dto.getBreason()%></td>
+				<td><a href="release.do?id=<%=dto.getB_id()%>"><input type="button" name="release"  value="차단해제"></a></td>
 			</tr>
 		<%} %>
 		</tbody>
