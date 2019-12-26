@@ -78,7 +78,7 @@
 								-->						
 			<article class="footer">
 		        <div class="foodiv">
-						<h3>ACOHOL WIKI&copy;</h3><br>
+						<h3>ALCOHOL WIKI&copy;</h3><br>
 						<form action="<%=request.getContextPath()%>/operationPolicy/OP.jsp">
 							  <button class="button type1">
   								운영 방침
