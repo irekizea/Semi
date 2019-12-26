@@ -146,12 +146,15 @@
 	<tr>
 		<td colspan="4">			
 			<!-- 파일 미리보기 -->
-			
+
 			  	<img src="filedown.do?keyword=<%=boardFileDto.getTitle_key() %>" class="img" style="width:100px; height:auto;">
 		
 		</td>
 	</tr>
 		<%} %>
+	<%for(BoardTextDto boardTextDto:getList){ %>
+
+
 	<tr>
 		<td class="sub-title" colspan="3">개요</td>
 		<td>
@@ -165,10 +168,12 @@
 	</tr>
 	<tr>
 		<td colspan = "4">
-			  <%= boardDto.getContent()%>
-			  
+
+			  <%= boardTextDto.getText_content()%>
+
 		</td>
 	</tr>
+	<%} %>
 	
 
 <%} else{%>	
