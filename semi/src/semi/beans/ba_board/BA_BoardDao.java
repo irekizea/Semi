@@ -250,3 +250,5 @@ public class BA_BoardDao {
 		con.close();	
 	}
 }
+
+

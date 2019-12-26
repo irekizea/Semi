@@ -108,5 +108,24 @@ public class BoardDao {
 		
 		con.close();
 	}
-}
+	
+	//editcheck 값에 대한 boolean 메소드
+	public boolean check(int no) throws Exception{
+		Connection con = getConnection();
+		
+		String sql = "select*from board where no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, no);
+		ResultSet rs = ps.executeQuery();
+		boolean tf;
+		rs.next();
+		if(rs.getString("editcheck")=="false") {
+			tf=false;
+		}else {
+			tf=true;
+		}
 
+		System.out.println(tf);
+		return tf;
+	}
+}

@@ -64,7 +64,7 @@
 			width: '100%',
 			height : '300px',
 			//initialEditType : 생성될 에디터의 초기화면 형태(markdown, wysiwyg)
-			initialEditType : 'markdown'
+			initialEditType : 'wysiwyg'
 		};
 		//editor 생성 코드
 		
@@ -84,13 +84,11 @@
 </script>
 <form action="boardedit.do" method="post">
 	<input type="hidden" name="boardtextno" value="<%=boardDto.getNo()%>">
-	<input type="hidden" name="keyword"
-		value="<%=request.getParameter("keyword")%>"> <input
-		type="hidden" name="boardtitle" value="<%=boardDto.getTitle()%>">
-	<input type="hidden" name="boardtextudate"
-		value="<%=boardDto.getUdate()%>"> <input type="hidden"
-		name="no" value="<%=boardtextdto.getNo()%>"> <input
-		type="hidden" name="board_no" value="<%=boardtextdto.getBoard_no()%>">
+	<input type="hidden" name="keyword" value="<%=request.getParameter("keyword")%>"> 
+	<input type="hidden" name="boardtitle" value="<%=boardDto.getTitle()%>">
+	<input type="hidden" name="boardtextudate" value="<%=boardDto.getUdate()%>"> 
+	<input type="hidden"name="no" value="<%=boardtextdto.getNo()%>"> 
+	<input type="hidden" name="board_no" value="<%=request.getParameter("boardno")%>">
 	<%
 		if (login != null) {
 	%>
@@ -133,6 +131,7 @@
 		<div class="text">
 			<br>
 			<div class="naver-editor"><%=boardtextdto.getText_content()%></div>
+			<%System.out.println(boardtextdto.getText_content()); %>
 		</div>
 		<span>
 			문서 편집을 저장하면 기여한 내용을 CC-BY-NC-SA 2.0 KR으로 배포하고

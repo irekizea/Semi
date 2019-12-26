@@ -76,7 +76,7 @@ public class BoardTextDao {
 	public BoardTextDto get(int boardno) throws Exception {
 		Connection con = getConnection();
 
-		String sql = "select*from board_text where board_no=?";
+		String sql = "select*from board_text where no=?";
 
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, boardno);
@@ -115,6 +115,9 @@ public class BoardTextDao {
 
 	}
 
+	
+	
+	
 //	목차추가 파일 업로드(DB text_file)
 	public void textFile(BoardTextDto textFileDto) throws Exception {
 		Connection con = getConnection();

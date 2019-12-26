@@ -110,6 +110,7 @@
 	
 	BoardTextDao boardTextDao = new BoardTextDao();
 	List<BoardTextDto> getList =boardTextDao.getList(keyword);	
+// 	BoardTextDto boardtextdto = boardTextDao.get(boardno)
 	
 	String ip = request.getRemoteAddr();	//전송자 ip
 	String writer = (String)request.getSession().getAttribute("id");
@@ -202,7 +203,7 @@
 	</tr>
 
 	<tr>
-		<td colspan="4"><%=boardTextDto.getText_content() %></td>
+		<td colspan="4"><div class="naver-viewer"><%=boardTextDto.getText_content() %></div></td>
 	</tr>	
 	<%} %>
 	
