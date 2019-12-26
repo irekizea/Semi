@@ -27,7 +27,6 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="../css/semi_common.css">
 
-
 <article class="w-40">
 <!--토론 부분-->
     <div class="content-wrap">

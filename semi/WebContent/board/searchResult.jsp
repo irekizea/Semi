@@ -89,6 +89,7 @@
             margin-left: 5%;
             font-size: 2rem;
         }
+
 	/* 실제 input 또는 textarea 숨김처리 */
 	.naver-editor + textarea {
 		display: none;
@@ -139,6 +140,7 @@
 <div align="center">
 
 
+
 <form action="textInsert.do" method="post"  enctype="multipart/form-data">
 <table class="w-90">
 	<%for(BoardTextDto boardTextDto:getList){ %>
@@ -150,6 +152,7 @@
 	<%} %>
 
 
+
 <%if(!editCheck){ %>
 
 <%for(BA_FileDto boardFileDto : flist) {%>
@@ -157,9 +160,8 @@
 	<tr>
 		<td colspan="4">			
 			<!-- 파일 미리보기 -->
-
+			
 			  	<img src="filedown.do?keyword=<%=boardFileDto.getTitle_key() %>" class="img">
-		
 
 		</td>
 	</tr>
@@ -169,7 +171,16 @@
 
 
 	<tr>
-		<td class="sub-title" colspan="2">개요</td>
+
+		<td>
+		<!-- for(BoardTextDto boardTextDto:getList){
+				<a id="indexlist" href="#s-boardTextDto.getRn()">boardTextDto.getRn() boardTextDto.getSubTitle()</a><br>
+		} -->
+		
+		</td>
+	</tr>
+	<tr>
+		<td class="sub-title" colspan="3"><!-- <a id ="s-1" href ="#indexlist">1</a> -->개요</td>
 		<td>
 			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
 				<input type="button" value="편집">
@@ -195,7 +206,9 @@
 	<%for(BoardTextDto boardTextDto:getList){ %>
 
 	<tr>
+
 		<td class="sub-title" colspan="2"><!-- <a id ="s-boardTextDto.getRn()" href ="#indexlist">boardTextDto.getRn()</a> --><%=boardTextDto.getSub_title() %></td>
+
 		<td>
 			<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
 				<input type="button" value="편집">
@@ -245,6 +258,7 @@
 	
 	</tr>
 </table>
+</form>
 
 
 
@@ -330,7 +344,6 @@
 <%} %>
 
 </table>
-
 </div>
 </article>
 
