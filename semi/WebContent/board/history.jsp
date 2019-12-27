@@ -9,8 +9,7 @@
 	HistoryDto dto = new HistoryDto();
 	HistoryDao dao = new HistoryDao();
 	List<HistoryDto> list = dao.hList(keyword);
-	
-%>
+%>    
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">    
 <style>
     /* history style */
@@ -56,26 +55,6 @@
     }
 
 </style>
-
-<!--
-<script>
-    var result=3;
-    function liked(){
-        var tag = document.querySelector(".liked");
-        if(result){
-            tag.classList.remove("hate");
-            tag.classList.add("liked");
-        }        
-    }
-    function hate(){
-        var tag = document.querySelector(".liked");
-        if(result<0){
-            tag.classList.remove("liked");
-            tag.classList.add("hate");
-        }    
-    }
-</script>
--->
 
 <jsp:include page="/template/header.jsp"></jsp:include>
 
