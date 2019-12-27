@@ -9,8 +9,7 @@
 	HistoryDto dto = new HistoryDto();
 	HistoryDao dao = new HistoryDao();
 	List<HistoryDto> list = dao.hList(keyword);
-	
-%>
+%>    
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">    
 <style>
     /* history style */
@@ -57,26 +56,6 @@
 
 </style>
 
-<!--
-<script>
-    var result=3;
-    function liked(){
-        var tag = document.querySelector(".liked");
-        if(result){
-            tag.classList.remove("hate");
-            tag.classList.add("liked");
-        }        
-    }
-    function hate(){
-        var tag = document.querySelector(".liked");
-        if(result<0){
-            tag.classList.remove("liked");
-            tag.classList.add("hate");
-        }    
-    }
-</script>
--->
-
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <article>
@@ -99,7 +78,7 @@
             </tr>
             <% for(HistoryDto hdto : list){ %>
             <tr class="his-content">
-                <td class="no" style="font-size: 13px;">글번호</td>			<!-- history 글번호. no 또는 rownum -->
+                <td class="no" style="font-size: 13px;"><%=hdto.getRn() %></td>			<!-- history 글번호. no 또는 rownum -->
                 <td class="content">
                 	<a href="#">
                 		<%=hdto.getContent() %>

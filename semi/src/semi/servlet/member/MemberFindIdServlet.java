@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import semi.beans.board.member.MemberDao;
+import semi.beans.member.MemberDao;
+
 @WebServlet(urlPatterns="/member/find_id.do")
 public class MemberFindIdServlet extends HttpServlet{
 
@@ -22,7 +23,7 @@ public class MemberFindIdServlet extends HttpServlet{
 			MemberDao dao = new MemberDao();
 			// MemberDto dto = dto,find(email);
 			System.out.println(email);
-			String id = dao.find(email); // 아이디내놔/ 이메일로찾을게
+			String id = dao.find_id(email); // 아이디내놔/ 이메일로찾을게
 			System.out.println(id);
 			if(id == null) { // 아이디가 없으면
 				resp.sendRedirect("find_id_result.jsp");

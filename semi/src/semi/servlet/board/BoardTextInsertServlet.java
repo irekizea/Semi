@@ -21,8 +21,7 @@ import semi.beans.board.BoardTextDto;
 public class BoardTextInsertServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try {
-			
+		try {		
 // 		파일 등록 사전 설정
 			String path="D:/upload/kh21";
 			int max=10*1024*1024;
@@ -55,17 +54,17 @@ public class BoardTextInsertServlet extends HttpServlet {
 			
 			if(file != null) {	// 파일이 있다면
 
-					BoardTextDto textFileDto = new BoardTextDto();
+			BoardTextDto textFileDto = new BoardTextDto();
 
-					textFileDto.setText_no(no);
+			textFileDto.setText_no(no);
 
-					textFileDto.setUploadname(mRequest.getOriginalFileName("file"));
-					textFileDto.setSavename(mRequest.getFilesystemName("file"));
-					textFileDto.setFiletype(mRequest.getContentType("file"));
-					textFileDto.setFilesize(file.length());
+			textFileDto.setUploadname(mRequest.getOriginalFileName("file"));
+			textFileDto.setSavename(mRequest.getFilesystemName("file"));
+			textFileDto.setFiletype(mRequest.getContentType("file"));
+			textFileDto.setFilesize(file.length());
 										
-					BoardTextDao textFileDao = new BoardTextDao();
-					textFileDao.textFile(textFileDto);
+			BoardTextDao textFileDao = new BoardTextDao();
+			textFileDao.textFile(textFileDto);
 
 			}
 			

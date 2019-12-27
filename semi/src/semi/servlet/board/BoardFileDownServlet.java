@@ -20,11 +20,11 @@ public class BoardFileDownServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			String keyword =req.getParameter("keyword");
+			int no =Integer.parseInt(req.getParameter("no"))+1;
 			
 			BA_FileDao boardFileDao = new BA_FileDao();
-			BA_FileDto boardFileDto = boardFileDao.get(keyword);
-		
+			BA_FileDto boardFileDto = boardFileDao.get1(no);
+			System.out.println(boardFileDto.getSavename());
 			File target = new File("D:/upload/kh21", boardFileDto.getSavename());
 			byte[] data = FileUtils.readFileToByteArray(target);
 			

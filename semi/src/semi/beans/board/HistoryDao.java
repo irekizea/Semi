@@ -116,7 +116,7 @@ public class HistoryDao {
 	}
 	public List<HistoryDto> hList(String keyword) throws Exception {
 		Connection con = getConnection();
-		String sql = "select*from history where board_title= ? order by board_text_udate asc";
+		String sql = "select rownum rn, B.*from(select rownum rnn, A.*from(select*from history where board_title= ? order by board_text_udate asc)A)B order by rnn desc";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, keyword);
@@ -130,6 +130,7 @@ public class HistoryDao {
 			historydto.setContent(rs.getString("content"));
 			historydto.setBoardtextudate(rs.getString("board_text_udate"));
 			historydto.setIp_addr(rs.getString("ip_addr"));
+			historydto.setRn(rs.getInt("rn"));
 			
 			list.add(historydto);
 		}

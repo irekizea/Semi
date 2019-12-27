@@ -161,7 +161,11 @@
 						<form action="<%=request.getContextPath()%>/operationPolicy/OP.jsp">
 							  <button class="button type1">
   								운영 방침
+  							
+  								
   								</button>
+  									<a style="color:white" href = "<%=request.getContextPath() %>/member/logout.do"> logout<%=request.getSession().getAttribute("id") %></a>
+  								
 						</form>	
 				 </div>		 
 
