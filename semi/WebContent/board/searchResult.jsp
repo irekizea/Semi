@@ -171,7 +171,7 @@
 <table class="w-100">
 	<%for(BoardTextDto boardTextDto:getList){ %>
 	<tr>
-		<td id = "#list">
+		<td id = "list">
 		  <a href ="#s-<%=boardTextDto.getRn() %>"><%=boardTextDto.getRn() %>:<%=boardTextDto.getSub_title() %></a>
 		</td>
 	</tr>
