@@ -130,6 +130,101 @@
 	input[type=checkbox]:checked +.checked-show {
 		display: block;
 	}
+	 .title {
+            margin-left: 15%;
+            font-size: 2rem;
+        }
+
+        .sindex {
+            margin-left: 15%;
+            margin-top:50px;
+            margin-bottom:15%;
+         	background-color:	#f5f5f5;
+             width: 150px;
+            padding: 10px;
+            border-radius: 10%;
+        }
+       .sindex>a {
+            font-size: 0.8rem;
+        }
+        #etime{
+        margin-right: 15%;
+        }
+        
+        .table{
+        	width : 70%;
+        }
+        
+        .table>tr {
+            border: 1px solid black;
+            padding: 0.5rem;
+        }
+        
+        .btn {
+
+  margin: 30px auto;
+  padding: 0;
+
+  overflow: hidden;
+
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  
+  background-color: black;
+  color: #ecf0f1;
+  
+  transition: background-color .3s;
+}
+
+.btn:hover, .btn:focus {
+  background-color: dimgray;
+}
+
+.btn > * {
+  position: relative;
+}
+
+.btn span {
+  display: block;
+  padding: 8px 14px;
+}
+
+.btn:before {
+  content: "";
+  top: 50%;
+  left: 50%;
+  
+  display: block;
+  width: 0;
+  padding-top: 0;
+    
+  border-radius: 100%;
+  
+  background-color: rgba(236, 240, 241, .3);
+  
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.btn:active:before {
+  width: 120%;
+  padding-top: 120%;
+  
+  transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+/* Styles, not important */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+    
+        
+        
 </style>
 
 <%
@@ -164,32 +259,39 @@
 
 <article>
 
-<div class="title"><%=boardDto.getTitle() %></div>
-<div align = "right">최근 수정 시간 : <%=boardDto.getUdate() %></div>
+<div class="title">
+<%=boardDto.getTitle() %>
+</div>
+<div id = "etime" align = "right">최근 수정 시간 : <%=boardDto.getUdate() %></div>
+ <div id = "list" class="sindex">
+ <%for(BoardTextDto boardTextDto:getList){ %>
+	<%if(boardTextDto.getRn()==1){%>
+		
+	
+		 	 <a href ="#s-<%=boardTextDto.getRn()%>"><%=boardTextDto.getRn() %>:최초글</a><br>
+	<%}else {%>
+	
+		 	 <a href ="#s-<%=boardTextDto.getRn()%>"><%=boardTextDto.getRn() %>:<%=boardTextDto.getSub_title() %></a><br>
+	
+	<%} %>
+	<%} %>
+
+</div>
+
 <div align="center">
 
-<table class="w-100">
-	<%for(BoardTextDto boardTextDto:getList){ %>
-	<%if(boardTextDto.getRn()==1){%>
-	<tr>
-		<td id = "#list">
-		  <a href ="#s-<%=boardTextDto.getRn()%>"><%=boardTextDto.getRn() %>:최초글</a>
-		</td>
-	</tr>
-	<%}else {%>
-	<tr>
-		<td id = "#list">
-		  <a href ="#s-<%=boardTextDto.getRn()%>"><%=boardTextDto.getRn() %>:<%=boardTextDto.getSub_title() %></a>
-		</td>
-	</tr>
-	<%} %>
-	<%} %>
+<table class="table">
+	
+
+
 
 <%if(check==false){ %>
 
 	<%for(BoardTextDto boardTextDto:getList){ %>
 	<tr>
-		<td class="sub-title" colspan="3">최초작성글이므로 목차가 설정되어있지 않습니다.</td>
+		<td class="sub-title" colspan="3">최초작성글이므로 목차가 설정되어있지 않습니다.	<a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+				<button class="btn" type="button"><span>편집</span></button>
+			</a></td>
 	</tr>
 	<tr>
 		<td width="100%" align = "right">작성자: <%=boardDto.getWriter() %></td>
@@ -199,13 +301,7 @@
 			  <div class="naver-viewer"></div><input type="hidden" value="<%=boardTextDto.getText_content() %>">
 		</td>
 	</tr>
-	<tr>
-		<td>
-			<a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
-				<input type="button" value="편집">
-			</a>
-		</td>
-	</tr>
+
 	<%} %>
 
 <%} else{%>	
@@ -213,11 +309,15 @@
 	<%for(BoardTextDto boardTextDto:getList){ %>
 	<%if(boardTextDto.getSub_title()==null) {%>
 		<tr>
-			<td class="sub-title" colspan="3"><%=boardTextDto.getRn() %>: 최초작성글이므로 목차가 설정되어있지 않습니다.</td>
+			<td class="sub-title" colspan="3"><%=boardTextDto.getRn() %>: 최초작성글이므로 목차가 설정되어있지 않습니다.<a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+				<button class="btn" type="button"><span>편집</span></button>
+			</a></td>
 		</tr>
 	<%}else{ %>
 		<tr>
-			<td class="sub-title" colspan="3"> <a id="s-<%=boardTextDto.getRn()+1 %>" href= "#list"><%=boardTextDto.getRn() %></a>:<%=boardTextDto.getSub_title() %></td>
+			<td class="sub-title" colspan="3"> <a id="s-<%=boardTextDto.getRn()+1 %>" href= "#list"><%=boardTextDto.getRn() %></a>:<%=boardTextDto.getSub_title() %><a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+				<button class="btn" type="button"><span>편집</span></button>
+			</a></td>
 		</tr>		
 	<%} %>
 	<tr>
@@ -229,13 +329,7 @@
 		<input type="hidden" value="<%=boardTextDto.getText_content() %>">
 		</td>
 	</tr>
-	<tr>	
-		<td>
-			<a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
-				<input type="button" value="편집">
-			</a>
-		</td>
-	</tr>
+	
 	<%} %>
 <%} %>
 
