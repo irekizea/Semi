@@ -7,7 +7,7 @@ String context=request.getContextPath();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>header</title>
+    <title>Alcohol wiki - 어디까지 마셔봤니?</title>
     <link rel="stylesheet" type="text/css" href="<%=context%>/css/semi_common.css"> 
 </head>
 <body>
@@ -15,7 +15,7 @@ String context=request.getContextPath();
      <nav class="tab">
      	<a href="<%=context%>" class="logo">Alcohol</a>
         <ul>
-            <li><a href="#">HISTORY</a></li>
+            <li><a href="<%=context%>/board/history.jsp?keyword=<%=request.getParameter("keyword")%>">HISTORY</a></li>
             <li>
                 <a href="<%=context%>/ba_board/list.jsp">DEBATE</a>
           
