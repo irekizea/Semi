@@ -12,8 +12,6 @@
 							<input type="file" name="file" accept="jpg,png,gif">
 						</td>
 				</tr>
-				
-				
 				<tr>
 				<th>제목</th>
 					<td>

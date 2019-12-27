@@ -52,20 +52,37 @@ public class BA_FileDao {
 //반환형:없음
 	public void board_fileInsert(BA_FileDto boardFileDto)throws Exception{
 		Connection con=getConnection();
-		String sql="insert into ba_file(no, uploadname, savename, filetype, filesize, title_key) "
-				+ "values(ba_file_seq.nextval,?,?,?,?,?)";
+		String sql="insert into text_file(file_no, uploadname, savename, filetype, filesize, board_no) values(?,?,?,?,?,?)";
 			
 		PreparedStatement ps=con.prepareStatement(sql);
 
-		ps.setString(1, boardFileDto.getUploadname());
-		ps.setString(2, boardFileDto.getSavename());
-		ps.setString(3, boardFileDto.getFiletype());
-		ps.setLong(4, boardFileDto.getFilesize());
-		ps.setString(5, boardFileDto.getTitle_key());
+		ps.setInt(1, boardFileDto.getNo());
+		ps.setString(2, boardFileDto.getUploadname());
+		ps.setString(3, boardFileDto.getSavename());
+		ps.setString(4, boardFileDto.getFiletype());
+		ps.setLong(5, boardFileDto.getFilesize());
+		ps.setInt(6, boardFileDto.getNo());
 			
 		ps.execute();
 		con.close();
 		}
+	
+//파일최근번호를 받기 위한 메소드
+	public int curval() throws Exception{
+		Connection con = getConnection();
+		String sql = "SELECT LAST_NUMBER FROM USER_SEQUENCES WHERE SEQUENCE_NAME = ?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, "TEXT_FILE_SEQ");
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		
+		int value = rs.getInt("last_number");
+		
+		con.close();
+		return value;
+	}
+	
 	
 //기능:파일 목록 조회
 //이름:getList

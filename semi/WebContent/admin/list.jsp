@@ -60,6 +60,11 @@
 %>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
+<style>
+body {
+	background: #f5f5f5;
+}
+</style>
 
 <div class="sun-container">
 	<div align="center" class="sun-container-wrap vcenter">
@@ -74,9 +79,8 @@
 					<option value="id">아이디</option>
 					<option value="grade">등급</option>
 					<option value="point">포인트</option>
-				</select>
-				<input type="text" name="keyword">
-				<input type="submit" value="검색">
+				</select> <input type="text" name="keyword"> <input type="submit"
+					value="검색">
 			</div>
 
 		</form>
@@ -95,7 +99,6 @@
 					<th>등급</th>
 					<th>포인트</th>
 					<th>회원 차단</th>
-
 				</tr>
 			</thead>
 
@@ -104,15 +107,12 @@
 					for (MemberDto dto : list) {
 				%>
 				<tr>
-					<td><%=dto.getId()%> <%
- 	for (String b : bArrays) {
- %> <%
- 	if (b.equals(dto.getId())) {
- %> <font color="red">[차단 회원]</font> <%
- 	}
- %> <%
- 	}
- %></td>
+					<td><%=dto.getId()%>
+					<%for (String b : bArrays) {%>
+  					<%if (b.equals(dto.getId())) {%> 
+					 <font color="red">[차단 회원]</font> 
+					 <%}%> 
+					 <%}%></td>
 					<td><%=dto.getEmail()%></td>
 					<td><%=dto.getGrade()%></td>
 					<td><%=dto.getPoint()%></td>
@@ -132,9 +132,8 @@
 					}
 				%>
 			</tbody>
-
-
 		</table>
+
 		<!-- 네비게이터(navigator) -->
 		<jsp:include page="/template/navigatorSearch.jsp">
 			<jsp:param name="pno" value="<%=pno%>" />
@@ -143,6 +142,7 @@
 			<jsp:param name="pagesize" value="<%=pagesize%>" />
 		</jsp:include>
 	</div>
+	<div></div>
 </div>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

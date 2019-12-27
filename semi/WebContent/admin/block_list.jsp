@@ -46,9 +46,17 @@
 
 <jsp:include page="/template/header.jsp"></jsp:include>
 
+<style>
+body {
+	background: #f5f5f5;
+}
+</style>
+
+
 <div align="center">
 	<h2>차단 회원 목록</h2>
 
+	<!-- 검색창 -->
 	<form action="block_list.jsp" method="get">
 
 		<div class="sun-select">
@@ -56,12 +64,12 @@
 				<option value="b_id">회원아이디</option>
 				<option value="badmin">관리자아이디</option>
 				<option value="breason">차단 사유</option>
-
 			</select> <input type="text" name="keyword" placeholder="검색어" required>
 			<input type="submit" value="검색">
 		</div>
 
 	</form>
+
 	<table class="sun-user-table" cellpadding="0" cellspacing="0">
 		<!-- 테이블 헤더 -->
 		<thead>
@@ -71,6 +79,7 @@
 				<th>관리자</th>
 				<th>차단 사유</th>
 				<th>차단 해제</th>
+
 			</tr>
 		</thead>
 

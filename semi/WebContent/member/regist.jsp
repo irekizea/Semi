@@ -77,11 +77,10 @@ form {
 			<input id="email-input" class="block-item input-item" type="text" name="email" required>	
 		</div>
 		
-		<div style="margin-left: 80px;">
+		<div style="margin-left: 50px;">
 			<input class="btn" type="submit" value="가입하기">
-			<input class="btn" type="reset" value="지우기">		
 		</div>
-		
+		<h5>※ 저희 알콜위키는 회원가입 후 탈퇴가 불가능합니다. </h5>
 	</article>
 </form>
 <jsp:include page="/template/footer.jsp"></jsp:include>
