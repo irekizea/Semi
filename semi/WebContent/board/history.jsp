@@ -37,9 +37,9 @@
     .his-board .content {
         width: 10rem;
         text-align: left;
-/*         overflow: hidden; */
-/*         text-overflow: ellipsis; */
-/*        	white-space: nowrap; */
+     	overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     .his-board .time,
     .his-board .writer{
@@ -54,10 +54,7 @@
     .hate {
         color: red;
     }
-            /* a태그 하이퍼링크 표시 제어 */
-    a:link { color: black; text-decoration: none;}
-    a:visited { color: black; text-decoration: none;}
-    a:hover { text-decoration: underline;}
+
 </style>
 
 <!--
@@ -100,7 +97,6 @@
                 <td class="content">
                 	<a href="#">
                 		<%=hdto.getContent() %>
-                		<%System.out.println(hdto.getContent()); %>
                 	</a>
                 	<span class="liked" style="font-weight: lighter; font-size: 12px;">(+/- count)</span>
                 </td>
