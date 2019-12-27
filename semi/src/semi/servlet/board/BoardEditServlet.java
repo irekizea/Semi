@@ -54,7 +54,7 @@ public class BoardEditServlet extends HttpServlet{
 			bdto.setIp_addr(ipaddr);
 			bdto.setText_content(content);
 			bdto.setNo(no);
-			
+			//124
 			bdao.btedit(bdto);
 						
 			BoardDto boardDto = new BoardDto();
