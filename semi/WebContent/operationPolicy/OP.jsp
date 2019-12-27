@@ -27,7 +27,6 @@
     padding-bottom: 4rem;
     font-size: 0.9rem;
     line-height: 1.375;
-    position: relative;
 }
 
 .item:before {

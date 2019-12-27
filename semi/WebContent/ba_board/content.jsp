@@ -19,8 +19,17 @@
 	
 	String userId = (String)session.getAttribute("id");
 	String grade = (String)session.getAttribute("grade");
-	boolean isAdmin = grade.equals("관리자");
-	
+	boolean isAdmin;
+	if(grade!=null){
+		if(grade.equals("관리자")){
+			isAdmin = true;
+		}else{
+			isAdmin= false;
+		}
+	}else{
+		isAdmin=false;
+	}
+
 	ReplyDao rdao = new ReplyDao(); 
 	List<ReplyDto> rlist=rdao.ReplyList(no);
 %>

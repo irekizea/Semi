@@ -94,7 +94,6 @@
 }
 .footer{
     background-color: black;
-    position: absolute;
     bottom: 0px;
     left: 0px;
     
