@@ -126,10 +126,12 @@ public class HistoryDao {
 		List<HistoryDto> list = new ArrayList<>();
 		while (rs.next()) {
 			historydto.setWriter(rs.getString("writer"));
+			historydto.setContent(rs.getString("content"));
 			historydto.setBoardtextudate(rs.getString("board_text_udate"));
 			historydto.setIp_addr(rs.getString("ip_addr"));
 			
 			list.add(historydto);
+			System.out.println(historydto.getContent());
 		}
 		con.close();
 		return list;

@@ -27,6 +27,7 @@
     src: url("../font/Arita_ttf/ARITA4.0_T.TTF")
 }
 
+
 /* 개발자 테스트용 border:1 */  
     body[test] main,
     body[test] section,
@@ -193,6 +194,11 @@ article {
             outline: none;
             
         }
+
+	     	/* a태그 하이퍼링크 표시 제어 */
+    a:link { color: black; text-decoration: none;}
+    a:visited { color: black; text-decoration: none;}
+    a:hover { text-decoration: underline;}
 
 /* 
 헤더 디자인
