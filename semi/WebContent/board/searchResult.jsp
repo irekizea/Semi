@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -272,9 +272,8 @@
 	</tr>
 
 </table>
-<div align="left">
-<label for="reply">[토론 보기]</label>
-</div>
+
+<label for="reply"><p align="left">[토론 보기]</p></label>
 <input type="checkbox" id="reply" class="checkbox">
 
 <table border="1" class="checked-show w-80">

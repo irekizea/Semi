@@ -8,6 +8,7 @@ String context=request.getContextPath();
 <head>
     <meta charset="UTF-8">
     <title>Alcohol wiki - 어디까지 마셔봤니?</title>
+    
     <link rel="stylesheet" type="text/css" href="<%=context%>/css/semi_common.css"> 
 </head>
 <body>
