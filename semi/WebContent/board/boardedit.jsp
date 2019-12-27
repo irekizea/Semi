@@ -50,6 +50,7 @@
 	href="<%=request.getContextPath()%>/lib/toast/dist/tui-editor-contents.min.css">
 <script
 	src="<%=request.getContextPath()%>/lib/toast/dist/tui-editor-Editor-full.min.js"></script>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
 	//naver toast ui를 만들기 위한 코드
 	function createEditor() {
@@ -64,7 +65,29 @@
 			width: '100%',
 			height : '300px',
 			//initialEditType : 생성될 에디터의 초기화면 형태(markdown, wysiwyg)
-			initialEditType : 'wysiwyg'
+			initialEditType : 'wysiwyg',
+			hooks: {
+		        'addImageBlobHook': function(blob, callback) {
+		            //해야할 것
+		            //[1] 서버의 준비된 주소에 신호를 보내서 파일을 업로드해야함
+		           	var data = new FormData();//파일 전송을 지원하는 FormData 객체를 생성
+		           	data.append("fname", blob);//fname이란 이름으로 이미지(blob)를 첨부
+		           	data.append("no", <%=boardtextdto.getNo()%>);
+		           	
+		           	$.ajax({//서버로 비동기(몰래) 통신을 보낸다
+		           		url:"http://localhost:8080/semi/board/fileupload.do",//업로드 서블릿 주소
+		           		type:"post",//전송 방식(GET/POST)
+		           		data:data,//전송할 데이터
+		           		cache:false,//캐시 사용 여부
+        				processData:false,//url-encoding 방식을 쓰지 않겠다는 설정(파일이니까 multipart/form-data)
+        				contentType:false,//기본 전송타입을 쓰지 않겠다는 설정
+        				success:function(result){//성공했다면 실행할 내용
+        					//result : 서버에서 회신한 데이터(주소)
+        					callback(result);
+        				}
+		           	});
+		        }
+		    }
 		};
 		//editor 생성 코드
 		
@@ -79,11 +102,14 @@
 			var input = document.querySelector(".naver-editor + input");
 			input.value = text;
 		});
+		
+		//초기 설정
+		editor.setValue(document.querySelector(".naver-editor + input").value);
 	}
 	window.onload = createEditor;
 </script>
 <!-- <input type="file" name="file" >	 -->
-<form action="boardedit.do" method="post" enctype="multipart/form-data">
+<form action="boardedit.do" method="post">
 	<input type="hidden" name="keyword" value="<%=request.getParameter("keyword")%>">
 	 <input type="hidden" name="boardtitle" value="<%=boardDto.getTitle()%>">
 	<input type="hidden" name="boardtextudate" value="<%=boardDto.getUdate()%>">
@@ -126,11 +152,11 @@
 				}
 			%>
 		</div>
-		<input type="file" name="file">		
+<!-- 		<input type="file" name="file">		 -->
 	</div>
 		<div class="text">
-			<br>
-		<div class="naver-editor"><%=boardtextdto.getText_content()%></div>
+		<div class="naver-editor"></div>
+		<input type="hidden" name="text_content" value="<%=boardtextdto.getText_content()%>">
 		</div>
 		<span>
 			문서 편집을 저장하면 기여한 내용을 CC-BY-NC-SA 2.0 KR으로 배포하고
@@ -142,7 +168,6 @@
 			<input type="submit" value="편집완료">
 		</div>
 	</article>
-
-	<input type="hidden" name="text_content">
+	
 </form>
 <jsp:include page="/template/footer.jsp"></jsp:include>
