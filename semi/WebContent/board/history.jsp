@@ -9,14 +9,7 @@
 	HistoryDto dto = new HistoryDto();
 	HistoryDao dao = new HistoryDao();
 	List<HistoryDto> list = dao.hList(keyword);
-	
-
 %>    
-
-
-
-
-
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 

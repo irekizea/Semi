@@ -39,7 +39,7 @@
 			previewStyle : 'vertical',
 			//height : 생성될 에디터의 높이
 			width: '100%',
-			height : '300px',
+			height : '200px',
 			//initialEditType : 생성될 에디터의 초기화면 형태(markdown, wysiwyg)
 			initialEditType : 'wysiwyg'
 		};
@@ -169,11 +169,19 @@
 
 <table class="w-100">
 	<%for(BoardTextDto boardTextDto:getList){ %>
+	<%if(boardTextDto.getRn()==1){%>
 	<tr>
 		<td id = "#list">
-		  <a href ="#s-<%=boardTextDto.getRn() %>"><%=boardTextDto.getRn() %>:<%=boardTextDto.getSub_title() %></a>
+		  <a href ="#s-<%=boardTextDto.getRn()%>"><%=boardTextDto.getRn() %>:최초글</a>
 		</td>
 	</tr>
+	<%}else {%>
+	<tr>
+		<td id = "#list">
+		  <a href ="#s-<%=boardTextDto.getRn()%>"><%=boardTextDto.getRn() %>:<%=boardTextDto.getSub_title() %></a>
+		</td>
+	</tr>
+	<%} %>
 	<%} %>
 
 <%if(check==false){ %>
@@ -187,7 +195,7 @@
 		<%} %>
 	<%for(BoardTextDto boardTextDto:getList){ %>
 	<tr>
-		<td class="sub-title" colspan="3">최초작성글이므로 목차가 설정되어있지 않습니다. <%=boardTextDto.getRn() %></td>
+		<td class="sub-title" colspan="3">최초작성글이므로 목차가 설정되어있지 않습니다.</td>
 	</tr>
 	<tr>
 		<td width="100%" align = "right">작성자: <%=boardDto.getWriter() %></td>
@@ -216,9 +224,15 @@
 	</tr>
 	<%} %>
 	<%for(BoardTextDto boardTextDto:getList){ %>
-	<tr>
-		<td class="sub-title" colspan="3"> <a id="s-<%=boardTextDto.getRn() %>" href= "#list"><%=boardTextDto.getRn() %></a>:<%=boardTextDto.getSub_title() %></td>
-	</tr>
+	<%if(boardTextDto.getSub_title()==null) {%>
+		<tr>
+			<td class="sub-title" colspan="3"><%=boardTextDto.getRn() %>: 최초작성글이므로 목차가 설정되어있지 않습니다.</td>
+		</tr>
+	<%}else{ %>
+		<tr>
+			<td class="sub-title" colspan="3"> <a id="s-<%=boardTextDto.getRn()+1 %>" href= "#list"><%=boardTextDto.getRn() %></a>:<%=boardTextDto.getSub_title() %></td>
+		</tr>		
+	<%} %>
 	<tr>
 		<td width="100%" align = "right">최근 수정자: <%=boardTextDto.getWriter() %></td>
 	</tr>
@@ -271,9 +285,11 @@
 	</tr>
 
 </table>
-
-<label for="reply"><p align="left" class="w-80">[토론 보기]</p></label>
+<div align="left">
+<label for="reply">[토론 보기]</label>
+</div>
 <input type="checkbox" id="reply" class="checkbox">
+
 <table border="1" class="checked-show w-80">
 	<%for(BoardReplyDto boardReplyDto: replyList){ %>	
 	<tr>
@@ -303,31 +319,24 @@
 			<%=boardReplyDto.getContent() %>
 		</td>
 	</tr>
-
 	<%} %>
-	
-	<tr>
-			<td clospan="4">
-					<form action="replyInsert.do" method="post">                               
-	       
-	            		<input type="hidden" name="board_title" value="<%=boardDto.getTitle()%>">	   
+		<form action="replyInsert.do" method="post">                               
+		<tr>
+			<td colspan="4">  
+        	<input type="hidden" name="board_title" value="<%=boardDto.getTitle()%>">	   
 	            		<textarea name="content" onkeyup="textLimit(this, 1000);" required></textarea>
-	            		
 		            	<%if(writer==null) { %>
 							[알림] 비로그인 상태로 토론에 참여합니다. 토론 내역에 IP "<%=ip %>"가 영구히 기록됩니다.
-						<%} %>
-		
+						<%} %>	
 			</td>
-	
 		</tr>
-	
 		<tr>
 			<td>
 				토론은 사용자에 의한 임의삭제가 불가능하므로 신중하게 작성하여 주시길 바랍니다.
 			<input type="submit" value="등록">
-			</form>
 			</td>
 		</tr>
+		</form>
 </table>
 
 <!-- 검색결과가 없다면 -->
@@ -344,7 +353,6 @@
 				 " <%=keyword %> "에 대한 <a href="<%=request.getContextPath()%>/ba_board/write.jsp">새 글 제안하기</a>
 			<%} %>
 		</td>
-	
 	</tr>
 <%} %>
 

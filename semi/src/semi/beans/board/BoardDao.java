@@ -129,21 +129,25 @@ public class BoardDao {
 	}
 	//위랑 동일한 메소드(매개변수만 keyword)
 	public boolean check(String keyword) throws Exception{
-		Connection con = getConnection();
-		
-		String sql = "select*from board where title=?";
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, keyword);
-		ResultSet rs = ps.executeQuery();
-		boolean tf;
-		rs.next();
-		if(rs.getString("editcheck").equals("false")) {
-			tf=false;
-		}else {
-			tf=true;
+		boolean tf = false;
+		try {
+			Connection con = getConnection();
+			
+			String sql = "select*from board where title=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, keyword);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			
+			if(rs.getString("editcheck").equals("false")) {
+				tf=false;
+			}else {
+				tf=true;
+			}
 		}
-
-		System.out.println(tf);
+		catch(Exception e) {
+			
+		}
 		return tf;
 	}
 }
