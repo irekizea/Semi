@@ -133,7 +133,6 @@ public class HistoryDao {
 			historydto.setRn(rs.getInt("rn"));
 			
 			list.add(historydto);
-			System.out.println(historydto.getContent());
 		}
 		con.close();
 		return list;
