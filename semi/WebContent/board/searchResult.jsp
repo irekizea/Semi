@@ -156,7 +156,7 @@
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/board.css">
+
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <% if(boardDto.getTitle()!=null){ %>
@@ -164,7 +164,8 @@
 <article>
 
 <div class="title"><%=boardDto.getTitle() %></div>
-<div align = "right">최근 수정 시간 : <%=boardDto.getUdate() %></div>
+<div align = "right"><a href="<%=request.getContextPath()%>/board/history.jsp?keyword=<%=request.getParameter("keyword")%>">history</a></div>
+<div align = "right" class="board-udate">최근 수정 시간 : <%=boardDto.getUdate() %></div>
 <div align="center">
 
 <table class="w-100">

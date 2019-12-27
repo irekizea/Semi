@@ -10,20 +10,41 @@
 	HistoryDao dao = new HistoryDao();
 	List<HistoryDto> list = dao.hList(keyword);
 	
-%>    
-
+%>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">    
 <style>
     /* history style */
-    .history-title{
-        font-weight: bold;
-        font-size: xx-large;
-    }
-    .history-board {
+    .his-board{
         border-collapse: collapse;
     }
-    .history-board .board-style {
-    	padding: 1rem 0;
-        border-bottom: 1px dotted gray;
+    .his-board * {
+        padding: 10px;
+    }
+    .his-board tr:nth-child(1)  {
+        font-weight: bold;
+    }
+    .his-board .his-title{
+        border-top: 2px solid lightgray;
+        border-bottom: 2px solid lightgray;
+    }
+    .his-board .his-content {
+        border-bottom: 1px solid lightgray;
+    }
+    .his-board .no {
+        width: 2rem;
+        text-align: center;        
+    }
+    .his-board .content {
+        width: 10rem;
+        text-align: left;
+/*         overflow: hidden; */
+/*         text-overflow: ellipsis; */
+/*        	white-space: nowrap; */
+    }
+    .his-board .time,
+    .his-board .writer{
+        width: 4rem;
+        text-align: center;
     }
 
     /* 좋아요, 싫어요 -> javaScript 구현 */
@@ -33,7 +54,12 @@
     .hate {
         color: red;
     }
+            /* a태그 하이퍼링크 표시 제어 */
+    a:link { color: black; text-decoration: none;}
+    a:visited { color: black; text-decoration: none;}
+    a:hover { text-decoration: underline;}
 </style>
+
 <!--
 <script>
     var result=3;
@@ -56,38 +82,44 @@
 
 <jsp:include page="/template/header.jsp"></jsp:include>
 
-
-<article class="w-90">
-
-    <p class="history-title"><%=keyword %></p>
-
-    <div align=left>
-        <table class="history-board" border="0" width = 80%>            
+<article>
+    <div align=center>
+        <table class="his-board" width=90% border="0"> 
             <tr>
-                <td>수정시간(버전)</td>
-                <td>좋아요/싫어요</td>
-                <td>작성자</td>
+                <td colspan="4"><p>HISTORY</p></td>
+            </tr>           
+            <tr class="his-title">
+                <td class="no">No</td>
+                <td class="sub">Content</td>
+                <td class="time">Update Time</td>
+                <td class="writer">Writer</td>
             </tr>
-            
-            <tr class=row-empty></tr>
-            
-           	<% for(HistoryDto hdto : list){ %>
-            <tr  class="board-style">
-                <td><a href="#"><%=hdto.getBoardtextudate() %></a></td>
-                <td class="liked">(+/- count) </td>
-                <td>
-                        <%if(hdto.getWriter()!=null){ %>
+            <% for(HistoryDto hdto : list){ %>
+            <tr class="his-content">
+                <td class="no" style="font-size: 13px;">글번호</td>			<!-- history 글번호. no 또는 rownum -->
+                <td class="content">
+                	<a href="#">
+                		<%=hdto.getContent() %>
+                		<%System.out.println(hdto.getContent()); %>
+                	</a>
+                	<span class="liked" style="font-weight: lighter; font-size: 12px;">(+/- count)</span>
+                </td>
+                <td class="time" style="font-size: 13px;">
+                    <%=hdto.getBoardtextudate() %>								<!-- 수정시간 -->
+                </td>
+                <td class="writer" style="font-size: 13px;">						<!-- 작성자 id, ip -->
+                    <%if(hdto.getWriter()!=null){ %>
                 			<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?writer=<%=hdto.getWriter() %>">
                 				<%=hdto.getWriter() %>
                 			</a>
-						<%} else {%>
-							<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?writer=<%=hdto.getIp_addr() %>">
+					<%} else {%>
+							<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?ip_addr=<%=hdto.getIp_addr() %>">
                 				<%=hdto.getIp_addr() %>
                 			</a>
-						<%} %>
-				</td>
+					<%} %>
+                </td>
             </tr>
-           	<%} %>
+    	 <%} %>
         </table>
     </div>
 </article>
