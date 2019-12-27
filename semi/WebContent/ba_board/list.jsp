@@ -86,6 +86,7 @@ boolean isAdmin = grade.equals("관리자");
 
 <jsp:include page="/template/header.jsp"></jsp:include>
 
+<div class="row-empty"></div>
 <div align="center">
         <table class="his-board" border="0" width="90%">
             <colgroup>
@@ -100,9 +101,9 @@ boolean isAdmin = grade.equals("관리자");
             <thead>
                 <tr class="his-title">
                     <th>No</th>
-                    <th>제목</th>
-                    <th>작성자</th>
-                    <th>작성일시</th>
+                    <th>TITLE</th>
+                    <th>Writer</th>
+                    <th>Date</th>
                     <%if(isAdmin) {%>
                         <th>좋아요</th>
                         <th>싫어요</th>

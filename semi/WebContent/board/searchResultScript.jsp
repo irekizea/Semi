@@ -38,7 +38,7 @@
 	         alert("토론은"+maxByte + "자를 초과 입력 할 수 없습니다.");
 	         reply2 = strValue.substr(0, len);			// 최대허용문자열(reply2) = 입력문자열의 0 ~ 문자길이+1(len)
 	         reply.value = reply2;
-	         textLimit(reply, 4000);	
+	         textLimit(reply, 1000);	
 	     }
 	 }
 	 
