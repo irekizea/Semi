@@ -22,9 +22,9 @@ public class MemberFindPwServlet extends HttpServlet{
 			MemberDao dao = new MemberDao();
 			// MemberDto dto = dto,find(email);
 			System.out.println(id);
-			String pw = dao.find_pw(id); // 아이디내놔/ 이메일로찾을게
+			String pw = dao.find_pw(id); // 비번내놔/ 아이디로찾을게
 			System.out.println(pw);
-			if(pw == null) { // 아이디가 없으면
+			if(pw == null) { // 비번 없으면
 				resp.sendRedirect("find_pw_result.jsp");
 			}
 			else {

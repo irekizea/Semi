@@ -27,7 +27,6 @@ try {
 				MemberDto dto = new MemberDto();
 				dto.setEmail(email);
 
-	
 }
 catch(Exception e){
 	e.printStackTrace();
