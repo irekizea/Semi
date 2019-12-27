@@ -15,7 +15,7 @@ String context=request.getContextPath();
      <nav class="tab">
      	<a href="<%=context%>" class="logo">Alcohol</a>
         <ul>
-            <li><a href="<%=context%>/board/history.jsp?keyword=<%=request.getParameter("keyword")%>">HISTORY</a></li>
+            <li><a href="<%=context%>/board/history_total.jsp">HISTORY</a></li>
             <li>
                 <a href="<%=context%>/ba_board/list.jsp">DEBATE</a>
           

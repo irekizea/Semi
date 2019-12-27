@@ -22,34 +22,106 @@
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/board.css">
+<style>
+    /* memberHistory style */
+    .his-board{
+        border-collapse: collapse;
+    }
+    .his-board * {
+        padding: 10px;
+    }
+
+    .his-board tr:nth-child(1)  {
+        font-weight: bold;
+    }
+    .his-board .his-title{
+        border-top: 2px solid lightgray;
+        border-bottom: 2px solid lightgray;
+    }
+    .his-board .his-content {
+        border-bottom: 1px solid lightgray;
+    }
+
+    .his-board .title{
+        width: 3rem;
+        text-align: left;
+    }
+    .his-board .content{
+        width: 10rem;
+        text-align: left;
+        height: 5px;
+    }
+    .his-board .time,
+    .his-board .writer{
+        width: 3rem;
+        text-align: center;
+    }
+
+</style>
+<!--
+    var result=3;
+    function liked(){
+        var tag = document.querySelector(".liked");
+        if(result){
+            tag.classList.remove("hate");
+            tag.classList.add("liked");
+        }        
+    }
+    function hate(){
+        var tag = document.querySelector(".liked");
+        if(result<0){
+            tag.classList.remove("liked");
+            tag.classList.add("hate");
+        }    
+    }
+</script>
+-->
+	
 <jsp:include page="/template/header.jsp"></jsp:include>
 
+<article>
+    <div align=center>
+        <table class="his-board" width=90% border="1"> 
+            <tr>
+                <td colspan="3">
+                    <p>
+                       	<%if(request.getParameter("writer")!=null){ %>
+								"<%=request.getParameter("writer") %>"
+						<% } 
+						else{ %>
+								"<%=request.getParameter("ip_addr") %>"
+						<%} %>
+                    </p>
+                    <span>의 기여목록</span>
+                </td>
+            </tr>           
+            <tr class="his-title">
+                <td class="time">Write Time</td>
+                <td class="title">대주제</td>
+                <td class="content">내용</td>
+            </tr>
+            <!-- for문 위치 -->
+            <tr class="his-content">
+                <td class="time" style="font-size: 13px;">
+                    <a href="#">수정시간</a>
+                </td>
+                <td class="title">
+                    대주제
+                </td>
+                <td class="content">Content<span class="liked" style="font-weight: lighter; font-size: 12px;">(+/- count)</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</article>
 
-<style>
-
-    .table {
-            width: 100%;
-            border: 1px solid black;
-            border-collapse: collapse
-        }
-
-        .table>thead>tr>td,
-        .table>thead>tr>th,
-        .table>tbody>tr>td,
-        .table>tbody>tr>th {
-            border: 1px solid black;
-            padding: 0.5rem;
-        }
-</style>
-	
 
 <div align = "center">
 
 <table border = "1" style = width:90%>
 	<tr>
 		<th>
-	<%if(request.getParameter("writer")!=null){ %>
+		<%if(request.getParameter("writer")!=null){ %>
 				"<%=request.getParameter("writer") %>"의 기여목록
 		<% } 
 			else{ %>
