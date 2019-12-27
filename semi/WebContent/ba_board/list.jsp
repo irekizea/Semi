@@ -24,7 +24,17 @@ List<BA_BoardDto> list = dao.getList(start,finish);
 
 int count=dao.getCount();
 String grade = (String)session.getAttribute("grade");
-boolean isAdmin = grade.equals("관리자");
+boolean isAdmin;
+if(grade!=null){
+	if(grade.equals("관리자")){
+		isAdmin = true;
+	}else{
+		isAdmin= false;
+	}
+}else{
+	isAdmin=false;
+}
+
 %>
 <jsp:include page="/template/header.jsp"></jsp:include>
 <div align="center">

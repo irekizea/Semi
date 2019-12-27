@@ -93,7 +93,7 @@
             </tr>
             <% for(HistoryDto hdto : list){ %>
             <tr class="his-content">
-                <td class="no" style="font-size: 13px;">글번호</td>			<!-- history 글번호. no 또는 rownum -->
+                <td class="no" style="font-size: 13px;"><%=hdto.getRn() %></td>			<!-- history 글번호. no 또는 rownum -->
                 <td class="content">
                 	<a href="#">
                 		<%=hdto.getContent() %>
