@@ -10,15 +10,11 @@
 	BoardDao boardDao = new BoardDao();
 	List<BoardDto> list =boardDao.getTitleList(); 
 %>
-<jsp:include page="/template/header.jsp"></jsp:include>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Alcohol wiki - 어디까지 마셔봤니?</title>
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
+
+	<jsp:include page="/template/header.jsp"></jsp:include>
+
     <style>
-      
+        /* 검색창 */      
     main{
         margin: auto;
         height: auto;
@@ -31,13 +27,12 @@
         margin: auto;
     }  
 
-        /* 검색창 */
         
         .box {
             position: relative;
-            width: 70%;
+            width: 60%;
             text-align: center;
-            margin-top:35%;
+            margin-top:15%;
         }
         .search {
             position: absolute;
@@ -45,14 +40,15 @@
         }
         input[type=search]{
             width: 100%;
-            border-top: 0;
-            border-right: 0;
-            border-left: 0;
+            border-style: none;
             border-bottom-style: solid;
             border-bottom-color: black;
-            padding: 0.5rem;
-            font-size: 40px;
+            padding: 1rem;
+            font-size: 20px;
             font-style: oblique;
+        }
+        input[type=search]:focus {
+      		outline: none;
         }
         .topN *{
             text-align: center;
@@ -68,9 +64,8 @@
         }
 
     </style>
-</head>
 
-<body>
+	
     <main>
     <article class="box">
     	<form action="<%=request.getContextPath()%>/board/searchResult.jsp" method="get">
@@ -85,7 +80,5 @@
 	        </div>
 		</form>
     </article>
-    </main>
-</body>
-</html>
+
 <jsp:include page="/template/footer.jsp"></jsp:include>
