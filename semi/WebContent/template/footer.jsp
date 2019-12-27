@@ -1,3 +1,4 @@
+
 <%@page import="semi.beans.board.HistoryDao"%>
 <%@page import="semi.beans.board.HistoryDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -72,6 +73,7 @@
 } 
           
         </section>
+
         
        <style>
         .footer {
