@@ -132,7 +132,6 @@ public class HistoryDao {
 			historydto.setIp_addr(rs.getString("ip_addr"));
 			
 			list.add(historydto);
-			System.out.println(historydto.getContent());
 		}
 		con.close();
 		return list;

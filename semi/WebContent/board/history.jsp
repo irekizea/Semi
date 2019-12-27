@@ -19,6 +19,9 @@
     }
     .his-board * {
         padding: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     .his-board tr:nth-child(1)  {
         font-weight: bold;
@@ -31,15 +34,12 @@
         border-bottom: 1px solid lightgray;
     }
     .his-board .no {
-        width: 2rem;
+        width: 4rem;
         text-align: center;        
     }
     .his-board .content {
         width: 10rem;
         text-align: left;
-     	overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
     }
     .his-board .time,
     .his-board .writer{
@@ -81,7 +81,13 @@
 
 <article>
     <div align=center>
-        <table class="his-board" width=90% border="0"> 
+        <table class="his-board" width=90% border="0" style="table-layout: fixed"> 
+        	<colgroup>
+                <col width="10%">
+                <col width="50%">
+                <col width="20%">
+                <col width="20%">
+            </colgroup>
             <tr>
                 <td colspan="4"><p>HISTORY</p></td>
             </tr>           
