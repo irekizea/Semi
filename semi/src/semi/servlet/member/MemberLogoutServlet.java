@@ -14,6 +14,7 @@ public class MemberLogoutServlet extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getSession().removeAttribute("id");
+		req.getSession().removeAttribute("grade");
 		
 		resp.sendRedirect(req.getContextPath()+"/index.jsp");
 	}
