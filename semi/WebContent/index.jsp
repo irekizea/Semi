@@ -65,7 +65,7 @@
 
     </style>
 
-	<!-- 메인글 -->
+	
     <main>
     <article class="box">
     	<form action="<%=request.getContextPath()%>/board/searchResult.jsp" method="get">
