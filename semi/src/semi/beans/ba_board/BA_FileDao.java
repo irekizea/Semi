@@ -52,16 +52,16 @@ public class BA_FileDao {
 //반환형:없음
 	public void board_fileInsert(BA_FileDto boardFileDto)throws Exception{
 		Connection con=getConnection();
-		String sql="insert into text_file(file_no, uploadname, savename, filetype, filesize, board_no) values(?,?,?,?,?,?)";
+		String sql="insert into text_file(file_no, uploadname, savename, filetype, filesize, board_no) values(text_file_seq.nextval,?,?,?,?,?)";
 			
 		PreparedStatement ps=con.prepareStatement(sql);
 
-		ps.setInt(1, boardFileDto.getNo());
-		ps.setString(2, boardFileDto.getUploadname());
-		ps.setString(3, boardFileDto.getSavename());
-		ps.setString(4, boardFileDto.getFiletype());
-		ps.setLong(5, boardFileDto.getFilesize());
-		ps.setInt(6, boardFileDto.getNo());
+//		ps.setInt(1, boardFileDto.getNo());
+		ps.setString(1, boardFileDto.getUploadname());
+		ps.setString(2, boardFileDto.getSavename());
+		ps.setString(3, boardFileDto.getFiletype());
+		ps.setLong(4, boardFileDto.getFilesize());
+		ps.setInt(5, boardFileDto.getOrigin());
 			
 		ps.execute();
 		con.close();
@@ -70,14 +70,14 @@ public class BA_FileDao {
 //파일최근번호를 받기 위한 메소드
 	public int curval() throws Exception{
 		Connection con = getConnection();
-		String sql = "SELECT LAST_NUMBER FROM USER_SEQUENCES WHERE SEQUENCE_NAME = ?";
+		String sql = "select text_file_seq.nextval, text_file_seq.currval  from dual";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, "TEXT_FILE_SEQ");
+//		ps.setString(1, "TEXT_FILE_SEQ");
 		ResultSet rs = ps.executeQuery();
 		rs.next();
 		
-		int value = rs.getInt("last_number");
+		int value = rs.getInt("currval");
 		
 		con.close();
 		return value;
@@ -177,24 +177,23 @@ public class BA_FileDao {
 //이름:get
 //매개변수: 검색어(title_key)
 //반환형:BA_FileDto 
-		public BA_FileDto get(String keyword) throws Exception{
+		public BA_FileDto get1(int no) throws Exception{
 			Connection con = getConnection();
 	
-			String sql = "select * from ba_file where title_key = ?";
+			String sql = "select * from text_file where file_no = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, keyword);
+			ps.setInt(1, no);
 			ResultSet rs = ps.executeQuery();
 					
 			BA_FileDto fdto = null;
 			if(rs.next()) {
 				fdto = new BA_FileDto();
-				fdto.setNo(rs.getInt("no"));
-				fdto.setOrigin(rs.getInt("origin"));
+				fdto.setNo(rs.getInt("file_no"));
 				fdto.setUploadname(rs.getString("uploadname"));
 				fdto.setSavename(rs.getString("savename"));
 				fdto.setFiletype(rs.getString("filetype"));
 				fdto.setFilesize(rs.getLong("filesize"));
-				fdto.setTitle_key(rs.getString("title_key"));
+				fdto.setOrigin(rs.getInt("board_no"));
 			}
 					
 			con.close();

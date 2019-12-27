@@ -186,14 +186,7 @@
 	<%} %>
 
 <%if(check==false){ %>
-<%for(BA_FileDto boardFileDto : flist) {%>
-	<tr>
-		<td colspan="4">			
-			<!-- 파일 미리보기 -->
-			  	<img src="filedown.do?keyword=<%=boardFileDto.getTitle_key() %>" class="img" style="width:100px; height:auto;">	
-		</td>
-	</tr>
-		<%} %>
+
 	<%for(BoardTextDto boardTextDto:getList){ %>
 	<tr>
 		<td class="sub-title" colspan="3">최초작성글이므로 목차가 설정되어있지 않습니다.</td>
@@ -216,14 +209,7 @@
 	<%} %>
 
 <%} else{%>	
-	<%for(BA_FileDto boardFileDto : flist) {%>
-	<tr>
-		<td colspan="4">			
-			<!-- 파일 미리보기 -->
-			  	<img src="filedown.do?keyword=<%=boardFileDto.getTitle_key() %>" class="img" style="width:100px; height:auto;">	
-		</td>
-	</tr>
-	<%} %>
+	
 	<%for(BoardTextDto boardTextDto:getList){ %>
 	<%if(boardTextDto.getSub_title()==null) {%>
 		<tr>

@@ -29,14 +29,14 @@ public class BoardFileUploadServlet extends HttpServlet{
 		
 		//[2] 파일을 원하는 위치에 저장하고 DB에도 정보를 남긴다
 		File file = mRequest.getFile("fname");
-		String no=mRequest.getParameter("no");
+		int no=Integer.parseInt(mRequest.getParameter("no"));
 		BA_FileDao boardfiledao = new BA_FileDao();
 		BA_FileDto boardfiledto = new BA_FileDto();
 		boardfiledto.setUploadname(mRequest.getOriginalFileName("fname"));
 		boardfiledto.setSavename(mRequest.getFilesystemName("fname"));
 		boardfiledto.setFiletype(mRequest.getContentType("fname"));
 		boardfiledto.setFilesize(file.length());
-		boardfiledto.setTitle_key(no);
+		boardfiledto.setOrigin(no);
 		
 		//fileseq : 등록된 파일의 식별번호
 		int fileseq = boardfiledao.curval();
@@ -47,7 +47,7 @@ public class BoardFileUploadServlet extends HttpServlet{
 		//[4] resp를 이용하여 주소를 사용자에게 쏜다
 		
 		//저장된 후 이 파일을 가져갈 수 있는 주소를 작성(다운로드 주소)
-		resp.getWriter().println(req.getContextPath()+"/ba_board/download.do?no="+fileseq);
+		resp.getWriter().println(req.getContextPath()+"/board/filedown.do?no="+fileseq);
 		
 		} catch (Exception e) {
 			e.printStackTrace();
