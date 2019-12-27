@@ -294,3 +294,21 @@ article {
             position:fixed;
             background-color: white;         
         }
+       
+       * .login1{
+       	boxsizing
+       }
+       
+       .login1-wrap{
+       	border:1px dotted black
+       	width:460px;
+       	margin: 30px auto;
+       } 
+       
+       .login1-wrap > *{
+       		width:100%;
+       		margin:15px 0px;
+       		}
+       }
+       
+        
