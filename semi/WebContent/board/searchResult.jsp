@@ -1,7 +1,23 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<!-- 게시글 체크박스(누르면 나타나기) 설정 
+	<label for="체크박스id"> 클릭할 것 </label>
+	<input type="checkbox" id="체크박스id">
+	이하 숨겨둘 div 영역                                    
+-->
+<style> 
+	.checkbox {
+		display: none;
+	}
+	.checkbox +div {
+		display: none;
+	}
+	.checbox:checked +div {
+		display: block;
+	}
+</style>
+    
 <%@page import="semi.beans.board.BoardReplyDto"%>
 <%@page import="semi.beans.board.BoardReplyDao"%>
 <%@page import="semi.beans.board.BoardTextDto"%>
@@ -11,222 +27,12 @@
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import = "java.net.InetAddress" %>
+
 <%@ page import = "semi.beans.board.BoardDao" %>
 <%@ page import = "semi.beans.board.BoardDto" %>
 <%@ page import = "semi.beans.board.BoardTextDao" %>
 <%@ page import = "semi.beans.board.BoardTextDto" %>
-<%@page import="semi.beans.ba_board.BA_FileDao"%>
-<%@page import="semi.beans.ba_board.BA_FileDto"%>
-
-<!-- naver toast ui를 사용하기 위한 준비 -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/lib/toast/css/codemirror.min.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/lib/toast/css/github.min.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/lib/toast/css/tui-color-picker.min.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/lib/toast/dist/tui-editor.min.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/lib/toast/dist/tui-editor-contents.min.css">
-<script src="<%=request.getContextPath()%>/lib/toast/dist/tui-editor-Editor-full.min.js"></script>
-
-<script>
-	//naver toast ui를 만들기 위한 코드
-	function createEditor() {
-		
-		//editor 옵션
-		var options = {
-			//el(element) : 에디터가 될 영역
-			el : document.querySelector(".naver-editor"),
-			//previewStyle : 표시되는 방식(horizontal, vertical)
-			previewStyle : 'vertical',
-			//height : 생성될 에디터의 높이
-			width: '100%',
-			height : '200px',
-			//initialEditType : 생성될 에디터의 초기화면 형태(markdown, wysiwyg)
-			initialEditType : 'wysiwyg'
-		};
-		//editor 생성 코드
-		
-		var editor = tui.Editor.factory(options);
-		
-		//editor에 이벤트를 설정해서 입력하면 자동으로 input에 복사되게 구현
-		//- input이라는 상황이 발생하면 오른쪽 function을 실행하라
-		//- oninput이랑 동일한데 자바스크립트로만 구현
-		editor.on("change", function() {
-			//editor의 입력값을 가져와서 input에 설정
-			var text = editor.getValue();
-			var input = document.querySelector(".naver-editor + input");
-			input.value = text;
-		});
-	}
-	
-	// editor로 쓰여진 글을 불러오기 위한 viewer 생성
-	function createViewer(){
-		
-        //editor 옵션
-        var options = {
-            //el(element) : 에디터가 될 영역
-            el:document.querySelector(".naver-viewer"),
-            
-            viewer:true,
-            //height : 생성될 에디터의 높이
-            height:'auto',
-            
-        };
-        //editor 생성 코드
-        var editor = tui.Editor.factory(options);
-        var input = document.querySelector(".naver-viewer + input");
-        var text = input.value;
-        editor.setValue(text);
-    }
-	
-	function createMultiViewer(){
-		//전체 naver-viewer를 불러온다.
-		var list = document.querySelectorAll(".naver-viewer");
-		for(var i=0; i < list.length; i++){
-			//하나씩 초기화 진행
-	        var options = {
-	            //el(element) : 에디터가 될 영역
-	            el:list[i],
-	            
-	            viewer:true,
-	            //height : 생성될 에디터의 높이
-	            height:'auto',
-	            
-	        };
-	        //editor 생성 코드
-	        var editor = tui.Editor.factory(options);
-	        
-	        //list[i] 의 뒤에 있는 input의 값을 불러와 설정
-	        var input = list[i].nextElementSibling;
-	        var text = input.value;
-	        editor.setValue(text);
-		}
-	}
-    //body가 없는 경우에는 다음과 같이 작성
-    // - 예약 실행(callback)
-    // window 실행시 자동으로 editor 생성
-	window.onload = function(){
-		createEditor();
-// 		createViewer();
-		createMultiViewer();
-    };
-
-  		
-</script>
-
-<style>
-	/* 실제 input 또는 textarea 숨김처리 */
-	.naver-editor + textarea {
-		display: none;
-	}
-	
-	/* 목록추가, 댓글(토론), 문서배포 checkbox 숨김 */
-	label + input[type=checkbox]{
-		display: none;
-	}
-	input[type=checkbox] +.checked-show {
-		display: none;
-	}
-	input[type=checkbox]:checked +.checked-show {
-		display: block;
-	}
-	 .title {
-            margin-left: 15%;
-            font-size: 2rem;
-        }
-
-        .sindex {
-            margin-left: 15%;
-            margin-top:50px;
-            margin-bottom:15%;
-         	background-color:	#f5f5f5;
-             width: 150px;
-            padding: 10px;
-            border-radius: 10%;
-        }
-       .sindex>a {
-            font-size: 0.8rem;
-        }
-        #etime{
-        margin-right: 15%;
-        }
-        
-        .table{
-        	width : 70%;
-        }
-        
-        .table>tr {
-            border: 1px solid black;
-            padding: 0.5rem;
-        }
-        
-        .btn {
-
-  margin: 30px auto;
-  padding: 0;
-
-  overflow: hidden;
-
-  border-width: 0;
-  outline: none;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
-  
-  background-color: black;
-  color: #ecf0f1;
-  
-  transition: background-color .3s;
-}
-
-.btn:hover, .btn:focus {
-  background-color: dimgray;
-}
-
-.btn > * {
-  position: relative;
-}
-
-.btn span {
-  display: block;
-  padding: 8px 14px;
-}
-
-.btn:before {
-  content: "";
-  top: 50%;
-  left: 50%;
-  
-  display: block;
-  width: 0;
-  padding-top: 0;
     
-  border-radius: 100%;
-  
-  background-color: rgba(236, 240, 241, .3);
-  
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.btn:active:before {
-  width: 120%;
-  padding-top: 120%;
-  
-  transition: width .2s ease-out, padding-top .2s ease-out;
-}
-
-/* Styles, not important */
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-    
-        
-        
-</style>
-
 <%
 	String keyword = request.getParameter("keyword"); 
 	
@@ -236,25 +42,23 @@
 	
 	BoardTextDao boardTextDao = new BoardTextDao();
 	List<BoardTextDto> getList =boardTextDao.getList(keyword);	
-// 	BoardTextDto boardtextdto = boardTextDao.get(boardno)
 	
-	String ip = request.getRemoteAddr();	//전송자 ip
+	
 	String writer = (String)request.getSession().getAttribute("id");
 	
 	BoardReplyDao boardReplyDao = new BoardReplyDao();
-	List<BoardReplyDto> replyList = boardReplyDao.replyList(keyword);	
+	List<BoardReplyDto> replyList = boardReplyDao.replyList(keyword);
 	
-	// 승인된 후 첫글인지, 사용자가 수정한 글인지 판단
-	boolean check = boardDao.check(keyword);
-	// 파일 다운로드 파일정보 불러오기(List)
-	BA_FileDao fdao = new BA_FileDao();
-	List<BA_FileDto> flist=fdao.getList(keyword);
+	boolean editCheck= boardDto.getEditCheck();
+	System.out.println(editCheck);
+
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/board.css">
 <jsp:include page="/template/header.jsp"></jsp:include>
 
+<<<<<<< HEAD
 <% if(boardDto.getTitle()!=null){ %>
 
 <article>
@@ -358,87 +162,158 @@
 								<%if(writer==null) {%>
 									<p> 
 										[알림] 비로그인 상태로 편집합니다. 편집 내역에 IP "<%=ip %>"가 영구히 기록됩니다.
+=======
+			<!-- 검색된 메인글 주제 -->
+            <article class="board">           
+			    <div class="title">
+			    <!-- 검색어(title)가 있다면 -->
+                    <% if(boardDto.getTitle()!=null){ %>
+                   		<%=boardDto.getTitle() %>
+                </div>
+                		<!-- 승인후 최초 글이라면(사용자 수정 전) false -->        
+                		<%if(!editCheck){ %>
+	                		<div class="board-udate">
+								<span>최근 수정 시간: <%=boardDto.getUdate() %></span>
+		                	</div>
+		                	<article class="clear"></article>
+		                	<p class="board-udate"> 최근 수정자: 
+									<%=boardDto.getWriter() %>							
+							</p>
+			                <div class="sub-title">
+			                  	개요
+			                    <hr>
+			                </div>
+			                <div class="text">			                	
+			                    <%= boardDto.getContent()%>
+			                </div>
+								<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+								<input type="button" value="편집">
+								</a>
+						<%} 
+                		
+                		// 승인 후 사용자가 수정한 글
+                		else {%>
+			                <div class="board-udate">
+								<span>최근 수정 시간: <%=boardDto.getUdate() %></span>
+			                </div>
+		                	<article class="clear"></article>
+							<div class="row-empty"></div>
+						
+							<!-- 메인 주제에 대한 상세글-->
+					        	<%for(BoardTextDto boardTextDto:getList){ %>
+									<p class="board-udate"> 최근 수정자: 
+										<%if(boardTextDto.getWriter()!=null){ %>
+											<%=boardTextDto.getWriter() %>
+										<%} 
+										else { %>
+											<%=boardTextDto.getIp_addr() %>
+										<%} %>
+>>>>>>> branch 'gf' of https://github.com/irekizea/Semi
 									</p>
+					                <div class="sub-title">
+					                  	<%=boardTextDto.getSub_title() %>
+					                    <hr>
+					                </div>
+					                <div class="text">			                	
+					                    <%= boardTextDto.getText_content()%>
+					                </div>
+										<a href="boardedit.jsp?boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+										<input type="button" value="편집">
+										</a>
+								<%} %>               			
+                		<%} %>
+					
+						<form action="textInsert.do" method="post">
+							<label for="show">목차 추가</label>
+							<input type="checkbox" id="show" class="checkbox'">
+							<div class="reply-insert">
+								<input type="hidden" name="keyword" value=<%=keyword %>>
+								<input type="hidden" name="board_no" value="<%=boardDto.getNo()%>">
+								<input type="text" name="sub_title" value="목차[소제목]" required class="sub-title" style="width:100%; height:5%;">
+								<textarea name="content" required class="text">
+								</textarea>
+								<%if(writer==null) {%> 
+										[알림] 비로그인 상태로 편집합니다. 편집 내역에 IP "<%=InetAddress.getLocalHost().getHostAddress()%>"가 영구히 기록됩니다.
 								<%} %> 
-			</div>
-		</td>
-	
-	</tr>
+								<p align="right" style="margin: 5px 0px"><input type="submit" value="등록완료"></p>
+							</div>
+						</form>
+		     </article>
+            
+           <!-- 메인 주제에 대한 댓글(토론) -->
+            <article>
+				<span class="sub-title">토론</span>
+				<hr>
 
+<<<<<<< HEAD
 </table>
 
 <label for="reply"><p align="left">[토론 보기]</p></label>
 <input type="checkbox" id="reply" class="checkbox">
+=======
+<!-- 				댓글(토론) 목록 -->
+				<%for(BoardReplyDto boardReplyDto: replyList){ %>
+					<div class="reply-list">
+						<div class="writer">
+							<%if(boardReplyDto.getWriter()!=null){ %>
+								<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?writer=<%=boardReplyDto.getWriter() %>">
+									<span><%=boardReplyDto.getWriter() %></span>
+								</a>
+								<%} 
+								else {%>
+									<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?ip_addr=<%=boardReplyDto.getIp_addr() %>">
+										<span><%=boardReplyDto.getIp_addr() %></span> 
+									</a>
+								<%} %>
+							</div>
+							<div  class="wdate">
+								<span><%=boardReplyDto.getWdate() %></span>
+							</div>
+						<p class="clear p-empty"></p>
+						<div><%=boardReplyDto.getContent() %></div>
+					</div>
+ 				<div class="row-empty"></div>
+				<%} %>	
+				<div class="row-empty"></div>
+>>>>>>> branch 'gf' of https://github.com/irekizea/Semi
 
-<table border="1" class="checked-show w-80">
-	<%for(BoardReplyDto boardReplyDto: replyList){ %>	
-	<tr>
-		<td>
-		<%if(boardReplyDto.getWriter()!=null){ %>
-			<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?writer=<%=boardReplyDto.getWriter() %>">
-										<%=boardReplyDto.getWriter() %>
-			</a>									
-		<%} 
-			else {%>
-				<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?ip_addr=<%=boardReplyDto.getIp_addr() %>">
-					<%=boardReplyDto.getIp_addr() %>
-				</a>
-			<%} %>
-		</td>
-		
-		<td colspan ="2">
-		</td>
-	
-		<td>
-			<%=boardReplyDto.getWdate() %>
-		</td>
-	</tr>
-	
-	<tr>
-		<td colspan = "4">
-			<%=boardReplyDto.getContent() %>
-		</td>
-	</tr>
-	<%} %>
-		<form action="replyInsert.do" method="post">                               
-		<tr>
-			<td colspan="4">  
-        	<input type="hidden" name="board_title" value="<%=boardDto.getTitle()%>">	   
+<jsp:include page="/board/searchResultScript.jsp"></jsp:include>
+
+				<!-- 입력창 -->
+            	<form action="replyInsert.do" method="post">                               
+	            	<div class="reply-insert">
+	            		<input type="hidden" name="board_title" value="<%=boardDto.getTitle()%>">	   
 	            		<textarea name="content" onkeyup="textLimit(this, 1000);" required></textarea>
+						
+						<span>
 		            	<%if(writer==null) { %>
-							[알림] 비로그인 상태로 토론에 참여합니다. 토론 내역에 IP "<%=ip %>"가 영구히 기록됩니다.
-						<%} %>	
-			</td>
-		</tr>
-		<tr>
-			<td>
-				토론은 사용자에 의한 임의삭제가 불가능하므로 신중하게 작성하여 주시길 바랍니다.
-			<input type="submit" value="등록">
-			</td>
-		</tr>
-		</form>
-</table>
+							[알림] 비로그인 상태로 토론에 참여합니다. 토론 내역에 IP "<%=InetAddress.getLocalHost().getHostAddress()%>"가 영구히 기록됩니다.
+						<%} %>
+						</span><br>
+						<span>토론은 사용자에 의한 임의삭제가 불가능하므로 신중하게 작성하여 주시길 바랍니다.</span>
+		            	<p align="right" style="margin: 5px 0px"><input type="submit" value="등록"></p>
+	            	</div>	            			            	
 
-<!-- 검색결과가 없다면 -->
-<table>	
-<% }else {%>
-	<tr>
-		<td >
-		"<%=keyword %>"에 대한 검색결과가 없습니다. <br>
-		</td>
-		<td colspan="3">
-			<%if(writer==null){ %>
+            	</form>
+     
+					<% }
+                    
+               // 검색결과가 없으면    
+					else {%>
+					<div>
+						<P style="font-size:25px">
+							"<%=keyword %>"에 대한 검색결과가 없습니다. <br>
+						</P>
+							<p style="font-size: 15px">
+							<%if(writer==null){ %>
 								로그인 후 " <%=keyword %> "에 대한 <a href="<%=request.getContextPath()%>/member/login.jsp">새 글 제안하기</a>
-			<%}else{%>
-				 " <%=keyword %> "에 대한 <a href="<%=request.getContextPath()%>/ba_board/write.jsp">새 글 제안하기</a>
-			<%} %>
-		</td>
-	</tr>
-<%} %>
-
-</table>
-
-</div>
-</article>
+							<%} 
+							else{%>
+								 " <%=keyword %> "에 대한 <a href="<%=request.getContextPath()%>/ba_board/write.jsp">새 글 제안하기</a>
+							<%} %>
+							</p>
+					<%} %>
+					</div>
+            </article>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

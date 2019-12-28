@@ -22,6 +22,7 @@
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
+<<<<<<< HEAD
 <style>
     /* memberHistory style */
     .his-board{
@@ -79,9 +80,13 @@
 </script>
 -->
 	
+=======
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/board.css">
+>>>>>>> branch 'gf' of https://github.com/irekizea/Semi
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <article>
+<<<<<<< HEAD
     <div align=center>
         <table class="his-board" width=90% border="0" style="table-layout: fixed;"> 
             <colgroup>
@@ -126,6 +131,32 @@
             <%} %>
         </table>
     </div>
+=======
+	<section>
+		<div>
+		<%if(request.getParameter("writer")!=null){ %>
+				"<%=request.getParameter("writer") %>"의 기여목록
+		<% } 
+			else{ %>
+				"<%=request.getParameter("ip_addr") %>"의 기여목록
+		<%} %>
+		</div>		
+		<div class="">
+		<%for(HistoryDto memberHis : list){ %>
+			<div class="">
+				project: <%=memberHis.getBoardtitle() %>
+				<div class="wdate">
+					최근 수정 시간: <%=memberHis.getBoardtextudate() %>
+				</div>
+
+				<div class="">
+					<%=memberHis.getContent() %>
+				</div>
+		<%} %>
+			</div>
+		</div>
+	</section>
+>>>>>>> branch 'gf' of https://github.com/irekizea/Semi
 </article>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

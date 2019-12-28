@@ -1,10 +1,13 @@
+
 <%@page import="semi.beans.ba_board.BA_BoardDto"%>
 <%@page import="semi.beans.ba_board.BA_BoardDao"%>
 <%@page import="java.util.List"%>
 
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+
 int pagesize = 10;
 int navsize = 10;
 
@@ -24,17 +27,7 @@ List<BA_BoardDto> list = dao.getList(start,finish);
 
 int count=dao.getCount();
 String grade = (String)session.getAttribute("grade");
-boolean isAdmin;
-if(grade!=null){
-	if(grade.equals("관리자")){
-		isAdmin = true;
-	}else{
-		isAdmin= false;
-	}
-}else{
-	isAdmin=false;
-}
-
+boolean isAdmin = grade.equals("관리자");
 %>
 <style>
     /* ba_board List.jsp style */
@@ -98,6 +91,7 @@ if(grade!=null){
 
 <div class="row-empty"></div>
 <div align="center">
+<<<<<<< HEAD
         <table class="his-board" border="0" width="90%">
             <colgroup>
                 <col width="10%">
@@ -160,6 +154,57 @@ if(grade!=null){
             </a>
         </div>
         	<!-- 네비게이터(navigator) -->
+=======
+	<table border="1" width="90%">
+		<thead>
+			<tr>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일시</th>
+				<%if(isAdmin) {%>
+					<th>좋아요</th>
+					<th>싫어요</th>
+					<th>등록 여부</th>
+				<%} %>
+			</tr>
+		</thead>
+		
+		<tbody>
+		<%for(BA_BoardDto dto : list) {%>
+			<tr>
+				<td><%=dto.getBoard_no()%></td>
+				<td>
+					<a href="content.jsp?no=<%=dto.getBoard_no()%>">
+						<%=dto.getTitle()%>
+					</a>
+				</td>
+				<td><%=dto.getWriter()%></td>
+				
+				<%if(dto.getUdate() != null){%>
+					<td><%=dto.getUdate()%></td>
+				<%} else{%>
+					<td><%=dto.getWdate()%></td>
+				<%} %>
+				<td><%=dto.getUp()%></td>
+				<td><%=dto.getDown()%></td>						
+				<td>
+				<%if(dto.getRegist()>0) {%>
+					<h5>등록 완료</h5>
+				<%} else {%>
+					<a href="regist.do?no=<%=dto.getBoard_no()%>"><input type="button" value="등록"></a>
+					<a href="delete.do?no=<%=dto.getBoard_no()%>"><input type="button" value="미등록"></a>
+					
+				<%} %>	
+				</td>
+			</tr>
+		<%} %>	
+		
+		</tbody>
+	</table>
+	
+	<!-- 네비게이터(navigator) -->
+>>>>>>> branch 'gf' of https://github.com/irekizea/Semi
 	<jsp:include page="/template/navigator.jsp">
 		<jsp:param name="pno" value="<%=pno%>"/>
 		<jsp:param name="count" value="<%=count%>"/>
