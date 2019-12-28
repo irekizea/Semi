@@ -114,12 +114,16 @@ public class HistoryDao {
 		con.close();
 		return recentwriter;
 	}
-	public List<HistoryDto> hList(String keyword) throws Exception {
+	public List<HistoryDto> hList(String keyword, int start, int finish) throws Exception {
 		Connection con = getConnection();
-		String sql = "select rownum rn, B.*from(select rownum rnn, A.*from(select*from history where board_title= ? order by board_text_udate asc)A)B order by rnn desc";
+		String sql = "select * from(select rownum rn, B.*from(select rownum rnn, "
+				+ "A.*from(select*from history where board_title= ? order by "
+				+ " board_text_udate asc)A)B order by rnn desc)where rn between ? and ?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, keyword);
+		ps.setInt(2, start);
+		ps.setInt(3, finish);
 		ResultSet rs = ps.executeQuery();
 
 
@@ -137,6 +141,22 @@ public class HistoryDao {
 		con.close();
 		return list;
 	}
+	
+	public int getCount(String keyword) throws Exception{
+		Connection con = getConnection();
+		
+		String sql="select count(*) from history where board_title=?";
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setString(1, keyword);
+		
+		ResultSet rs= ps.executeQuery();
+		rs.next();
+		
+		int count = rs.getInt(1);
+		con.close();
+		
+		return count;
+	}	
 
 	
 	

@@ -8,7 +8,33 @@
 	String keyword = request.getParameter("keyword");
 	HistoryDto dto = new HistoryDto();
 	HistoryDao dao = new HistoryDao();
-	List<HistoryDto> list = dao.hList(keyword);
+
+	
+	
+	int pagesize = 10;
+	int navsize = 10;
+	int count=dao.getCount(keyword);
+	int pno;
+	try{
+		pno = Integer.parseInt(request.getParameter("pno"));
+	} catch(Exception e){
+		pno = 1;
+	}
+
+	int finish = count-(pno-1) * pagesize;
+	System.out.println(finish+"fin");
+	int start = finish - (pagesize - 1);
+	System.out.println(start);
+
+
+	List<HistoryDto> list = dao.hList(keyword, start,finish);
+
+	
+
+
+	
+	
+	
 %>    
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">    
 <style>
@@ -103,7 +129,18 @@
     	 <%} %>
         </table>
     </div>
-</article>
 
+
+      <div align=center>
+        	<!-- 네비게이터(navigator) -->
+	<jsp:include page="/template/boardNavi.jsp">
+		<jsp:param name="pno" value="<%=pno%>"/>
+		<jsp:param name="count" value="<%=count%>"/>
+		<jsp:param name="navsize" value="<%=navsize%>"/>
+		<jsp:param name="pageSize" value="<%=pagesize%>"/>
+	</jsp:include>
+	
+</div>
+</article>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>
