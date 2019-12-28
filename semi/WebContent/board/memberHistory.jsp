@@ -58,6 +58,11 @@
         width: 3rem;
         text-align: center;
     }
+    
+   		/* a태그 하이퍼링크 표시 제어 */
+    a:link { color: black; text-decoration: none;}
+    a:visited { color: black; text-decoration: none;}
+    a:hover { text-decoration: underline;}
 
 </style>
 <!--

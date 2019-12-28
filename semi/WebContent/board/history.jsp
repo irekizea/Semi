@@ -45,6 +45,11 @@
         width: 4rem;
         text-align: center;
     }
+    
+   		/* a태그 하이퍼링크 표시 제어 */
+    a:link { color: black; text-decoration: none;}
+    a:visited { color: black; text-decoration: none;}
+    a:hover { text-decoration: underline;}
 
     /* 좋아요, 싫어요 -> javaScript 구현 */
     .liked {
@@ -60,7 +65,7 @@
 
 <article>
     <div align=center>
-        <table class="his-board" width=90% border="0" style="table-layout: fixed"> 
+        <table class="his-board" width=80% border="0" style="table-layout: fixed"> 
         	<colgroup>
                 <col width="10%">
                 <col width="50%">

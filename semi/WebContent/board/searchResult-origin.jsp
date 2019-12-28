@@ -2,6 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+
+<!-- 상세페이지 백엔드 구현 원본.
+	디자인 완료 후 삭제 예정 -->
+
+
 <%@page import="semi.beans.board.BoardReplyDto"%>
 <%@page import="semi.beans.board.BoardReplyDao"%>
 <%@page import="semi.beans.board.BoardTextDto"%>
@@ -130,136 +135,122 @@
 	input[type=checkbox]:checked +.checked-show {
 		display: block;
 	}
-	
-		/* a태그 하이퍼링크 표시 제어 */
-    a:link { color: black; text-decoration: none;}
-    a:visited { color: black; text-decoration: none;}
-	
-		/* 공백 설정 */
-	.empty{
-		margin:2rem 0;
-	}
-	
-	
-	/* 상세글 style */
-	.title {
-	    font-size: 2rem;
-    }	
-	
-    #etime{
-      color: gray;
-    }
-        
-    .udate {
-		font-size: 13px;		        	
-		float: right;
-	}
-	.udate::after {
-		content: "";
-		display: block;
-		clear: both;
-	}
-	
-		/* 목차 설정 */
-	.index * {
-		text-align: center;
-        color: black;
-        display: inline-block;
-        font-size: 13px;
-        font-weight: bold;
-        margin: 5px;
-	}
-	.index span{
-		background: rgb(209,208,208);
-        background: linear-gradient(0deg, rgba(209,208,208,1) 34%, rgba(240,240,240,1) 35%, rgba(246,246,246,1) 39%, rgba(255,255,255,0) 100%);
-	}
-	
-	
-    	/* '편집'버튼 설정 */    
-	.btn {
-		margin: 30px auto;
-		padding: 0;
-		
-		overflow: hidden;
-		border-width: 0;
-		outline: none;
-		border-radius: 2px;
-		box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
-		  
-		background-color: black;
-		color: #ecf0f1;
-		  
-		transition: background-color .3s;
-	}
-		
-	.btn:hover, .btn:focus {
-		background-color: dimgray;
-	}
-		
-	.btn > * {
-		position: relative;
-	}
-			
-	.btn span {
-		display: block;
-		padding: 8px 14px;
-	}
-		
-	.btn:before {
-		content: "";
-		top: 50%;
-		left: 50%;
-		  
-		display: block;
-		width: 0;
-		padding-top: 0;
-		    
-		border-radius: 100%;
-		  
-		background-color: rgba(236, 240, 241, .3);
-		  
-		-webkit-transform: translate(-50%, -50%);
-		-moz-transform: translate(-50%, -50%);
-		-ms-transform: translate(-50%, -50%);
-		-o-transform: translate(-50%, -50%);
-		transform: translate(-50%, -50%);
-	}
-		
-	.btn:active:before {
-		width: 120%;
-		padding-top: 120%;
-		  
-		transition: width .2s ease-out, padding-top .2s ease-out;
-	}
-		
-		/* Styles, not important */
-		*, *:before, *:after {
-		  box-sizing: border-box;
-		}
-    
-	/* 토론(댓글) style */
+	 .title {
+            margin-left: 15%;
+            font-size: 2rem;
+        }
 
-	.re-table textarea[name=content]{
- 		width:100%;
-		height: 70px;
- 		resize: none;
-	}       
-	.reply-list {
- 		background-color: #f5f5f5;
-		padding: 10px;
-		border-bottom: 1px solid darkgray;
-	}
-	.reply-list div {
-  		border-bottom: 1px dotted darkgray;
-	}
-	.reply-list #wdate {
-		float: right;
-	}
-	.reply-list #wdate::after {
-		content: "";
-		display: block;
-		clear: both;
-	}        
+        .sindex {
+            margin-left: 15%;
+            margin-top:50px;
+            margin-bottom:15%;
+         	background-color:	#f5f5f5;
+             width: 150px;
+            padding: 10px;
+            border-radius: 10%;
+        }
+       .sindex>a {
+            font-size: 0.8rem;
+        }
+        #etime{
+        margin-right: 15%;
+        }
+        
+        .table{
+        	width : 70%;
+        }
+        
+        .table>tr {
+            border: 1px solid black;
+            padding: 0.5rem;
+        }
+        
+        .btn {
+
+  margin: 30px auto;
+  padding: 0;
+
+  overflow: hidden;
+
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  
+  background-color: black;
+  color: #ecf0f1;
+  
+  transition: background-color .3s;
+}
+
+.btn:hover, .btn:focus {
+  background-color: dimgray;
+}
+
+.btn > * {
+  position: relative;
+}
+
+.btn span {
+  display: block;
+  padding: 8px 14px;
+}
+
+.btn:before {
+  content: "";
+  top: 50%;
+  left: 50%;
+  
+  display: block;
+  width: 0;
+  padding-top: 0;
+    
+  border-radius: 100%;
+  
+  background-color: rgba(236, 240, 241, .3);
+  
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.btn:active:before {
+  width: 120%;
+  padding-top: 120%;
+  
+  transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+/* Styles, not important */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+    
+        /* 토론(댓글) style */
+        .table textarea[name=content]{
+            width:100%;
+            height: 70px;
+            resize: none;
+        }
+        
+        .reply-list {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-bottom: 1px solid darkgray;
+        }
+        .reply-list div {
+            border-bottom: 1px dotted darkgray;
+        }
+        .reply-list #wdate {
+            float: right;
+        }
+        .reply-list #wdate::after {
+            content: "";
+            display: block;
+            clear: both;
+        }        
         
 </style>
 
@@ -288,84 +279,88 @@
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
-
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/board.css">
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <!-- 검색결과 페이지 -->
 <% if(boardDto.getTitle()!=null){ %>
 
-<article class="w-80">
-	<div class="empty"></div>
-	<div class="empty"></div>
-	
-	<div>					<!-- 대주제(검색어) -->
-		<span class="title"><%=boardDto.getTitle() %></span>
-		<span class="udate" id="etime">	<!-- '대주제'에 대한 수정내역 -->
-			<a href="<%=request.getContextPath()%>/board/history.jsp?keyword=<%=keyword%>">
-				HISTORY
-			</a>
-		</span><br>
-	<span class="udate" id="etime">최근 수정 시간 : <%=boardDto.getUdate() %></span>
+<article>
+
+	<div class="title">					<!-- 대주제(검색어) -->
+		<%=boardDto.getTitle() %>
 	</div>
-	
-	<div class="empty"></div>
-	
-	<!-- 승인된 글에 첨부파일이 있을 경우 출력-->
-	<%if(flist.size() > 0){ %>
-		<div>
-			<%for(BA_FileDto fdto : flist){ %>
-				<img src="filedown.do?no=<%=fdto.getNo()%>" class="img">
-			<%} %>
-			<br>
-		</div>
-	<%} %>
-	
-	<div class="empty"></div>
+	<div id = "etime" align = "right">	<!-- '대주제'에 대한 수정내역 -->
+		<a href="<%=request.getContextPath()%>/board/history.jsp?keyword=<%=keyword%>">
+			HISTORY
+		</a>
+	</div>
+	<div id = "etime" align = "right">최근 수정 시간 : <%=boardDto.getUdate() %></div>
 	
 		<!-- 목차 영역 -->
- 	<div class="index">
+ 	<div id = "list" class="sindex">
  		<%for(BoardTextDto boardTextDto:getList){ %>
 			<%if(boardTextDto.getRn()==1){%>
-				<a href ="#s-<%=boardTextDto.getRn()%>"><span><%=boardTextDto.getRn() %>:최초글</span></a>
+				<a href ="#s-<%=boardTextDto.getRn()%>"><%=boardTextDto.getRn() %>:최초글</a><br>
 			<%}else {%>
 	
-		 	 	<a href ="#s-<%=boardTextDto.getRn()%>"><span><%=boardTextDto.getRn() %>:<%=boardTextDto.getSub_title() %></span></a>
+		 	 	<a href ="#s-<%=boardTextDto.getRn()%>"><%=boardTextDto.getRn() %>:<%=boardTextDto.getSub_title() %></a><br>
 	
 			<%} %>
 		<%} %>
 	</div>
 
-	<!-- 상세글 영역 -->
 <div align="center">
 
-<table>	
-	<%for(BoardTextDto boardTextDto:getList){ %>
-		<%if(boardTextDto.getSub_title()==null) {%>
-			<tr>
-				<td class="" colspan="3"><%=boardTextDto.getRn() %>: 최초작성글이므로 목차가 설정되어있지 않습니다.
-					<a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
-						<button class="btn" type="button"><span>편집</span></button>
-					</a>
-				</td>
-			</tr>
-		<%}else{ %>
-			<tr>
-				<td class="" colspan="3"> <a id="s-<%=boardTextDto.getRn()+1 %>" href= "#list"><%=boardTextDto.getRn() %>
-					</a>:<%=boardTextDto.getSub_title() %><a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
-						<button class="btn" type="button"><span>편집</span></button>
-					</a>
-				</td>
-			</tr>		
-		<%} %>
+	<table class="table">
+	
+<%if(check==false){ %>
 
+	<%for(BoardTextDto boardTextDto:getList){ %>
+	<tr>
+		<td class="sub-title" colspan="3">최초작성글이므로 목차가 설정되어있지 않습니다.	<a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+				<button class="btn" type="button"><span>편집</span></button>
+			</a></td>
+	</tr>
+	<tr>
+		<td width="100%" align = "right">작성자: <%=boardDto.getWriter() %></td>
+	</tr>
+	<tr>
+		<td colspan = "4" class="text">
+			  <div class="naver-viewer"></div><input type="hidden" value="<%=boardTextDto.getText_content() %>">
+		</td>
+	</tr>
+
+	<%} %>
+
+<%} else{%>	
+	
+	<%for(BoardTextDto boardTextDto:getList){ %>
+	<%if(boardTextDto.getSub_title()==null) {%>
 		<tr>
-			<td colspan="4" class="text">
-				<div class="naver-viewer"></div>
-				<input type="hidden" value="<%=boardTextDto.getText_content() %>">
-			</td>
+			<td class="sub-title" colspan="3"><%=boardTextDto.getRn() %>: 최초작성글이므로 목차가 설정되어있지 않습니다.<a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+				<button class="btn" type="button"><span>편집</span></button>
+			</a></td>
 		</tr>
+	<%}else{ %>
+		<tr>
+			<td class="sub-title" colspan="3"> <a id="s-<%=boardTextDto.getRn()+1 %>" href= "#list"><%=boardTextDto.getRn() %></a>:<%=boardTextDto.getSub_title() %><a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+				<button class="btn" type="button"><span>편집</span></button>
+			</a></td>
+		</tr>		
+	<%} %>
+	<tr>
+		<td width="100%" align = "right">최근 수정자: <%=boardTextDto.getWriter() %></td>
+	</tr>
+	<tr>
+		<td colspan="4" class="text">
+		<div class="naver-viewer"></div>
+		<input type="hidden" value="<%=boardTextDto.getText_content() %>">
+		</td>
+	</tr>
 	
 	<%} %>
+<%} %>
 
 	<tr>
 		<td colspan = "4">
@@ -401,26 +396,26 @@
 
 </table>
 
-<label for="reply"><p align="left">[토론 보기]</p></label>
+<label for="reply"><p align="left" class="table">[토론 보기]</p></label>
 <input type="checkbox" id="reply" class="checkbox">
 	
-<table border="0" class="checked-show re-table">
+<table border="0" class="checked-show table re-table">
 	<%for(BoardReplyDto boardReplyDto: replyList){ %>
 		<tr>
         	<td class="reply-list">
             <%if(boardReplyDto.getWriter()!=null){ %>
-	            <div>
-					<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?writer=<%=boardReplyDto.getWriter() %>">
-		                <span id="writer"><%=boardReplyDto.getWriter() %></span>
-		            </a>
-		     <%} 
+            <div>
+				<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?writer=<%=boardReplyDto.getWriter() %>">
+	                <span id="writer"><%=boardReplyDto.getWriter() %></span>
+	            </a>
+	        <%} 
 			else {%>
-					<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?ip_addr=<%=boardReplyDto.getIp_addr() %>">
-						<span id="writer"><%=boardReplyDto.getIp_addr() %></span>
-					</a>
-				<%} %>
-		                <span id="wdate"><%=boardReplyDto.getWdate() %></span>
-	            </div>
+				<a href="<%=request.getContextPath()%>/board/memberHistory.jsp?ip_addr=<%=boardReplyDto.getIp_addr() %>">
+					<span id="writer"><%=boardReplyDto.getIp_addr() %></span>
+				</a>
+			<%} %>
+	                <span id="wdate"><%=boardReplyDto.getWdate() %></span>
+            </div>
             	<p>
                		<%=boardReplyDto.getContent() %>
             	</p>							
