@@ -12,6 +12,7 @@ import javax.naming.spi.DirStateFactory.Result;
 import javax.sql.DataSource;
 
 import oracle.jdbc.proxy.annotation.Pre;
+import semi.beans.block.mem.BlockMemberDto;
 
 public class MemberDao {
 
@@ -88,7 +89,7 @@ public class MemberDao {
 	// 반환형 : id
 
 	// 전체 공개 / 반환String (입력 받을게 email인데 형식이 String이라서 )
-	public String find(String email) throws Exception {
+	public String find_id(String email) throws Exception {
 		// 연결하기/ con은 별칭 / get.onnection / 연결하기 가져오겠다를
 		Connection con = getConnection();
 
@@ -105,6 +106,32 @@ public class MemberDao {
 		con.close();
 
 		return id; // 아이디를 내놓겠다
+
+	}
+	// 기능 : 아이디로 비밀번호 찾기
+	// 이름 : find
+	// 매개변수 : id
+	// 반환형 : pw
+
+	// 전체 공개 / 반환String (입력 받을게 email인데 형식이 String이라서 )
+	
+	public String find_pw(String id) throws Exception {
+		// 연결하기/ con은 별칭 / get.onnection / 연결하기 가져오겠다를
+		Connection con = getConnection();
+
+		String sql = "select pw from member where id=?"; 
+		PreparedStatement ps = con.prepareStatement(sql); /* 준비된 명령 */
+		ps.setString(1, id);
+		ResultSet rs = ps.executeQuery();
+
+		String  pw= null;
+		if (rs.next()) {
+			pw = rs.getString("pw");
+		}
+		
+		con.close();
+
+		return pw; // 비번을 내놓겠다
 
 	}
 	// 단일 조회
@@ -189,5 +216,66 @@ public class MemberDao {
 		
 		return list;
 	}
+	
+//	기능:차단 목록 조회
+//	이름:getList
+//	매개변수:없음
+//	반환형 :데이터 목록(List<MemberDto>)
+	public List<MemberDto> getList(int start, int finish) throws Exception{
+		Connection con = getConnection();
+		String sql="select * from ( "
+					+ "select rownum rn, A.* from ( "
+						+ "select * from member "
+						+ "order by id desc "
+					+ ")A "
+				+ ") where rn between ? and ?";
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setInt(1, start);
+		ps.setInt(2, finish);
+		
+		ResultSet rs = ps.executeQuery();
+		List<MemberDto> list = new ArrayList<>();	
+		while(rs.next()) {		
+			
+			MemberDto dto = new MemberDto();
+			
+			dto.setId(rs.getString("id"));
+			dto.setEmail(rs.getString("email"));
+			dto.setGrade(rs.getString("grade"));
+			dto.setPoint(rs.getInt("point"));
+	
+			list.add(dto);
+		}
+		con.close();
+		
+		return list;
+	}	
+	//회원 수 구하기
+		public int getCount(String type, String keyword) throws Exception{
+			Connection con = getConnection();
+			
+			boolean isSearch = type != null && keyword != null;
+			
+			String sql = "select count(*) from member";
+			if(isSearch) {
+				sql += " where "+type+" like '%'||?||'%'";
+			}
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			if(isSearch) {
+				ps.setString(1, keyword);
+			}
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+//			int count = rs.getInt("count(*)");
+			int count = rs.getInt(1);
+			
+			con.close();
+			
+			return count;
+		}
+		
+	
+	
 	
 }

@@ -1,6 +1,8 @@
 package semi.servlet.ba_board;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import semi.beans.ba_board.BA_BoardDao;
 import semi.beans.ba_board.BA_BoardDto;
+import semi.beans.board.BoardDao;
+import semi.beans.board.BoardDto;
+import semi.beans.board.BoardTextDto;
 
 @WebServlet(urlPatterns = "/ba_board/regist.do")
 public class BA_BoardRegistServlet extends HttpServlet {
@@ -30,16 +35,8 @@ public class BA_BoardRegistServlet extends HttpServlet {
 			
 			dto.setWriter(writer);
 			dto.setTitle(title);
-			dto.setContent(content);
-			
-			System.out.println(no);
-			System.out.println(writer);
-			System.out.println(title);
-			System.out.println(content);
 			
 			boolean result = dao.regist(dto);
-			
-			System.out.println(result);
 			
 			if(result) {
 				dao.registUpdate(no);
@@ -47,6 +44,24 @@ public class BA_BoardRegistServlet extends HttpServlet {
 				System.out.println("등록 실패");
 			}
 			
+// 		"board_text" 테이블로 content 전송
+			BoardDao boardDao = new BoardDao();
+			BoardDto boardDto = boardDao.getSearch(title);
+			
+			BoardTextDto boardTextDto = new BoardTextDto();
+			boardTextDto.setWriter(writer);
+			boardTextDto.setText_content(content);
+				
+			boardTextDto.setBoard_no(boardDto.getNo());
+			
+			boolean result2 = dao.regist(boardTextDto);
+			
+			if(result2) {
+				dao.registUpdate(no);
+			}else {
+				System.out.println("등록 실패");
+			}
+	
 			resp.sendRedirect("list.jsp");												
 			
 		}catch(Exception e){

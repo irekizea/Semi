@@ -23,7 +23,7 @@ public class BA_BoardWriteServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-		MultipartRequest mRequest = new MultipartRequest(req, "D:/upload/kh21/ba_board", 10*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
+		MultipartRequest mRequest = new MultipartRequest(req, "D:/upload/kh21", 10*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
 
 		BA_BoardDto dto = new BA_BoardDto();
 		BA_BoardDao dao = new BA_BoardDao();
@@ -52,6 +52,7 @@ public class BA_BoardWriteServlet extends HttpServlet {
 			fdto.setSavename(mRequest.getFilesystemName("file"));
 			fdto.setFiletype(mRequest.getContentType("file"));
 			fdto.setFilesize(file.length());
+			fdto.setTitle_key(title);
 			
 			BA_FileDao fdao = new BA_FileDao();
 			fdao.fileInsert(fdto);

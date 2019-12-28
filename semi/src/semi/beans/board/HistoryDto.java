@@ -3,21 +3,44 @@ package semi.beans.board;
 public class HistoryDto {
 
 	private int no;
-	private int board_text_no;
+	private int board_no;
 	private String writer;
 	private String boardtitle;
 	private String boardtextudate;
 	private String content;
 	private String ip_addr;
-	
+	private int rn;
+	public int getBoard_no() {
+		return board_no;
+	}
+
+	public void setBoard_no(int board_no) {
+		this.board_no = board_no;
+	}
+
+	public int getRn() {
+		return rn;
+	}
+
+	public void setRn(int rn) {
+		this.rn = rn;
+	}
+
 	public HistoryDto() {
 		super();
 	}
 
-	public HistoryDto(int no, int board_text_no, String writer, String boardtitle, String boardtextudate, String content, String ip_addr) {
+	@Override
+	public String toString() {
+		return "HistoryDto [no=" + no + ", board_no=" + board_no + ", writer=" + writer + ", boardtitle="
+				+ boardtitle + ", boardtextudate=" + boardtextudate + ", content=" + content + ", ip_addr=" + ip_addr
+				+ "]";
+	}
+
+	public HistoryDto(int no, int board_no, String writer, String boardtitle, String boardtextudate, String content, String ip_addr) {
 		super();
 		this.no = no;
-		this.board_text_no = board_text_no;
+		this.board_no = board_no;
 		this.writer = writer;
 		this.boardtitle = boardtitle;
 		this.boardtextudate = boardtextudate;
@@ -48,12 +71,12 @@ public class HistoryDto {
 		this.no = no;
 	}
 
-	public int getBoard_text_no() {
-		return board_text_no;
+	public int getboard_no() {
+		return board_no;
 	}
 
-	public void setBoard_text_no(int board_text_no) {
-		this.board_text_no = board_text_no;
+	public void setboard_no(int board_no) {
+		this.board_no = board_no;
 	}
 
 	public String getWriter() {
@@ -78,6 +101,19 @@ public class HistoryDto {
 
 	public void setBoardtextudate(String boardtextudate) {
 		this.boardtextudate = boardtextudate;
+	}
+
+	public HistoryDto(int no, int board_no, String writer, String boardtitle, String boardtextudate, String content,
+			String ip_addr, int rn) {
+		super();
+		this.no = no;
+		this.board_no = board_no;
+		this.writer = writer;
+		this.boardtitle = boardtitle;
+		this.boardtextudate = boardtextudate;
+		this.content = content;
+		this.ip_addr = ip_addr;
+		this.rn = rn;
 	}
 	
 	

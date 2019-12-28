@@ -13,6 +13,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import semi.beans.board.BoardTextDto;
+
 public class BA_BoardDao {
 	
 	private static DataSource source;
@@ -80,7 +82,7 @@ public class BA_BoardDao {
 		Connection con=getConnection();
 		
 		String sql="insert into ba_board "
-					+ "values(?,?,?,?,sysdate,null,0,0,0)";
+					+ "values(?,?,?,?,sysdate,0,0,0)";
 			PreparedStatement ps=con.prepareStatement(sql);
 			
 			ps.setInt(1, dto.getBoard_no());
@@ -214,19 +216,17 @@ public class BA_BoardDao {
 	}	
 //	기능:게시글 전송
 //	이름:regist
-//	매개변수:BA_BoarDto(제목,내용,작성자)
+//	매개변수:BA_BoarDto(제목,작성자)
 //	반환형:없음
 	public boolean regist(BA_BoardDto dto) throws Exception {
 		Connection con=getConnection();
-		
-		String sql="insert into board(no,writer,title,wdate,udate,content) "
-					+ "values(board_seq.nextval,?,?,sysdate,sysdate,?)";
+		System.out.println("regist");
+		String sql="insert into board(no,writer,title,wdate,udate) "
+					+ "values(board_seq.nextval,?,?,sysdate,sysdate)";
 		PreparedStatement ps=con.prepareStatement(sql);
 		ps.setString(1, dto.getWriter());
 		ps.setString(2, dto.getTitle());
-		ps.setString(3, dto.getContent());
 		
-		ps.execute();
 		int update=ps.executeUpdate();
 		
 		boolean result=false;
@@ -237,6 +237,31 @@ public class BA_BoardDao {
 		con.close();	
 		return result;
 	}
+//	기능:게시글 전송(content)
+//	이름:regist
+//	매개변수: int no(board 글번호를 기준으로 "board_text" 테이블로 content 전송)
+//	반환형:없음
+	public boolean regist(BoardTextDto boardTextDto) throws Exception {
+		Connection con=getConnection();
+		System.out.println("regist2");
+		String sql="insert into board_text(no, writer, text_content, board_no) "
+					+ "values(board_text_seq.nextval, ?, ?, ?)";
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setString(1, boardTextDto.getWriter());
+		ps.setString(2, boardTextDto.getText_content());
+		ps.setInt(3, boardTextDto.getBoard_no());
+		
+		int update=ps.executeUpdate();
+		
+		boolean result=false;
+		if(update>0) {
+			result=true;
+		}
+		
+		con.close();	
+		return result;
+	}
+	
 //	기능:게시글 등록 완료 표시
 //	이름:registUpdate
 //	매개변수:no
@@ -251,3 +276,5 @@ public class BA_BoardDao {
 		con.close();	
 	}
 }
+
+

@@ -43,8 +43,7 @@ public class BoardDao {
 			boardDto.setContent(rs.getString("content"));
 			boardDto.setUdate(rs.getString("udate"));
 			boardDto.setSearchCount(rs.getInt("searchCount"));
-			boolean editcheck=Boolean.parseBoolean(rs.getString("editcheck"));
-			boardDto.setEditCheck(editcheck);
+			
 		}
 		con.close();
 		return boardDto;
@@ -81,7 +80,7 @@ public class BoardDao {
 		
 		String sql="select rownum, B. *from( "
 						+ "select title from board order by board.searchcount desc " 
-					+ ")B where rownum <=3";
+					+ ")B where rownum <=4";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		
@@ -108,5 +107,47 @@ public class BoardDao {
 		
 		con.close();
 	}
-}
+	
+	//editcheck 값에 대한 boolean 메소드
+	public boolean check(int no) throws Exception{
+		Connection con = getConnection();
+		
+		String sql = "select*from board where no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, no);
+		ResultSet rs = ps.executeQuery();
+		boolean tf;
+		rs.next();
+		if(rs.getString("editcheck")=="false") {
+			tf=false;
+		}else {
+			tf=true;
+		}
 
+		System.out.println(tf);
+		return tf;
+	}
+	//위랑 동일한 메소드(매개변수만 keyword)
+	public boolean check(String keyword) throws Exception{
+		boolean tf = false;
+		try {
+			Connection con = getConnection();
+			
+			String sql = "select*from board where title=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, keyword);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			
+			if(rs.getString("editcheck").equals("false")) {
+				tf=false;
+			}else {
+				tf=true;
+			}
+		}
+		catch(Exception e) {
+			
+		}
+		return tf;
+	}
+}
