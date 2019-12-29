@@ -2,7 +2,6 @@
     pageEncoding="EUC-KR"%>
 
 <%
-
  	String type = request.getParameter("type");
  	String keyword = request.getParameter("keyword");
  	

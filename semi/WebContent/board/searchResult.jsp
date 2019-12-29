@@ -148,7 +148,7 @@
 		background-color:	#f5f5f5;
 		width: 150px;
 		padding: 10px;
-		border-radius: 10%;
+		border-radius: 2%;
 	}
    .sindex>a {
 		font-size: 0.8rem;
@@ -158,9 +158,14 @@
 	}
 	
 	/* 상세글 style */
-	.title {
-	    font-size: 2rem;
-    }	
+	.table{
+        	width : 100%;
+        }
+        
+    .table>tr {
+		border: 1px solid black;
+		padding: 0.5rem;
+	}
 	
     #etime{
       color: gray;
@@ -241,9 +246,8 @@
     
 	/* 토론(댓글) style */
 	.re-table {
-		margin: 0px;
 		width: 100%;
-		border-radius: 2px;
+		align:center;
 	}
 	.reply-list {
  		background-color: #f5f5f5;
@@ -263,7 +267,7 @@
 	}        
 	.re-table textarea[name=content]{
  		width:100%;
-		height: 70px;
+		height: 80px;
  		resize: none;
 	}       
         
@@ -344,26 +348,47 @@
 	<!-- 상세글 영역 -->
 <div align="center">
 
-<table>	
-	<%for(BoardTextDto boardTextDto:getList){ %>
-		<%if(boardTextDto.getSub_title()==null) {%>
+<table class="table">
+	<%if(check==false){ %>
+		
+		<%for(BoardTextDto boardTextDto:getList){ %>
 			<tr>
-				<td class="" colspan="3"><%=boardTextDto.getRn() %>: 최초작성글이므로 목차가 설정되어있지 않습니다.
+				<td colspan="4">최초작성글이므로 목차가 설정되어있지 않습니다.
 					<a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
 						<button class="btn" type="button"><span>편집</span></button>
 					</a>
 				</td>
 			</tr>
-		<%}else{ %>
 			<tr>
-				<td class="" colspan="3"> <a id="s-<%=boardTextDto.getRn()+1 %>" href= "#list"><%=boardTextDto.getRn() %>
-					</a>:<%=boardTextDto.getSub_title() %><a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
-						<button class="btn" type="button"><span>편집</span></button>
-					</a>
+				<td width="100%" align = "right">작성자: <%=boardDto.getWriter() %></td>
+			</tr>
+			<tr>
+				<td colspan = "4" class="text">
+					  <div class="naver-viewer"></div><input type="hidden" value="<%=boardTextDto.getText_content() %>">
 				</td>
-			</tr>		
+			</tr>
 		<%} %>
-
+		
+	<%} else{%>
+		
+		<%for(BoardTextDto boardTextDto:getList){ %>
+			<%if(boardTextDto.getSub_title()==null) {%>
+				<tr>
+					<td colspan="4"><%=boardTextDto.getRn() %>: 최초작성글이므로 목차가 설정되어있지 않습니다.
+						<a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+							<button class="btn" type="button"><span>편집</span></button>
+						</a>
+					</td>
+				</tr>
+			<%}else{ %>
+				<tr>
+					<td colspan="4"> <a id="s-<%=boardTextDto.getRn()+1 %>" href= "#list"><%=boardTextDto.getRn() %>
+						</a>:<%=boardTextDto.getSub_title() %><a href="boardedit.jsp?no=<%=boardTextDto.getNo()%>&boardno=<%=boardDto.getNo()%>&keyword=<%=boardDto.getTitle()%>">
+							<button class="btn" type="button"><span>편집</span></button>
+						</a>
+					</td>
+				</tr>		
+			<%} %>
 		<tr>
 			<td colspan="4" class="text">
 				<div class="naver-viewer"></div>
@@ -371,6 +396,7 @@
 			</td>
 		</tr>
 	
+		<%} %>
 	<%} %>
 
 	<tr>
@@ -379,27 +405,27 @@
 			<input type="checkbox" id="show" class="checkbox'">
 			<div class="checked-show">
 				<form action="textInsert.do" method="post"  enctype="multipart/form-data">
-						<input type="hidden" name="keyword" value=<%=keyword %>>
-						<input type="hidden" name="board_no" value="<%=boardDto.getNo()%>">
-						<input type="text" name="sub_title" required class="sub-title" style="width:100%; height:5%;">				
-						<input type="file" name="file" >								
-						<div class="naver-editor"></div><input type="hidden" name="text_content">
-							<span>
-								문서 편집을 저장하면 기여한 내용을 CC-BY-NC-SA 2.0 KR으로 배포하고
-								기여한 문서에 대한 하이퍼링크나 URL을 이용하여 저작자 표시를 하는 것으로
-								충분하다는 데 동의하는 것입니다. 이 동의는 철회할 수 없습니다.
-							</span>
-							<input type="checkbox">
+					<input type="hidden" name="keyword" value=<%=keyword %>>
+					<input type="hidden" name="board_no" value="<%=boardDto.getNo()%>">
+					<input type="text" name="sub_title" required class="sub-title" style="width:100%; height:5%;">				
+					<input type="file" name="file" >								
+					<div class="naver-editor"></div><input type="hidden" name="text_content">
+						<span>
+							문서 편집을 저장하면 기여한 내용을 CC-BY-NC-SA 2.0 KR으로 배포하고
+							기여한 문서에 대한 하이퍼링크나 URL을 이용하여 저작자 표시를 하는 것으로
+							충분하다는 데 동의하는 것입니다. 이 동의는 철회할 수 없습니다.
+						</span>
+						<input type="checkbox">
 						<div align="right" style="margin: 2px 0px" class="checked-show">
 							<input type="submit" class="btn" value="등록완료">							
 						</div>
 				</form>
-						<%boardDao.editCheck(keyword); %>
-								<%if(writer==null) {%>
-									<p> 
-										[알림] 비로그인 상태로 편집합니다. 편집 내역에 IP "<%=ip %>"가 영구히 기록됩니다.
-									</p>
-								<%} %> 
+					<%boardDao.editCheck(keyword); %>
+					<%if(writer==null) {%>
+						<p> 
+							[알림] 비로그인 상태로 편집합니다. 편집 내역에 IP "<%=ip %>"가 영구히 기록됩니다.
+						</p>
+					<%} %> 
 			</div>
 		</td>
 	
@@ -410,7 +436,7 @@
 <label for="reply"><p align="left">[토론 보기]</p></label>
 <input type="checkbox" id="reply" class="checkbox">
 	
-<table border="0" class="checked-show re-table">
+<table border="0" class="checked-show table re-table">
 	<%for(BoardReplyDto boardReplyDto: replyList){ %>
 		<tr>
         	<td class="reply-list">
@@ -461,14 +487,18 @@
 
 <!-- 검색결과가 없다면 -->
 <% }else {%>
-<table>	
+	<div class="empty"></div>
+	<div class="empty"></div>
+<table style="margin-left:2rem;">	
 	<tr>
-		<td >
-		"<%=keyword %>"에 대한 검색결과가 없습니다. <br>
+		<td>
+			" <%=keyword %> "에 대한 검색결과가 없습니다.
 		</td>
+	</tr>
+	<tr>
 		<td colspan="3">
 			<%if(writer==null){ %>
-								로그인 후 " <%=keyword %> "에 대한 <a href="<%=request.getContextPath()%>/member/login.jsp">새 글 제안하기</a>
+				로그인 후 " <%=keyword %> "에 대한 <a href="<%=request.getContextPath()%>/member/login.jsp">[새 글 제안하기]</a>
 			<%}else{%>
 				 " <%=keyword %> "에 대한 <a href="<%=request.getContextPath()%>/ba_board/write.jsp">새 글 제안하기</a>
 			<%} %>
@@ -477,7 +507,8 @@
 <%} %>
 
 </table>
-
+	<div class="empty"></div>
+	<div class="empty"></div>
 </div>
 </article>
 

@@ -13,17 +13,37 @@
 <%@ page import = "semi.beans.board.BoardReplyDao" %>
 <%@ page import = "semi.beans.board.BoardReplyDto" %>
 
-<%
+<%	
+	HistoryDao historyDao = new HistoryDao();
+	HistoryDto historyDto = new HistoryDto();
+
 	String writer=request.getParameter("writer");
 	String ip_addr=request.getParameter("ip_addr");
 	
-	HistoryDao historyDao = new HistoryDao();
-	List<HistoryDto> list = historyDao.memberHis(writer, ip_addr);
+	int pagesize = 10;
+	int navsize = 10;
+	int count= historyDao.getCount(writer, ip_addr);
 	
+	int pno; //페이지 번호
+	try{
+		pno = Integer.parseInt(request.getParameter("pno"));
+	}
+	catch(Exception e){
+		pno = 1;
+	}
+	
+	int finish = count-(pno-1) * pagesize;
+	int start = finish - (pagesize - 1);
+	
+	List<HistoryDto> list = historyDao.memberHis(writer, ip_addr, start, finish);	
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
 <style>
+	body {
+		background: #f5f5f5;
+	}
+	
     /* memberHistory style */
     .his-board{
         border-collapse: collapse;
@@ -134,7 +154,17 @@
             <%} %>
         </table>
     </div>
-
+    
+    <!-- 내비게이터 -->
+    <div align=center>
+    <jsp:include page="/template/boardNavi.jsp">
+		<jsp:param name="pno" value="<%=pno%>"/>
+		<jsp:param name="count" value="<%=count%>"/>
+		<jsp:param name="navsize" value="<%=navsize%>"/>
+		<jsp:param name="pageSize" value="<%=pagesize%>"/>
+	</jsp:include>
+    </div>
+    
 </article>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>
