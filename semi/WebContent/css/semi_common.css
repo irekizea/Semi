@@ -352,8 +352,7 @@ article {
         
         /* header의 검색창 style */
         .search-box{
-            float: right;
-            position: relative;
+            align: right;
             right: 30px;
             bottom: 50px;
         }
@@ -370,11 +369,6 @@ article {
             /* input type=search 'x' 표시 없애기*/
         .search-box input[type=search]::-ms-clear{
             display: none;
-        }
-        .search-box input[type=search]::after{
-            content:"";
-            display: none;
-            clear: both;
         }
         @media screen and (max-width:1000px){
             .search-box input[type=search]{

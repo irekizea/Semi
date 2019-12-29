@@ -29,9 +29,11 @@ String context=request.getContextPath();
             <li><a href="<%=context%>/member/regist.jsp">JOIN</a></li>
             <li><a href="<%=context%>/member/login.jsp">LOGIN</a></li>
          </ul>
-         <form action="<%=request.getContextPath()%>/board/searchResult.jsp" method="get" class="search-box">
-         	<input type="search" name="keyword" placeholder="what would you like to sarch?" required>
-         </form> 
+         <div class="search-box">
+			<form action="<%=request.getContextPath()%>/board/searchResult.jsp" method="get">
+				<input type="search" name="keyword" placeholder="what would you like to sarch?" required>
+			</form>
+         </div>
     </nav>
     </div>
 <article>

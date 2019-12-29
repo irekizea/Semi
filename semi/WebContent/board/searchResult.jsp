@@ -141,6 +141,22 @@
 	}
 	
 	
+		/* 목차 설정 */
+	.sindex {
+		margin-top:50px;
+		margin-bottom:10%;
+		background-color:	#f5f5f5;
+		width: 150px;
+		padding: 10px;
+		border-radius: 10%;
+	}
+   .sindex>a {
+		font-size: 0.8rem;
+	}
+	.sindex>a:hover {
+		color: black; text-decoration: underline;
+	}
+	
 	/* 상세글 style */
 	.title {
 	    font-size: 2rem;
@@ -158,20 +174,6 @@
 		content: "";
 		display: block;
 		clear: both;
-	}
-	
-		/* 목차 설정 */
-	.index * {
-		text-align: center;
-        color: black;
-        display: inline-block;
-        font-size: 13px;
-        font-weight: bold;
-        margin: 5px;
-	}
-	.index span{
-		background: rgb(209,208,208);
-        background: linear-gradient(0deg, rgba(209,208,208,1) 34%, rgba(240,240,240,1) 35%, rgba(246,246,246,1) 39%, rgba(255,255,255,0) 100%);
 	}
 	
 	
@@ -238,12 +240,11 @@
 		}
     
 	/* 토론(댓글) style */
-
-	.re-table textarea[name=content]{
- 		width:100%;
-		height: 70px;
- 		resize: none;
-	}       
+	.re-table {
+		margin: 0px;
+		width: 100%;
+		border-radius: 2px;
+	}
 	.reply-list {
  		background-color: #f5f5f5;
 		padding: 10px;
@@ -260,6 +261,11 @@
 		display: block;
 		clear: both;
 	}        
+	.re-table textarea[name=content]{
+ 		width:100%;
+		height: 70px;
+ 		resize: none;
+	}       
         
 </style>
 
@@ -323,13 +329,13 @@
 	<div class="empty"></div>
 	
 		<!-- 목차 영역 -->
- 	<div class="index">
+ 	 <div id = "list" class="sindex">
  		<%for(BoardTextDto boardTextDto:getList){ %>
 			<%if(boardTextDto.getRn()==1){%>
-				<a href ="#s-<%=boardTextDto.getRn()%>"><span><%=boardTextDto.getRn() %>:최초글</span></a>
+				<a href ="#s-<%=boardTextDto.getRn()%>"><%=boardTextDto.getRn() %>:최초글</a><br>
 			<%}else {%>
 	
-		 	 	<a href ="#s-<%=boardTextDto.getRn()%>"><span><%=boardTextDto.getRn() %>:<%=boardTextDto.getSub_title() %></span></a>
+		 	 	<a href ="#s-<%=boardTextDto.getRn()%>"><%=boardTextDto.getRn() %>:<%=boardTextDto.getSub_title() %></a><br>
 	
 			<%} %>
 		<%} %>
