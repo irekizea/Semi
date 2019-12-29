@@ -317,14 +317,14 @@
 	<div class="empty"></div>
 	
 	<!-- 승인된 글에 첨부파일이 있을 경우 출력-->
-	<%if(flist.size() > 0){ %>
-		<div>
-			<%for(BA_FileDto fdto : flist){ %>
-				<img src="filedown.do?no=<%=fdto.getNo()%>" class="img">
-			<%} %>
-			<br>
-		</div>
-	<%} %>
+<%-- 	<%if(flist.size() > 0){ %> --%>
+<!-- 		<div> -->
+<%-- 			<%for(BA_FileDto fdto : flist){ %> --%>
+<%-- 				<img src="filedown.do?no=<%=fdto.getNo()%>" class="img"> --%>
+<%-- 			<%} %> --%>
+<!-- 			<br> -->
+<!-- 		</div> -->
+<%-- 	<%} %> --%>
 	
 	<div class="empty"></div>
 	
