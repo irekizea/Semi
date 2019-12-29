@@ -63,32 +63,14 @@
 <style>
 body {
 	background: #f5f5f5;
+	margin:0px;
 }
 </style>
 
 <div class="sun-container">
 	<div align="center" class="sun-container-wrap vcenter">
-		<h2>회원 검색</h2>
-
-		<!-- 검색창 -->
-		<form action="list.jsp" method="get">
-
-			<!-- 		<input type="text" name="type"> -->
-			<div class="sun-select">
-				<select name="type">
-					<option value="id">아이디</option>
-					<option value="grade">등급</option>
-					<option value="point">포인트</option>
-				</select> <input type="text" name="keyword"> <input type="submit"
-					value="검색">
-			</div>
-
-		</form>
-
-		<h3>
-			type =<%=request.getParameter("type")%>, keyword =<%=request.getParameter("keyword")%>
-		</h3>
-
+		<h2>회원 검색</h2><br>
+	
 		<!-- 검색 결과 -->
 		<table class="sun-user-table" cellpadding="0" cellspacing="0">
 			<!-- 테이블 헤더 -->
@@ -133,7 +115,21 @@ body {
 				%>
 			</tbody>
 		</table>
+		<br><br><br><br>
+		<!-- 검색창 -->
+		<form action="list.jsp" method="get">
 
+			<!-- 		<input type="text" name="type"> -->
+			<div class="sun-select">
+				<select name="type">
+					<option value="id">아이디</option>
+					<option value="grade">등급</option>
+					<option value="point">포인트</option>
+				</select> <input type="text" name="keyword"> <input type="submit"
+					value="검색">
+			</div>
+
+		</form>
 		<!-- 네비게이터(navigator) -->
 		<jsp:include page="/template/navigator.jsp">
 			<jsp:param name="pno" value="<%=pno%>" />
