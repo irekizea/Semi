@@ -50,6 +50,11 @@
         input[type=search]:focus {
       		outline: none;
         }
+            /* input type=search 'x' 표시 없애기*/
+        input[type=search]::-ms-clear{
+            display: none;
+        }
+        
         .topN *{
             text-align: center;
             color: black;

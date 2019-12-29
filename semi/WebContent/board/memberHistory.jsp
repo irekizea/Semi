@@ -19,6 +19,7 @@
 	
 	HistoryDao historyDao = new HistoryDao();
 	List<HistoryDto> list = historyDao.memberHis(writer, ip_addr);
+	
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
@@ -58,6 +59,13 @@
         width: 3rem;
         text-align: center;
     }
+    
+   		/* a태그 하이퍼링크 표시 제어 */
+        
+    	/* a태그 하이퍼링크 표시 제어 */
+    .his-board a:link { color: black; text-decoration: none;}
+    .his-board a:visited { color: black; text-decoration: none;}
+    .his-board a:hover { text-decoration: underline;}
 
 </style>
 <!--
@@ -106,7 +114,7 @@
             <tr class="his-title">
                 <td class="time">Write Time</td>
                 <td class="content">Content</td>
-                <td class="title">대주제</td>
+                <td class="title">TITLE</td>
             </tr>
             <%for(HistoryDto memberHis : list){ %>
             <tr class="his-content">
@@ -126,6 +134,7 @@
             <%} %>
         </table>
     </div>
+
 </article>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

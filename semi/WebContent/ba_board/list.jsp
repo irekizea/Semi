@@ -92,18 +92,24 @@ if(grade!=null){
         color: white;
         margin-right: 3rem;
     }
+    
+   		/* a태그 하이퍼링크 표시 제어 */
+    a:link { color: black; text-decoration: none;}
+    a:visited { color: black; text-decoration: none;}
+    a:hover { text-decoration: underline;}
+    
 </style>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <div class="row-empty"></div>
 <div align="center">
-        <table class="his-board" border="0" width="90%">
+        <table class="his-board" border="0" width="80%">
             <colgroup>
                 <col width="10%">
                 <col width="30%">
-                <col width="15">
-                <col width="25">
+                <col width="20">
+                <col width="20">
                 <col width="5%">
                 <col width="5%">
                 <col width="10%">
