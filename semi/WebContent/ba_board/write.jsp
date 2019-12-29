@@ -43,11 +43,13 @@
     </script>
 
 <style>
-<<<<<<< HEAD
-/* 실제 input 또는 textarea 숨김처리 */
+
 	body{
 	margin:0px;
-	}	
+	background: #f5f5f5;
+	}
+		
+/* 실제 input 또는 textarea 숨김처리 */
      .naver-editor + textarea { 
  		display: none; 
  	}
@@ -130,7 +132,6 @@
 		
 		</form>
     </div>
-	
-		<span style="margin:0 4rem;">[알림] 글 작성 후 수정은 불가능하며, 추가만 가능하다는 점 유의해주십시오.</span><br><br>
+
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

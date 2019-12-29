@@ -30,6 +30,10 @@
 %>    
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">    
 <style>
+	body {
+		background: #f5f5f5;
+	}
+
     /* history style */
     .his-board{
         border-collapse: collapse;
