@@ -42,7 +42,7 @@
 <!--제목 부분-->
         <div class="content-top">
            <h2 class="title"><%=bdto.getTitle()%></h2>
-           <h3 class="subtitle">소제목</h3>
+<!--            <h3 class="subtitle">소제목</h3> -->
         </div>
         
 <!--내용 부분--> 

@@ -43,10 +43,14 @@
     </script>
 
 <style>
-/* 실제 input 또는 textarea 숨김처리. 에디터 관련 */
-	.naver-editor + textarea {
-		display: none;
-	}
+<<<<<<< HEAD
+/* 실제 input 또는 textarea 숨김처리 */
+	body{
+	margin:0px;
+	}	
+     .naver-editor + textarea { 
+ 		display: none; 
+ 	}
 
 /* ba_board Write.jsp style */
 	* {
@@ -96,7 +100,6 @@
 						<input type="text" name="title" required placeholder="게시글 제목을 입력하세요"
 									style="width: 100%; height: 2rem;">
 					</td>
-				
 				</tr>
 				
 				<tr>
@@ -106,11 +109,10 @@
 										style="resize: vertical;"></textarea>
 					</td>
 				</tr>
-			
+				
 				<tr>
 					<th class="w-title">첨부파일</th>
 						<td>
-<!-- 						<input type="text" name="id" placeholder="임시 아이디 입력공간"> -->
 							<input type="file" name="file" accept="jpg,png,gif">
 						</td>
 				</tr>
@@ -126,7 +128,9 @@
 			</tr>
 		</table><br>
 		
-	</form>
-
+		</form>
+    </div>
+	
+		<span style="margin:0 4rem;">[알림] 글 작성 후 수정은 불가능하며, 추가만 가능하다는 점 유의해주십시오.</span><br><br>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>
