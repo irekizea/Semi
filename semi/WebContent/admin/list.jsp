@@ -135,7 +135,7 @@ body {
 		</table>
 
 		<!-- 네비게이터(navigator) -->
-		<jsp:include page="/template/navigatorSearch.jsp">
+		<jsp:include page="/template/navigator.jsp">
 			<jsp:param name="pno" value="<%=pno%>" />
 			<jsp:param name="count" value="<%=count%>" />
 			<jsp:param name="navsize" value="<%=navsize%>" />
