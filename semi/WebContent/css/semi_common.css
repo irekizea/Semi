@@ -137,7 +137,7 @@ body{
 		.row-multi.col-5 > * {width: 20%};
 		
 		
-		.row::after {
+		.row-multi::after {
 			content: "";
 			display: block;
 			clear: both;
@@ -232,11 +232,6 @@ body{
     
             
         }
-
-	     	/* a태그 하이퍼링크 표시 제어 */
-    a:link { color: black; text-decoration: none;}
-    a:visited { color: black; text-decoration: none;}
-    a:hover { text-decoration: underline;}
 
 /* 
 헤더 디자인
@@ -522,8 +517,33 @@ body{
 .footer #en{
     font-family:NotosanB;
 }       
+/* header의 검색창 style */
+        .search-box{
+            align: right;
+            right: 30px;
+            bottom: 50px;
+        }
+        .search-box input[type=search]{
+            width: 210px;
+            outline: none;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            border-bottom: 0.5px solid black;
+            padding: 0.5rem;
+            font-style: oblique;
+        }
+            /* input type=search 'x' 표시 없애기*/
+        .search-box input[type=search]::-ms-clear{
+            display: none;
+        }
+        @media screen and (max-width:1000px){
+            .search-box input[type=search]{
+                display: none;
+            }
+        }
         
-/* -아마도 슬라이더? */
+
 .sun-container {
 	display: table;
 	width: 100%;

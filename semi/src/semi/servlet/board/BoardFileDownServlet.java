@@ -24,7 +24,7 @@ public class BoardFileDownServlet extends HttpServlet {
 			
 			BA_FileDao boardFileDao = new BA_FileDao();
 			BA_FileDto boardFileDto = boardFileDao.get1(no);
-			System.out.println(boardFileDto.getSavename());
+
 			File target = new File("D:/upload/kh21", boardFileDto.getSavename());
 			byte[] data = FileUtils.readFileToByteArray(target);
 			

@@ -173,9 +173,9 @@ public class BA_FileDao {
 			return fdto;
 		}
 
-//기능:단일조회2
-//이름:get
-//매개변수: 검색어(title_key)
+//기능:단일조회2, 메인글에서 목차 추가 때 업로드 된 파일 조회
+//이름:get1
+//매개변수: file_no(파일번호)
 //반환형:BA_FileDto 
 		public BA_FileDto get1(int no) throws Exception{
 			Connection con = getConnection();
