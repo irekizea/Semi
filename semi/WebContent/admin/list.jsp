@@ -65,12 +65,39 @@ body {
 	background: #f5f5f5;
 	margin:0px;
 }
+
+table.sun-user-table td:first-child {
+    word-break: normal;
+    display: inline-block;
+    height: 30px;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    word-wrap:normal;
+    width: 160px;
+    overflow:hidden;
+}
 </style>
 
 <div class="sun-container">
 	<div align="center" class="sun-container-wrap vcenter">
-		<h2>회원 검색</h2><br>
-	
+
+		<h2>회원 검색</h2>
+
+		<!-- 검색창 -->
+		<form action="list.jsp" method="get">
+
+			<!-- 		<input type="text" name="type"> -->
+			<div class="sun-select">
+				<select name="type">
+					<option value="id">아이디</option>
+					<option value="grade">등급</option>
+					<option value="point">포인트</option>
+				</select> <input type="text" name="keyword"> <input type="submit"
+					value="검색">
+			</div>
+		</form>
+
+
 		<!-- 검색 결과 -->
 		<table class="sun-user-table" cellpadding="0" cellspacing="0">
 			<!-- 테이블 헤더 -->
@@ -104,7 +131,7 @@ body {
 						<form action="block.do">
 							<input type="hidden" name="id" value="<%=dto.getId()%>">
 							<input type="hidden" name="admin" value="<%=id%>"> <input
-								type="text" name="reason"> <input type="submit"
+								type="text" name="reason" placeholder="차단 사유"> <input type="submit"
 								value="차단">
 						</form>
 					</td>
