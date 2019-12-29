@@ -19,6 +19,7 @@
 	
 	HistoryDao historyDao = new HistoryDao();
 	List<HistoryDto> list = historyDao.memberHis(writer, ip_addr);
+	
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
@@ -29,6 +30,9 @@
     }
     .his-board * {
         padding: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .his-board tr:nth-child(1)  {
@@ -49,13 +53,19 @@
     .his-board .content{
         width: 10rem;
         text-align: left;
-        height: 5px;
     }
     .his-board .time,
     .his-board .writer{
         width: 3rem;
         text-align: center;
     }
+    
+   		/* a태그 하이퍼링크 표시 제어 */
+        
+    	/* a태그 하이퍼링크 표시 제어 */
+    .his-board a:link { color: black; text-decoration: none;}
+    .his-board a:visited { color: black; text-decoration: none;}
+    .his-board a:hover { text-decoration: underline;}
 
 </style>
 <!--
@@ -81,78 +91,50 @@
 
 <article>
     <div align=center>
-        <table class="his-board" width=90% border="1"> 
+        <table class="his-board" width=90% border="0" style="table-layout: fixed;"> 
+            <colgroup>
+                <col width="20%">
+                <col width="50%">
+                <col width="25%">
+            </colgroup>
             <tr>
                 <td colspan="3">
-                    <p>
+                    <span>
                        	<%if(request.getParameter("writer")!=null){ %>
-								"<%=request.getParameter("writer") %>"
+								" <%=request.getParameter("writer") %> "
 						<% } 
 						else{ %>
-								"<%=request.getParameter("ip_addr") %>"
+								" <%=request.getParameter("ip_addr") %> "
 						<%} %>
-                    </p>
+                    </span>
                     <span>의 기여목록</span>
                 </td>
-            </tr>           
+            </tr>     
+            <tr class="row-empty"></tr>      
             <tr class="his-title">
                 <td class="time">Write Time</td>
-                <td class="title">대주제</td>
-                <td class="content">내용</td>
+                <td class="content">Content</td>
+                <td class="title">TITLE</td>
             </tr>
-            <!-- for문 위치 -->
+            <%for(HistoryDto memberHis : list){ %>
             <tr class="his-content">
                 <td class="time" style="font-size: 13px;">
-                    <a href="#">수정시간</a>
+                    <%=memberHis.getBoardtextudate() %>
+                </td>
+                <td class="content">
+               		<a href="#">
+                        <%=memberHis.getContent() %>
+                    </a>
+                    <span class="liked" style="font-weight: lighter; font-size: 12px;">(+/- count)</span>
                 </td>
                 <td class="title">
-                    대주제
-                </td>
-                <td class="content">Content<span class="liked" style="font-weight: lighter; font-size: 12px;">(+/- count)</span>
+                    <%=memberHis.getBoardtitle() %>
                 </td>
             </tr>
+            <%} %>
         </table>
     </div>
+
 </article>
-
-
-<div align = "center">
-
-<table border = "1" style = width:90%>
-	<tr>
-		<th>
-		<%if(request.getParameter("writer")!=null){ %>
-				"<%=request.getParameter("writer") %>"의 기여목록
-		<% } 
-			else{ %>
-				"<%=request.getParameter("ip_addr") %>"의 기여목록
-		<%} %>
-		</th>
-	</tr>
-	<%for(HistoryDto memberHis : list){ %>
-	<tr>
-		<td>
-			project
-		</td>
-		<td>
-		 	<%=memberHis.getBoardtitle() %>
-		</td>
-		<td>
-			최근 수정 시간
-		</td>
-		<td>
-		 	<%=memberHis.getBoardtextudate() %>
-		</td>
-	
-	</tr>
-	<tr>
-		<td>
-		<%=memberHis.getContent() %>
-		</td>
-	</tr>
-	<%} %>
-
-</table>
-</div>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

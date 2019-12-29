@@ -9,10 +9,13 @@
 
 body {
 	background-color: #f5f5f5;
+	margin:0px;
 }
 
 .login-wrap {
+	height:600px;
 	width: 310px;
+	
 	/* 내용물 가운데 정렬 */
 	text-align: center;
 	/* div 자신을 가운데 정렬 */
@@ -67,7 +70,7 @@ body {
 </style>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
-
+<br><br><br><br>
 <div class="all">
 	<div class="login-wrap">
 		<div style="display: table; width: 100%;">
@@ -78,6 +81,7 @@ body {
 					<input class="sun-input" type="text" name="id" placeholder="아이디" required>
 					<input class="sun-input" type="text" name="pw" placeholder="비밀번호" required>
 					<input class="sun-button" type="submit" value="로그인">
+
 				</form>
 			</div>
 			<hr>

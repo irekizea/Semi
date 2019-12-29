@@ -8,9 +8,26 @@
 	String keyword = request.getParameter("keyword");
 	HistoryDto dto = new HistoryDto();
 	HistoryDao dao = new HistoryDao();
-	List<HistoryDto> list = dao.hList(keyword);
 	
-%>
+	
+	
+	int pagesize = 10;
+	int navsize = 10;
+	int count=dao.getCount(keyword);
+	int pno;
+	try{
+		pno = Integer.parseInt(request.getParameter("pno"));
+	} catch(Exception e){
+		pno = 1;
+	}
+	int finish = count-(pno-1) * pagesize;
+	System.out.println(finish+"fin");
+	int start = finish - (pagesize - 1);
+	System.out.println(start);
+	List<HistoryDto> list = dao.hList(keyword, start,finish);
+
+	
+%>    
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">    
 <style>
     /* history style */
@@ -19,6 +36,9 @@
     }
     .his-board * {
         padding: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     .his-board tr:nth-child(1)  {
         font-weight: bold;
@@ -31,15 +51,12 @@
         border-bottom: 1px solid lightgray;
     }
     .his-board .no {
-        width: 2rem;
+        width: 4rem;
         text-align: center;        
     }
     .his-board .content {
         width: 10rem;
         text-align: left;
-     	overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
     }
     .his-board .time,
     .his-board .writer{
@@ -54,34 +71,25 @@
     .hate {
         color: red;
     }
+    
+    	/* a태그 하이퍼링크 표시 제어 */
+    .his-board a:link { color: black; text-decoration: none;}
+    .his-board a:visited { color: black; text-decoration: none;}
+    .his-board a:hover { text-decoration: underline;}
 
 </style>
-
-<!--
-<script>
-    var result=3;
-    function liked(){
-        var tag = document.querySelector(".liked");
-        if(result){
-            tag.classList.remove("hate");
-            tag.classList.add("liked");
-        }        
-    }
-    function hate(){
-        var tag = document.querySelector(".liked");
-        if(result<0){
-            tag.classList.remove("liked");
-            tag.classList.add("hate");
-        }    
-    }
-</script>
--->
 
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <article>
     <div align=center>
-        <table class="his-board" width=90% border="0"> 
+        <table class="his-board" width=90% border="0" style="table-layout: fixed"> 
+        	<colgroup>
+                <col width="10%">
+                <col width="50%">
+                <col width="20%">
+                <col width="20%">
+            </colgroup>
             <tr>
                 <td colspan="4"><p>HISTORY</p></td>
             </tr>           
@@ -93,12 +101,12 @@
             </tr>
             <% for(HistoryDto hdto : list){ %>
             <tr class="his-content">
-                <td class="no" style="font-size: 13px;">글번호</td>			<!-- history 글번호. no 또는 rownum -->
+                <td class="no" style="font-size: 13px;"><%=hdto.getRn() %></td>			<!-- history 글번호. no 또는 rownum -->
                 <td class="content">
                 	<a href="#">
                 		<%=hdto.getContent() %>
                 	</a>
-                	<span class="liked" style="font-weight: lighter; font-size: 12px;">(+/- count)</span>
+<!--                 	<span class="liked" style="font-weight: lighter; font-size: 12px;">(+/- count)</span> -->
                 </td>
                 <td class="time" style="font-size: 13px;">
                     <%=hdto.getBoardtextudate() %>								<!-- 수정시간 -->
@@ -118,6 +126,17 @@
     	 <%} %>
         </table>
     </div>
+    <div align=center>
+    <jsp:include page="/template/boardNavi.jsp">
+		<jsp:param name="pno" value="<%=pno%>"/>
+		<jsp:param name="count" value="<%=count%>"/>
+		<jsp:param name="navsize" value="<%=navsize%>"/>
+		<jsp:param name="pageSize" value="<%=pagesize%>"/>
+	</jsp:include>
+    
+    </div>
+    
+    
 </article>
 
 

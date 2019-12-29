@@ -10,6 +10,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+
 public class HistoryDao {
 	private static DataSource source;
 	static {
@@ -48,10 +49,12 @@ public class HistoryDao {
 		Connection con = getConnection();
 
 		String sql = "select writer, board_title, content, board_text_udate "
-				+ "from history where writer= ? or ip_addr= ? " + "order by board_text_udate desc";
+				+ "from history where writer= ? or ip_addr= ? " 
+				+ "order by board_text_udate desc";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, writer);
 		ps.setString(2, ip_addr);
+
 		ResultSet rs = ps.executeQuery();
 
 		List<HistoryDto> list = new ArrayList<>();
@@ -114,12 +117,17 @@ public class HistoryDao {
 		con.close();
 		return recentwriter;
 	}
-	public List<HistoryDto> hList(String keyword) throws Exception {
+	
+	public List<HistoryDto> hList(String keyword, int start, int finish) throws Exception {
 		Connection con = getConnection();
-		String sql = "select*from history where board_title= ? order by board_text_udate asc";
+		String sql = "select * from(select rownum rn, B.*from(select rownum rnn, "
+				+ "A.*from(select*from history where board_title= ? order by "
+				+ " board_text_udate asc)A)B order by rnn desc)where rn between ? and ?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, keyword);
+		ps.setInt(2, start);
+		ps.setInt(3, finish);
 		ResultSet rs = ps.executeQuery();
 
 
@@ -130,14 +138,69 @@ public class HistoryDao {
 			historydto.setContent(rs.getString("content"));
 			historydto.setBoardtextudate(rs.getString("board_text_udate"));
 			historydto.setIp_addr(rs.getString("ip_addr"));
+			historydto.setRn(rs.getInt("rn"));
 			
 			list.add(historydto);
-			System.out.println(historydto.getContent());
 		}
 		con.close();
 		return list;
 	}
+	public int getCount(String keyword) throws Exception{
+		Connection con = getConnection();
+		
+		String sql="select count(*) from history where board_title=?";
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setString(1, keyword);
+		
+		ResultSet rs= ps.executeQuery();
+		rs.next();
+		
+		int count = rs.getInt(1);
+		con.close();
+		
+		return count;
+	}	
+	//전체 히스토리 목록 출력
+	public List<HistoryDto> Listall(int start, int finish) throws Exception {
+		Connection con = getConnection();
+		String sql = "select * from(select rownum rn, B.*from(select rownum rnn, "
+				+ "A.*from(select*from history order by "
+				+ " board_text_udate asc)A)B order by rnn desc)where rn between ? and ?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, start);
+		ps.setInt(2, finish);
+		ResultSet rs = ps.executeQuery();
 
+		List<HistoryDto> list = new ArrayList<>();
+		while (rs.next()) {
+			HistoryDto historydto = new HistoryDto();
+			historydto.setWriter(rs.getString("writer"));
+			historydto.setContent(rs.getString("content"));
+			historydto.setBoardtextudate(rs.getString("board_text_udate"));
+			historydto.setIp_addr(rs.getString("ip_addr"));
+			historydto.setRn(rs.getInt("rn"));
+			historydto.setBoardtitle(rs.getString("board_title"));
+			list.add(historydto);
+		}
+		con.close();
+		return list;
+	}
+	//히스토리 전체 글개수 출력
+	public int allCount() throws Exception{
+		Connection con = getConnection();
+		
+		String sql="select count(*) from history";
+		PreparedStatement ps=con.prepareStatement(sql);
+		
+		ResultSet rs= ps.executeQuery();
+		rs.next();
+		
+		int count = rs.getInt(1);
+		con.close();
+		
+		return count;
+	}
 	
 	
 }

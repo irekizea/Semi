@@ -1,14 +1,13 @@
 package semi.servlet.board;
 
+
 import java.io.IOException;
 import java.net.URLEncoder;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import semi.beans.board.BoardDao;
 import semi.beans.board.BoardDto;
 import semi.beans.board.BoardTextDao;
@@ -50,7 +49,7 @@ public class BoardEditServlet extends HttpServlet{
 			bdto.setIp_addr(ipaddr);
 			bdto.setText_content(content);
 			bdto.setNo(no);
-			//124
+			
 			bdao.btedit(bdto);
 						
 			BoardDto boardDto = new BoardDto();
@@ -61,10 +60,11 @@ public class BoardEditServlet extends HttpServlet{
 
 			// editCheck 부르기(승인후 최초 글인지, 수정된 글인지).
 			boardDao.editCheck(keyword);
-
+			
+			
 			resp.sendRedirect("searchResult.jsp?keyword="+URLEncoder.encode(keyword, "UTF-8")+"&no="+no);
 		}
-		catch(Exception e) {
+			catch(Exception e) {
 			e.printStackTrace();
 			resp.sendError(500);
 		}

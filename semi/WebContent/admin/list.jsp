@@ -63,6 +63,7 @@
 <style>
 body {
 	background: #f5f5f5;
+	margin:0px;
 }
 
 table.sun-user-table td:first-child {
@@ -79,6 +80,7 @@ table.sun-user-table td:first-child {
 
 <div class="sun-container">
 	<div align="center" class="sun-container-wrap vcenter">
+
 		<h2>회원 검색</h2>
 
 		<!-- 검색창 -->
@@ -94,6 +96,7 @@ table.sun-user-table td:first-child {
 					value="검색">
 			</div>
 		</form>
+
 
 		<!-- 검색 결과 -->
 		<table class="sun-user-table" cellpadding="0" cellspacing="0">
@@ -139,9 +142,23 @@ table.sun-user-table td:first-child {
 				%>
 			</tbody>
 		</table>
+		<br><br><br><br>
+		<!-- 검색창 -->
+		<form action="list.jsp" method="get">
 
+			<!-- 		<input type="text" name="type"> -->
+			<div class="sun-select">
+				<select name="type">
+					<option value="id">아이디</option>
+					<option value="grade">등급</option>
+					<option value="point">포인트</option>
+				</select> <input type="text" name="keyword"> <input type="submit"
+					value="검색">
+			</div>
+
+		</form>
 		<!-- 네비게이터(navigator) -->
-		<jsp:include page="/template/navigatorSearch.jsp">
+		<jsp:include page="/template/navigator.jsp">
 			<jsp:param name="pno" value="<%=pno%>" />
 			<jsp:param name="count" value="<%=count%>" />
 			<jsp:param name="navsize" value="<%=navsize%>" />

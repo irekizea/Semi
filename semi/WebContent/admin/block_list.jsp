@@ -49,27 +49,16 @@
 <style>
 body {
 	background: #f5f5f5;
+	margin:0px;
+}
+.t{
+height:500px;
 }
 </style>
 
-
-<div align="center">
-	<h2>차단 회원 목록</h2>
-
-	<!-- 검색창 -->
-	<form action="block_list.jsp" method="get">
-
-		<div class="sun-select">
-			<select name="type">
-				<option value="b_id">회원아이디</option>
-				<option value="badmin">관리자아이디</option>
-				<option value="breason">차단 사유</option>
-			</select> <input type="text" name="keyword" placeholder="검색어" required>
-			<input type="submit" value="검색">
-		</div>
-
-	</form>
-
+<br><br><br><br>
+<div class="t" align="center">
+	<h2>차단 회원 목록</h2><br>
 	<table class="sun-user-table" cellpadding="0" cellspacing="0">
 		<!-- 테이블 헤더 -->
 		<thead>
@@ -100,10 +89,24 @@ body {
 			%>
 		</tbody>
 	</table>
+	<br><br><br><br>
+	
+	<!-- 검색창 -->
+	<form action="block_list.jsp" method="get">
+
+		<div class="sun-select">
+			<select name="type">
+				<option value="b_id">회원아이디</option>
+				<option value="badmin">관리자아이디</option>
+				<option value="breason">차단 사유</option>
+			</select> <input type="text" name="keyword" placeholder="검색어" required>
+			<input type="submit" value="검색">
+		</div>
+	</form>
 
 	<div>
 		<!-- 네비게이터(navigator) -->
-		<jsp:include page="/template/navigatorSearch.jsp">
+		<jsp:include page="/template/navigator.jsp">
 			<jsp:param name="pno" value="<%=pno%>" />
 			<jsp:param name="count" value="<%=count%>" />
 			<jsp:param name="navsize" value="<%=navsize%>" />
@@ -111,6 +114,7 @@ body {
 		</jsp:include>
 	</div>
 	<div></div>
+</div>
 </div>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

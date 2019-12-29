@@ -10,25 +10,34 @@
 	BoardDao boardDao = new BoardDao();
 	List<BoardDto> list =boardDao.getTitleList(); 
 %>
-
-	<jsp:include page="/template/header.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/semi_common.css"> 
+<jsp:include page="/template/header.jsp"></jsp:include>
 
     <style>
-        /* 검색창 */      
-    main{
-        margin: auto;
-        height: auto;
-        width: 1000px;
+    html{
+    background: url(<%=request.getContextPath()%>/image/back.jpg) no-repeat center center fixed; 
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
     }
-	
-    section,
+    
+    body{
+    margin:0px;
+    }     
     article {
-        padding: 0.5rem;
-        margin: auto;
-    }  
+         padding: 0.5rem; 
+         margin: auto; 
+    } 
+    section{
+    magin:0px;
+    } 
 
-        
+    
+        /* 검색창 */ 
         .box {
+        	font-family:NotosanB;
+        	height:500px;
             position: relative;
             width: 60%;
             text-align: center;
@@ -39,35 +48,54 @@
             width: 100%;
         }
         input[type=search]{
+        	background-color:transparent;
+        	font-family:NotosanBlack;
+        	color: white;
+  			font-size:35px;
             width: 100%;
             border-style: none;
             border-bottom-style: solid;
-            border-bottom-color: black;
+            border-bottom-color: white;
             padding: 1rem;
             font-size: 20px;
             font-style: oblique;
         }
+        input::placeholder {
+  		color: white;
+  		font-size:35px;
+		}
+		
         input[type=search]:focus {
       		outline: none;
         }
+            /* input type=search 'x' 표시 없애기*/
+        input[type=search]::-ms-clear{
+            display: none;
+        }
+        
         .topN *{
             text-align: center;
-            color: black;
+            color: white;
             display: inline-block;
             font-size: 17px;
             font-weight: bold;
             margin: 1rem;
         }
-        .topN span {
-            background: rgb(209,208,208);
-            background: linear-gradient(0deg, rgba(209,208,208,1) 34%, rgba(240,240,240,1) 35%, rgba(246,246,246,1) 39%, rgba(255,255,255,0) 100%);
-        }
+		.topN span {
+		font-size:20px;
+		border-bottom: 20px solid #808285;
+        width: 50px;
+        line-height: -0px;
+        text-align: center;
+/*             background: rgb(209,208,208); */
+/*             background: linear-gradient(0deg, rgba(209,208,208,1) 34%, rgba(240,240,240,1) 35%, rgba(246,246,246,1) 39%, rgba(255,255,255,0) 100%); */
+         } 
 
     </style>
-
-	
-    <main>
+    
+<%-- 	<img src="<%=request.getContextPath()%>/image/back.jpg" id="bg" alt="술마시고 있는 사람들"> --%>
     <article class="box">
+    
     	<form action="<%=request.getContextPath()%>/board/searchResult.jsp" method="get">
         <input type="search" name="keyword" placeholder="what would you like to sarch?" required>
 	        <br><br>
