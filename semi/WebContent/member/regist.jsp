@@ -64,21 +64,21 @@ form {
 		
 		<div class="row-left">
 			<label for="id=input">아이디</label>
-			<input id="id-input" class="block-item input-item" type="text" name="id" required>
+			<input id="id-input" class="block-item input-item sun-input" type="text" name="id" required>
 		</div>
 		
 		<div class = "row-left">
 			<label for="pw-input">비밀번호</label>
-			<input id="name-input" class="block-item input-item" type="password" name="pw" required>		
+			<input id="name-input" class="block-item input-item sun-input" type="password" name="pw" required>		
 		</div>
 		
 		<div class = "row-left">
 			<label >이메일</label>
-			<input id="email-input" class="block-item input-item" type="text" name="email" required>	
+			<input id="email-input" class="block-item input-item sun-input" type="text" name="email" required>	
 		</div>
 		
 		<div style="margin-left: 50px;">
-			<input class="btn" type="submit" value="가입하기">
+			<input class="btn sun-button" type="submit" value="가입하기">
 		</div>
 		<h5>※ 저희 알콜위키는 회원가입 후 탈퇴가 불가능합니다. </h5>
 	</article>

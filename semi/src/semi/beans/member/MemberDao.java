@@ -110,18 +110,19 @@ public class MemberDao {
 	}
 	// 기능 : 아이디로 비밀번호 찾기
 	// 이름 : find
-	// 매개변수 : id
+	// 매개변수 : id, email
 	// 반환형 : pw
 
 	// 전체 공개 / 반환String (입력 받을게 email인데 형식이 String이라서 )
 	
-	public String find_pw(String id) throws Exception {
+	public String find_pw(String id, String email) throws Exception {
 		// 연결하기/ con은 별칭 / get.onnection / 연결하기 가져오겠다를
 		Connection con = getConnection();
 
-		String sql = "select pw from member where id=?"; 
+		String sql = "select pw from member where id=? and email=?"; 
 		PreparedStatement ps = con.prepareStatement(sql); /* 준비된 명령 */
 		ps.setString(1, id);
+		ps.setString(2, email);
 		ResultSet rs = ps.executeQuery();
 
 		String  pw= null;

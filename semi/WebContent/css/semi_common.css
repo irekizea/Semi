@@ -426,6 +426,7 @@ table.sun-user-table button, table.sun-user-table input[type="button"], table.su
     border: 1px solid black;
     width: 85px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 table.sun-user-table button:hover, table.sun-user-table input[type="button"]:hover, table.sun-user-table input[type="submit"]:hover {
@@ -433,7 +434,7 @@ table.sun-user-table button:hover, table.sun-user-table input[type="button"]:hov
 }
 
 .sun-select select {
-    width: 100px;
+    width: 115px;
     border: 1px solid #ccc;
     height: 35px;
     padding: 0 5px;
@@ -448,9 +449,52 @@ table.sun-user-table button:hover, table.sun-user-table input[type="button"]:hov
     border: none;
     width: 80px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 .sun-select input[type="submit"]:hover, .sun-select input[type="button"]:hover {
     opacity: 0.8;
 }
 
+input.sun-input[type] {
+    border: none;
+    background: none;
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+}
+
+input.sun-input[type]:focus {
+    border-bottom: 1px solid black;
+}
+
+input.sun-input[type]:focus, input.sun-input[type]:active {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+input.sun-button[type="button"], input.sun-button[type="submit"] {
+    border-radius: 4px;
+}
+
+.sun-user-label {
+	width: 300px;
+	display: block;
+	text-align: left;
+	margin-top: 30px;
+}
+
+.sun-user-input {
+	width: 300px;
+	line-height: 35px;
+	padding: 0;
+	border: none;
+	border-bottom: 1px solid #ccc;
+	background: none;
+	margin-top: 5px;
+}
+
+.sun-user-input:hover, .sun-user-input:active, .sun-user-input:focus {
+    outline: none;
+    border-bottom: 1px solid black;
+}

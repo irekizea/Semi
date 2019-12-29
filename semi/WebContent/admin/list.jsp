@@ -64,6 +64,17 @@
 body {
 	background: #f5f5f5;
 }
+
+table.sun-user-table td:first-child {
+    word-break: normal;
+    display: inline-block;
+    height: 30px;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    word-wrap:normal;
+    width: 160px;
+    overflow:hidden;
+}
 </style>
 
 <div class="sun-container">
@@ -82,12 +93,7 @@ body {
 				</select> <input type="text" name="keyword"> <input type="submit"
 					value="검색">
 			</div>
-
 		</form>
-
-		<h3>
-			type =<%=request.getParameter("type")%>, keyword =<%=request.getParameter("keyword")%>
-		</h3>
 
 		<!-- 검색 결과 -->
 		<table class="sun-user-table" cellpadding="0" cellspacing="0">
@@ -122,7 +128,7 @@ body {
 						<form action="block.do">
 							<input type="hidden" name="id" value="<%=dto.getId()%>">
 							<input type="hidden" name="admin" value="<%=id%>"> <input
-								type="text" name="reason"> <input type="submit"
+								type="text" name="reason" placeholder="차단 사유"> <input type="submit"
 								value="차단">
 						</form>
 					</td>
