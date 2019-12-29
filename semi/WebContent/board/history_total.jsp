@@ -104,7 +104,7 @@ pageEncoding="UTF-8"%>
                 	<a href="#">
                 		<%=hdto.getContent() %>
                 	</a>
-                	<span class="liked" style="font-weight: lighter; font-size: 12px;">(+/- count)</span>
+<!--                 	<span class="liked" style="font-weight: lighter; font-size: 12px;">(+/- count)</span> -->
                 </td>
                 <td class="time" style="font-size: 13px;">
                     <%=hdto.getBoardtextudate() %>								<!-- 수정시간 -->
