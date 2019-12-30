@@ -436,8 +436,8 @@
 
 <label for="reply"><p align="left">[토론 보기]</p></label>
 <input type="checkbox" id="reply" class="checkbox">
-	
-<table border="0" class="checked-show table re-table">
+<div class="checked-show ">
+<table border="0" class="re-table">
 	<%for(BoardReplyDto boardReplyDto: replyList){ %>
 		<tr>
         	<td class="reply-list">
@@ -484,6 +484,7 @@
         </tr>
 	</form>
 </table>
+</div>
 
 
 <!-- 검색결과가 없다면 -->
