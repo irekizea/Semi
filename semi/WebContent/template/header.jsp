@@ -74,7 +74,6 @@ boolean isLogin = userId != null;
                 <a href="<%=context%>/ba_board/list.jsp">DEBATE</a>
           
                 <ul>
-                    <li><a href="<%=context%>/ba_board/write.jsp">새주제 등록</a></li>
                     <li><a href="<%=context%>/ba_board/list.jsp">토론 목록</a></li>
                 </ul>
             
