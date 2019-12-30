@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -110,7 +109,6 @@
 // 		createViewer();
 		createMultiViewer();
     };
-
   		
 </script>
 
@@ -139,7 +137,6 @@
 	.empty{
 		margin:2rem 0;
 	}
-	
 	
 		/* 목차 설정 */
 	.sindex {
@@ -324,9 +321,9 @@
 	
 	<!-- 승인된 글에 첨부파일이 있을 경우 출력-->
 	<%if(flist.size() > 0){ %>
-		<div>
+		<div class="origin-img">
 			<%for(BA_FileDto fdto : flist){ %>
-				<img src="fileorigin.do?keyword=<%=fdto.getTitle_key()%>" class="img">
+				<img src="fileorigin.do?keyword=<%=fdto.getTitle_key()%>" class="img" style="width: 100%; height:auto;">
 			<%} %>
 			<br>
 		</div>
@@ -407,10 +404,9 @@
 			<input type="checkbox" id="show" class="checkbox'">
 			<div class="checked-show">
 				<form action="textInsert.do" method="post"  enctype="multipart/form-data">
-					<input type="hidden" name="keyword" value=<%=keyword %>>
+					<input type="hidden" name="keyword" value="<%=keyword %>">
 					<input type="hidden" name="board_no" value="<%=boardDto.getNo()%>">
-					<input type="text" name="sub_title" required class="sub-title" style="width:100%; height:5%;">				
-					<input type="file" name="file" >								
+					<input type="text" name="sub_title" required class="sub-title" style="width:100%; height:5%;">										
 					<div class="naver-editor"></div><input type="hidden" name="text_content">
 						<span>
 							문서 편집을 저장하면 기여한 내용을 CC-BY-NC-SA 2.0 KR으로 배포하고
@@ -437,8 +433,10 @@
 
 <label for="reply"><p align="left">[토론 보기]</p></label>
 <input type="checkbox" id="reply" class="checkbox">
-	
-<table border="0" class="checked-show table re-table">
+<div class="checked-show ">
+
+<form action="replyInsert.do" method="post">                               
+<table border="0" class="re-table">
 	<%for(BoardReplyDto boardReplyDto: replyList){ %>
 		<tr>
         	<td class="reply-list">
@@ -463,7 +461,6 @@
 	<%} %>
 	
 	<!-- 토론(댓글) 입력창 -->
-	<form action="replyInsert.do" method="post">                               
 		<tr>
 			<td>  
         	    <input type="hidden" name="board_title" value="<%=boardDto.getTitle()%>">	   
@@ -483,8 +480,9 @@
                 <div><input type="submit" class="btn" value="등록"></div>
             </td>
         </tr>
-	</form>
 </table>
+</form>
+</div>
 
 
 <!-- 검색결과가 없다면 -->
