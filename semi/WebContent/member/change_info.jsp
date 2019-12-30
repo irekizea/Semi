@@ -6,6 +6,12 @@
 body {
 	background: #f5f5f5;
 }
+.btnsun-button input[type=submit] {
+	color: white;
+	background-color: #000000;
+	cursor: pointer;
+}
+
 </style>
 
 <div class="sun-container">
@@ -24,7 +30,7 @@ body {
 
 
 				<tr>
-					<th colspan="2"><input class="btn sun-button" type="submit" value="수정하기"></th>
+					<th colspan="2"><input class="btn sun-button" type="submit"  value="수정하기" ></th>
 				</tr>
 			</table>
 		</form>
