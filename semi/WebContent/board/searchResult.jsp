@@ -323,7 +323,7 @@
 	<%if(flist.size() > 0){ %>
 		<div class="origin-img">
 			<%for(BA_FileDto fdto : flist){ %>
-				<img src="fileorigin.do?keyword=<%=fdto.getTitle_key()%>" class="img" style="width: 100%; height:auto;">
+				<img src="fileorigin.do?keyword=<%=fdto.getTitle_key()%>" class="img" style="width: 50%; height:auto;">
 			<%} %>
 			<br>
 		</div>

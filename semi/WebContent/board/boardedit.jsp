@@ -160,10 +160,10 @@
 			%>
 		</div>
 <!-- 		<input type="file" name="file">		 -->
-		<div class="text">
+		<input type="text" name="sub_title" required class="sub-title" style="width:100%; height:5%;" value="<%=boardtextdto.getSub_title() %>">			
+		<input type="hidden" name="sub_title" value="<%=boardtextdto.getSub_title() %>">
 		<div class="naver-editor"></div>
 		<input type="hidden" name="text_content" value="<%=boardtextdto.getText_content()%>">
-		</div>
 		<span>
 			문서 편집을 저장하면 기여한 내용을 CC-BY-NC-SA 2.0 KR으로 배포하고
 			기여한 문서에 대한 하이퍼링크나 URL을 이용하여 저작자 표시를 하는 것으로
