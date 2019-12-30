@@ -82,7 +82,6 @@ if(grade!=null){
         width: 4rem;
         background-color: black;
         color: white;
-        margin-right: 3rem;
     }
     
    		/* a태그 하이퍼링크 표시 제어 */
@@ -152,7 +151,7 @@ if(grade!=null){
             </tbody>
         </table>
         <div class="row-empty"></div>
-        <div align="right" class="div-botton">
+        <div align="right" class="w-80 div-botton">
             <a href="write.jsp">
                 <input type="button" class="w-botton" value="글쓰기">
             </a>
