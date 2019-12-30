@@ -140,7 +140,6 @@
 		margin:2rem 0;
 	}
 	
-	
 		/* 목차 설정 */
 	.sindex {
 		margin-top:50px;
@@ -324,9 +323,9 @@
 	
 	<!-- 승인된 글에 첨부파일이 있을 경우 출력-->
 	<%if(flist.size() > 0){ %>
-		<div>
+		<div class="origin-img">
 			<%for(BA_FileDto fdto : flist){ %>
-				<img src="fileorigin.do?keyword=<%=fdto.getTitle_key()%>" class="img">
+				<img src="fileorigin.do?keyword=<%=fdto.getTitle_key()%>" class="img" style="width: 100%; height:auto;">
 			<%} %>
 			<br>
 		</div>
