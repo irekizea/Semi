@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <jsp:include page="/template/header.jsp"></jsp:include>
 
+
 <style>
 
 	input.input-item {
@@ -45,6 +46,7 @@ article.w-50 {
 
 body {
 	background: #f5f5f5;
+	
 }
 
 .row-left {
@@ -52,6 +54,7 @@ body {
 }
 
 form {
+height: 600px;
 	display: table;
 	width: 100%;
 }
@@ -74,11 +77,11 @@ form {
 </tr>
 <tr>
 <td>비밀번호<td>
-<td><input id="id-input" class="block-item input-item sun-input" type="password" name="id" required></td>
+<td><input id="pw-input" class="block-item input-item sun-input" type="password" name="pw" required></td>
 </tr>
 <tr>
 <td>이메일<td>
-<td>	<input id="name-input" class="block-item input-item sun-input" type="email" name="pw" required>		</td>
+<td>	<input id="email-input" class="block-item input-item sun-input" type="email" name="email" required></td>
 </tr>
 
 </table>

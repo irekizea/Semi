@@ -104,16 +104,18 @@ public class BlockMemberDao {
 		PreparedStatement ps=con.prepareStatement(sql);
 		ps.setString(1, id);
 		ResultSet rs=ps.executeQuery();
-		rs.next();
 		
-		BlockMemberDto dto = new BlockMemberDto();
-		
-		dto.setB_id(rs.getString("b_id"));
-		dto.setBadmin(rs.getString("badmin"));
-		dto.setBdate(rs.getString("bdate"));
-		dto.setBreason(rs.getString("breason"));
-		
-			
+		BlockMemberDto dto;
+		if(rs.next()) {
+			dto = new BlockMemberDto();
+			dto.setB_id(rs.getString("b_id"));
+			dto.setBadmin(rs.getString("badmin"));
+			dto.setBdate(rs.getString("bdate"));
+			dto.setBreason(rs.getString("breason"));
+		}
+		else {
+			dto = null;
+		}
 			
 		con.close();
 		return dto;

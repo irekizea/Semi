@@ -169,7 +169,7 @@ public class MemberDao {
 		// 공개합니다. 결과는 없고요 준비물은 아이디랑, 비번이구요 예외는 나도 모르오 
 		Connection con = getConnection();
 	
-		String sql ="update member set email=? where id=?";
+		String sql ="update member set pw=? where id=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, pw);
 		ps.setString(2, id);
@@ -276,13 +276,13 @@ public class MemberDao {
 			return count;
 		}
 		// 내정보 변경 메소드
-		public void change_info(String id,String pw) throws Exception{
+		public void change_info(String id, String email) throws Exception{
 			// 공개합니다. 결과는 없고요 준비물은 아이디랑, 비번이구요 예외는 나도 모르오 
 			Connection con = getConnection();
 		
-			String sql ="update member set pw=? where id=?";
+			String sql ="update member set email=? where id=?";
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, pw);
+			ps.setString(1, email);
 			ps.setString(2, id);
 			
 			ps.execute();

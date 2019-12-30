@@ -6,8 +6,13 @@
 body {
 	background: #f5f5f5;
 }
+.s{
+height: 550px;
+}
 </style>
 
+<div class="s">
+<br><br>
 <div class="sun-container">
 	<div align="center" class="sun-container-wrap vcenter">
 		<h2>정보 변경이 완료되었습니다</h2>
@@ -16,6 +21,6 @@ body {
 		</h4>
 	</div>
 </div>
-
+</div>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>
