@@ -249,4 +249,5 @@ public class BlockMemberDao {
 		return list;
 	}
 	
+
 }
