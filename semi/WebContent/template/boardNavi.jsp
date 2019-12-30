@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+ <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 
 <%
@@ -28,7 +28,7 @@
 	 <h4>
 	  			<%if(startBlock>1){ %>
 	  	
-	  	 			<a href="<%=request.getRequestURI()%>?pno=<%=startBlock - 1%>&keyword=<%=keyword%>">[ÀÌÀü]</a> 
+	  	 			<a href="<%=request.getRequestURI()%>?pno=<%=startBlock - 1%>&keyword=<%=keyword%>">[Ã€ÃŒÃ€Ã¼]</a> 
 				 <%} %>
 				 <% for(int i=startBlock; i<= finishblock; i++){%>	
 				 	<%if(i==pno){ %>
@@ -41,9 +41,8 @@
 	 	 	 	<%} %>
 	 	 	 <%if(finishblock<pagecount){ %>
 	 	 	
-	 	 	<a href="<%=request.getRequestURI()%>?pno=<%=finishblock + 1%>&keyword=<%=keyword%>">[´ÙÀ½]</a>
+	 	 	<a href="<%=request.getRequestURI()%>?pno=<%=finishblock + 1%>&keyword=<%=keyword%>">[Â´Ã™Ã€Â½]</a>
 			<% } %>
 
 	 	 
 	 	</h4>
- 	
