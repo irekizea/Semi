@@ -78,7 +78,7 @@ form {
 </tr>
 <tr>
 <td>이메일<td>
-<td>	<input id="name-input" class="block-item input-item sun-input" type="email" name="pw" required>		</td>
+<td>	<input id="name-input" class="block-item input-item sun-input" type="email" name="pw" required></td>
 </tr>
 
 </table>
