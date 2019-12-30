@@ -105,10 +105,7 @@ pageEncoding="UTF-8"%>
                 <td class="no" style="font-size: 13px;"><%=hdto.getRn() %></td>			<!-- history 글번호. no 또는 rownum -->
                 <td class="his-title" style="font-size: 13px;"><%=hdto.getBoardtitle() %></td>
                 <td class="content">
-                	<a href="#">
                 		<%=hdto.getContent() %>
-                	</a>
-<!--                 	<span class="liked" style="font-weight: lighter; font-size: 12px;">(+/- count)</span> -->
                 </td>
                 <td class="time" style="font-size: 13px;">
                     <%=hdto.getBoardtextudate() %>								<!-- 수정시간 -->

@@ -30,6 +30,7 @@ public class BoardEditServlet extends HttpServlet{
 			int no = Integer.parseInt(req.getParameter("no"));
 			int boardno = Integer.parseInt(req.getParameter("board_no"));
 			String ipaddr= req.getParameter("ip_addr");
+			String subtitle=req.getParameter("sub_title");
 			
 			HistoryDto hdto = new HistoryDto();
 			HistoryDao hdao = new HistoryDao();
@@ -48,7 +49,9 @@ public class BoardEditServlet extends HttpServlet{
 			bdto.setWriter(writer);
 			bdto.setIp_addr(ipaddr);
 			bdto.setText_content(content);
+			bdto.setSub_title(subtitle);
 			bdto.setNo(no);
+			
 			
 			bdao.btedit(bdto);
 						
