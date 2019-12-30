@@ -124,7 +124,6 @@
              <a href="delete.do?no=<%=no%>">
                 <input type="button" class="w-botton" value="글삭제" id="bt">
             </a>
-            
         </div>
     </div>
 </form>
