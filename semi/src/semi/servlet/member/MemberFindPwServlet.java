@@ -21,11 +21,9 @@ public class MemberFindPwServlet extends HttpServlet{
 			String email = req.getParameter("email"); // 이메일도 받고 
 		// 처리
 			MemberDao dao = new MemberDao();
-			// MemberDto dto = dto,find(email);
-			System.out.println(id);
-			System.out.println(email);
+	
 			String pw = dao.find_pw(id, email); // 비번내놔/ 아이디로찾을게
-			System.out.println(pw);
+
 			if(pw == null) { // 비번 없으면
 				resp.sendRedirect("find_pw_result.jsp");
 			}

@@ -24,8 +24,7 @@ public class BoardFileUploadServlet extends HttpServlet{
 		//[1] fname이라는 이름의 파일을 받는다
 		try {
 		MultipartRequest mRequest = new MultipartRequest(req, "D:/upload/kh21", 10*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
-		
-		System.out.println(mRequest.getParameter("no"));
+
 		
 		//[2] 파일을 원하는 위치에 저장하고 DB에도 정보를 남긴다
 		File file = mRequest.getFile("fname");

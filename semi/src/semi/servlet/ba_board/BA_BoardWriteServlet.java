@@ -35,9 +35,7 @@ public class BA_BoardWriteServlet extends HttpServlet {
 			Folder.mkdir();
 			Folder21.mkdir();
 			
-			System.out.println("생성 완료");
 		}else {
-			System.out.println("이미 있습니다");
 		}
 			
 		MultipartRequest mRequest = new MultipartRequest(req, path21, 10*1024*1024, "UTF-8", new DefaultFileRenamePolicy());

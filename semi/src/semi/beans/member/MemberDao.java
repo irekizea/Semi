@@ -194,7 +194,6 @@ public class MemberDao {
 				+ "where "+type+" like '%'||?||'%' "
 						+ "order by "+type+" asc ";
 		
-		System.out.println(sql);
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, keyword);

@@ -17,9 +17,7 @@ pageEncoding="UTF-8"%>
 		pno = 1;
 	}
 	int finish = count-(pno-1) * pagesize;
-	System.out.println(finish);
 	int start = finish - (pagesize - 1);
-	System.out.println(start);
 	
 	List<HistoryDto> listall = dao.Listall(start, finish);
 %>    
