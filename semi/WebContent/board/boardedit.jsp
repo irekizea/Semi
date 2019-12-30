@@ -111,6 +111,8 @@
 		</div>
 			<br><br><br>
 			
+			<!-- 게시판 -->
+			
 	<div>	
 			최종 수정시간:<%=boardtextdto.getUdate()%>
 			<%System.out.println(boardtextdto.getUdate()); %>
