@@ -54,7 +54,7 @@ public class HistoryDao {
 					+ 		"from history where writer= ? or ip_addr= ? " 
 					+ 		"order by board_text_udate desc "
 					+ 	")A "
-					+ ")where rn between 1 and 10";
+					+ ")where rn between ? and ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, writer);
 		ps.setString(2, ip_addr);
@@ -92,17 +92,17 @@ public class HistoryDao {
 		
 		ResultSet rs= ps.executeQuery();
 
-		while (rs.next()) {
-			HistoryDto historyDto = new HistoryDto();
-
-			if (rs.getString("writer") != null) {
-				historyDto.setWriter(rs.getString("writer"));
-			}
-			else {
-				historyDto.setIp_addr(rs.getString("ip_addr"));
-			}
-		}		
-		
+//		while (rs.next()) {
+//			HistoryDto historyDto = new HistoryDto();
+//
+//			if (rs.getString("writer") != null) {
+//				historyDto.setWriter(rs.getString("writer"));
+//			}
+//			else {
+//				historyDto.setIp_addr(rs.getString("ip_addr"));
+//			}
+//		}		
+		rs.next();
 		int count = rs.getInt(1);
 		con.close();
 		
