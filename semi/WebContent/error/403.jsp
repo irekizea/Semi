@@ -89,7 +89,7 @@ body {
 			<div class="display:table-cell; vertical-align:center;">
 
 
-			
+			<!--  -->
 				<p>가능성이 높은 원인: 이 웹사이트를 보려면<br> 로그인해야 합니다.</p>
 				</div>
 		</div>
