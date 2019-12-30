@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semi.beans.member.MemberDao;
 import semi.beans.member.MemberDto;
 
 @WebServlet(urlPatterns="/member/change_info.do")
@@ -24,7 +25,8 @@ try {
 	
 //				[2] 처리
 				MemberDto dto = new MemberDto();
-				dto.setEmail(email);
+				MemberDao dao = new MemberDao();
+				dao.change_info(id, email);
 
 // [3] 이동
 				resp.sendRedirect("change_info_result.jsp");
