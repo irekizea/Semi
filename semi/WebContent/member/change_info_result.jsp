@@ -10,14 +10,12 @@ body {
 
 <div class="sun-container">
 	<div align="center" class="sun-container-wrap vcenter">
-		<form action="change_pw.do" method="post">
-
-			<h1>신규 비밀번호 입력</h1>
-
-			<input class="sun-input" type="password" name="pw" required>
-			<input class="sun-button" type="submit" value="완료">
-		</form>
+		<h2>정보 변경이 완료되었습니다</h2>
+		<h4>
+			<a href="<%=request.getContextPath()%>">home으로 </a>
+		</h4>
 	</div>
 </div>
+
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

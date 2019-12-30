@@ -7,21 +7,16 @@
 <%
 int pagesize = 10;
 int navsize = 10;
-
 int pno;
 try{
 	pno = Integer.parseInt(request.getParameter("pno"));
 } catch(Exception e){
 	pno = 1;
 }
-
 int finish = pno * pagesize;
 int start = finish - (pagesize - 1);
-
-
 BA_BoardDao dao = new BA_BoardDao();
 List<BA_BoardDto> list = dao.getList(start,finish);
-
 int count=dao.getCount();
 String grade = (String)session.getAttribute("grade");
 boolean isAdmin;
@@ -34,7 +29,6 @@ if(grade!=null){
 }else{
 	isAdmin=false;
 }
-
 %>
 <style>
     /* ba_board List.jsp style */
@@ -48,7 +42,6 @@ if(grade!=null){
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-
     .his-board > thead  {
         font-weight: bold;
     }
@@ -59,7 +52,6 @@ if(grade!=null){
     .his-board .his-content {
         border-bottom: 1px solid lightgray;
     }
-
     .his-board .title{
         width: 3rem;
         text-align: left;

@@ -519,26 +519,49 @@ body{
 }       
 /* header의 검색창 style */
         .search-box{
-            align: right;
+            float:right;
+            position: fixed;
             right: 30px;
-            bottom: 50px;
+			top: 20px;
         }
-        .search-box input[type=search]{
-            width: 210px;
+        .search-box input[type=text]{
+            width: 220px;
             outline: none;
             border-top: 0;
             border-left: 0;
             border-right: 0;
             border-bottom: 0.5px solid black;
-            padding: 0.5rem;
-            font-style: oblique;
+            font-family:NotosanB;
+            color: darkgray;
         }
-            /* input type=search 'x' 표시 없애기*/
-        .search-box input[type=search]::-ms-clear{
-            display: none;
+
         }
         @media screen and (max-width:1000px){
-            .search-box input[type=search]{
+            .search-box input[type=text]{
+                display: none;
+            }
+        }
+/* 로그인 후 header의 검색창 style */
+        .bsearch-box{
+            float:right;
+            position: fixed;
+            right: 30px;
+			top: 20px;
+        }
+        .bsearch-box input[type=text]{
+            width: 220px;
+            outline: none;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            border-bottom: 0.5px solid darkgray;
+            background-color: black;
+            font-family:NotosanB;
+            color: lightgray;
+        }
+
+        @media screen and (max-width:1200px){
+            .bsearch-box input[type=text]{
                 display: none;
             }
         }
@@ -615,6 +638,7 @@ table.sun-user-table button, table.sun-user-table input[type="button"], table.su
     border: 1px solid black;
     width: 85px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 table.sun-user-table button:hover, table.sun-user-table input[type="button"]:hover, table.sun-user-table input[type="submit"]:hover {
@@ -622,7 +646,7 @@ table.sun-user-table button:hover, table.sun-user-table input[type="button"]:hov
 }
 
 .sun-select select {
-    width: 100px;
+    width: 115px;
     border: 1px solid #ccc;
     height: 35px;
     padding: 0 5px;
@@ -637,9 +661,52 @@ table.sun-user-table button:hover, table.sun-user-table input[type="button"]:hov
     border: none;
     width: 80px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 .sun-select input[type="submit"]:hover, .sun-select input[type="button"]:hover {
     opacity: 0.8;
 }
 
+input.sun-input[type] {
+    border: none;
+    background: none;
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+}
+
+input.sun-input[type]:focus {
+    border-bottom: 1px solid black;
+}
+
+input.sun-input[type]:focus, input.sun-input[type]:active {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+input.sun-button[type="button"], input.sun-button[type="submit"] {
+    border-radius: 4px;
+}
+
+.sun-user-label {
+	width: 300px;
+	display: block;
+	text-align: left;
+	margin-top: 30px;
+}
+
+.sun-user-input {
+	width: 300px;
+	line-height: 35px;
+	padding: 0;
+	border: none;
+	border-bottom: 1px solid #ccc;
+	background: none;
+	margin-top: 5px;
+}
+
+.sun-user-input:hover, .sun-user-input:active, .sun-user-input:focus {
+    outline: none;
+    border-bottom: 1px solid black;
+}

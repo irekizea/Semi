@@ -47,7 +47,7 @@
             position: absolute;
             width: 100%;
         }
-        input[type=search]{
+        .box input[type=text]{
         	background-color:transparent;
         	font-family:NotosanBlack;
         	color: white;
@@ -60,17 +60,13 @@
             font-size: 20px;
             font-style: oblique;
         }
-        input::placeholder {
+        .box input::placeholder {
   		color: white;
   		font-size:35px;
 		}
 		
-        input[type=search]:focus {
+        .box input[type=text]:focus {
       		outline: none;
-        }
-            /* input type=search 'x' 표시 없애기*/
-        input[type=search]::-ms-clear{
-            display: none;
         }
         
         .topN *{
@@ -97,7 +93,7 @@
     <article class="box">
     
     	<form action="<%=request.getContextPath()%>/board/searchResult.jsp" method="get">
-        <input type="search" name="keyword" placeholder="what would you like to sarch?" required>
+        <input type="text" name="keyword" placeholder="what would you like to sarch?" required>
 	        <br><br>
 	        <div class="topN">
 	        <%for(BoardDto boardDto:list) {%>

@@ -133,12 +133,19 @@
 	<article class="board">
 
 		<div class="title">
-			<%=boardDto.getTitle()%>
-		</div>
-			<br><br><br>
 			
-	<div>	
-			최종 수정시간:<%=boardtextdto.getUdate()%>
+
+			<%=boardDto.getTitle()%>
+			
+		</div>
+		<br><br><br>				
+		<div>
+		<p>
+		최종 수정시간:<%=boardtextdto.getUdate()%>
+		</p>
+		</div>
+		
+
 		<div class="sub-title">
 			<%
 				if (login != null) {
@@ -153,7 +160,6 @@
 			%>
 		</div>
 <!-- 		<input type="file" name="file">		 -->
-	</div>
 		<div class="text">
 		<div class="naver-editor"></div>
 		<input type="hidden" name="text_content" value="<%=boardtextdto.getText_content()%>">

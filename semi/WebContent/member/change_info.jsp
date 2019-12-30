@@ -6,6 +6,12 @@
 body {
 	background: #f5f5f5;
 }
+.btnsun-button input[type=submit] {
+	color: white;
+	background-color: #000000;
+	cursor: pointer;
+}
+
 </style>
 
 <div class="sun-container">
@@ -18,16 +24,15 @@ body {
 			<table border="0">
 				<tr>
 					<th>이메일</th>
-					<td><input type="email" name="email" placeholder="이메일">
+					<td><input class="sun-input" type="email" name="email" placeholder="이메일">
 					</td>
 				</tr>
 
 
 				<tr>
-					<th colspan="2"><input type="submit" value="수정하기"></th>
+					<th colspan="2"><input class="btn sun-button" type="submit"  value="수정하기" ></th>
 				</tr>
 			</table>
-
 		</form>
 	</div>
 </div>

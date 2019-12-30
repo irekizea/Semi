@@ -45,15 +45,21 @@ public class HistoryDao {
 	}
 
 // 사용자 기여내역(사용자의 글 작성(수정) history )
-	public List<HistoryDto> memberHis(String writer, String ip_addr) throws Exception {
+	public List<HistoryDto> memberHis(String writer, String ip_addr, int start, int finish) throws Exception {
 		Connection con = getConnection();
 
-		String sql = "select writer, board_title, content, board_text_udate "
-				+ "from history where writer= ? or ip_addr= ? " 
-				+ "order by board_text_udate desc";
+		String sql = "select *from( "
+					+ 	"select rownum rn, A. *from( "
+					+ 		"select writer, board_title, content, board_text_udate "
+					+ 		"from history where writer= ? or ip_addr= ? " 
+					+ 		"order by board_text_udate desc "
+					+ 	")A "
+					+ ")where rn between ? and ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, writer);
 		ps.setString(2, ip_addr);
+		ps.setInt(3, start);
+		ps.setInt(4, finish);
 
 		ResultSet rs = ps.executeQuery();
 
@@ -73,6 +79,34 @@ public class HistoryDao {
 		}
 		con.close();
 		return list;
+	}
+	
+	// 사용자 기여내역 writer 기준 전체 글 수
+	public int getCount(String writer, String ip_addr) throws Exception{
+		Connection con = getConnection();
+		
+		String sql="select count(*) from history where writer=? or ip_addr=?";
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setString(1, writer);
+		ps.setString(2, ip_addr);
+		
+		ResultSet rs= ps.executeQuery();
+
+//		while (rs.next()) {
+//			HistoryDto historyDto = new HistoryDto();
+//
+//			if (rs.getString("writer") != null) {
+//				historyDto.setWriter(rs.getString("writer"));
+//			}
+//			else {
+//				historyDto.setIp_addr(rs.getString("ip_addr"));
+//			}
+//		}		
+		rs.next();
+		int count = rs.getInt(1);
+		con.close();
+		
+		return count;
 	}
 
 	// 단일조회
@@ -117,6 +151,7 @@ public class HistoryDao {
 		con.close();
 		return recentwriter;
 	}
+	
 	public List<HistoryDto> hList(String keyword, int start, int finish) throws Exception {
 		Connection con = getConnection();
 		String sql = "select * from(select rownum rn, B.*from(select rownum rnn, "
@@ -159,7 +194,47 @@ public class HistoryDao {
 		
 		return count;
 	}	
+	//전체 히스토리 목록 출력
+	public List<HistoryDto> Listall(int start, int finish) throws Exception {
+		Connection con = getConnection();
+		String sql = "select * from(select rownum rn, B.*from(select rownum rnn, "
+				+ "A.*from(select*from history order by "
+				+ " board_text_udate asc)A)B order by rnn desc)where rn between ? and ?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, start);
+		ps.setInt(2, finish);
+		ResultSet rs = ps.executeQuery();
 
+		List<HistoryDto> list = new ArrayList<>();
+		while (rs.next()) {
+			HistoryDto historydto = new HistoryDto();
+			historydto.setWriter(rs.getString("writer"));
+			historydto.setContent(rs.getString("content"));
+			historydto.setBoardtextudate(rs.getString("board_text_udate"));
+			historydto.setIp_addr(rs.getString("ip_addr"));
+			historydto.setRn(rs.getInt("rn"));
+			historydto.setBoardtitle(rs.getString("board_title"));
+			list.add(historydto);
+		}
+		con.close();
+		return list;
+	}
+	//히스토리 전체 글개수 출력
+	public int allCount() throws Exception{
+		Connection con = getConnection();
+		
+		String sql="select count(*) from history";
+		PreparedStatement ps=con.prepareStatement(sql);
+		
+		ResultSet rs= ps.executeQuery();
+		rs.next();
+		
+		int count = rs.getInt(1);
+		con.close();
+		
+		return count;
+	}
 	
 	
 }

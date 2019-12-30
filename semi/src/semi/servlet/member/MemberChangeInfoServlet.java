@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semi.beans.member.MemberDao;
 import semi.beans.member.MemberDto;
 
 @WebServlet(urlPatterns="/member/change_info.do")
@@ -17,16 +18,21 @@ public class MemberChangeInfoServlet extends HttpServlet {
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 try {
 	//			[1] 수신 : 1개 (email)
-				String id = (String)req.getSession().getAttribute("id");
-				
 				req.setCharacterEncoding("UTF-8");
 				String email =req.getParameter("email");
 	
+				String id = (String)req.getSession().getAttribute("id");
 	
 //				[2] 처리
 				MemberDto dto = new MemberDto();
-				dto.setEmail(email);
+				MemberDao dao = new MemberDao();
+				dao.change_info(id, email);
 
+// [3] 이동
+				resp.sendRedirect("change_info_result.jsp");
+				
+				
+				
 }
 catch(Exception e){
 	e.printStackTrace();
