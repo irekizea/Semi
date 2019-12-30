@@ -6,7 +6,16 @@ public class BlockMemberDto {
 	private String bdate;
 	private String badmin;
 	private String breason;
+	private String b_ip;
 	
+	public String getB_ip() {
+		return b_ip;
+	}
+
+	public void setB_ip(String b_ip) {
+		this.b_ip = b_ip;
+	}
+
 	public BlockMemberDto() {
 		super();
 	}
