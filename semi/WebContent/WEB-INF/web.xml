@@ -64,6 +64,7 @@
  		<url-pattern>/board/boardedit.jsp</url-pattern>
  		<url-pattern>/board/BoardEditServlet</url-pattern>
  		<url-pattern>/board/BoardReplyInsertServlet</url-pattern>
+ 		<url-pattern>/ba_board/BoardReplyInsertServlet</url-pattern>
  	</filter-mapping>
 
  	
