@@ -323,7 +323,7 @@
 	<%if(flist.size() > 0){ %>
 		<div class="origin-img">
 			<%for(BA_FileDto fdto : flist){ %>
-				<img src="fileorigin.do?keyword=<%=fdto.getTitle_key()%>" class="img" style="width: 50%; height:auto;">
+				<img src="fileorigin.do?keyword=<%=fdto.getTitle_key()%>" class="img" style="width: 40%; height:auto;">
 			<%} %>
 			<br>
 		</div>
@@ -335,7 +335,13 @@
  	 <div id = "list" class="sindex">
  		<%for(BoardTextDto boardTextDto:getList){ %>
 			<%if(boardTextDto.getRn()==1){%>
-				<a href ="#s-<%=boardTextDto.getRn()%>"><%=boardTextDto.getRn() %>:최초글</a><br>
+				<a href ="#s-<%=boardTextDto.getRn()%>">
+				<%=boardTextDto.getRn() %>: <%if(boardTextDto.getSub_title()==null){%>
+				최초글
+				<%}else {%>
+				<%=boardTextDto.getSub_title() %></a><br>
+				<%} %>
+				
 			<%}else {%>
 	
 		 	 	<a href ="#s-<%=boardTextDto.getRn()%>"><%=boardTextDto.getRn() %>:<%=boardTextDto.getSub_title() %></a><br>
