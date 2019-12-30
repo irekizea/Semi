@@ -21,9 +21,7 @@
 		pno = 1;
 	}
 	int finish = count-(pno-1) * pagesize;
-	System.out.println(finish+"fin");
 	int start = finish - (pagesize - 1);
-	System.out.println(start);
 	List<HistoryDto> list = dao.hList(keyword, start,finish);
 	
 %>    

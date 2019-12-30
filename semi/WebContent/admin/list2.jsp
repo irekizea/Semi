@@ -55,7 +55,6 @@
 	BlockMemberDao bdao = new BlockMemberDao();
 	List<String> blist = bdao.same();
 
-	// 	System.out.println(blist);
 	String[] bArrays = blist.toArray(new String[blist.size()]);
 %>
 

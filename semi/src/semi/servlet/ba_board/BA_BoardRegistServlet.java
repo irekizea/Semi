@@ -41,7 +41,6 @@ public class BA_BoardRegistServlet extends HttpServlet {
 			if(result) {
 				dao.registUpdate(no);
 			}else {
-				System.out.println("등록 실패");
 			}
 			
 // 		"board_text" 테이블로 content 전송
@@ -59,7 +58,6 @@ public class BA_BoardRegistServlet extends HttpServlet {
 			if(result2) {
 				dao.registUpdate(no);
 			}else {
-				System.out.println("등록 실패");
 			}
 	
 			resp.sendRedirect("list.jsp");												
