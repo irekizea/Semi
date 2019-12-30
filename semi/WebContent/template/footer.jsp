@@ -52,8 +52,12 @@ String context=request.getContextPath();
 	               <span id="en">
 	                   FOLLOW US
 	               </span><br> 
-	               <img src="<%=context%>/image/11.png" alt="알콜위키 인스타그램 페이지">
-	               <img src="<%=context%>/image/22.png" alt="알콜위키 페이스북 페이지">
+	               <a href="https://www.instagram.com/alcohole_wiki/">
+	               		<img src="<%=context%>/image/11.png" alt="알콜위키 인스타그램 페이지">
+	               	</a>
+	               	<a href="https://www.facebook.com/">
+	               		<img src="<%=context%>/image/22.png" alt="알콜위키 페이스북 페이지">
+	               	</a>
 	               <img src="<%=context%>/image/33.png" alt="알콜위키 메신저 페이지">
 	           </div>
 	         

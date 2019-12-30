@@ -73,8 +73,7 @@
     input {
         outline: none;
     }
-    input[type=text],
-    input[type=file]{
+    input[type=text]{
         padding: 0 1rem;
         height: 2rem;
         width: 100;
