@@ -25,17 +25,18 @@ public class MemberRegistServlet extends HttpServlet{
 			dto.setId(req.getParameter("id"));
 			dto.setPw(req.getParameter("pw"));
 			dto.setEmail(req.getParameter("email"));
-
+			
 //			[2] 처리
 			MemberDao dao = new MemberDao();
 			dao.regist(dto);
 			
 //			[3] 이동			
 			resp.sendRedirect("regist_success.jsp");
+			
 		}
+			
 		catch(SQLIntegrityConstraintViolationException e) {
 			resp.sendRedirect("regist_fail.jsp");
-			
 		}
 		catch(Exception e){
 			e.printStackTrace();
