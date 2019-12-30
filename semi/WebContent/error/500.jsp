@@ -1,273 +1,99 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+
+<style>
+
+.hrcenter{
+font-size:2.5em;
+}
+.hrline {
+border-bottom:2px solid black;
+font-size:1.5em;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #f5f5f5;
+	margin:0px;
+}
+
+.login-wrap {
+	height:600px;
+	width: 310px;
+	
+	/* 내용물 가운데 정렬 */
+	text-align: center;
+	/* div 자신을 가운데 정렬 */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.login-wrap input[name=id], .login-wrap input[name=pw], .login-wrap input[type=submit]
+	{
+	width: 100%;
+	margin: 10px 0px;
+	padding: 10px;
+	font-size: 13px;
+	font-family: 굴림;
+	background-color: white;
+	border: 1px solid #999;
+}
+
+.login-wrap input[name=id]:focus, .login-wrap input[name=pw]:focus {
+	border: 1px solid #000000;
+}
+
+/*        >를 사용하면 바로 아래에 있다는 뜻(직계자식태그) */
+/*        .login-wrap > form > input[type=submit]{*/
+
+/*        띄어쓰기를 하면 내부에 있다는 뜻(후손태그)*/
+.login-wrap input[type=submit] {
+	color: white;
+	background-color: #000000;
+	cursor: pointer;
+}
+
+/*        로고를 글자로 할 경우의 스타일*/
+.login-wrap>.logo {
+	font-size: 3rem;
+	font-weight: 900;
+	color: #000000;
+}
+
+a {
+	color: gray;
+	text-decoration: none;
+}
+
+hr {
+	width: 310px;
+}
+
+body {
+	background: #f5f5f5;
+}
+</style>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
- <style>
-  html,
-body {
-  height: 100%;
-}
-body {
-  display: grid;
-  width: 100%;
-  font-family: Inconsolata, monospace;
-}
-body div#error {
-  position: relative;
-  margin: auto;
-  padding: 20px;
-  z-index: 2;
-}
-body div#error div#box {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 1px solid #000;
-}
-body div#error div#box:before,
-body div#error div#box:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  box-shadow: inset 0px 0px 0px 1px #000;
-  mix-blend-mode: multiply;
-  animation: dance 2s infinite steps(1);
-}
-body div#error div#box:before {
-  clip-path: polygon(0 0, 65% 0, 35% 100%, 0 100%);
-  box-shadow: inset 0px 0px 0px 1px currentColor;
-  color: #f0f;
-}
-body div#error div#box:after {
-  clip-path: polygon(65% 0, 100% 0, 100% 100%, 35% 100%);
-  animation-duration: 0.5s;
-  animation-direction: alternate;
-  box-shadow: inset 0px 0px 0px 1px currentColor;
-  color: #0ff;
-}
-body div#error h3 {
-  position: relative;
-  font-size: 5vw;
-  font-weight: 700;
-  text-transform: uppercase;
-  animation: blink 1.3s infinite steps(1);
-}
-body div#error h3:before,
-body div#error h3:after {
-  content: 'ERROR 500';
-  position: absolute;
-  top: -1px;
-  left: 0;
-  mix-blend-mode: soft-light;
-  animation: dance 2s infinite steps(2);
-}
-body div#error h3:before {
-  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
-  color: #f0f;
-  animation: shiftright 2s steps(2) infinite;
-}
-body div#error h3:after {
-  clip-path: polygon(0 100%, 100% 100%, 100% 50%, 0 50%);
-  color: #0ff;
-  animation: shiftleft 2s steps(2) infinite;
-}
-body div#error p {
-  position: relative;
-  margin-bottom: 8px;
-}
-body div#error p span {
-  position: relative;
-  display: inline-block;
-  font-weight: bold;
-  color: #000;
-  animation: blink 3s steps(1) infinite;
-}
-body div#error p span:before,
-body div#error p span:after {
-  content: 'unstable';
-  position: absolute;
-  top: -1px;
-  left: 0;
-  mix-blend-mode: multiply;
-}
-body div#error p span:before {
-  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
-  color: #f0f;
-  animation: shiftright 1.5s steps(2) infinite;
-}
-body div#error p span:after {
-  clip-path: polygon(0 100%, 100% 100%, 100% 50%, 0 50%);
-  color: #0ff;
-  animation: shiftleft 1.7s steps(2) infinite;
-}
-@-moz-keyframes dance {
-  0%, 84%, 94% {
-    transform: skew(0deg);
-  }
-  85% {
-    transform: skew(5deg);
-  }
-  90% {
-    transform: skew(-5deg);
-  }
-  98% {
-    transform: skew(3deg);
-  }
-}
-@-webkit-keyframes dance {
-  0%, 84%, 94% {
-    transform: skew(0deg);
-  }
-  85% {
-    transform: skew(5deg);
-  }
-  90% {
-    transform: skew(-5deg);
-  }
-  98% {
-    transform: skew(3deg);
-  }
-}
-@-o-keyframes dance {
-  0%, 84%, 94% {
-    transform: skew(0deg);
-  }
-  85% {
-    transform: skew(5deg);
-  }
-  90% {
-    transform: skew(-5deg);
-  }
-  98% {
-    transform: skew(3deg);
-  }
-}
-@keyframes dance {
-  0%, 84%, 94% {
-    transform: skew(0deg);
-  }
-  85% {
-    transform: skew(5deg);
-  }
-  90% {
-    transform: skew(-5deg);
-  }
-  98% {
-    transform: skew(3deg);
-  }
-}
-@-moz-keyframes shiftleft {
-  0%, 87%, 100% {
-    transform: translate(0, 0) skew(0deg);
-  }
-  84%, 90% {
-    transform: translate(-8px, 0) skew(20deg);
-  }
-}
-@-webkit-keyframes shiftleft {
-  0%, 87%, 100% {
-    transform: translate(0, 0) skew(0deg);
-  }
-  84%, 90% {
-    transform: translate(-8px, 0) skew(20deg);
-  }
-}
-@-o-keyframes shiftleft {
-  0%, 87%, 100% {
-    transform: translate(0, 0) skew(0deg);
-  }
-  84%, 90% {
-    transform: translate(-8px, 0) skew(20deg);
-  }
-}
-@keyframes shiftleft {
-  0%, 87%, 100% {
-    transform: translate(0, 0) skew(0deg);
-  }
-  84%, 90% {
-    transform: translate(-8px, 0) skew(20deg);
-  }
-}
-@-moz-keyframes shiftright {
-  0%, 87%, 100% {
-    transform: translate(0, 0) skew(0deg);
-  }
-  84%, 90% {
-    transform: translate(8px, 0) skew(20deg);
-  }
-}
-@-webkit-keyframes shiftright {
-  0%, 87%, 100% {
-    transform: translate(0, 0) skew(0deg);
-  }
-  84%, 90% {
-    transform: translate(8px, 0) skew(20deg);
-  }
-}
-@-o-keyframes shiftright {
-  0%, 87%, 100% {
-    transform: translate(0, 0) skew(0deg);
-  }
-  84%, 90% {
-    transform: translate(8px, 0) skew(20deg);
-  }
-}
-@keyframes shiftright {
-  0%, 87%, 100% {
-    transform: translate(0, 0) skew(0deg);
-  }
-  84%, 90% {
-    transform: translate(8px, 0) skew(20deg);
-  }
-}
-@-moz-keyframes blink {
-  0%, 50%, 85%, 100% {
-    color: #000;
-  }
-  87%, 95% {
-    color: transparent;
-  }
-}
-@-webkit-keyframes blink {
-  0%, 50%, 85%, 100% {
-    color: #000;
-  }
-  87%, 95% {
-    color: transparent;
-  }
-}
-@-o-keyframes blink {
-  0%, 50%, 85%, 100% {
-    color: #000;
-  }
-  87%, 95% {
-    color: transparent;
-  }
-}
-@keyframes blink {
-  0%, 50%, 85%, 100% {
-    color: #000;
-  }
-  87%, 95% {
-    color: transparent;
-  }
-}
+<br><br><br><br><br><br><br><br><br>
 
-    </style>
-  <body>
-    <div id="error">
-  <div id="box"></div>
-  <h3>ERROR 500</h3>
-  <p> <span></span> </p>
-  <p></p>
+				<h1 class="hrcenter" align="center">Alcohole Wiki</h1>
+				<br>
+<h2 class="hrline" width=100% align="center">500 Service Unavailable(사용할 수 없는 서비스입니다)</h2>
+<div class="all">
+	<div class="login-wrap">
+		<div style="display: table; width: 350;">
+			<div class="display:table-cell; vertical-align:center;">
+
+
+			
+				<p>이 에러는 서비스가 현재 멈춘 상태 또는 현재 일시적인 과부하 또는 관리 상황일 때<br> 발생할 수 있습니다.</p>
+				</div>
+		</div>
+	</div>
 </div>
-</body>
 
-
-<jsp:include page="/template/footer.jsp"></jsp:include>
+<jsp:include page="/template/footer.jsp"></jsp:include>				

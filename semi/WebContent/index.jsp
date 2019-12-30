@@ -32,7 +32,6 @@
     section{
     magin:0px;
     } 
-
     
         /* 검색창 */ 
         .box {
@@ -86,7 +85,6 @@
 /*             background: rgb(209,208,208); */
 /*             background: linear-gradient(0deg, rgba(209,208,208,1) 34%, rgba(240,240,240,1) 35%, rgba(246,246,246,1) 39%, rgba(255,255,255,0) 100%); */
          } 
-
     </style>
     
 <%-- 	<img src="<%=request.getContextPath()%>/image/back.jpg" id="bg" alt="술마시고 있는 사람들"> --%>
