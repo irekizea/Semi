@@ -110,6 +110,7 @@
 // 		createViewer();
 		createMultiViewer();
     };
+
   		
 </script>
 
@@ -291,9 +292,11 @@
 	
 	// 승인된 후 첫글인지, 사용자가 수정한 글인지 판단
 	boolean check = boardDao.check(keyword);
+	
 	// 파일 다운로드 파일정보 불러오기(List)
 	BA_FileDao fdao = new BA_FileDao();
 	List<BA_FileDto> flist=fdao.getList(keyword);
+	
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
@@ -320,14 +323,14 @@
 	<div class="empty"></div>
 	
 	<!-- 승인된 글에 첨부파일이 있을 경우 출력-->
-<%-- 	<%if(flist.size() > 0){ %> --%>
-<!-- 		<div> -->
-<%-- 			<%for(BA_FileDto fdto : flist){ %> --%>
-<%-- 				<img src="filedown.do?no=<%=fdto.getNo()%>" class="img"> --%>
-<%-- 			<%} %> --%>
-<!-- 			<br> -->
-<!-- 		</div> -->
-<%-- 	<%} %> --%>
+	<%if(flist.size() > 0){ %>
+		<div>
+			<%for(BA_FileDto fdto : flist){ %>
+				<img src="fileorigin.do?keyword=<%=fdto.getTitle_key()%>" class="img">
+			<%} %>
+			<br>
+		</div>
+	<%} %>
 	
 	<div class="empty"></div>
 	
