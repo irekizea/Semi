@@ -1,5 +1,3 @@
-<%@page import="semi.beans.block.mem.MemberStatusDto"%>
-<%@page import="semi.beans.block.mem.MemberStatusDao"%>
 <%@page import="semi.beans.block.mem.BlockMemberDto"%>
 <%@page import="semi.beans.block.mem.BlockMemberDao"%>
 <%@page import="java.util.ArrayList"%>
@@ -41,10 +39,24 @@
 	boolean isSearch = type != null && keyword != null;
 
 	//		[3]처리
-	
-	MemberStatusDao dao = new MemberStatusDao();
-	List<MemberStatusDto> list = dao.getList();
+	MemberDao dao = new MemberDao();
+	// 		List<MemberDto> list = isSearch가 true일 때 / is Search가  false일 때 
+	// 		List<MemberDto> list = dao.search(type,keyword) or null;
 
+	List<MemberDto> list;
+	if (isSearch) {
+		list = dao.search(type, keyword);
+		// 			list = new ArrayList<>();
+	} else {
+		list = dao.getList(start, finish);
+	}
+	int count = dao.getCount(type, keyword);
+
+	BlockMemberDao bdao = new BlockMemberDao();
+	List<String> blist = bdao.same();
+
+	// 	System.out.println(blist);
+	String[] bArrays = blist.toArray(new String[blist.size()]);
 %>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -99,15 +111,15 @@ table.sun-user-table td:first-child {
 
 			<tbody align="center">
 				<%
-					for (MemberStatusDto dto : list) {
+					for (MemberDto dto : list) {
 				%>
 				<tr>
-					<td>
-						<%=dto.getId()%>
-  						<%if (dto.isBlocked()) {%> 
-					 		<font color="red">[차단 회원]</font> 
-					 	<%}%>
-					</td>
+					<td><%=dto.getId()%>
+					<%for (String b : bArrays) {%>
+  					<%if (b.equals(dto.getId())) {%> 
+					 <font color="red">[차단 회원]</font> 
+					 <%}%> 
+					 <%}%></td>
 					<td><%=dto.getEmail()%></td>
 					<td><%=dto.getGrade()%></td>
 
@@ -115,13 +127,15 @@ table.sun-user-table td:first-child {
 					<td>
 						<form action="block.do">
 							<input type="hidden" name="id" value="<%=dto.getId()%>">
-							<input type="hidden" name="admin" value="<%=id%>"> 
-							<input type="text" name="reason" placeholder="차단 사유" required>
-							<%if(dto.isBlocked()){ %> 
-								<input type="submit" value="차단됨" disabled>
-							<%}else{ %>
-								<input type="submit" value="차단" >
-							<%} %>
+							<input type="hidden" name="admin" value="<%=id%>"> <input
+								type="text" name="reason" placeholder="차단 사유" required>
+								<%for (String b : bArrays) {%>
+									<%if(b.equals(dto.getId())){ %> 
+										<input type="submit" value="차단됨" disabled>
+									<%}else{ %>
+										<input type="submit" value="차단" >
+									<%} %>
+								<%} %>
 						</form>
 					</td>
 
@@ -148,7 +162,7 @@ table.sun-user-table td:first-child {
 		<!-- 네비게이터(navigator) -->
 		<jsp:include page="/template/navigator.jsp">
 			<jsp:param name="pno" value="<%=pno%>" />
-			<jsp:param name="count" value="10" />
+			<jsp:param name="count" value="<%=count%>" />
 			<jsp:param name="navsize" value="<%=navsize%>" />
 			<jsp:param name="pagesize" value="<%=pagesize%>" />
 		</jsp:include>

@@ -40,6 +40,9 @@ a {
 hr {
 	width: 460px;
 }
+.s{
+height: 600px;
+}
 </style>
 
 
@@ -51,7 +54,7 @@ body {
 }
 </style>
 
-
+<div class="s">
 <div class="sun-container">
 	<div align="center" class="sun-container-wrap vcenter">
 		<h2>정보가 일치하지 않습니다</h2>
@@ -61,5 +64,5 @@ body {
 		</h3>
 	</div>
 </div>
-
+</div>
 <jsp:include page="/template/footer.jsp"></jsp:include>

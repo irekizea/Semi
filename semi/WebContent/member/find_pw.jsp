@@ -6,11 +6,15 @@
 body {
 	background: #f5f5f5;
 }
+.s{
+height: 580px;
+}
 </style>
-
+<div class = "s">
 <div class="sun-container">
-	<div align="center" class="sun-container-wrap">
 
+	<div align="center" class="sun-container-wrap">
+<br>
 		<h3>비밀번호 찾기</h3>
 
 		<form action="find_pw.do" method="post">
@@ -30,5 +34,5 @@ body {
 		</form>
 	</div>
 </div>
-
+</div>
 <jsp:include page="/template/footer.jsp"></jsp:include>

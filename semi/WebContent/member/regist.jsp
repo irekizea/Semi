@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <jsp:include page="/template/header.jsp"></jsp:include>
 
+
 <style>
 
 	input.input-item {
@@ -45,6 +46,7 @@ article.w-50 {
 
 body {
 	background: #f5f5f5;
+	
 }
 
 .row-left {
@@ -52,6 +54,7 @@ body {
 }
 
 form {
+height: 600px;
 	display: table;
 	width: 100%;
 }
