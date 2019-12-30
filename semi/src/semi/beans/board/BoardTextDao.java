@@ -57,7 +57,7 @@ public class BoardTextDao {
 		String sql = "select rownum rn, C.*from(SELECT B.no, B.writer, A.title, A.wdate, A.udate, "
 				+ "A.searchcount, B.text_content, B.board_no, "
 				+ "B.sub_title, B.ip_addr FROM BOARD A left "
-				+ "join Board_Text B on a.no = b.board_no where title = ?)C";
+				+ "join Board_Text B on a.no = b.board_no where title = ?  order by no asc)C";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, keyword);
 		ResultSet rs = ps.executeQuery();
