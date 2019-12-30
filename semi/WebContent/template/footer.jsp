@@ -27,7 +27,7 @@ String context=request.getContextPath();
 					조원:서종민,이영락,최선,조승은,김용범,이다혜
 	            </span><br><br>
 	               
-	            <a href="#" id="en">이용약관</a><br>
+	            <a href="<%=request.getContextPath()%>/operationPolicy/OP.jsp" id="en">이용약관</a><br>
 	            <a href="#" id="en">개인정보취급방침</a>
 	           </div>
 	           

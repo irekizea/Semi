@@ -209,25 +209,7 @@
 		padding: 8px 14px;
 	}
 		
-	.btn:before {
-		content: "";
-		top: 50%;
-		left: 50%;
-		  
-		display: block;
-		width: 0;
-		padding-top: 0;
-		    
-		border-radius: 100%;
-		  
-		background-color: rgba(236, 240, 241, .3);
-		  
-		-webkit-transform: translate(-50%, -50%);
-		-moz-transform: translate(-50%, -50%);
-		-ms-transform: translate(-50%, -50%);
-		-o-transform: translate(-50%, -50%);
-		transform: translate(-50%, -50%);
-	}
+	
 		
 	.btn:active:before {
 		width: 120%;
@@ -267,6 +249,11 @@
 		height: 80px;
  		resize: none;
 	}       
+	.title{
+	
+	font-size:3rem;
+	
+	}
         
 </style>
 
