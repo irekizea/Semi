@@ -2,6 +2,7 @@ package semi.servlet.board;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
@@ -33,7 +34,8 @@ public class BoardTextInsertServlet extends HttpServlet {
 			req.setCharacterEncoding("UTF-8");
 			
 			int board_no = Integer.parseInt(mRequest.getParameter("board_no"));	
-			String keyword = mRequest.getParameter("keyword");
+			String keyword = URLDecoder.decode(mRequest.getParameter("keyword"), "UTF-8");
+
 			String writer = (String)req.getSession().getAttribute("id");
 			String ip_addr = req.getRemoteAddr();
 			

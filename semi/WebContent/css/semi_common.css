@@ -531,7 +531,7 @@ body{
             border-left: 0;
             border-right: 0;
             border-bottom: 0.5px solid black;
-            font-family:NotosanB;
+            font-family:NotosanL;
             color: darkgray;
         }
 
@@ -556,7 +556,7 @@ body{
             border-right: 0;
             border-bottom: 0.5px solid darkgray;
             background-color: black;
-            font-family:NotosanB;
+            font-family:NotosanL;
             color: lightgray;
         }
 

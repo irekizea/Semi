@@ -58,7 +58,7 @@ boolean isLogin = userId != null;
          </ul>
          <div class="bsearch-box">
 			<form action="<%=request.getContextPath()%>/board/searchResult.jsp" method="get">
-				<input type="text" name="keyword" placeholder="what would you like to sarch?" required>
+				<input type="text" name="keyword" placeholder="search" required>
 			</form>
          </div>
     </nav>
@@ -84,7 +84,7 @@ boolean isLogin = userId != null;
          </ul>
          <div class="search-box">
 			<form action="<%=request.getContextPath()%>/board/searchResult.jsp" method="get">
-				<input type="text" name="keyword" placeholder="what would you like to sarch?" required>
+				<input type="text" name="keyword" placeholder="search" required>
 			</form>
          </div>
     </nav>
