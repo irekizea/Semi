@@ -28,7 +28,14 @@ public class BlockMemeberInsertServlet extends HttpServlet{
 			dto.setBadmin(admin);
 			dto.setBreason(reason);
 		
-			dao.blockMem(dto);
+			//그냥 차단
+			//dao.blockMem(dto);
+			
+			//이미 차단되었는지 확인 후 차단
+			BlockMemberDto find = dao.get(id);
+			if(find == null) {
+				dao.blockMem(dto);
+			}
 			
 			resp.sendRedirect("list.jsp");
 			

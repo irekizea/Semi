@@ -12,8 +12,24 @@ body {
 	cursor: pointer;
 }
 
+.s{
+height: 600px;
+}
+
+input.btn {
+    width: 120px;
+    line-height: 30px;
+    height: 35px;
+    text-align: center;
+    color: white;
+    background: black;
+    margin: 0 5px;
+    border: 1px solid #999;
+    outline: none;
+}
 </style>
 
+<div class="s">
 <div class="sun-container">
 	<div align="center" class="sun-container-wrap vcenter">
 
@@ -24,17 +40,14 @@ body {
 			<table border="0">
 				<tr>
 					<th>이메일</th>
-					<td><input class="sun-input" type="email" name="email" placeholder="이메일">
-					</td>
+					<td><input class="sun-input" type="email" name="email" placeholder="이메일"></td>
 				</tr>
-
-
 				<tr>
-					<th colspan="2"><input class="btn sun-button" type="submit"  value="수정하기" ></th>
+					<th colspan="2"><input class="btn sun-button" type="submit"  value="수정하기"  ></th>
 				</tr>
 			</table>
 		</form>
 	</div>
 </div>
-
+</div>
 <jsp:include page="/template/footer.jsp"></jsp:include>

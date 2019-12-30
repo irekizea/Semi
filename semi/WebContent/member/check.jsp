@@ -12,6 +12,7 @@
     
 <jsp:include page= "/template/header.jsp"></jsp:include>
 
+
 <style>
 	input.btn {
 		margin: 30px 5px;
@@ -24,9 +25,14 @@
 	    border: 1px solid #999;
 	    outline: none;
 	}
+	.s{
+height: 580px;
+	}
 </style>
 
+<div class="s">
 <div align="center">
+<br><br><br><br><br><br>
 <h2> 비밀번호 확인</h2>
 
 <form action="check.do" method="get">
@@ -43,6 +49,7 @@
 	<h4><font color="red">비밀번호가 맞는지 다시 확인 후 입력하세요</font></h4>
 	<%} %>
 
+</div>
 </div>
 <jsp:include page= "/template/footer.jsp"></jsp:include>
 

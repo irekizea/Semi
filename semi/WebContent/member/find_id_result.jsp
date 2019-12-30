@@ -43,6 +43,9 @@ a {
 hr {
 	width: 460px;
 }
+.s{
+height: 580px;
+}
 </style>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -51,7 +54,7 @@ body {
 	background: #f5f5f5;
 }
 </style>
-
+<div class="s">
 <div class="sun-container">
 	<div align="center" class="sun-container-wrap vcenter">
 		<%
@@ -79,5 +82,5 @@ body {
 		%>
 	</div>
 </div>
-
+</div>
 <jsp:include page="/template/footer.jsp"></jsp:include>

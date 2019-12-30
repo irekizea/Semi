@@ -18,6 +18,10 @@ body {
 	background: #f5f5f5;
 }
 
+.s{
+height: 600px;
+}
+
 input.sun-button {
     background: black;
     color: white;
@@ -31,8 +35,11 @@ input.sun-button {
 input.sun-button:hover {
     opacity: 0.7;
 }
-</style>
 
+
+</style>
+<div class="s">
+<br>
 <div class="sun-container">
 	<div align="center" class="sun-container-wrap">
 		<label for="id" class="sun-user-label">아이디</label>
@@ -49,6 +56,7 @@ input.sun-button:hover {
 		<input class="sun-button" type="button" onclick="location.href='check.jsp?go=/member/change_pw.jsp'" value="비밀번호 변경">
 		<input class="sun-button" type="button" onclick="location.href='check.jsp?go=/member/change_info.jsp'" value="회원정보 수정">
 	</div>
+</div>
 </div>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>
