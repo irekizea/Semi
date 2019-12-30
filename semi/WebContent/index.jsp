@@ -32,7 +32,6 @@
     section{
     magin:0px;
     } 
-
     
         /* 검색창 */ 
         .box {
@@ -84,7 +83,6 @@
         line-height: -0px;
         text-align: center;
          } 
-
     </style>
     
 <%-- 	<img src="<%=request.getContextPath()%>/image/back.jpg" id="bg" alt="술마시고 있는 사람들"> --%>
