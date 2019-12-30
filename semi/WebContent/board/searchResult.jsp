@@ -110,7 +110,6 @@
 // 		createViewer();
 		createMultiViewer();
     };
-
   		
 </script>
 
