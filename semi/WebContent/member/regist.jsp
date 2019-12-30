@@ -3,6 +3,9 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <style>
+.hei{
+height:600px;
+}
 	input.input-item {
     width: 300px;
     line-height: 30px;
@@ -58,7 +61,7 @@ form {
 
 <form action="regist.do" method="post">
 	<article class="w-50">
-		<div class="row">
+		<div class="row hei">
 			<h2 style="margin-left: 40px;">회원가입</h2>
 		</div>
 		

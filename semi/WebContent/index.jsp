@@ -93,10 +93,10 @@
     <article class="box">
     
     	<form action="<%=request.getContextPath()%>/board/searchResult.jsp" method="get">
-        <input type="text" name="keyword" placeholder="what would you like to sarch?" required>
+        <input type="text" name="keyword" placeholder="sarch" required>
 	        <br><br>
 	        <div class="topN">
-	        <%for(BoardDto boardDto:list) {%>
+	        <%for(BoardDto boardDto:list) {%>   
 	            <a href="<%=request.getContextPath()%>/board/searchResult.jsp?keyword=<%=URLEncoder.encode(boardDto.getTitle(), "UTF-8") %>" >
 					<span><%=boardDto.getTitle() %>  </span>
 				</a>
