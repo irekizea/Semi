@@ -31,7 +31,7 @@ public class BoardReplyDao {
 		Connection con = getConnection();
 			
 		String sql="insert into board_reply (reply_no, board_title, writer, ip_addr, content) "
-				+ "values(board_reply_seq.nextval, ?, ?, ?, 'sad')";
+				+ "values(board_reply_seq.nextval, ?, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, boardReplyDto.getBoard_title());
 		ps.setString(2, boardReplyDto.getWriter());
