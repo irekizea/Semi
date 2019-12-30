@@ -9,10 +9,13 @@
 
 body {
 	background-color: #f5f5f5;
+	margin:0px;
 }
 
 .login-wrap {
+	height:600px;
 	width: 310px;
+	
 	/* 내용물 가운데 정렬 */
 	text-align: center;
 	/* div 자신을 가운데 정렬 */
@@ -67,7 +70,7 @@ body {
 </style>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
-
+<br><br><br><br>
 <div class="all">
 	<div class="login-wrap">
 		<div style="display: table; width: 100%;">
@@ -75,14 +78,14 @@ body {
 
 				<h1>Alcohole Wiki</h1>
 				<form action="login.do" method="post">
-					<input type="text" name="id" placeholder="아이디" required> <input
-						type="text" name="pw" placeholder="비밀번호" required> <input
-						type="submit" value="로그인">
+					<input class="sun-input" type="text" name="id" placeholder="아이디" required>
+					<input class="sun-input" type="password" name="pw" placeholder="비밀번호" required>
+					<input class="sun-button" type="submit" value="로그인">
+
 				</form>
 			</div>
 			<hr>
 			<div align="center">
-
 				<a href="../member/find_id.jsp">아이디 찾기</a> | <a
 					href="../member/find_pw.jsp">비밀번호 찾기</a> | <a
 					href="../member/regist.jsp">회원가입</a>

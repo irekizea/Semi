@@ -43,15 +43,14 @@ a {
 hr {
 	width: 460px;
 }
+</style>
 
+<jsp:include page="/template/header.jsp"></jsp:include>
+<style>
 body {
 	background: #f5f5f5;
 }
 </style>
-
-
-<jsp:include page="/template/header.jsp"></jsp:include>
-
 
 <div class="sun-container">
 	<div align="center" class="sun-container-wrap vcenter">
@@ -80,4 +79,5 @@ body {
 		%>
 	</div>
 </div>
+
 <jsp:include page="/template/footer.jsp"></jsp:include>

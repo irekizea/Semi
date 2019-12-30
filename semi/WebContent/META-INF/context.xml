@@ -14,7 +14,7 @@
 					username="kh21"
 					password="kh21"
 					
-					maxTatal="20"
+					maxTotal="20"
 					maxIdle="10"
 					maxWait="3000"></Resource>
 

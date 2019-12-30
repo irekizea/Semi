@@ -87,7 +87,7 @@ public class MemberDao {
 	// 이름 : find
 	// 매개변수 : email
 	// 반환형 : id
-
+	
 	// 전체 공개 / 반환String (입력 받을게 email인데 형식이 String이라서 )
 	public String find_id(String email) throws Exception {
 		// 연결하기/ con은 별칭 / get.onnection / 연결하기 가져오겠다를
@@ -110,18 +110,19 @@ public class MemberDao {
 	}
 	// 기능 : 아이디로 비밀번호 찾기
 	// 이름 : find
-	// 매개변수 : id
+	// 매개변수 : id, email
 	// 반환형 : pw
 
 	// 전체 공개 / 반환String (입력 받을게 email인데 형식이 String이라서 )
 	
-	public String find_pw(String id) throws Exception {
+	public String find_pw(String id, String email) throws Exception {
 		// 연결하기/ con은 별칭 / get.onnection / 연결하기 가져오겠다를
 		Connection con = getConnection();
 
-		String sql = "select pw from member where id=?"; 
+		String sql = "select pw from member where id=? and email=?"; 
 		PreparedStatement ps = con.prepareStatement(sql); /* 준비된 명령 */
 		ps.setString(1, id);
+		ps.setString(2, email);
 		ResultSet rs = ps.executeQuery();
 
 		String  pw= null;
@@ -168,7 +169,7 @@ public class MemberDao {
 		// 공개합니다. 결과는 없고요 준비물은 아이디랑, 비번이구요 예외는 나도 모르오 
 		Connection con = getConnection();
 	
-		String sql ="update member set pw=? where id=?";
+		String sql ="update member set email=? where id=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, pw);
 		ps.setString(2, id);
@@ -274,7 +275,21 @@ public class MemberDao {
 			
 			return count;
 		}
+		// 내정보 변경 메소드
+		public void change_info(String id,String pw) throws Exception{
+			// 공개합니다. 결과는 없고요 준비물은 아이디랑, 비번이구요 예외는 나도 모르오 
+			Connection con = getConnection();
 		
+			String sql ="update member set pw=? where id=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, pw);
+			ps.setString(2, id);
+			
+			ps.execute();
+			
+			con.close();
+		
+		}
 	
 	
 	

@@ -60,9 +60,27 @@
 %>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
+<style>
+body {
+	background: #f5f5f5;
+	margin:0px;
+}
+
+table.sun-user-table td:first-child {
+    word-break: normal;
+    display: inline-block;
+    height: 30px;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    word-wrap:normal;
+    width: 160px;
+    overflow:hidden;
+}
+</style>
 
 <div class="sun-container">
 	<div align="center" class="sun-container-wrap vcenter">
+
 		<h2>회원 검색</h2>
 
 		<!-- 검색창 -->
@@ -73,17 +91,11 @@
 				<select name="type">
 					<option value="id">아이디</option>
 					<option value="grade">등급</option>
-					<option value="point">포인트</option>
-				</select>
-				<input type="text" name="keyword">
-				<input type="submit" value="검색">
+				</select> <input type="text" name="keyword"> <input type="submit"
+					value="검색">
 			</div>
-
 		</form>
 
-		<h3>
-			type =<%=request.getParameter("type")%>, keyword =<%=request.getParameter("keyword")%>
-		</h3>
 
 		<!-- 검색 결과 -->
 		<table class="sun-user-table" cellpadding="0" cellspacing="0">
@@ -93,9 +105,7 @@
 					<th>ID</th>
 					<th>email</th>
 					<th>등급</th>
-					<th>포인트</th>
 					<th>회원 차단</th>
-
 				</tr>
 			</thead>
 
@@ -104,25 +114,21 @@
 					for (MemberDto dto : list) {
 				%>
 				<tr>
-					<td><%=dto.getId()%> <%
- 	for (String b : bArrays) {
- %> <%
- 	if (b.equals(dto.getId())) {
- %> <font color="red">[차단 회원]</font> <%
- 	}
- %> <%
- 	}
- %></td>
+					<td><%=dto.getId()%>
+					<%for (String b : bArrays) {%>
+  					<%if (b.equals(dto.getId())) {%> 
+					 <font color="red">[차단 회원]</font> 
+					 <%}%> 
+					 <%}%></td>
 					<td><%=dto.getEmail()%></td>
 					<td><%=dto.getGrade()%></td>
-					<td><%=dto.getPoint()%></td>
 
 					<!--회원 차단-->
 					<td>
 						<form action="block.do">
 							<input type="hidden" name="id" value="<%=dto.getId()%>">
 							<input type="hidden" name="admin" value="<%=id%>"> <input
-								type="text" name="reason"> <input type="submit"
+								type="text" name="reason" placeholder="차단 사유"> <input type="submit"
 								value="차단">
 						</form>
 					</td>
@@ -132,17 +138,30 @@
 					}
 				%>
 			</tbody>
-
-
 		</table>
+		<br><br><br><br>
+		<!-- 검색창 -->
+		<form action="list.jsp" method="get">
+
+			<!-- 		<input type="text" name="type"> -->
+			<div class="sun-select">
+				<select name="type">
+					<option value="id">아이디</option>
+					<option value="grade">등급</option>
+				</select> <input type="text" name="keyword"> <input type="submit"
+					value="검색">
+			</div>
+
+		</form>
 		<!-- 네비게이터(navigator) -->
-		<jsp:include page="/template/navigatorSearch.jsp">
+		<jsp:include page="/template/navigator.jsp">
 			<jsp:param name="pno" value="<%=pno%>" />
 			<jsp:param name="count" value="<%=count%>" />
 			<jsp:param name="navsize" value="<%=navsize%>" />
 			<jsp:param name="pagesize" value="<%=pagesize%>" />
 		</jsp:include>
 	</div>
+	<div></div>
 </div>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

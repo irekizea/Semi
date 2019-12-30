@@ -1,30 +1,61 @@
 @charset "UTF-8";
 
+* {
+  box-sizing: border-box;
+}
+body{
+	margin:0px;
+}
+
 /*
 웹폰트 설정
 1.폰트를 등록한다(@font-face)
 2.등록된 폰트를 설정한다(font-family)
 */
 
-@font-face {
-    font-family: 아리따B;
-    src: url("../font/Arita_ttf/ARITA4.0_B.TTF")
+/* @font-face { */
+/*     font-family: 아리따B; */
+/*     src: url("../font/Arita_ttf/ARITA4.0_B.TTF") */
+/* } */
+/* @font-face { */
+/*     font-family: 아리따L; */
+/*     src: url("../font/Arita_ttf/ARITA4.0_L.TTF") */
+/* } */
+/* @font-face { */
+/*     font-family: 아리따M; */
+/*     src: url("../font/Arita_ttf/ARITA4.0_M.TTF") */
+/* } */
+/* @font-face { */
+/*     font-family: 아리따SB; */
+/*     src: url("../font/Arita_ttf/ARITA4.0_SB.TTF") */
+/* } */
+/* @font-face { */
+/*     font-family: 아리따T; */
+/*     src: url("../font/Arita_ttf/ARITA4.0_T.TTF") */
+/* } */
+
+
+
+@font-face{
+    font-family:NotosanBlack;
+    src:url("../font/Notosan/NotoSansCJKkr-Black.otf");
 }
-@font-face {
-    font-family: 아리따L;
-    src: url("../font/Arita_ttf/ARITA4.0_L.TTF")
+@font-face{
+    font-family:NotosanB;
+    src:url("../font/Notosan/NotoSansCJKkr-Bold.otf");
 }
-@font-face {
-    font-family: 아리따M;
-    src: url("../font/Arita_ttf/ARITA4.0_M.TTF")
+
+@font-face{
+    font-family:NotosanM;
+    src:url("../font/Notosan/NotoSansCJKkr-Medium.otf");
 }
-@font-face {
-    font-family: 아리따SB;
-    src: url("../font/Arita_ttf/ARITA4.0_SB.TTF")
+@font-face{
+    font-family:NotosanR;
+    src:url("../font/Notosan/NNotoSansCJKkr-Regular.otf");
 }
-@font-face {
-    font-family: 아리따T;
-    src: url("../font/Arita_ttf/ARITA4.0_T.TTF")
+@font-face{
+    font-family:NotosanL;
+    src:url("../font/Notosan/NotoSansCJKkr-Light.otf");
 }
 
 
@@ -55,6 +86,7 @@
     article{
     	margin: auto;
     }
+   
 
 /*
     내부 영역 스타일
@@ -71,11 +103,6 @@
 .w-30 {width: 30%;}
 .w-20 {width: 20%;}
 .w-10 {width: 10%;}
-
-article {
-    margin: auto;
-}
-
 /* 1줄의 float 설정 */
 .row {
     margin: 10px 0px;
@@ -110,7 +137,7 @@ article {
 		.row-multi.col-5 > * {width: 20%};
 		
 		
-		.row::after {
+		.row-multi::after {
 			content: "";
 			display: block;
 			clear: both;
@@ -133,17 +160,18 @@ article {
 */
 
 .content-wrap{
+			
             width: 100%;
             margin:auto;
             box-sizing: border-box;
-            font-family: 아리따M;
+            font-family: NotosanR;
         }
         .title{
-            font-family: 아리따B;
+            font-family: NotosanB;
         }
-        .subtitle{
-            font-family: 아리따SB;
-        }
+/*         .subtitle{ */
+/*             font-family: 아리따M; */
+/*         } */
         .content-item{
             width : 70%;
             padding: 15px;
@@ -154,10 +182,12 @@ article {
            
         }
         .content-item.right{
-            background-color: darkseagreen;
+        	background-color: #808285;
+            color:white;
         }
         .content-item.left{
-            background-color: cornsilk;
+            background-color: #d3d3d3;
+            color:black;
             margin-left: auto;
         }
         
@@ -188,17 +218,20 @@ article {
             width: 80px;
             height: 35px;
             font-size: 1rem; 
-            background-color: darkseagreen;
+            background-color: #808285;
     
             border-style: none;
             outline: none;
             
         }
-
-	     	/* a태그 하이퍼링크 표시 제어 */
-    a:link { color: black; text-decoration: none;}
-    a:visited { color: black; text-decoration: none;}
-    a:hover { text-decoration: underline;}
+        
+        .reply #bt:hover{
+            
+            color: black;
+            background-color: #d3d3d3;
+    
+            
+        }
 
 /* 
 헤더 디자인
@@ -230,7 +263,7 @@ article {
             text-decoration: none;
         }
         .tab:hover{
-            height: 130px;
+            height: 150px;
         }
         .tab > ul{
             text-align: center;
@@ -354,7 +387,186 @@ article {
             position:fixed;       
             background-color: white;
         }
+/* 
+(로그인 후)헤더 디자인
+-logo:로고 디자인
+-tab:전체 헤더 영역을 감싸는 디자인
+-content:내용물 영역
+*/
+		/*고정 메뉴 설정(옵션)*/
+        .fixed{
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            
+            line-height: 1;
+            font-size: 1em;
+            background-color: black;
+        }
+        .btab{
+            position: absolute;
+            width: 100%;
+            height: 60px;
+            overflow: hidden;
+            transition: height 0.4s;
+            background-color: black;
+        }
+        .btab a{
+            color: white;
+            text-decoration: none;
+        }
+        .btab:hover{
+            height: 150px;
+        }
+        .btab > ul{
+            text-align: center;
+        }
+        .btab > ul > li{
+            display: inline-block;
+            position: relative;
+            padding: 0 30px;
+            line-height: 30px;
+            transition: background-color 0.3s;
+            
+        }
+        .btab > ul > li:hover > a{
+            color: #f5f5f5;
+            
+        }
+        .btab ul ul li:hover a{
+            color: darkgrey;
+        }
+        .btab ul ul{
+            position: absolute;
+            left: -25%;
+            width: 150%;
+          
+        }
         
+        .btab li:nth-child(1) ul{
+            left: 0;
+            width: 100%;
+        }
+        .btab ul ul a{
+            display: block;
+            text-decoration: none;
+            line-height: 30px;
+            font-size: 14px;
+        }
+        .btab ul ul li{
+            list-style: none;
+            margin-left: 12px;
+            margin-top: 10px;
+            text-align: left;
+
+        }
+        .btab ul ul li #list{
+             margin-left: 12px;
+        }
+        
+        .btab li:hover ul{
+           display: block;
+        }
+        
+        .blogo{
+            color: white;
+            text-decoration: none;
+            font-size: 30px;
+            line-height: 55px;
+            left:30px;
+            position:fixed;       
+        }
+/* 
+푸터 디자인
+-footer:전체 푸터 영역을 감싸는 디자인
+-img:(팔로우)인스타그램,페이스북,메신저 이미지
+-col-3:3개의 영역(float)
+-en:제목부분 굵은 글씨
+*/
+
+ .footer{
+    font-family:NotosanR;
+    font-size: 13.5px;
+    background-color: black;
+    color: white;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+} 
+.footer img{
+    width: 30px;
+}
+.footer:after{
+    content:"";
+    display: block;
+    clear:both;    
+}     
+.footer > *{
+    float:left;
+}        
+
+ .footer.col-3 > * { 
+     padding: 50px;
+     width:33.3333%; 
+}       
+.footer a{
+    color: white;
+    text-decoration: none;
+}
+.footer #en{
+    font-family:NotosanB;
+}       
+/* header의 검색창 style */
+        .search-box{
+            float:right;
+            position: fixed;
+            right: 30px;
+			top: 20px;
+        }
+        .search-box input[type=text]{
+            width: 220px;
+            outline: none;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            border-bottom: 0.5px solid black;
+            font-family:NotosanB;
+            color: darkgray;
+        }
+
+        }
+        @media screen and (max-width:1000px){
+            .search-box input[type=text]{
+                display: none;
+            }
+        }
+/* 로그인 후 header의 검색창 style */
+        .bsearch-box{
+            float:right;
+            position: fixed;
+            right: 30px;
+			top: 20px;
+        }
+        .bsearch-box input[type=text]{
+            width: 220px;
+            outline: none;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            border-bottom: 0.5px solid darkgray;
+            background-color: black;
+            font-family:NotosanB;
+            color: lightgray;
+        }
+
+        @media screen and (max-width:1200px){
+            .bsearch-box input[type=text]{
+                display: none;
+            }
+        }
+        
+
 .sun-container {
 	display: table;
 	width: 100%;
@@ -426,6 +638,7 @@ table.sun-user-table button, table.sun-user-table input[type="button"], table.su
     border: 1px solid black;
     width: 85px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 table.sun-user-table button:hover, table.sun-user-table input[type="button"]:hover, table.sun-user-table input[type="submit"]:hover {
@@ -433,7 +646,7 @@ table.sun-user-table button:hover, table.sun-user-table input[type="button"]:hov
 }
 
 .sun-select select {
-    width: 100px;
+    width: 115px;
     border: 1px solid #ccc;
     height: 35px;
     padding: 0 5px;
@@ -448,9 +661,52 @@ table.sun-user-table button:hover, table.sun-user-table input[type="button"]:hov
     border: none;
     width: 80px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 .sun-select input[type="submit"]:hover, .sun-select input[type="button"]:hover {
     opacity: 0.8;
 }
 
+input.sun-input[type] {
+    border: none;
+    background: none;
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+}
+
+input.sun-input[type]:focus {
+    border-bottom: 1px solid black;
+}
+
+input.sun-input[type]:focus, input.sun-input[type]:active {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+input.sun-button[type="button"], input.sun-button[type="submit"] {
+    border-radius: 4px;
+}
+
+.sun-user-label {
+	width: 300px;
+	display: block;
+	text-align: left;
+	margin-top: 30px;
+}
+
+.sun-user-input {
+	width: 300px;
+	line-height: 35px;
+	padding: 0;
+	border: none;
+	border-bottom: 1px solid #ccc;
+	background: none;
+	margin-top: 5px;
+}
+
+.sun-user-input:hover, .sun-user-input:active, .sun-user-input:focus {
+    outline: none;
+    border-bottom: 1px solid black;
+}

@@ -220,6 +220,7 @@ public class BA_BoardDao {
 //	반환형:없음
 	public boolean regist(BA_BoardDto dto) throws Exception {
 		Connection con=getConnection();
+		System.out.println("regist");
 		String sql="insert into board(no,writer,title,wdate,udate) "
 					+ "values(board_seq.nextval,?,?,sysdate,sysdate)";
 		PreparedStatement ps=con.prepareStatement(sql);
@@ -242,6 +243,7 @@ public class BA_BoardDao {
 //	반환형:없음
 	public boolean regist(BoardTextDto boardTextDto) throws Exception {
 		Connection con=getConnection();
+		System.out.println("regist2");
 		String sql="insert into board_text(no, writer, text_content, board_no) "
 					+ "values(board_text_seq.nextval, ?, ?, ?)";
 		PreparedStatement ps=con.prepareStatement(sql);

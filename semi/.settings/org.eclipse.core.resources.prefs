@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebContent/board/boardedit.jsp=UTF-8
+encoding//WebContent/board/history_total.jsp=UTF-8
 encoding//WebContent/lib/toast/example/editor.jsp=UTF-8
 encoding//WebContent/lib/toast/example/viewer.jsp=UTF-8
+encoding//WebContent/template/boardNavi.jsp=UTF-8

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
+<!DOCTYPE html>
 
 <style>
         body {
@@ -72,6 +71,7 @@
             <li><a href="#">토론</a> </li>
             <li><a href="#">편집</a> </li>
             <li><a href="#">좋아요</a> </li>
+
         </ul>
 	<%} %>
         <form class="search-form" action="<%=request.getContextPath()%>/board/searchResult.jsp">
@@ -83,4 +83,3 @@
 
 
     </nav>
-

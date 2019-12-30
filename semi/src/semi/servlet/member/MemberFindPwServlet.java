@@ -18,13 +18,15 @@ public class MemberFindPwServlet extends HttpServlet{
 		// 수신
 			req.setCharacterEncoding("UTF-8"); // 한글깨지지않게
 			String id = req.getParameter("id"); // 아이디를 받고 
+			String email = req.getParameter("email"); // 이메일도 받고 
 		// 처리
 			MemberDao dao = new MemberDao();
 			// MemberDto dto = dto,find(email);
 			System.out.println(id);
-			String pw = dao.find_pw(id); // 아이디내놔/ 이메일로찾을게
+			System.out.println(email);
+			String pw = dao.find_pw(id, email); // 비번내놔/ 아이디로찾을게
 			System.out.println(pw);
-			if(pw == null) { // 아이디가 없으면
+			if(pw == null) { // 비번 없으면
 				resp.sendRedirect("find_pw_result.jsp");
 			}
 			else {

@@ -17,10 +17,14 @@ body {
 			<table class="sun-table" border="0">
 				<tr>
 					<th>아이디</th>
-					<td><input type="text" name="id" required></td>
+					<td><input class="sun-input" type="text" name="id" required></td>
 				</tr>
 				<tr>
-					<th colspan="2" style="text-align: right;"><input type="submit" value="찾기"></th>
+					<th>이메일</th>
+					<td><input class="sun-input" type="text" name="email" required></td>
+				</tr>
+				<tr>
+					<th colspan="2" style="text-align: right;"><input class="sun-button" type="submit" value="찾기"></th>
 				</tr>
 			</table>
 		</form>

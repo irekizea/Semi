@@ -9,7 +9,23 @@ public class HistoryDto {
 	private String boardtextudate;
 	private String content;
 	private String ip_addr;
-	
+	private int rn;
+	public int getBoard_no() {
+		return board_no;
+	}
+
+	public void setBoard_no(int board_no) {
+		this.board_no = board_no;
+	}
+
+	public int getRn() {
+		return rn;
+	}
+
+	public void setRn(int rn) {
+		this.rn = rn;
+	}
+
 	public HistoryDto() {
 		super();
 	}
@@ -85,6 +101,19 @@ public class HistoryDto {
 
 	public void setBoardtextudate(String boardtextudate) {
 		this.boardtextudate = boardtextudate;
+	}
+
+	public HistoryDto(int no, int board_no, String writer, String boardtitle, String boardtextudate, String content,
+			String ip_addr, int rn) {
+		super();
+		this.no = no;
+		this.board_no = board_no;
+		this.writer = writer;
+		this.boardtitle = boardtitle;
+		this.boardtextudate = boardtextudate;
+		this.content = content;
+		this.ip_addr = ip_addr;
+		this.rn = rn;
 	}
 	
 	

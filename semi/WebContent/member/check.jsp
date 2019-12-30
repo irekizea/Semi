@@ -12,15 +12,31 @@
     
 <jsp:include page= "/template/header.jsp"></jsp:include>
 
+<style>
+	input.btn {
+		margin: 30px 5px;
+	    width: 120px;
+	    line-height: 30px;
+	    height: 35px;
+	    text-align: center;
+	    color: white;
+	    background: black;
+	    border: 1px solid #999;
+	    outline: none;
+	}
+</style>
+
 <div align="center">
 <h2> 비밀번호 확인</h2>
 
 <form action="check.do" method="get">
 
 <input type="hidden"  name="go" value="<%=go%>">
-<input type="password" name="pw" required>
+<input class="sun-input" type="password" name="pw" required>
 
-<input type="submit" value="확인">
+<br/>
+
+<input class="btn sun-button" type="submit" value="확인">
 
 </form>
 	<%if(request.getParameter("error") != null){ %>

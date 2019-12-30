@@ -17,45 +17,37 @@
 body {
 	background: #f5f5f5;
 }
+
+input.sun-button {
+    background: black;
+    color: white;
+    border: none;
+    width: 120px;
+    line-height: 35px;
+    margin: 30px 5px;
+    cursor: pointer;
+}
+
+input.sun-button:hover {
+    opacity: 0.7;
+}
 </style>
 
 <div class="sun-container">
 	<div align="center" class="sun-container-wrap">
+		<label for="id" class="sun-user-label">아이디</label>
+		<input id="id" name="id" class="sun-user-input" type="text" value="<%=dto.getId()%>" readonly />
 
-		<h2><%=dto.getId()%>
-			님의 정보
-		</h2>
+		<label for="email" class="sun-user-label">이메일</label>
+		<input id="email" name="email" class="sun-user-input" type="text" value="<%=dto.getEmail()%>" readonly />
 
-		<table border="1" width="450">
-			<tr>
-				<th width="25%">아이디</th>
-				<td><%=dto.getId()%></td>
-			</tr>
+		<label for="grade" class="sun-user-label">등급</label>
+		<input id="grade" name="grade" class="sun-user-input" type="text" value="<%=dto.getGrade()%>" readonly />
 
-			<tr>
-				<th>이메일</th>
-				<td><%=dto.getEmail()%></td>
-			</tr>
+		<br/>
 
-			<tr>
-				<th>등급</th>
-				<td><%=dto.getGrade()%></td>
-			</tr>
-
-			<tr>
-				<th>포인트</th>
-				<td><%=dto.getPoint()%></td>
-			</tr>
-
-		</table>
-
-		<!--  다른 기능으로 링크 -->
-		<h4>
-			<a href="check.jsp?go=/member/change_pw.jsp">비밀번호 변경</a>
-		</h4>
-		<h4>
-			<a href="check.jsp?go=/member/change_info.jsp">회원정보 수정</a>
-		</h4>
+		<input class="sun-button" type="button" onclick="location.href='check.jsp?go=/member/change_pw.jsp'" value="비밀번호 변경">
+		<input class="sun-button" type="button" onclick="location.href='check.jsp?go=/member/change_info.jsp'" value="회원정보 수정">
 	</div>
 </div>
 

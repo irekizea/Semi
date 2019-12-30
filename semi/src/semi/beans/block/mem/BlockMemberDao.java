@@ -202,4 +202,52 @@ public class BlockMemberDao {
 		con.close();
 		return list;
 	}
+	
+	public List<BlockMemberDto> block() throws Exception{
+		Connection con = getConnection();
+		
+		String sql = "select * from block_mem ";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		
+		//변환
+		List<BlockMemberDto> list = new ArrayList<>();
+		
+		while(rs.next()) {
+			BlockMemberDto dto=new BlockMemberDto();
+			
+			dto.setB_id(rs.getString("b_id"));
+			
+			list.add(dto);
+		}
+		
+		con.close();
+		
+		return list;
+	}
+	
+	public List<BlockMemberDto> blockIp() throws Exception{
+		Connection con = getConnection();
+		
+		String sql = "select * from block_ip ";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		
+		//변환
+		List<BlockMemberDto> list = new ArrayList<>();
+		
+		while(rs.next()) {
+			BlockMemberDto dto=new BlockMemberDto();
+			
+			dto.setB_ip(rs.getString("b_ip"));
+			
+			list.add(dto);
+		}
+		
+		con.close();
+		
+		return list;
+	}
+	
+
 }

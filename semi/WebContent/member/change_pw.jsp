@@ -14,8 +14,8 @@ body {
 
 			<h1>신규 비밀번호 입력</h1>
 
-			<input type="password" name="pw" required> <input
-				type="submit" value="완료">
+			<input class="sun-input" type="password" name="pw" required>
+			<input class="sun-button" type="submit" value="완료">
 		</form>
 	</div>
 </div>
