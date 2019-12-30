@@ -134,6 +134,7 @@
 
 		<div class="title">
 			
+
 			<%=boardDto.getTitle()%>
 			
 		</div>
@@ -144,6 +145,7 @@
 		</p>
 		</div>
 		
+
 		<div class="sub-title">
 			<%
 				if (login != null) {
