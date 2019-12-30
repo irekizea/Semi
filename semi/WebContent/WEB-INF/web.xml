@@ -22,28 +22,25 @@
  	</filter-mapping>
 
 
-<!--  	    admin(관리자)로그인 =>테스트용이므로 개발 후 삭제할 것
-    <filter>
-    	<filter-name>testAdminFilter</filter-name>
-    	<filter-class>semi.filter.TestAdminFilter</filter-class>
-    </filter>
-    <filter-mapping>
-    	<filter-name>testAdminFilter</filter-name>
-    	<url-pattern>/*</url-pattern>
-    </filter-mapping>
- 	
- -->
 
- <!-- 	<filter>
+
+ 	<filter>
  		<filter-name>login</filter-name>
 		<filter-class>semi.filter.loginFilter</filter-class>
 
  	</filter>
   	<filter-mapping>
- 		<filter-name>login</filter-name> -->
-<!--  		<url-pattern></url-pattern> -->
-<!--  	</filter-mapping> -->
- 	<!-- 
+ 		<filter-name>login</filter-name> 
+  		<url-pattern>/member/change_info.jsp</url-pattern>
+  		<url-pattern>/member/change_pw_result.jsp</url-pattern>
+  		<url-pattern>/member/change_pw.jsp</url-pattern>
+  		<url-pattern>/member/change_pw_result.jsp</url-pattern>
+  		<url-pattern>/member/info.jsp</url-pattern>
+  		<url-pattern>/ba_board/write.jsp</url-pattern>
+  		<url-pattern>/admin/*</url-pattern>
+  												
+	</filter-mapping>
+
  	<filter>
  		<filter-name>admin</filter-name>
 		<filter-class>semi.filter.AdminFilter</filter-class>
@@ -51,9 +48,22 @@
  	
  	<filter-mapping>
  		<filter-name>admin</filter-name>
- 		<url-pattern></url-pattern>
+ 		<url-pattern>/admin/*</url-pattern>
  	</filter-mapping>
- -->
+ 	
+ 	<filter>
+ 		<filter-name>block</filter-name>
+		<filter-class>semi.filter.BlockFilter</filter-class>
+ 	</filter>
+ 	
+ 	<filter-mapping>
+ 		<filter-name>block</filter-name>
+ 		<url-pattern>/ba_board/*</url-pattern>
+ 		<url-pattern>/board/boardedit.jsp</url-pattern>
+ 		<url-pattern>/board/BoardEditServlet</url-pattern>
+ 		<url-pattern>/board/BoardReplyInsertServlet</url-pattern>
+ 	</filter-mapping>
+
  	
  	
 
