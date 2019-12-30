@@ -91,7 +91,6 @@ table.sun-user-table td:first-child {
 				<select name="type">
 					<option value="id">아이디</option>
 					<option value="grade">등급</option>
-					<option value="point">포인트</option>
 				</select> <input type="text" name="keyword"> <input type="submit"
 					value="검색">
 			</div>
@@ -106,7 +105,6 @@ table.sun-user-table td:first-child {
 					<th>ID</th>
 					<th>email</th>
 					<th>등급</th>
-					<th>포인트</th>
 					<th>회원 차단</th>
 				</tr>
 			</thead>
@@ -124,7 +122,6 @@ table.sun-user-table td:first-child {
 					 <%}%></td>
 					<td><%=dto.getEmail()%></td>
 					<td><%=dto.getGrade()%></td>
-					<td><%=dto.getPoint()%></td>
 
 					<!--회원 차단-->
 					<td>
@@ -151,7 +148,6 @@ table.sun-user-table td:first-child {
 				<select name="type">
 					<option value="id">아이디</option>
 					<option value="grade">등급</option>
-					<option value="point">포인트</option>
 				</select> <input type="text" name="keyword"> <input type="submit"
 					value="검색">
 			</div>
