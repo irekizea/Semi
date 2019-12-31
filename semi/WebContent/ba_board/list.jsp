@@ -82,7 +82,6 @@ if(grade!=null){
         width: 4rem;
         background-color: black;
         color: white;
-        margin-right: 3rem;
     }
     
    		/* a태그 하이퍼링크 표시 제어 */
@@ -142,8 +141,8 @@ if(grade!=null){
                     	<%if(dto.getRegist()>0) {%>
 							<h5>등록 완료</h5>
 						<%} else {%>
-							<a href="regist.do?no=<%=dto.getBoard_no()%>"><input type="button"  class="botton"value="등록"></a>
-							<a href="delete.do?no=<%=dto.getBoard_no()%>"><input type="button" class="botton" value="미등록"></a>					
+							<a href="regist.do?no=<%=dto.getBoard_no()%>&pno=<%=pno%>"><input type="button"  class="botton"value="등록"></a>
+<%-- 							<a href="delete.do?no=<%=dto.getBoard_no()%>&pno=<%=pno%>"><input type="button" class="botton" value="미등록"></a>					 --%>
 						<%} %>
 					 <%} %>	                
                     </td>
@@ -152,7 +151,7 @@ if(grade!=null){
             </tbody>
         </table>
         <div class="row-empty"></div>
-        <div align="right" class="div-botton">
+        <div align="right" class="w-80 div-botton">
             <a href="write.jsp">
                 <input type="button" class="w-botton" value="글쓰기">
             </a>
@@ -166,6 +165,5 @@ if(grade!=null){
 	</jsp:include>
 	
 </div>
-
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

@@ -64,7 +64,6 @@ public class BlockFilter implements Filter{
 				}
 				
 			} catch (Exception e) {
-				e.printStackTrace();
 				resp.sendError(403);
 			}
 		

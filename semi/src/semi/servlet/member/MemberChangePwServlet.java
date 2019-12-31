@@ -31,7 +31,6 @@ public class MemberChangePwServlet extends HttpServlet{
 			resp.sendRedirect("change_pw_result.jsp");
 			}
 		catch(Exception e) {
-			e.printStackTrace();
 			resp.sendError(500);
 		}
 	}

@@ -35,7 +35,6 @@ public class BoardFileOriginServlet extends HttpServlet {
 				resp.getOutputStream().write(originData);
 			}
 			catch(Exception e){
-				e.printStackTrace();
 				resp.sendError(500);
 			}
 		}

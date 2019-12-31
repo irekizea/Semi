@@ -68,7 +68,6 @@ public class BoardEditServlet extends HttpServlet{
 			resp.sendRedirect("searchResult.jsp?keyword="+URLEncoder.encode(keyword, "UTF-8")+"&no="+no);
 		}
 			catch(Exception e) {
-			e.printStackTrace();
 			resp.sendError(500);
 		}
 	}

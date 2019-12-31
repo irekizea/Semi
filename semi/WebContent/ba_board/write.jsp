@@ -23,7 +23,7 @@
                 //height : 생성될 에디터의 높이
                 height:'300px',
                 //initialEditType : 생성될 에디터의 초기화면 형태(markdown, wysiwyg)
-                initialEditType:'wysiwyg'
+                initialEditType:'markdown'
             };
             //editor 생성 코드
             var editor = tui.Editor.factory(options);
@@ -73,8 +73,7 @@
     input {
         outline: none;
     }
-    input[type=text],
-    input[type=file]{
+    input[type=text]{
         padding: 0 1rem;
         height: 2rem;
         width: 100;

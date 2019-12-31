@@ -65,7 +65,7 @@
 			width: '100%',
 			height : '300px',
 			//initialEditType : 생성될 에디터의 초기화면 형태(markdown, wysiwyg)
-			initialEditType : 'wysiwyg',
+			initialEditType : 'markdown',
 			hooks: {
 		        'addImageBlobHook': function(blob, callback) {
 		            //해야할 것

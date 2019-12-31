@@ -24,7 +24,6 @@ public class BlockMemeberDeleteServlet extends HttpServlet{
 			resp.sendRedirect("block_list.jsp");
 			
 		} catch (Exception e) {
-			e.printStackTrace();
 			resp.sendError(500);
 		}
 		
