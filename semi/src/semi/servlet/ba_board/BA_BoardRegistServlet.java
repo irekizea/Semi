@@ -64,7 +64,6 @@ public class BA_BoardRegistServlet extends HttpServlet {
 			resp.sendRedirect("list.jsp?pno="+pno);												
 			
 		}catch(Exception e){
-			e.printStackTrace();
 			resp.sendError(500);
 		}
 		

@@ -23,7 +23,6 @@ public class BA_BoardDeleteServlet extends HttpServlet {
 			resp.sendRedirect("list.jsp");
 		}
 		catch(Exception e) {
-			e.printStackTrace();
 			resp.sendError(500);
 		}
 	}

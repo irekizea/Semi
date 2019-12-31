@@ -36391,8 +36391,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
      * $.get("csv.txt")
      *    .pipe( CSV.parse )
      *    .done( function(rows) {
-     *        for( var i =0; i < rows.length; i++){
-     *            console.log(rows[i])
+     *        for( var i =0; i < rows.length; i++){A
      *        }
      *  });
      * @see http://www.ietf.org/rfc/rfc4180.txt

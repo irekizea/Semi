@@ -45,7 +45,6 @@ public class MemberLoginServlet extends HttpServlet{
 			}
 		}
 		catch(Exception e) {
-			e.printStackTrace();
 			resp.sendError(500);
 		}
 	}
