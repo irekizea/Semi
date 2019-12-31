@@ -65,7 +65,7 @@
 			width: '100%',
 			height : '300px',
 			//initialEditType : 생성될 에디터의 초기화면 형태(markdown, wysiwyg)
-			initialEditType : 'wysiwyg',
+			initialEditType : 'markdown',
 			hooks: {
 		        'addImageBlobHook': function(blob, callback) {
 		            //해야할 것
@@ -160,7 +160,8 @@
 			%>
 		</div>
 <!-- 		<input type="file" name="file">		 -->
-		<input type="text" name="sub_title" required class="sub-title" style="width:100%; height:5%;" value="<%=boardtextdto.getSub_title() %>">			
+		<input type="text" name="sub_title" required class="sub-title" style="width:100%; height:5%;" value="
+		<%=boardtextdto.getSub_title() %>">			
 		<input type="hidden" name="sub_title" value="<%=boardtextdto.getSub_title() %>">
 		<div class="naver-editor"></div>
 		<input type="hidden" name="text_content" value="<%=boardtextdto.getText_content()%>">
