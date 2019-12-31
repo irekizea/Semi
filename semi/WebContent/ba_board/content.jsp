@@ -74,7 +74,7 @@
 	<!--(주제 생성 후)작성된 댓글 내용-->		 
     <%for(ReplyDto rdto : rlist) {%>
     
-	<%if(bdto.getWriter().equals(rdto.getId()) || isAdmin) {%>
+	<%if(bdto.getWriter().equals(rdto.getId())) {%>
 		<div class="content-item right">                  
     <%} else {%>
         <div class="content-item left" align="right">    
@@ -122,7 +122,9 @@
         <div align="right">
             <input type="submit" value="전송" id="bt">
              <a href="delete.do?no=<%=no%>">
+             <%if(userId.equals(bdto.getWriter())){ %>
                 <input type="button" class="w-botton" value="글삭제" id="bt">
+             <%} %>
             </a>
         </div>
     </div>
