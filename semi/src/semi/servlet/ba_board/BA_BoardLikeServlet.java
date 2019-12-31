@@ -30,7 +30,6 @@ public class BA_BoardLikeServlet extends HttpServlet {
 			like = new HashSet<>();
 		}
 		boolean isFirst = like.add(no);
-		System.out.println(like);
 		
 		req.getSession().setAttribute("like", like);		
 		
@@ -39,7 +38,6 @@ public class BA_BoardLikeServlet extends HttpServlet {
 		if(!isMine && isFirst){	
 			dao.up(no);
 		}else {
-			System.out.println("뭔데?왜 안되는데???");
 		}
 		
 		resp.sendRedirect("content.jsp?no="+no);

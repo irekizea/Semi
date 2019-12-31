@@ -200,7 +200,6 @@ public class BlockMemberDao {
 		while(rs.next()) {
 			list.add(rs.getString("b_id"));
 		}
-//		System.out.println(list);
 		con.close();
 		return list;
 	}

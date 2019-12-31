@@ -113,13 +113,14 @@ public class BoardTextDao {
 	public void btedit(BoardTextDto dto) throws Exception {
 		Connection con = getConnection();
 		
-		String sql = "update board_text set udate=sysdate, writer=?, text_content=?, ip_addr=? where no=? ";
+		String sql = "update board_text set udate=sysdate, writer=?, text_content=?, ip_addr=?, sub_title=? where no=? ";
 
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, dto.getWriter());
 		ps.setString(2, dto.getText_content());
 		ps.setString(3, dto.getIp_addr());
-		ps.setInt(4, dto.getNo());
+		ps.setString(4, dto.getSub_title());
+		ps.setInt(5, dto.getNo());
 
 		ps.execute();
 

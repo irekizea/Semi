@@ -209,25 +209,7 @@
 		padding: 8px 14px;
 	}
 		
-	.btn:before {
-		content: "";
-		top: 50%;
-		left: 50%;
-		  
-		display: block;
-		width: 0;
-		padding-top: 0;
-		    
-		border-radius: 100%;
-		  
-		background-color: rgba(236, 240, 241, .3);
-		  
-		-webkit-transform: translate(-50%, -50%);
-		-moz-transform: translate(-50%, -50%);
-		-ms-transform: translate(-50%, -50%);
-		-o-transform: translate(-50%, -50%);
-		transform: translate(-50%, -50%);
-	}
+	
 		
 	.btn:active:before {
 		width: 120%;
@@ -267,6 +249,11 @@
 		height: 80px;
  		resize: none;
 	}       
+	.title{
+	
+	font-size:3rem;
+	
+	}
         
 </style>
 
@@ -323,7 +310,7 @@
 	<%if(flist.size() > 0){ %>
 		<div class="origin-img">
 			<%for(BA_FileDto fdto : flist){ %>
-				<img src="fileorigin.do?keyword=<%=fdto.getTitle_key()%>" class="img" style="width: 100%; height:auto;">
+				<img src="fileorigin.do?keyword=<%=fdto.getTitle_key()%>" class="img" style="width: 40%; height:auto;">
 			<%} %>
 			<br>
 		</div>
@@ -335,7 +322,13 @@
  	 <div id = "list" class="sindex">
  		<%for(BoardTextDto boardTextDto:getList){ %>
 			<%if(boardTextDto.getRn()==1){%>
-				<a href ="#s-<%=boardTextDto.getRn()%>"><%=boardTextDto.getRn() %>:최초글</a><br>
+				<a href ="#s-<%=boardTextDto.getRn()%>">
+				<%=boardTextDto.getRn() %>: <%if(boardTextDto.getSub_title()==null){%>
+				최초글
+				<%}else {%>
+				<%=boardTextDto.getSub_title() %></a><br>
+				<%} %>
+				
 			<%}else {%>
 	
 		 	 	<a href ="#s-<%=boardTextDto.getRn()%>"><%=boardTextDto.getRn() %>:<%=boardTextDto.getSub_title() %></a><br>
