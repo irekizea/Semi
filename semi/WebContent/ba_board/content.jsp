@@ -84,7 +84,7 @@
            <div class="date">
                 <h5><%=rdto.getWdate()%></h5>
             </div>
-            
+            <!--  -->
 	        <div>  
 			<!--댓글 내용  -->
              	<%=rdto.getReply_title()%>	
