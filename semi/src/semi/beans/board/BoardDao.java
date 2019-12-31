@@ -77,15 +77,16 @@ public class BoardDao {
 	public List<BoardDto> getTitleList() throws Exception {
 		Connection con = getConnection();
 		
-		String sql="select rownum, B. *from( "
+		String sql="select rownum, rn. *from( "
 						+ "select title from board order by board.searchcount desc " 
-					+ ")B where rownum <=4";
+					+ ")rn where rownum <=4";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		
 		List<BoardDto> list =new ArrayList<>();
 		while(rs.next()){
 			BoardDto boardDto = new BoardDto();
+			boardDto.setRn(rs.getInt("rownum"));
 			boardDto.setTitle(rs.getString("title"));
 			
 			list.add(boardDto);

@@ -160,8 +160,7 @@
 			%>
 		</div>
 <!-- 		<input type="file" name="file">		 -->
-		<input type="text" name="sub_title" required class="sub-title" style="width:100%; height:5%;" value="
-		<%=boardtextdto.getSub_title() %>">			
+		<input type="text" name="sub_title" required class="sub-title" style="width:100%; height:5%;" value="<%=boardtextdto.getSub_titleView() %>">			
 		<input type="hidden" name="sub_title" value="<%=boardtextdto.getSub_title() %>">
 		<div class="naver-editor"></div>
 		<input type="hidden" name="text_content" value="<%=boardtextdto.getText_content()%>">

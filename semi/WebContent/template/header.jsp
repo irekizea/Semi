@@ -29,7 +29,8 @@ boolean isLogin = userId != null;
 	 <nav class="btab">
         <a href="<%=context%>" class="blogo">Alcohol</a>
         <ul>
-            <li><a href="<%=context%>/board/history_total.jsp">HISTORY</a></li>
+            <li><a href="<%=context%>/board/history_total.jsp">HISTORY</a>
+            </li>
             <li>
                 <a href="<%=context%>/ba_board/list.jsp">DEBATE</a>
                 
@@ -69,7 +70,8 @@ boolean isLogin = userId != null;
      <nav class="tab">
      	<a href="<%=context%>" class="logo">Alcohol</a>
         <ul>
-            <li><a href="<%=context%>/board/history_total.jsp">HISTORY</a></li>
+            <li><a href="<%=context%>/board/history_total.jsp">HISTORY</a>
+            </li>
             <li>
                 <a href="<%=context%>/ba_board/list.jsp">DEBATE</a>
           

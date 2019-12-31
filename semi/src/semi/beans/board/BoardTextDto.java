@@ -77,6 +77,13 @@ public class BoardTextDto {
 		return sub_title;
 	}
 
+	public String getSub_titleView() {
+		if(sub_title==null) {
+			return "";
+		}
+		return sub_title;
+	}
+	
 	public void setSub_title(String sub_title) {
 		this.sub_title = sub_title;
 	}
