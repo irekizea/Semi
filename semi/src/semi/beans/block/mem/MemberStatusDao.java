@@ -27,8 +27,14 @@ public class MemberStatusDao {
 	public List<MemberStatusDto> getList(int start,int finish) throws Exception{
 		Connection con = getConnection();
 		
-		String sql = "select * from member_status";
+		String sql = "select * from ( "
+						+ "select rownum rn, A.* from( "
+							+ "select * from member_status order by id desc "
+						+ ")A "
+					+ ") where rn between ? and ?";
 		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, start);
+		ps.setInt(2, finish);
 		ResultSet rs = ps.executeQuery();
 		
 		List<MemberStatusDto> list = new ArrayList<>();
