@@ -166,5 +166,4 @@ if(grade!=null){
 	
 </div>
 
-
 <jsp:include page="/template/footer.jsp"></jsp:include>
