@@ -70,19 +70,32 @@
         
         .topN *{
             text-align: center;
-            color: white;
             display: inline-block;
             font-size: 17px;
             font-weight: bold;
-            margin: 1rem;
         }
-		.topN span {
-		font-size:20px;
-		border-bottom: 20px solid #808285;
-        width: auto;
-        line-height: -0px;
-        text-align: center;
+        .topN span:nth-child(1) {
+        	font-size: 10px;
+        	color: gray;
+        	
+        }
+		.topN span:nth-child(2) {
+			font-size:20px;
+            color: white;
+			border-bottom: 20px solid #808285;
+	        width: auto;
+	        line-height: -0px;
+	        text-align: center;
+	        margin-left: 0.5rem;
+            margin-right: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
          } 
+         
+ 		/* a태그 하이퍼링크 표시 제어 */        
+	a:link { color: black; text-decoration: none;}
+    a:visited { color: black; text-decoration: none;}
+    
     </style>
     
 <%-- 	<img src="<%=request.getContextPath()%>/image/back.jpg" id="bg" alt="술마시고 있는 사람들"> --%>
@@ -91,10 +104,12 @@
     	<form action="<%=request.getContextPath()%>/board/searchResult.jsp" method="get">
         <input type="text" name="keyword" placeholder="what would you like to sarch?" required>
 	        <br><br>
+	        <div style="text-align:left; color:#6E6E6E;">인기 검색어: </div>
 	        <div class="topN">
 	        <%for(BoardDto boardDto:list) {%>
 	            <a href="<%=request.getContextPath()%>/board/searchResult.jsp?keyword=<%=URLEncoder.encode(boardDto.getTitle(), "UTF-8") %>" >
-					<span><%=boardDto.getTitle() %>  </span>
+	            	<span><%=boardDto.getRn()%>.</span>
+	            	<span><%=boardDto.getTitle() %></span>
 				</a>
 	        <%} %>
 	        </div>

@@ -4,9 +4,10 @@ public class BoardDto {
 	private int no, searchCount;
 	private String writer, title, content, wdate, udate;
 	private boolean editCheck;	// 승인된 최초글(수정이전), 수정된글인지 판단할 변수
+	private int rn; 	// 검색어순위  rn
 	
 	
-	public BoardDto(int no, int searchCount, String writer, String title, String content, String wdate, String udate, boolean editCheck) {
+	public BoardDto(int no, int searchCount, String writer, String title, String content, String wdate, String udate, boolean editCheck, int rn) {
 		super();
 		this.no = no;
 		this.writer = writer;
@@ -16,6 +17,7 @@ public class BoardDto {
 		this.udate = udate;
 		this.searchCount = searchCount;
 		this.editCheck = editCheck;
+		this.rn = rn;
 	}
 
 	public BoardDto() {
@@ -85,7 +87,14 @@ public class BoardDto {
 	public void setEditCheck(Boolean editCheck) {
 		this.editCheck = editCheck;
 	}
-	
+
+	public int getRn() {
+		return rn;
+	}
+
+	public void setRn(int rn) {
+		this.rn = rn;
+	}
 	
 	
 }
