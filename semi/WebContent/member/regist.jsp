@@ -4,7 +4,12 @@
 
 
 <style>
+.hei{
+height:600px;
+}
 
+
+>>>>>>> branch 'dahye' of https://github.com/irekizea/Semi
 	input.input-item {
     width: 300px;
     line-height: 30px;
@@ -64,34 +69,33 @@ height: 600px;
 <!-- <div class="auu" align="center" > -->
 
 <!-- 	<article class="w-50"> -->
-	
-<div class="row" > 
-	<h2 style="margin-left: 25px;">회원가입</h2>
-</div>
+
+	<div class="row">
+		<h2 style="margin-left: 25px;">회원가입</h2>
+		</div>
 
 		<div align="center">
-		<table>
-<tr>
-<td>아이디<td>
-<td><input id="id-input" class="block-item input-item sun-input" type="text" name="id" required></td>
-</tr>
-<tr>
-<td>비밀번호<td>
-<td><input id="pw-input" class="block-item input-item sun-input" type="password" name="pw" required></td>
-</tr>
-<tr>
-<td>이메일<td>
-<td>	<input id="email-input" class="block-item input-item sun-input" type="email" name="email" required></td>
-</tr>
-
-</table>
+			<table>
+			<tr>
+				<td>아이디<td>
+				<td><input id="id-input" class="block-item input-item sun-input" type="text" name="id" required></td>
+			</tr>
+			<tr>
+				<td>비밀번호<td>
+				<td><input id="pw-input" class="block-item input-item sun-input" type="password" name="pw" required></td>
+			</tr>
+			<tr>
+				<td>이메일<td>
+				<td>	<input id="email-input" class="block-item input-item sun-input" type="email" name="email" required></td>
+			</tr>
+		</table>
 <br>
-<div style="margin-left: 50px;">
-<input class="btn sun-button" type="submit" value="가입하기"> 
 
-</div>
-<h5>※ 저희 알콜위키는 회원가입 후 탈퇴가 불가능합니다. </h5>
+		<div style="margin-left: 50px;">
+			<input class="btn sun-button" type="submit" value="가입하기"> 
 		</div>
+		<h5>※ 저희 알콜위키는 회원가입 후 탈퇴가 불가능합니다. </h5>
+	</div>
 		
 </form>
 <jsp:include page="/template/footer.jsp"></jsp:include>

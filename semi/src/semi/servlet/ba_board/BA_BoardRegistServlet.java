@@ -26,6 +26,7 @@ public class BA_BoardRegistServlet extends HttpServlet {
 			BA_BoardDao dao = new BA_BoardDao();
 			
 			int no=Integer.parseInt(req.getParameter("no"));
+			int pno=Integer.parseInt(req.getParameter("pno"));
 			
 			BA_BoardDto badto = dao.get(no);
 			
@@ -59,8 +60,8 @@ public class BA_BoardRegistServlet extends HttpServlet {
 				dao.registUpdate(no);
 			}else {
 			}
-	
-			resp.sendRedirect("list.jsp");												
+			
+			resp.sendRedirect("list.jsp?pno="+pno);												
 			
 		}catch(Exception e){
 			e.printStackTrace();
