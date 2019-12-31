@@ -34,7 +34,7 @@ boolean isLogin = userId != null;
                 <a href="<%=context%>/ba_board/list.jsp">DEBATE</a>
                 
                 <ul>
-                    <li><a href="<%=context%>/ba_board/write.jsp">새주제 등록</a></li>
+                    <li><a href="<%=context%>/ba_board/write.jsp">새 주제 등록</a></li>
                     <li><a href="<%=context%>/ba_board/list.jsp">토론 목록</a></li>
                 </ul>
             
@@ -58,7 +58,7 @@ boolean isLogin = userId != null;
          </ul>
          <div class="bsearch-box">
 			<form action="<%=request.getContextPath()%>/board/searchResult.jsp" method="get">
-				<input type="text" name="keyword" placeholder="what would you like to sarch?" required>
+				<input type="text" name="keyword" placeholder="search" required>
 			</form>
          </div>
     </nav>
@@ -74,7 +74,6 @@ boolean isLogin = userId != null;
                 <a href="<%=context%>/ba_board/list.jsp">DEBATE</a>
           
                 <ul>
-                    <li><a href="<%=context%>/ba_board/write.jsp">새주제 등록</a></li>
                     <li><a href="<%=context%>/ba_board/list.jsp">토론 목록</a></li>
                 </ul>
             
@@ -84,7 +83,8 @@ boolean isLogin = userId != null;
          </ul>
          <div class="search-box">
 			<form action="<%=request.getContextPath()%>/board/searchResult.jsp" method="get">
-				<input type="text" name="keyword" placeholder="검색어를 입력하세요" required>
+				<input type="text" name="keyword" placeholder="search" required>
+
 			</form>
          </div>
     </nav>

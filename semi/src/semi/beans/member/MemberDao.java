@@ -87,7 +87,7 @@ public class MemberDao {
 	// 이름 : find
 	// 매개변수 : email
 	// 반환형 : id
-
+	
 	// 전체 공개 / 반환String (입력 받을게 email인데 형식이 String이라서 )
 	public String find_id(String email) throws Exception {
 		// 연결하기/ con은 별칭 / get.onnection / 연결하기 가져오겠다를
@@ -194,7 +194,6 @@ public class MemberDao {
 				+ "where "+type+" like '%'||?||'%' "
 						+ "order by "+type+" asc ";
 		
-		System.out.println(sql);
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, keyword);
@@ -275,7 +274,21 @@ public class MemberDao {
 			
 			return count;
 		}
+		// 내정보 변경 메소드
+		public void change_info(String id, String email) throws Exception{
+			// 공개합니다. 결과는 없고요 준비물은 아이디랑, 비번이구요 예외는 나도 모르오 
+			Connection con = getConnection();
 		
+			String sql ="update member set email=? where id=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, email);
+			ps.setString(2, id);
+			
+			ps.execute();
+			
+			con.close();
+		
+		}
 	
 	
 	

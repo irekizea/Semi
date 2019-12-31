@@ -29,7 +29,7 @@ public class BoardReplyDao {
 // 메인상세글 댓글(토론) 입력
 	public void replyInsert(BoardReplyDto boardReplyDto) throws Exception{
 		Connection con = getConnection();
-				
+			
 		String sql="insert into board_reply (reply_no, board_title, writer, ip_addr, content) "
 				+ "values(board_reply_seq.nextval, ?, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(sql);

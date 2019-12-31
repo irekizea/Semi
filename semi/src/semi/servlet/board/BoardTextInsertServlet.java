@@ -2,7 +2,9 @@ package semi.servlet.board;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import semi.beans.block.mem.BlockMemberDao;
+import semi.beans.block.mem.BlockMemberDto;
 import semi.beans.board.BoardDto;
 import semi.beans.board.BoardTextDao;
 import semi.beans.board.BoardTextDto;
@@ -33,9 +37,41 @@ public class BoardTextInsertServlet extends HttpServlet {
 			req.setCharacterEncoding("UTF-8");
 			
 			int board_no = Integer.parseInt(mRequest.getParameter("board_no"));	
-			String keyword = mRequest.getParameter("keyword");
+			String keyword = URLDecoder.decode(mRequest.getParameter("keyword"), "UTF-8");
+
+		
+	
+			
+			
+			
+			
 			String writer = (String)req.getSession().getAttribute("id");
 			String ip_addr = req.getRemoteAddr();
+			BlockMemberDao dao = new BlockMemberDao();
+			List<BlockMemberDto> list = dao.block();
+			List<BlockMemberDto> list2= dao.blockIp();
+
+			int count = 0;
+			for(BlockMemberDto dato:list) {
+				if(writer!=null) {
+				if(writer.equals(dato.getB_id())){
+					count+=1;
+
+				}
+				}
+			}
+			for(BlockMemberDto ipdto: list2) {
+				if(writer==null) {
+				if(ip_addr.equals(ipdto.getB_ip())) {
+			
+					count+=1;
+		
+				}
+				}
+			}
+			
+			if(count==0) {
+				
 			
 			BoardTextDto boardTextDto = new BoardTextDto();
 			boardTextDto.setBoard_no(board_no);
@@ -69,6 +105,9 @@ public class BoardTextInsertServlet extends HttpServlet {
 			}
 			
 			resp.sendRedirect(req.getContextPath()+"/board/searchResult.jsp?keyword="+URLEncoder.encode(keyword, "UTF-8")+"&board_no="+board_no);
+			}else {
+				resp.sendError(403);
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();

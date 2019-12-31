@@ -23,8 +23,23 @@ public class BA_BoardWriteServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-		MultipartRequest mRequest = new MultipartRequest(req, "D:/upload/kh21", 10*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
-
+		
+		String path="D:/upload";
+		File Folder=new File(path);
+		
+		String path21="D:/upload/kh21";
+		File Folder21=new File(path21);
+		
+		
+		if(!Folder.exists()||!Folder21.exists()) {
+			Folder.mkdir();
+			Folder21.mkdir();
+			
+		}else {
+		}
+			
+		MultipartRequest mRequest = new MultipartRequest(req, path21, 10*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
+		
 		BA_BoardDto dto = new BA_BoardDto();
 		BA_BoardDao dao = new BA_BoardDao();
 		

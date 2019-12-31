@@ -6,10 +6,16 @@
 body {
 	background: #f5f5f5;
 }
+.s{
+height: 580px;
+}
 </style>
 
+<div class="s">
 <div class="sun-container">
+
 	<div align="center" class="sun-container-wrap">
+	<br><br><br><br>
 		<h3 style="margin-left: 55px;">아이디 찾기</h3>
 
 		<form action="find_id.do" method="post">
@@ -24,6 +30,7 @@ body {
 			</table>
 		</form>
 	</div>
+</div>
 </div>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

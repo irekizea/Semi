@@ -121,6 +121,9 @@
 
         <div align="right">
             <input type="submit" value="전송" id="bt">
+             <a href="delete.do?no=<%=no%>">
+                <input type="button" class="w-botton" value="글삭제" id="bt">
+            </a>
         </div>
     </div>
 </form>

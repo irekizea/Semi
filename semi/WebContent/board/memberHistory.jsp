@@ -16,7 +16,6 @@
 <%	
 	HistoryDao historyDao = new HistoryDao();
 	HistoryDto historyDto = new HistoryDto();
-
 	String writer=request.getParameter("writer");
 	String ip_addr=request.getParameter("ip_addr");
 	
@@ -54,7 +53,6 @@
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-
     .his-board tr:nth-child(1)  {
         font-weight: bold;
     }
@@ -65,7 +63,6 @@
     .his-board .his-content {
         border-bottom: 1px solid lightgray;
     }
-
     .his-board .title{
         width: 3rem;
         text-align: left;
@@ -86,7 +83,6 @@
     .his-board a:link { color: black; text-decoration: none;}
     .his-board a:visited { color: black; text-decoration: none;}
     .his-board a:hover { text-decoration: underline;}
-
 </style>
 <!--
     var result=3;
@@ -142,10 +138,8 @@
                     <%=memberHis.getBoardtextudate() %>
                 </td>
                 <td class="content">
-               		<a href="#">
                         <%=memberHis.getContent() %>
-                    </a>
-                    <span class="liked" style="font-weight: lighter; font-size: 12px;">(+/- count)</span>
+                    <span class="liked" style="font-weight: lighter; font-size: 12px;"></span>
                 </td>
                 <td class="title">
                     <%=memberHis.getBoardtitle() %>

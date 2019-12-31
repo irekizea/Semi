@@ -13,7 +13,7 @@ body {
 }
 
 .login-wrap {
-	height:600px;
+	height:550px;
 	width: 310px;
 	
 	/* 내용물 가운데 정렬 */
@@ -78,8 +78,8 @@ body {
 
 				<h1>Alcohole Wiki</h1>
 				<form action="login.do" method="post">
-					<input class="sun-input" type="text" name="id" placeholder="아이디" required>
-					<input class="sun-input" type="text" name="pw" placeholder="비밀번호" required>
+					<input class="sun-input" type="text" name="id" placeholder="아이디" required autocomplete="off">
+					<input class="sun-input" type="password" name="pw" placeholder="비밀번호" required autocomplete="off">
 					<input class="sun-button" type="submit" value="로그인">
 
 				</form>

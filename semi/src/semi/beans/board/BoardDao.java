@@ -124,7 +124,6 @@ public class BoardDao {
 			tf=true;
 		}
 
-		System.out.println(tf);
 		return tf;
 	}
 	//위랑 동일한 메소드(매개변수만 keyword)

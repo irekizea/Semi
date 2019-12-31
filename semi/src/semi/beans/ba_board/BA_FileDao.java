@@ -172,6 +172,34 @@ public class BA_FileDao {
 			con.close();
 			return fdto;
 		}
+		
+//기능: 단일조회(board) -->목적: 승인대기글에서 넘어온 파일 조회
+//이름:get
+//매개변수: 대주제(=검색 키워드)
+//반환형:BA_FileDto
+				public BA_FileDto get(String keyword) throws Exception{
+					Connection con = getConnection();
+					
+					String sql = "select * from ba_file where title_key = ?";
+					PreparedStatement ps = con.prepareStatement(sql);
+					ps.setString(1, keyword);
+					ResultSet rs = ps.executeQuery();
+					
+					BA_FileDto fileDto= null;
+					if(rs.next()) {
+						fileDto = new BA_FileDto();
+						fileDto.setNo(rs.getInt("no"));
+						fileDto.setOrigin(rs.getInt("origin"));
+						fileDto.setUploadname(rs.getString("uploadname"));
+						fileDto.setSavename(rs.getString("savename"));
+						fileDto.setFiletype(rs.getString("filetype"));
+						fileDto.setFilesize(rs.getLong("filesize"));
+						fileDto.setTitle_key(rs.getString("title_key"));
+					}
+
+					con.close();
+					return fileDto;
+				}
 
 //기능:단일조회2, 메인글에서 목차 추가 때 업로드 된 파일 조회
 //이름:get1
@@ -201,4 +229,3 @@ public class BA_FileDao {
 		}
 
 }
-

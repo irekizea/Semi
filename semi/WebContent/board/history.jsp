@@ -21,11 +21,8 @@
 		pno = 1;
 	}
 	int finish = count-(pno-1) * pagesize;
-	System.out.println(finish+"fin");
 	int start = finish - (pagesize - 1);
-	System.out.println(start);
 	List<HistoryDto> list = dao.hList(keyword, start,finish);
-
 	
 %>    
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">    
@@ -33,7 +30,6 @@
 	body {
 		background: #f5f5f5;
 	}
-
     /* history style */
     .his-board{
         border-collapse: collapse;
@@ -67,7 +63,6 @@
         width: 4rem;
         text-align: center;
     }
-
     /* 좋아요, 싫어요 -> javaScript 구현 */
     .liked {
         color: blue;
@@ -80,7 +75,6 @@
     .his-board a:link { color: black; text-decoration: none;}
     .his-board a:visited { color: black; text-decoration: none;}
     .his-board a:hover { text-decoration: underline;}
-
 </style>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -107,10 +101,7 @@
             <tr class="his-content">
                 <td class="no" style="font-size: 13px;"><%=hdto.getRn() %></td>			<!-- history 글번호. no 또는 rownum -->
                 <td class="content">
-                	<a href="#">
                 		<%=hdto.getContent() %>
-                	</a>
-<!--                 	<span class="liked" style="font-weight: lighter; font-size: 12px;">(+/- count)</span> -->
                 </td>
                 <td class="time" style="font-size: 13px;">
                     <%=hdto.getBoardtextudate() %>								<!-- 수정시간 -->

@@ -7,14 +7,15 @@ body {
 	background: #f5f5f5;
 }
 .s{
-height: 580px;
+height: 550px;
 }
 </style>
 
 <div class="s">
+<br><br>
 <div class="sun-container">
 	<div align="center" class="sun-container-wrap vcenter">
-		<h2>비밀번호 변경이 완료되었습니다</h2>
+		<h2>정보 변경이 완료되었습니다</h2>
 		<h4>
 			<a href="<%=request.getContextPath()%>">home으로 </a>
 		</h4>

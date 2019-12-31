@@ -6,7 +6,11 @@
 body {
 	background: #f5f5f5;
 }
+.s{
+height: 600px;
+}
 </style>
+<div  class="s">
 <div class="sun-container">
 	<div align="center" class="sun-container-wrap vcenter">
 		<h2>아이디가 이미 사용중입니다</h2>
@@ -15,5 +19,5 @@ body {
 		</h3>
 	</div>
 </div>
-
+</div>
 <jsp:include page="/template/footer.jsp"></jsp:include>
