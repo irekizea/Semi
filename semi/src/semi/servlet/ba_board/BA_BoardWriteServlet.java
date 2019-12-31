@@ -75,7 +75,6 @@ public class BA_BoardWriteServlet extends HttpServlet {
 		
 		resp.sendRedirect("content.jsp?no="+no);
 		}catch(Exception e){
-			e.printStackTrace();
 			resp.sendError(500);
 		}
 		

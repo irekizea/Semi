@@ -33,7 +33,7 @@ public class MemberFindIdServlet extends HttpServlet{
 		// 이동
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+
 			resp.sendError(500);
 		}
 	}

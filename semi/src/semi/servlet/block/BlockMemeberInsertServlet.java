@@ -40,7 +40,6 @@ public class BlockMemeberInsertServlet extends HttpServlet{
 			resp.sendRedirect("list.jsp");
 			
 		} catch (Exception e) {
-			e.printStackTrace();
 			resp.sendError(500);
 		}
 		

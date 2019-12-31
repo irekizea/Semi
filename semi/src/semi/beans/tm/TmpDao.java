@@ -20,7 +20,6 @@ public class TmpDao {
 			source = (DataSource) ctx.lookup("java:comp/env/jdbc/oracle");
 		}
 		catch(Exception e) {
-			e.printStackTrace();
 		}
 		
 	}

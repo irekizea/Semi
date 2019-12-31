@@ -29,7 +29,7 @@ public class BA_FileDownloadServlet extends HttpServlet {
 		
 		resp.getOutputStream().write(data);	
 		} catch(Exception e) {
-			e.printStackTrace();
+	
 			resp.sendError(500);
 		}
 	}

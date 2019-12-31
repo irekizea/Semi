@@ -49,7 +49,6 @@ public class BoardFileUploadServlet extends HttpServlet{
 		resp.getWriter().println(req.getContextPath()+"/board/filedown.do?no="+fileseq);
 		
 		} catch (Exception e) {
-			e.printStackTrace();
 			resp.sendError(500);
 		}
 	}

@@ -35,7 +35,6 @@ try {
 				
 }
 catch(Exception e){
-	e.printStackTrace();
 	resp.sendError(500);
 
 }

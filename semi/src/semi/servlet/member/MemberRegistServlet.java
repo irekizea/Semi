@@ -39,7 +39,6 @@ public class MemberRegistServlet extends HttpServlet{
 			resp.sendRedirect("regist_fail.jsp");
 		}
 		catch(Exception e){
-			e.printStackTrace();
 			resp.sendError(500);
 		}
 	}

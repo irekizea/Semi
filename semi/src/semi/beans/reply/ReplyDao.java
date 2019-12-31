@@ -25,7 +25,6 @@ public class ReplyDao {
 			
 		}
 		catch(Exception e) {
-			e.printStackTrace();
 		}
 	}
 	
