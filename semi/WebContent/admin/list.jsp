@@ -43,7 +43,6 @@
 	//		[3]처리
 	
 	MemberStatusDao dao = new MemberStatusDao();
-	
 	List<MemberStatusDto> list;
 	if (isSearch) {
 		list = dao.search(type, keyword,start, finish);
@@ -51,8 +50,10 @@
 	} else {
 		list = dao.getList(start, finish);
 	}
+	
 	int count = dao.getCount(type, keyword);
 
+%>
 %>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -133,8 +134,8 @@ table.sun-user-table td:first-child {
 				<select name="type">
 					<option value="id">아이디</option>
 					<option value="grade">등급</option>
-				</select> <input type="text" name="keyword"> <input type="submit"
-					value="검색">
+				</select> 
+				<input type="text" name="keyword"> <input type="submit" value="검색">
 			</div>
 
 		</form>
