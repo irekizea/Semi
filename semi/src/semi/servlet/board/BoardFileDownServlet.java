@@ -37,7 +37,6 @@ public class BoardFileDownServlet extends HttpServlet {
 				resp.getOutputStream().write(data);
 		}
 		catch(Exception e){
-			e.printStackTrace();
 			resp.sendError(500);
 		}
 	}

@@ -18,7 +18,6 @@ public class HistoryDao {
 			InitialContext ctx = new InitialContext();
 			source = (DataSource) ctx.lookup("java:comp/env/jdbc/oracle");
 		} catch (NamingException e) {
-			e.printStackTrace();
 		}
 	}
 

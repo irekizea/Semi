@@ -38,12 +38,10 @@ public class BA_BoardDislikeServlet extends HttpServlet {
 		if(!isMine && isFirst){
 			dao.down(no);
 		}else {
-			System.out.println("뭔데?왜 안되는데???");
 		}
 		
 		resp.sendRedirect("content.jsp?no="+no);
 		}catch(Exception e) {
-			e.printStackTrace();
 			resp.sendError(500);
 		}
 	}
