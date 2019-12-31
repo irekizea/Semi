@@ -141,8 +141,8 @@ if(grade!=null){
                     	<%if(dto.getRegist()>0) {%>
 							<h5>등록 완료</h5>
 						<%} else {%>
-							<a href="regist.do?no=<%=dto.getBoard_no()%>"><input type="button"  class="botton"value="등록"></a>
-							<a href="delete.do?no=<%=dto.getBoard_no()%>"><input type="button" class="botton" value="미등록"></a>					
+							<a href="regist.do?no=<%=dto.getBoard_no()%>&?pno=<%=pno%>"><input type="button"  class="botton"value="등록"></a>
+							<a href="delete.do?no=<%=dto.getBoard_no()%>&?pno=<%=pno%>"><input type="button" class="botton" value="미등록"></a>					
 						<%} %>
 					 <%} %>	                
                     </td>
