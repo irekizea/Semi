@@ -46,7 +46,6 @@
 	List<MemberStatusDto> list;
 	if (isSearch) {
 		list = dao.search(type, keyword,start, finish);
-		// 			list = new ArrayList<>();
 	} else {
 		list = dao.getList(start, finish);
 	}
@@ -84,8 +83,8 @@ table.sun-user-table td:first-child {
 			<!-- 테이블 헤더 -->
 			<thead>
 				<tr>
-					<th>ID</th>
-					<th>email</th>
+					<th>아이디</th>
+					<th>이메일</th>
 					<th>등급</th>
 					<th>회원 차단</th>
 				</tr>
@@ -128,8 +127,6 @@ table.sun-user-table td:first-child {
 		<br><br><br><br>
 		<!-- 검색창 -->
 		<form action="list.jsp" method="get">
-
-			<!-- 		<input type="text" name="type"> -->
 			<div class="sun-select">
 				<select name="type">
 					<option value="id">아이디</option>
@@ -139,13 +136,13 @@ table.sun-user-table td:first-child {
 			</div>
 
 		</form>
-		<!-- 네비게이터(navigator) -->
-		<jsp:include page="/template/navigatorSearch.jsp">
-			<jsp:param name="pno" value="<%=pno%>" />
-			<jsp:param name="count" value="<%=count %>" />
-			<jsp:param name="navsize" value="<%=navsize%>" />
-			<jsp:param name="pagesize" value="<%=pagesize%>" />
-		</jsp:include>
+	<!-- 네비게이터(navigator) -->
+	<jsp:include page="/template/navigatorSearch.jsp">
+		<jsp:param name="pno" value="<%=pno%>"/>
+		<jsp:param name="count" value="<%=count%>"/>
+		<jsp:param name="navsize" value="<%=navsize%>"/>
+		<jsp:param name="pagesize" value="<%=pagesize%>"/>
+	</jsp:include>
 	</div>
 	<div></div>
 </div>
