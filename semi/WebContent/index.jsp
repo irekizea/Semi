@@ -12,7 +12,7 @@
 %>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/semi_common.css"> 
 <jsp:include page="/template/header.jsp"></jsp:include>
-
+ 
     <style>
     html{
     background: url(<%=request.getContextPath()%>/image/back.jpg) no-repeat center center fixed; 

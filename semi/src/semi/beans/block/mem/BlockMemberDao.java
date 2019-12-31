@@ -27,7 +27,7 @@ public class BlockMemberDao {
 	public Connection getConnection() throws Exception {
 		return source.getConnection();
 	}
-	
+	//
 //	기능:차단 목록 조회
 //	이름:getList
 //	매개변수:없음
