@@ -90,7 +90,7 @@
 		    }
 		};
 		//editor 생성 코드
-		
+		//수정
 		var editor = tui.Editor.factory(options);
 		
 		//editor에 이벤트를 설정해서 입력하면 자동으로 input에 복사되게 구현
