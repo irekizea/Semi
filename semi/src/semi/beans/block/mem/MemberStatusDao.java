@@ -84,7 +84,7 @@ public class MemberStatusDao {
 							+ "select rownum rn, A.* from( "
 								+ "select * from member_status "
 								+ "where "+type+" like '%'||?||'%' "
-								+ "order by bdate desc "
+								+ "order by id desc "
 							+ ")A "
 						+ ") where rn between ? and ?";
 		PreparedStatement ps = con.prepareStatement(sql);
