@@ -138,6 +138,14 @@
 		margin:2rem 0;
 	}
 	
+	.title{	
+		font-size:3rem;
+	}
+	#tip {
+		color: gray;
+		margin: 0 20px;
+	}
+	
 		/* 목차 설정 */
 	.sindex {
 		margin-top:50px;
@@ -164,13 +172,10 @@
 		padding: 0.5rem;
 	}
 	
-    #etime{
-      color: gray;
-    }
-        
     .udate {
 		font-size: 13px;		        	
 		float: right;
+		color: gray;
 	}
 	.udate::after {
 		content: "";
@@ -209,8 +214,6 @@
 		padding: 8px 14px;
 	}
 		
-	
-		
 	.btn:active:before {
 		width: 120%;
 		padding-top: 120%;
@@ -223,7 +226,7 @@
 		  box-sizing: border-box;
 		}
     
-	/* 토론(댓글) style */
+	/* modal-content 토론(댓글) style */
 	.re-table {
 		width: 100%;
 		align:center;
@@ -249,10 +252,10 @@
 		height: 80px;
  		resize: none;
 	}       
-	.title{
 	
-	font-size:3rem;
-	
+	.block {
+		border: 0;
+		outline: 0;
 	}
         
 </style>
@@ -281,6 +284,18 @@
 	BA_FileDao fdao = new BA_FileDao();
 	List<BA_FileDto> flist=fdao.getList(keyword);
 	
+	// 관리자인지 아닌지
+	String grade = (String)session.getAttribute("grade");
+	boolean isAdmin;
+	if(grade!=null){
+		if(grade.equals("관리자")){
+			isAdmin = true;
+		}else{
+			isAdmin = false;
+		}
+	}else{
+		isAdmin = false;
+	}
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semi_common.css">
@@ -289,19 +304,22 @@
 
 <!-- 검색결과 페이지 -->
 <% if(boardDto.getTitle()!=null){ %>
-
 <article class="w-80">
 	<div class="empty"></div>
 	<div class="empty"></div>
 	
-	<div>					<!-- 대주제(검색어) -->
+	<div>		<!-- 대주제(검색어) -->
 		<span class="title"><%=boardDto.getTitle() %></span>
-		<span class="udate" id="etime">	<!-- '대주제'에 대한 수정내역 -->
+		
+		<!-- 먹 Tip 토론(댓글) -->
+		<a href ="#s-reply"><span id="tip"> &#124; 토론보기</span></a>
+		
+		<span class="udate">	<!-- '대주제'에 대한 수정내역 -->
 			<a href="<%=request.getContextPath()%>/board/history.jsp?keyword=<%=keyword%>">
 				HISTORY
 			</a>
 		</span><br>
-	<span class="udate" id="etime">최근 수정 시간 : <%=boardDto.getUdate() %></span>
+		<span class="udate">최근 수정 시간 : <%=boardDto.getUdate() %></span>
 	</div>
 	
 	<div class="empty"></div>
@@ -424,7 +442,7 @@
 
 </table>
 
-<label for="reply"><p align="left">[토론 보기]</p></label>
+<label for="reply"><p align="left" id="s-reply">[토론 보기]</p></label>
 <input type="checkbox" id="reply" class="checkbox">
 <div class="checked-show ">
 
@@ -477,7 +495,6 @@
 </form>
 </div>
 
-
 <!-- 검색결과가 없다면 -->
 <% }else {%>
 	<div class="empty"></div>
@@ -505,4 +522,4 @@
 </div>
 </article>
 
-<jsp:include page="/template/footer.jsp"></jsp:include>
+<jsp:include page="/template/footer.jsp"></jsp:include>tml>
