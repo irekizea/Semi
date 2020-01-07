@@ -257,6 +257,13 @@
 		border: 0;
 		outline: 0;
 	}
+	
+	/* 결과 없음 페이지 */
+	.non-keyword {
+		margin-left:10%;
+		margin-top: 5%;
+		margin-bottom: 25%;
+	}
         
 </style>
 
@@ -499,7 +506,7 @@
 <% }else {%>
 	<div class="empty"></div>
 	<div class="empty"></div>
-<table style="margin-left:2rem;">	
+<table class="non-keyword">	
 	<tr>
 		<td>
 			" <%=keyword %> "에 대한 검색결과가 없습니다.
@@ -522,4 +529,4 @@
 </div>
 </article>
 
-<jsp:include page="/template/footer.jsp"></jsp:include>tml>
+<jsp:include page="/template/footer.jsp"></jsp:include>
