@@ -28,6 +28,8 @@
 	}
 	input[type=checkbox]:checked +.checked-show {
 		display: block;
+		<!--dasdas-->
+	
 	}
 </style>
 
